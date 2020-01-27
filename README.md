@@ -1,24 +1,9 @@
-# movie_paradise
+# Movie Paradise
 
-## Project setup
-```
-yarn install
-```
+> This project is for learning and communication purposes only, not for commercial use. The data comes from third-party websites.
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
+Movie Paradise is a web app built by Vue, Spring Boot, and maybe a little Python.  
+It can show some movies information and provide download link, live watch functions.  
 
-### Compiles and minifies for production
-```
-yarn build
-```
-
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### Status: Pre-Alpha
+I'm writing the front-end part and have no idea of spring boot
