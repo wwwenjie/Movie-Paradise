@@ -2138,6 +2138,16 @@ cli-spinners@^2.0.0:
   resolved "https://registry.npm.taobao.org/cli-spinners/download/cli-spinners-2.2.0.tgz#e8b988d9206c692302d8ee834e7a85c0144d8f77"
   integrity sha1-6LmI2SBsaSMC2O6DTnqFwBRNj3c=
 
+cli-table3@^0.5.1:
+  version "0.5.1"
+  resolved "https://registry.npm.taobao.org/cli-table3/download/cli-table3-0.5.1.tgz#0252372d94dfc40dbd8df06005f48f31f656f202"
+  integrity sha1-AlI3LZTfxA29jfBgBfSPMfZW8gI=
+  dependencies:
+    object-assign "^4.1.0"
+    string-width "^2.1.1"
+  optionalDependencies:
+    colors "^1.1.2"
+
 cli-width@^2.0.0:
   version "2.2.0"
   resolved "https://registry.npm.taobao.org/cli-width/download/cli-width-2.2.0.tgz#ff19ede8a9a5e579324147b0c11f0fbcbabed639"
@@ -2253,6 +2263,11 @@ color@^3.0.0:
   dependencies:
     color-convert "^1.9.1"
     color-string "^1.5.2"
+
+colors@^1.1.2:
+  version "1.4.0"
+  resolved "https://registry.npm.taobao.org/colors/download/colors-1.4.0.tgz#c50491479d4c1bdaed2c9ced32cf7c7dc2360f78"
+  integrity sha1-xQSRR51MG9rtLJztMs98fcI2D3g=
 
 combined-stream@^1.0.6, combined-stream@~1.0.6:
   version "1.0.8"
@@ -2710,7 +2725,7 @@ debug@2.6.9, debug@^2.2.0, debug@^2.3.3, debug@^2.6.9:
   dependencies:
     ms "2.0.0"
 
-debug@^3.0.0, debug@^3.1.1, debug@^3.2.5:
+debug@^3.0.0, debug@^3.1.0, debug@^3.1.1, debug@^3.2.5:
   version "3.2.6"
   resolved "https://registry.npm.taobao.org/debug/download/debug-3.2.6.tgz#e83d17de16d8a7efb7717edbe5fb10135eee629b"
   integrity sha1-6D0X3hbYp++3cX7b5fsQE17uYps=
@@ -2755,6 +2770,11 @@ deepmerge@^1.5.2:
   version "1.5.2"
   resolved "https://registry.npm.taobao.org/deepmerge/download/deepmerge-1.5.2.tgz#10499d868844cdad4fee0842df8c7f6f0c95a753"
   integrity sha1-EEmdhohEza1P7ghC34x/bwyVp1M=
+
+deepmerge@^2.1.1:
+  version "2.2.1"
+  resolved "https://registry.npm.taobao.org/deepmerge/download/deepmerge-2.2.1.tgz#5d3ff22a01c00f645405a2fbc17d0778a1801170"
+  integrity sha1-XT/yKgHAD2RUBaL7wX0HeKGAEXA=
 
 default-gateway@^4.2.0:
   version "4.2.0"
@@ -2952,6 +2972,14 @@ domutils@^1.5.1, domutils@^1.7.0:
     dom-serializer "0"
     domelementtype "1"
 
+dot-object@^1.7.1:
+  version "1.9.0"
+  resolved "https://registry.npm.taobao.org/dot-object/download/dot-object-1.9.0.tgz#6e3d6d8379f794c5174599ddf05528f5990f076e"
+  integrity sha1-bj1tg3n3lMUXRZnd8FUo9ZkPB24=
+  dependencies:
+    commander "^2.20.0"
+    glob "^7.1.4"
+
 dot-prop@^4.1.1:
   version "4.2.0"
   resolved "https://registry.npm.taobao.org/dot-prop/download/dot-prop-4.2.0.tgz#1f19e0c2e1aa0e32797c49799f2837ac6af69c57"
@@ -2963,6 +2991,11 @@ dotenv-expand@^5.1.0:
   version "5.1.0"
   resolved "https://registry.npm.taobao.org/dotenv-expand/download/dotenv-expand-5.1.0.tgz#3fbaf020bfd794884072ea26b1e9791d45a629f0"
   integrity sha1-P7rwIL/XlIhAcuomsel5HUWmKfA=
+
+dotenv@^6.0.0:
+  version "6.2.0"
+  resolved "https://registry.npm.taobao.org/dotenv/download/dotenv-6.2.0.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fdotenv%2Fdownload%2Fdotenv-6.2.0.tgz#941c0410535d942c8becf28d3f357dbd9d476064"
+  integrity sha1-lBwEEFNdlCyL7PKNPzV9vZ1HYGQ=
 
 dotenv@^8.2.0:
   version "8.2.0"
@@ -3276,6 +3309,11 @@ eslint@^5.16.0:
     strip-json-comments "^2.0.1"
     table "^5.2.3"
     text-table "^0.2.0"
+
+esm@^3.2.13:
+  version "3.2.25"
+  resolved "https://registry.npm.taobao.org/esm/download/esm-3.2.25.tgz#342c18c29d56157688ba5ce31f8431fbb795cc10"
+  integrity sha1-NCwYwp1WFXaIulzjH4Qx+7eVzBA=
 
 espree@^4.1.0:
   version "4.1.0"
@@ -3676,6 +3714,13 @@ flat-cache@^2.0.1:
     flatted "^2.0.0"
     rimraf "2.6.3"
     write "1.0.3"
+
+flat@^4.0.0:
+  version "4.1.0"
+  resolved "https://registry.npm.taobao.org/flat/download/flat-4.1.0.tgz#090bec8b05e39cba309747f1d588f04dbaf98db2"
+  integrity sha1-CQvsiwXjnLowl0fx1YjwTbr5jbI=
+  dependencies:
+    is-buffer "~2.0.3"
 
 flatted@^2.0.0:
   version "2.0.1"
@@ -4456,6 +4501,11 @@ is-buffer@^1.1.5:
   resolved "https://registry.npm.taobao.org/is-buffer/download/is-buffer-1.1.6.tgz?cache=0&sync_timestamp=1569904999656&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fis-buffer%2Fdownload%2Fis-buffer-1.1.6.tgz#efaa2ea9daa0d7ab2ea13a97b2b8ad51fefbe8be"
   integrity sha1-76ouqdqg16suoTqXsritUf776L4=
 
+is-buffer@~2.0.3:
+  version "2.0.4"
+  resolved "https://registry.npm.taobao.org/is-buffer/download/is-buffer-2.0.4.tgz?cache=0&sync_timestamp=1569904999656&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fis-buffer%2Fdownload%2Fis-buffer-2.0.4.tgz#3e572f23c8411a5cfd9557c849e3665e0b290623"
+  integrity sha1-PlcvI8hBGlz9lVfISeNmXgspBiM=
+
 is-callable@^1.1.4, is-callable@^1.1.5:
   version "1.1.5"
   resolved "https://registry.npm.taobao.org/is-callable/download/is-callable-1.1.5.tgz?cache=0&sync_timestamp=1576778715281&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fis-callable%2Fdownload%2Fis-callable-1.1.5.tgz#f7e46b596890456db74e7f6e976cb3273d06faab"
@@ -4668,6 +4718,11 @@ is-typedarray@~1.0.0:
   version "1.0.0"
   resolved "https://registry.npm.taobao.org/is-typedarray/download/is-typedarray-1.0.0.tgz#e479c80858df0c1b11ddda6940f96011fcda4a9a"
   integrity sha1-5HnICFjfDBsR3dppQPlgEfzaSpo=
+
+is-valid-glob@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.npm.taobao.org/is-valid-glob/download/is-valid-glob-1.0.0.tgz#29bf3eff701be2d4d315dbacc39bc39fe8f601aa"
+  integrity sha1-Kb8+/3Ab4tTTFdusw5vDn+j2Aao=
 
 is-windows@^1.0.2:
   version "1.0.2"
@@ -8067,6 +8122,20 @@ vm-browserify@^1.0.1:
   resolved "https://registry.npm.taobao.org/vm-browserify/download/vm-browserify-1.1.2.tgz#78641c488b8e6ca91a75f511e7a3b32a86e5dda0"
   integrity sha1-eGQcSIuObKkadfUR56OzKobl3aA=
 
+vue-cli-plugin-i18n@^0.6.1:
+  version "0.6.1"
+  resolved "https://registry.npm.taobao.org/vue-cli-plugin-i18n/download/vue-cli-plugin-i18n-0.6.1.tgz#5b22fbaec6166ef2a34c8044d98ef5c8729e2e43"
+  integrity sha1-WyL7rsYWbvKjTIBE2Y71yHKeLkM=
+  dependencies:
+    debug "^3.1.0"
+    deepmerge "^2.1.1"
+    dotenv "^6.0.0"
+    flat "^4.0.0"
+    rimraf "^2.6.3"
+    vue "^2.5.16"
+    vue-i18n "^8.0.0"
+    vue-i18n-extract "^1.0.2"
+
 vue-cli-plugin-vuetify@^2.0.3:
   version "2.0.3"
   resolved "https://registry.npm.taobao.org/vue-cli-plugin-vuetify/download/vue-cli-plugin-vuetify-2.0.3.tgz#a4bd1e7b92abadbd9cb64629fef8b139c9d3337b"
@@ -8090,6 +8159,23 @@ vue-hot-reload-api@^2.3.0:
   version "2.3.4"
   resolved "https://registry.npm.taobao.org/vue-hot-reload-api/download/vue-hot-reload-api-2.3.4.tgz#532955cc1eb208a3d990b3a9f9a70574657e08f2"
   integrity sha1-UylVzB6yCKPZkLOp+acFdGV+CPI=
+
+vue-i18n-extract@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.npm.taobao.org/vue-i18n-extract/download/vue-i18n-extract-1.0.2.tgz#0a136e12d1634d6799e187aad81a7003d02f67a5"
+  integrity sha1-ChNuEtFjTWeZ4Yeq2BpwA9AvZ6U=
+  dependencies:
+    cli-table3 "^0.5.1"
+    dot-object "^1.7.1"
+    esm "^3.2.13"
+    glob "^7.1.3"
+    is-valid-glob "^1.0.0"
+    yargs "^13.2.2"
+
+vue-i18n@^8.0.0:
+  version "8.15.3"
+  resolved "https://registry.npm.taobao.org/vue-i18n/download/vue-i18n-8.15.3.tgz#9f947802d9b734fcb92e2ce724da654f2f9fc0f4"
+  integrity sha1-n5R4Atm3NPy5LiznJNplTy+fwPQ=
 
 vue-loader@^15.7.2:
   version "15.8.3"
@@ -8128,7 +8214,7 @@ vue-template-es2015-compiler@^1.9.0:
   resolved "https://registry.npm.taobao.org/vue-template-es2015-compiler/download/vue-template-es2015-compiler-1.9.1.tgz#1ee3bc9a16ecbf5118be334bb15f9c46f82f5825"
   integrity sha1-HuO8mhbsv1EYvjNLsV+cRvgvWCU=
 
-vue@^2.6.10:
+vue@^2.5.16, vue@^2.6.10:
   version "2.6.11"
   resolved "https://registry.npm.taobao.org/vue/download/vue-2.6.11.tgz#76594d877d4b12234406e84e35275c6d514125c5"
   integrity sha1-dllNh31LEiNEBuhONSdcbVFBJcU=
@@ -8425,6 +8511,14 @@ yargs-parser@^11.1.1:
     camelcase "^5.0.0"
     decamelize "^1.2.0"
 
+yargs-parser@^13.1.1:
+  version "13.1.1"
+  resolved "https://registry.npm.taobao.org/yargs-parser/download/yargs-parser-13.1.1.tgz?cache=0&sync_timestamp=1572648717575&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fyargs-parser%2Fdownload%2Fyargs-parser-13.1.1.tgz#d26058532aa06d365fe091f6a1fc06b2f7e5eca0"
+  integrity sha1-0mBYUyqgbTZf4JH2ofwGsvfl7KA=
+  dependencies:
+    camelcase "^5.0.0"
+    decamelize "^1.2.0"
+
 yargs-parser@^16.1.0:
   version "16.1.0"
   resolved "https://registry.npm.taobao.org/yargs-parser/download/yargs-parser-16.1.0.tgz?cache=0&sync_timestamp=1572648717575&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fyargs-parser%2Fdownload%2Fyargs-parser-16.1.0.tgz#73747d53ae187e7b8dbe333f95714c76ea00ecf1"
@@ -8450,6 +8544,22 @@ yargs@12.0.5:
     which-module "^2.0.0"
     y18n "^3.2.1 || ^4.0.0"
     yargs-parser "^11.1.1"
+
+yargs@^13.2.2:
+  version "13.3.0"
+  resolved "https://registry.npm.taobao.org/yargs/download/yargs-13.3.0.tgz#4c657a55e07e5f2cf947f8a366567c04a0dedc83"
+  integrity sha1-TGV6VeB+Xyz5R/ijZlZ8BKDe3IM=
+  dependencies:
+    cliui "^5.0.0"
+    find-up "^3.0.0"
+    get-caller-file "^2.0.1"
+    require-directory "^2.1.1"
+    require-main-filename "^2.0.0"
+    set-blocking "^2.0.0"
+    string-width "^3.0.0"
+    which-module "^2.0.0"
+    y18n "^4.0.0"
+    yargs-parser "^13.1.1"
 
 yargs@^15.0.0:
   version "15.1.0"
