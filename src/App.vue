@@ -40,9 +40,11 @@
 
     <v-app-bar
       app
-      clipped-left
-      color="red"
       dense
+      flat
+      clipped-left
+      hide-on-scroll
+      color="transparent"
     >
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"/>
       <v-icon class="mx-4 hidden-xs-only">mdi-youtube</v-icon>
@@ -65,51 +67,27 @@
       </v-row>
     </v-app-bar>
 
-    <v-content>
-      <v-container class="fill-height">
-        <v-row
-          justify="center"
-          align="center"
-        >
-          <v-col class="shrink">
-            <v-tooltip right>
-              <template v-slot:activator="{ on }">
-                <v-btn
-                  :href="source"
-                  icon
-                  large
-                  target="_blank"
-                  v-on="on"
-                >
-                  <v-icon large>mdi-code-tags</v-icon>
-                </v-btn>
-              </template>
-              <span>Source</span>
-            </v-tooltip>
-            <v-tooltip right>
-              <template v-slot:activator="{ on }">
-                <v-btn
-                  icon
-                  large
-                  href="https://codepen.io/johnjleider/pen/aezMOO"
-                  target="_blank"
-                  v-on="on"
-                >
-                  <v-icon large>mdi-codepen</v-icon>
-                </v-btn>
-              </template>
-              <span>Codepen</span>
-            </v-tooltip>
-          </v-col>
-        </v-row>
+    <v-content class="pa-0">
+      <v-container
+        fluid
+        class="fill-height pa-0">
+        <app-screen/>
+        <app-scroll/>
+        <app-scroll/>
       </v-container>
     </v-content>
   </v-app>
 </template>
 
 <script>
+import AppScreen from './components/AppScreen'
+import AppScroll from './components/AppScroll'
 export default {
   name: 'Movie_Paradise',
+  components: {
+    'app-screen': AppScreen,
+    'app-scroll': AppScroll
+  },
   props: {
     source: String
   },
