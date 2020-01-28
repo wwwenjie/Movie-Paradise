@@ -43,8 +43,8 @@
       dense
       flat
       clipped-left
-      hide-on-scroll
-      color="transparent"
+      :hide-on-scroll="!isDesktop"
+      :color="isDesktop?'red':'transparent'"
     >
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"/>
       <v-icon class="mx-4 hidden-xs-only">mdi-youtube</v-icon>
@@ -67,7 +67,7 @@
       </v-row>
     </v-app-bar>
 
-    <v-content class="pa-0">
+    <v-content :class="isDesktop?'':'pt-0'">
       <v-container
         fluid
         class="fill-height pa-0">
@@ -82,6 +82,7 @@
 <script>
 import AppScreen from './components/AppScreen'
 import AppScroll from './components/AppScroll'
+
 export default {
   name: 'Movie_Paradise',
   components: {
@@ -104,8 +105,31 @@ export default {
       ]
     }
   },
+
+  computed: {
+    isDesktop () {
+      return this.onResize() === 'lg' || this.onResize() === 'xl'
+    }
+  },
+
+  methods: {
+    onResize () {
+      return this.$vuetify.breakpoint.name
+    }
+  },
+
   created () {
     this.$vuetify.theme.dark = true
+  },
+
+  mounted () {
+    window.addEventListener('resize', this.onResize, { passive: true })
+  },
+
+  beforeDestroy () {
+    if (typeof window !== 'undefined') {
+      window.removeEventListener('resize', this.onResize, { passive: true })
+    }
   }
 }
 </script>
