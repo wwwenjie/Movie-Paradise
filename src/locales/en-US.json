@@ -3,7 +3,9 @@
   },
   "error": {
   },
+  "appName": "Movie Paradise",
   "genre": {
+    "genre": "Genre",
     "comedy": "Comedy",
     "action": "Action",
     "sci-fi": "Sci-Fi",
@@ -13,5 +15,8 @@
     "horror": "Horror",
     "documentary": "Documentary",
     "animation": "Animation"
-  }
+  },
+  "more": "More",
+  "search": "Search...",
+  "setting": "Setting"
 }
