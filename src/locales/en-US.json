@@ -1,7 +1,17 @@
 {
-  "m": {
-    "hello": "Hello"
+  "info": {
   },
-  "error":{
+  "error": {
+  },
+  "genre": {
+    "comedy": "Comedy",
+    "action": "Action",
+    "sci-fi": "Sci-Fi",
+    "romance": "Romance",
+    "mystery": "Mystery",
+    "thriller": "Thriller",
+    "horror": "Horror",
+    "documentary": "Documentary",
+    "animation": "Animation"
   }
 }
