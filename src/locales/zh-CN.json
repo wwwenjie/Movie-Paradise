@@ -1,22 +1,30 @@
 {
-  "info": {
-  },
-  "error": {
-  },
   "appName": "电影天堂",
+  "error": {},
   "genre": {
-    "genre": "分类",
-    "comedy": "喜剧",
     "action": "动作",
-    "sci-fi": "科幻",
-    "romance": "爱情",
-    "mystery": "悬疑",
-    "thriller": "惊悚",
-    "horror": "恐怖",
+    "animation": "动画",
+    "comedy": "喜剧",
     "documentary": "记录",
-    "animation": "动画"
+    "genre": "分类",
+    "horror": "恐怖",
+    "mystery": "悬疑",
+    "romance": "爱情",
+    "sci-fi": "科幻",
+    "thriller": "惊悚"
   },
+  "info": {},
   "more": "更多",
+  "movie": {
+    "IMDb_rate": "IMDb评分",
+    "douban_rate": "豆瓣评分",
+    "date": "年代",
+    "genre": "类别",
+    "lan": "语言",
+    "translate": "译名",
+    "name": "片名",
+    "origin": "产地"
+  },
   "search": "搜索...",
   "setting": "设置"
 }

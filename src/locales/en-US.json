@@ -1,22 +1,30 @@
 {
-  "info": {
-  },
-  "error": {
-  },
   "appName": "Movie Paradise",
+  "error": {},
   "genre": {
-    "genre": "Genre",
-    "comedy": "Comedy",
     "action": "Action",
-    "sci-fi": "Sci-Fi",
-    "romance": "Romance",
-    "mystery": "Mystery",
-    "thriller": "Thriller",
-    "horror": "Horror",
+    "animation": "Animation",
+    "comedy": "Comedy",
     "documentary": "Documentary",
-    "animation": "Animation"
+    "genre": "Genre",
+    "horror": "Horror",
+    "mystery": "Mystery",
+    "romance": "Romance",
+    "sci-fi": "Sci-Fi",
+    "thriller": "Thriller"
   },
+  "info": {},
   "more": "More",
+  "movie": {
+    "IMDb_rate": "IMDb Rate",
+    "douban_rate": "DouBan Rate",
+    "date": "Date",
+    "genre": "Genre",
+    "lan": "Language",
+    "translate": "Translate",
+    "name": "Name",
+    "origin": "Origin"
+  },
   "search": "Search...",
   "setting": "Setting"
 }

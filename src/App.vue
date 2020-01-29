@@ -2,7 +2,7 @@
   <v-app
     v-resize="onResize"
     id="inspire"
-    >
+  >
     <v-navigation-drawer
       v-model="drawer"
       app
