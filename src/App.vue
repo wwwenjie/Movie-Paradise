@@ -77,6 +77,7 @@
         <app-screen/>
         <app-scroll/>
         <app-scroll/>
+        <app-test/>
       </v-container>
     </v-content>
   </v-app>
@@ -85,12 +86,14 @@
 <script>
 import AppScreen from './components/AppScreen'
 import AppScroll from './components/AppScroll'
+import AppTest from './components/AppTest'
 
 export default {
   name: 'Movie_Paradise',
   components: {
     'app-screen': AppScreen,
-    'app-scroll': AppScroll
+    'app-scroll': AppScroll,
+    'app-test': AppTest
   },
   props: {
     source: String
