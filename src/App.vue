@@ -1,5 +1,8 @@
 <template>
-  <v-app id="inspire">
+  <v-app
+    v-resize="onResize"
+    id="inspire"
+    >
     <v-navigation-drawer
       v-model="drawer"
       app
@@ -120,16 +123,6 @@ export default {
 
   created () {
     this.$vuetify.theme.dark = true
-  },
-
-  mounted () {
-    window.addEventListener('resize', this.onResize, { passive: true })
-  },
-
-  beforeDestroy () {
-    if (typeof window !== 'undefined') {
-      window.removeEventListener('resize', this.onResize, { passive: true })
-    }
   }
 }
 </script>
