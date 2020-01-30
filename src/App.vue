@@ -3,138 +3,55 @@
     v-resize="onResize"
     id="inspire"
   >
-    <v-navigation-drawer
-      v-model="drawer"
-      app
-      clipped
-    >
-      <v-subheader class="mt-4 grey--text text--darken-1">{{$t('genre.genre')}}</v-subheader>
-      <v-list dense>
-        <v-list-item
-          v-for="item in genre"
-          :key="item.text"
-          link
-        >
-          <v-list-item-action>
-            <v-icon>{{ item.icon }}</v-icon>
-          </v-list-item-action>
-          <v-list-item-content>
-            <v-list-item-title>
-              {{ item.text }}
-            </v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
-        <v-list-item link>
-          <v-list-item-action>
-            <v-icon color="grey darken-1">mdi-plus-circle-outline</v-icon>
-          </v-list-item-action>
-          <v-list-item-title class="grey--text text--darken-1">{{$t('more')}}</v-list-item-title>
-        </v-list-item>
-        <v-list-item link>
-          <v-list-item-action>
-            <v-icon color="grey darken-1">mdi-settings</v-icon>
-          </v-list-item-action>
-          <v-list-item-title class="grey--text text--darken-1">{{$t('setting')}}</v-list-item-title>
-        </v-list-item>
-        <v-list-item @click="switchLocale">
-          <v-list-item-action>
-            <v-icon color="grey darken-1">mdi-translate</v-icon>
-          </v-list-item-action>
-          <v-list-item-title class="grey--text text--darken-1">{{$t('language')}}</v-list-item-title>
-        </v-list-item>
-      </v-list>
-    </v-navigation-drawer>
-
-    <v-app-bar
-      app
-      dense
-      flat
-      clipped-left
-      :hide-on-scroll="!isDesktop"
-      :color="isDesktop?'red':'transparent'"
-    >
-      <v-app-bar-nav-icon @click.stop="drawer = !drawer"/>
-      <v-icon class="mx-4 hidden-xs-only">mdi-youtube</v-icon>
-      <v-toolbar-title class="mr-12 align-center">
-        <span class="title">{{$t('appName')}}</span>
-      </v-toolbar-title>
-      <v-spacer/>
-      <v-row
-        align="center"
-        style="max-width: 650px"
-      >
-        <v-text-field
-          :append-icon-cb="() => {}"
-          :placeholder="$t('search')"
-          single-line
-          append-icon="mdi-magnify"
-          color="white"
-          hide-details
-        />
-      </v-row>
-    </v-app-bar>
-
+    <app-navigation-drawer :drawer.sync="drawer"/>
+    <app-bar
+      :drawer.sync="drawer"
+      :isDesktop="isDesktop"
+    />
     <v-content :class="isDesktop?'':'pt-0'">
       <v-container
         fluid
         class="fill-height pa-0">
-        <app-screen/>
-        <app-scroll/>
-        <app-scroll/>
-        <app-test/>
+        <router-view></router-view>
       </v-container>
     </v-content>
   </v-app>
 </template>
 
 <script>
-import AppScreen from './components/AppScreen'
-import AppScroll from './components/AppScroll'
-import AppTest from './components/AppTest'
+import AppNavigationDrawer from './components/AppNavigationDrawer'
+import AppBar from './components/AppBar'
 
 export default {
   name: 'Movie_Paradise',
   components: {
-    'app-screen': AppScreen,
-    'app-scroll': AppScroll,
-    'app-test': AppTest
+    'app-navigation-drawer': AppNavigationDrawer,
+    'app-bar': AppBar
   },
   props: {
     source: String
   },
-  // if use arrow function to return the data object 'this' isn't bound correctly, so unable to use i18n
-  data: function () {
+
+  data () {
     return {
       drawer: null
     }
   },
 
   computed: {
-    genre () {
-      return [
-        { icon: '', text: this.$t('genre.action') },
-        { icon: '', text: this.$t('genre.comedy') },
-        { icon: '', text: this.$t('genre.sci-fi') },
-        { icon: '', text: this.$t('genre.romance') },
-        { icon: '', text: this.$t('genre.mystery') }
-      ]
-    },
     isDesktop () {
       return this.onResize() === 'lg' || this.onResize() === 'xl'
     }
   },
 
+  created () {
+    this.$vuetify.theme.dark = true
+  },
+
   methods: {
     onResize () {
       return this.$vuetify.breakpoint.name
-    },
-    switchLocale () {
-      this.$i18n.locale === 'zh-CN' ? this.$i18n.locale = 'en-US' : this.$i18n.locale = 'zh-CN'
     }
-  },
-
-  created () {
-    this.$vuetify.theme.dark = true
   }
 }
 </script>
