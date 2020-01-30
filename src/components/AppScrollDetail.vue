@@ -5,12 +5,16 @@
       tile
     >
       <v-row
-        v-for="(item,index) in data"
-        :key="index"
+        v-for="(item,key) in data"
+        :key="key"
         justify="start"
         class="ml-4"
       >
-        <h3 v-if="item.value!=null" class="title">{{item.title}}: {{item.value}}</h3>
+        <h3 v-if="item.value && key!=='rate'" class="title">{{item.title}}: {{item.value}}</h3>
+        <div v-else-if="key==='rate'">
+          <h3 v-if="item[0].value" class="title d-inline">{{item[0].title}} {{item[0].value}}</h3>
+          <h3 v-if="item[1].value" class="title d-inline"> / {{item[1].title}} {{item[1].value}}</h3>
+        </div>
       </v-row>
       <v-row
         justify="space-around"

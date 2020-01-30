@@ -58,19 +58,20 @@ export default {
   },
   data: function () {
     return {
-      model: null,
-      data: {
-        translate: {
-          title: this.$i18n.t('movie.translate'),
-          value: this.$i18n.locale === 'zh-CN' ? null : 'Lost in Russia'
-        },
-        name: { title: this.$i18n.t('movie.name'), value: '囧妈' },
-        date: { title: this.$i18n.t('movie.date'), value: '2020-01-25(中国大陆)' },
-        origin: { title: this.$i18n.t('movie.origin'), value: '中国' },
-        lan: { title: this.$i18n.t('movie.lan'), value: '普通话' },
-        genre: { title: this.$i18n.t('movie.genre'), value: '剧情 / 喜剧' },
-        douban_rate: { title: this.$i18n.t('movie.douban_rate'), value: '6.2/10 from 90,658 users' },
-        IMDb_rate: { title: this.$i18n.t('movie.IMDb_rate'), value: '6.6/10 from 948 users' }
+      model: null
+    }
+  },
+  computed: {
+    data () {
+      return {
+        name: { title: this.$t('movie.name'), value: this.$i18n.locale === 'zh-CN' ? '囧妈' : 'Lost in Russia' },
+        date: { title: this.$t('movie.date'), value: '2020' },
+        genre: { title: this.$t('movie.genre'), value: '剧情 / 喜剧' },
+        origin: { title: this.$t('movie.origin'), value: '中国' },
+        rate: [{ title: this.$t('movie.douban'), value: '6.7' }, {
+          title: this.$t('movie.IMDb'),
+          value: '7.4'
+        }]
       }
     }
   }

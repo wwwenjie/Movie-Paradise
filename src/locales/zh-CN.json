@@ -16,15 +16,15 @@
   "info": {},
   "more": "更多",
   "movie": {
-    "IMDb_rate": "IMDb评分",
-    "douban_rate": "豆瓣评分",
+    "IMDb": "IMDb",
+    "douban": "豆瓣",
     "date": "年代",
     "genre": "类别",
-    "lan": "语言",
-    "translate": "译名",
+    "alias": "别名",
     "name": "片名",
     "origin": "产地"
   },
   "search": "搜索...",
-  "setting": "设置"
+  "setting": "设置",
+  "language": "English"
 }

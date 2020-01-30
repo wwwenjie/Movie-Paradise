@@ -16,15 +16,15 @@
   "info": {},
   "more": "More",
   "movie": {
-    "IMDb_rate": "IMDb Rate",
-    "douban_rate": "DouBan Rate",
+    "IMDb": "IMDb",
+    "douban": "DouBan",
     "date": "Date",
     "genre": "Genre",
-    "lan": "Language",
-    "translate": "Translate",
+    "alias": "Alias",
     "name": "Name",
     "origin": "Origin"
   },
   "search": "Search...",
-  "setting": "Setting"
+  "setting": "Setting",
+  "language": "简体中文"
 }
