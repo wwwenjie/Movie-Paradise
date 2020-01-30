@@ -24,9 +24,7 @@
             </v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-        <v-list-item
-          link
-        >
+        <v-list-item link>
           <v-list-item-action>
             <v-icon color="grey darken-1">mdi-plus-circle-outline</v-icon>
           </v-list-item-action>
@@ -37,6 +35,12 @@
             <v-icon color="grey darken-1">mdi-settings</v-icon>
           </v-list-item-action>
           <v-list-item-title class="grey--text text--darken-1">{{$t('setting')}}</v-list-item-title>
+        </v-list-item>
+        <v-list-item @click="switchLocale">
+          <v-list-item-action>
+            <v-icon color="grey darken-1">mdi-translate</v-icon>
+          </v-list-item-action>
+          <v-list-item-title class="grey--text text--darken-1">{{$t('language')}}</v-list-item-title>
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
@@ -101,18 +105,20 @@ export default {
   // if use arrow function to return the data object 'this' isn't bound correctly, so unable to use i18n
   data: function () {
     return {
-      drawer: null,
-      genre: [
-        { icon: '', text: this.$i18n.t('genre.action') },
-        { icon: '', text: this.$i18n.t('genre.comedy') },
-        { icon: '', text: this.$i18n.t('genre.sci-fi') },
-        { icon: '', text: this.$i18n.t('genre.romance') },
-        { icon: '', text: this.$i18n.t('genre.mystery') }
-      ]
+      drawer: null
     }
   },
 
   computed: {
+    genre () {
+      return [
+        { icon: '', text: this.$t('genre.action') },
+        { icon: '', text: this.$t('genre.comedy') },
+        { icon: '', text: this.$t('genre.sci-fi') },
+        { icon: '', text: this.$t('genre.romance') },
+        { icon: '', text: this.$t('genre.mystery') }
+      ]
+    },
     isDesktop () {
       return this.onResize() === 'lg' || this.onResize() === 'xl'
     }
@@ -121,6 +127,9 @@ export default {
   methods: {
     onResize () {
       return this.$vuetify.breakpoint.name
+    },
+    switchLocale () {
+      this.$i18n.locale === 'zh-CN' ? this.$i18n.locale = 'en-US' : this.$i18n.locale = 'zh-CN'
     }
   },
 
