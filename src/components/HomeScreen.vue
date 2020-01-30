@@ -17,7 +17,7 @@
 
 <script>
 export default {
-  name: 'AppScreen'
+  name: 'HomeScreen'
 }
 </script>
 

@@ -49,10 +49,10 @@
 </template>
 
 <script>
-import AppScrollDetail from './AppScrollDetail'
+import AppScrollDetail from './HomeScrollDetail'
 
 export default {
-  name: 'AppScroll',
+  name: 'HomeScroll',
   components: {
     'app-scroll-detail': AppScrollDetail
   },

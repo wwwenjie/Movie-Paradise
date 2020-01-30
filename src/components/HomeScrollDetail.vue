@@ -46,7 +46,7 @@
 
 <script>
 export default {
-  name: 'AppScrollDetail',
+  name: 'HomeScrollDetail',
   props: ['model', 'data']
 }
 </script>

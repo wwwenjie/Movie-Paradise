@@ -1,20 +1,20 @@
 <template>
   <div>
-    <app-screen/>
-    <app-scroll/>
-    <app-scroll/>
+    <home-screen/>
+    <home-scroll/>
+    <home-scroll/>
   </div>
 </template>
 
 <script>
-import AppScreen from '../components/AppScreen'
-import AppScroll from '../components/AppScroll'
+import HomeScreen from '../components/HomeScreen'
+import HomeScroll from '../components/HomeScroll'
 
 export default {
   name: 'Home',
   components: {
-    'app-screen': AppScreen,
-    'app-scroll': AppScroll
+    'home-screen': HomeScreen,
+    'home-scroll': HomeScroll
   }
 }
 </script>
