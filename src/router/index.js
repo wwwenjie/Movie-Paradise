@@ -8,11 +8,13 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
+    alias: '/index',
     component: Home
   },
   {
-    path: '/movie',
-    component: MovieDetail
+    path: '/movie/:movieId',
+    component: MovieDetail,
+    props: true
   }
 ]
 

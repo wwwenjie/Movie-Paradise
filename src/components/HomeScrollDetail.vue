@@ -17,25 +17,32 @@
         </div>
       </v-row>
       <v-row
-        justify="space-around"
+        justify="center"
       >
         <v-col
-          align="center"
           cols="3"
-          class="pa-0 pt-2">
+          class="pa-0 pt-2 text-center"
+        >
           <v-icon class="d-block">mdi-plus</v-icon>
           <span class="caption">加入片库</span>
         </v-col>
         <v-col
-          align="center"
-          cols="5"
+          cols="6"
         >
-          <v-btn width="100%" depressed light class="font-weight-bold">详情</v-btn>
+          <v-btn
+            light
+            depressed
+            width="100%"
+            class="font-weight-bold"
+            @click="goDetail"
+          >
+            详情
+          </v-btn>
         </v-col>
         <v-col
-          align="center"
           cols="3"
-          class="pa-0 pt-2">
+          class="pa-0 pt-2 text-center"
+        >
           <v-icon class="d-block">mdi-share</v-icon>
           <span class="caption">分享</span>
         </v-col>
@@ -45,9 +52,17 @@
 </template>
 
 <script>
+import router from '../router'
+
 export default {
   name: 'HomeScrollDetail',
-  props: ['model', 'data']
+  props: ['model', 'data'],
+  methods: {
+    goDetail () {
+      let movieId = '1'
+      router.push({ path: `/movie/${movieId}` })
+    }
+  }
 }
 </script>
 

@@ -40,21 +40,20 @@
         </v-img>
       </v-slide-item>
     </v-slide-group>
-    <app-scroll-detail
+    <home-scroll-detail
       :model="model"
       :data="data"
-    >
-    </app-scroll-detail>
+    />
   </v-sheet>
 </template>
 
 <script>
-import AppScrollDetail from './HomeScrollDetail'
+import HomeScrollDetail from './HomeScrollDetail'
 
 export default {
   name: 'HomeScroll',
   components: {
-    'app-scroll-detail': AppScrollDetail
+    'home-scroll-detail': HomeScrollDetail
   },
   data: function () {
     return {

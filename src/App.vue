@@ -3,8 +3,9 @@
     v-resize="onResize"
     id="inspire"
   >
-    <app-navigation-drawer :drawer.sync="drawer"/>
+    <app-navigation-drawer v-if="isDesktop" :drawer.sync="drawer"/>
     <app-bar
+      v-if="isDesktop"
       :drawer.sync="drawer"
       :isDesktop="isDesktop"
     />
@@ -12,7 +13,9 @@
       <v-container
         fluid
         class="fill-height pa-0">
-        <router-view></router-view>
+        <v-fade-transition>
+          <router-view></router-view>
+        </v-fade-transition>
       </v-container>
     </v-content>
   </v-app>
