@@ -4,8 +4,8 @@
     dense
     flat
     clipped-left
-    :hide-on-scroll="!isDesktop"
-    :color="isDesktop?'red':'transparent'"
+    :hide-on-scroll="this.$vuetify.breakpoint.xsOnly"
+    :color="this.$vuetify.breakpoint.mdAndUp?'red':'transparent'"
   >
     <v-app-bar-nav-icon @click.stop="onClickDrawer"/>
     <v-icon class="mx-4 hidden-xs-only">mdi-youtube</v-icon>
@@ -32,7 +32,7 @@
 <script>
 export default {
   name: 'AppBar',
-  props: ['drawer', 'isDesktop'],
+  props: ['drawer'],
   methods: {
     onClickDrawer () {
       this.$emit('update:drawer', !this.drawer)

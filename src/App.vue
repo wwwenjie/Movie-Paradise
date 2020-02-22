@@ -1,15 +1,12 @@
 <template>
   <v-app
-    v-resize="onResize"
     id="inspire"
   >
-    <app-navigation-drawer v-if="isDesktop" :drawer.sync="drawer"/>
+    <app-navigation-drawer :drawer.sync="drawer"/>
     <app-bar
-      v-if="isDesktop"
       :drawer.sync="drawer"
-      :isDesktop="isDesktop"
     />
-    <v-content :class="isDesktop?'':'pt-0'">
+    <v-content :class="this.$vuetify.breakpoint.mdAndUp?'':'pt-0'">
       <v-container
         fluid
         class="fill-height pa-0">
@@ -41,20 +38,8 @@ export default {
     }
   },
 
-  computed: {
-    isDesktop () {
-      return this.onResize() === 'lg' || this.onResize() === 'xl'
-    }
-  },
-
   created () {
     this.$vuetify.theme.dark = true
-  },
-
-  methods: {
-    onResize () {
-      return this.$vuetify.breakpoint.name
-    }
   }
 }
 </script>
