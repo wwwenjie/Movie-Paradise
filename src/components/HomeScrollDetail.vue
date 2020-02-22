@@ -5,7 +5,7 @@
       tile
     >
       <v-row
-        v-for="(item,key) in data"
+        v-for="(item,key) in detail"
         :key="key"
         justify="start"
         class="ml-4"
@@ -56,7 +56,7 @@ import router from '../router'
 
 export default {
   name: 'HomeScrollDetail',
-  props: ['model', 'data'],
+  props: ['model', 'detail'],
   methods: {
     goDetail () {
       let movieId = '1'

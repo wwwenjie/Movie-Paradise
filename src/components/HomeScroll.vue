@@ -1,17 +1,15 @@
 <template>
   <v-sheet
     class="mx-auto"
-    width="100vw"
   >
     <p class="title ml-4 mb-0">最新</p>
     <v-slide-group
       center-active
       v-model="model"
       class="mt-n4"
-      style="overflow-y: hidden"
     >
       <v-slide-item
-        v-for="n in 5"
+        v-for="n in 10"
         :key="n"
         v-slot:default="{ active, toggle }"
       >
@@ -42,7 +40,7 @@
     </v-slide-group>
     <home-scroll-detail
       :model="model"
-      :data="data"
+      :detail="detail"
     />
   </v-sheet>
 </template>
@@ -61,7 +59,7 @@ export default {
     }
   },
   computed: {
-    data () {
+    detail () {
       return {
         name: { title: this.$t('movie.name'), value: this.$i18n.locale === 'zh-CN' ? '囧妈' : 'Lost in Russia' },
         date: { title: this.$t('movie.date'), value: '2020' },
