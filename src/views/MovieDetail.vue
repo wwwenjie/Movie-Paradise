@@ -10,6 +10,7 @@
       text
       size="small"
       class="cancel-button"
+      @click="goBack"
     >
       <v-icon>mdi-close-circle</v-icon>
     </v-btn>
@@ -18,42 +19,32 @@
       dense
       flat
       color="gery"
-      style="opacity: 0.95"
     >
       <span class="ma-auto">交友网站 App War</span>
     </v-app-bar>
+    <v-img
+      width="100%"
+      max-height="60vh"
+      src="../assets/test.jpg"
+      alt="Movie Poster Cover"
+      gradient="to bottom,rgba(64, 64, 64, 0) 60%,rgba(30, 30, 30, 100) 100%"
+      class="cover"
+    />
+    <v-img
+      width="40%"
+      height="30vh"
+      src="../assets/test.jpg"
+      alt="Movie Poster"
+      class="mt-12 mx-auto"
+    />
     <v-row
       no-gutters
       justify="space-around"
+      class="index"
     >
       <v-col
         cols="12"
-      >
-        <v-img
-          width="100%"
-          max-height="70%"
-          src="../assets/test.jpg"
-          alt="Movie Poster"
-          gradient="to bottom,rgba(64, 64, 64, 0) 60%,rgba(30, 30, 30, 100) 100%"
-          style=""
-          class="cover"
-        />
-      </v-col>
-
-      <v-col
-        cols="12"
-      >
-        <v-img
-          width="40%"
-          height="30vh"
-          src="../assets/test.jpg"
-          alt="Movie Poster"
-          class="mt-12 mx-auto"
-        />
-      </v-col>
-      <v-col
-        cols="12"
-        class="index text-center mt-2"
+        class="text-center mt-2"
       >
         <span class="body-1 mx-2 font-weight-bold">2018</span>
         <span class="body-1 mx-2 font-weight-bold">喜剧</span>
@@ -85,27 +76,27 @@
       </v-col>
       <v-col
         cols="12"
-        class="index px-6"
+        class="px-6"
       >
         <span class="caption grey--text">演员: 你我他，他和她</span>
       </v-col>
       <v-col
         cols="4"
-        class="index px-6 text-center"
+        class="px-6 text-center"
       >
         <v-icon class="d-block">mdi-plus</v-icon>
         <span class="caption grey--text">加入片库</span>
       </v-col>
       <v-col
         cols="4"
-        class="index px-6 text-center"
+        class="px-6 text-center"
       >
         <v-icon class="d-block">mdi-download</v-icon>
         <span class="caption grey--text">下载链接</span>
       </v-col>
       <v-col
         cols="4"
-        class="index px-6 text-center"
+        class="px-6 text-center"
       >
         <v-icon class="d-block">mdi-heart</v-icon>
         <span class="caption grey--text">加入喜欢</span>
@@ -126,11 +117,23 @@ export default {
   props: ['movieId'],
   components: {
     'home-scroll': HomeScroll
+  },
+  methods: {
+    goBack () {
+      this.$router.back()
+    }
+  },
+  mounted () {
+    this.$vuetify.goTo(0)
   }
 }
 </script>
 
 <style scoped>
+  .index div {
+    z-index: 1;
+  }
+
   .cancel-button {
     z-index: 99;
     right: 6px;
@@ -140,9 +143,5 @@ export default {
   .cover {
     position: absolute;
     filter: blur(20px);
-  }
-
-  .index {
-    z-index: 1;
   }
 </style>

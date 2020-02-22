@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="app-home">
     <home-screen/>
     <home-scroll/>
     <home-scroll/>
@@ -18,3 +18,9 @@ export default {
   }
 }
 </script>
+
+<style>
+.app-home{
+  width: 100%;
+}
+</style>
