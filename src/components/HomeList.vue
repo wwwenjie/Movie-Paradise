@@ -11,6 +11,7 @@
           v-for="(card,index) in cards"
           :key="index"
           :cols=flex
+          @click="goDetail"
         >
           <v-card
             hover
@@ -22,7 +23,7 @@
               gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
               height="200px"
             >
-              <v-card-title v-if="showExtend" v-text="card.title" class="pb-0"></v-card-title>
+              <v-card-title v-text="card.title" class="pb-0"></v-card-title>
               <v-card-text class="text--primary pb-1">
                 <div>{{card.origin}} / {{$t('movie.douban')}} {{card.douban_rate}} / IMDb {{card.IMDb_rate}}</div>
                 <div></div>
@@ -51,6 +52,8 @@
 </template>
 
 <script>
+import router from '../router'
+
 export default {
   name: 'HomeList',
   props: {
@@ -137,6 +140,12 @@ export default {
           IMDb_rate: '7.7'
         }
       ]
+    }
+  },
+  methods: {
+    goDetail () {
+      let movieId = '1'
+      router.push({ path: `/movie/${movieId}` })
     }
   }
 }

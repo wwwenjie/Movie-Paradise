@@ -104,20 +104,22 @@
       </v-col>
     </v-row>
     <v-divider></v-divider>
-    <home-scroll></home-scroll>
-    <home-scroll></home-scroll>
-    <home-scroll></home-scroll>
+    <home-list
+      genre="相关影片"
+      :show-extend="this.$vuetify.breakpoint.mdAndUp"
+      :flex="this.$vuetify.breakpoint.smAndUp?3:6"
+    />
   </v-sheet>
 </template>
 
 <script>
-import HomeScroll from '../components/HomeScroll'
+import HomeList from '../components/HomeList'
 
 export default {
   name: 'MovieDetail',
   props: ['movieId'],
   components: {
-    'home-scroll': HomeScroll
+    'home-list': HomeList
   },
   methods: {
     goBack () {
