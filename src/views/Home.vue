@@ -1,8 +1,8 @@
 <template>
   <div class="app-home">
     <home-screen/>
-    <component v-bind:is="responsiveComponent" category="最新"></component>
-    <component v-bind:is="responsiveComponent" category="动作"></component>
+    <component v-bind:is="responsiveComponent" genre="最新"></component>
+    <component v-bind:is="responsiveComponent" genre="动作"></component>
   </div>
 </template>
 

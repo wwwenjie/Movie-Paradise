@@ -24,7 +24,7 @@
     </v-app-bar>
     <v-img
       width="100%"
-      max-height="60vh"
+      max-height="50vh"
       src="../assets/test.jpg"
       alt="Movie Poster Cover"
       gradient="to bottom,rgba(64, 64, 64, 0) 60%,rgba(30, 30, 30, 100) 100%"
