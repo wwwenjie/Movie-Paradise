@@ -1,20 +1,27 @@
 <template>
   <div class="app-home">
     <home-screen/>
-    <home-scroll/>
-    <home-scroll/>
+    <component v-bind:is="responsiveComponent" category="最新"></component>
+    <component v-bind:is="responsiveComponent" category="动作"></component>
   </div>
 </template>
 
 <script>
 import HomeScreen from '../components/HomeScreen'
 import HomeScroll from '../components/HomeScroll'
+import HomeList from '../components/HomeList'
 
 export default {
   name: 'Home',
   components: {
     'home-screen': HomeScreen,
-    'home-scroll': HomeScroll
+    'home-scroll': HomeScroll,
+    'home-list': HomeList
+  },
+  computed: {
+    responsiveComponent () {
+      return this.$vuetify.breakpoint.smAndDown ? 'home-scroll' : 'home-list'
+    }
   },
   beforeRouteEnter (to, from, next) {
     next(vm => {

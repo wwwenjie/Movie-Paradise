@@ -2,7 +2,7 @@
   <v-sheet
     class="mx-auto"
   >
-    <p class="title ml-2 mb-0">最新</p>
+    <p class="title ml-2 mb-0">{{category}}</p>
     <v-slide-group
       center-active
       v-model="model"
@@ -53,6 +53,12 @@ export default {
   name: 'HomeScroll',
   components: {
     'home-scroll-detail': HomeScrollDetail
+  },
+  props: {
+    category: {
+      type: String,
+      default: 'Default'
+    }
   },
   data: function () {
     return {
