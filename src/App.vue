@@ -5,6 +5,7 @@
     <app-navigation-drawer
       :drawer.sync="drawer"
       :class="{'d-none':this.$vuetify.breakpoint.mdAndDown&!this.isHome}"
+    />
     <app-bar
       :drawer.sync="drawer"
       :class="{'d-none':this.$vuetify.breakpoint.mdAndDown&!this.isHome}"
