@@ -3,17 +3,6 @@
     class="fill-height"
     style="width: 100%"
   >
-    <v-btn
-      fab
-      fixed
-      small
-      text
-      size="small"
-      class="cancel-button"
-      @click="goBack"
-    >
-      <v-icon>mdi-close-circle</v-icon>
-    </v-btn>
     <v-app-bar
       app
       dense
@@ -21,6 +10,17 @@
       color="gery"
     >
       <span class="ma-auto">交友网站 App War</span>
+      <v-btn
+        fab
+        fixed
+        small
+        text
+        size="small"
+        class="cancel-button"
+        @click="goBack"
+      >
+        <v-icon>mdi-close-circle</v-icon>
+      </v-btn>
     </v-app-bar>
     <v-img
       width="100%"
@@ -35,7 +35,8 @@
       height="30vh"
       src="../assets/test.jpg"
       alt="Movie Poster"
-      class="mt-12 mx-auto"
+      class="mx-auto"
+      :class="[this.$vuetify.breakpoint.mdAndDown?'mt-4':'mt-12']"
     />
     <v-row
       no-gutters

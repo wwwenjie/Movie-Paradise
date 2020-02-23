@@ -5,7 +5,7 @@
     flat
     clipped-left
     :hide-on-scroll="this.$vuetify.breakpoint.xsOnly"
-    :color="this.$vuetify.breakpoint.mdAndUp?'red':'transparent'"
+    :color="this.$vuetify.breakpoint.mdAndDown?'transparent':'red'"
   >
     <v-app-bar-nav-icon @click.stop="onClickDrawer"/>
     <v-icon class="mx-4 hidden-xs-only">mdi-youtube</v-icon>

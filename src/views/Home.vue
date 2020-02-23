@@ -15,12 +15,21 @@ export default {
   components: {
     'home-screen': HomeScreen,
     'home-scroll': HomeScroll
+  },
+  beforeRouteEnter (to, from, next) {
+    next(vm => {
+      vm.$store.commit('SET_IS_HOME', true)
+    })
+  },
+  beforeRouteLeave (to, from, next) {
+    this.$store.commit('SET_IS_HOME', false)
+    next()
   }
 }
 </script>
 
 <style>
-.app-home{
-  width: 100%;
-}
+  .app-home {
+    width: 100%;
+  }
 </style>

@@ -2,11 +2,16 @@
   <v-app
     id="inspire"
   >
-    <app-navigation-drawer :drawer.sync="drawer"/>
+    <app-navigation-drawer
+      :drawer.sync="drawer"
+      :class="{'d-none':this.$vuetify.breakpoint.mdAndDown&!this.isHome}"
     <app-bar
       :drawer.sync="drawer"
+      :class="{'d-none':this.$vuetify.breakpoint.mdAndDown&!this.isHome}"
     />
-    <v-content :class="this.$vuetify.breakpoint.mdAndUp?'':'pt-0'">
+    <v-content
+      :class="{'pt-0':this.$vuetify.breakpoint.mdAndDown&this.isHome}"
+    >
       <v-container
         fluid
         class="fill-height pa-0">
@@ -21,9 +26,11 @@
 <script>
 import AppNavigationDrawer from './components/AppNavigationDrawer'
 import AppBar from './components/AppBar'
+import storeMap from './mixins/storeMap'
 
 export default {
   name: 'Movie_Paradise',
+  mixins: [storeMap],
   components: {
     'app-navigation-drawer': AppNavigationDrawer,
     'app-bar': AppBar
