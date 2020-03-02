@@ -21,4 +21,4 @@ yarn-error.log*
 *.sw?
 
 # Resoure
-src/assets
+public/static
