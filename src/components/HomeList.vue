@@ -76,7 +76,7 @@ export default {
       cards: [
         {
           title: '爱尔兰人',
-          src: require('../assets/movie/1.jpg'),
+          src: '/static/movie/1.jpg',
           date: '2000',
           genre: '喜剧',
           origin: '中国',
@@ -84,7 +84,7 @@ export default {
           IMDb_rate: '7.7'
         }, {
           title: '爱尔兰人',
-          src: require('../assets/movie/1.jpg'),
+          src: '/static/movie/1.jpg',
           date: '2000',
           genre: '喜剧',
           origin: '中国',
@@ -92,7 +92,7 @@ export default {
           IMDb_rate: '7.7'
         }, {
           title: '爱尔兰人',
-          src: require('../assets/movie/1.jpg'),
+          src: '/static/movie/1.jpg',
           date: '2000',
           genre: '喜剧',
           origin: '中国',
@@ -100,7 +100,7 @@ export default {
           IMDb_rate: '7.7'
         }, {
           title: '爱尔兰人',
-          src: require('../assets/movie/1.jpg'),
+          src: '/static/movie/1.jpg',
           date: '2000',
           genre: '喜剧',
           origin: '中国',
@@ -108,7 +108,7 @@ export default {
           IMDb_rate: '7.7'
         }, {
           title: '爱尔兰人',
-          src: require('../assets/movie/1.jpg'),
+          src: '/static/movie/1.jpg',
           date: '2000',
           genre: '喜剧',
           origin: '中国',
@@ -116,7 +116,7 @@ export default {
           IMDb_rate: '7.7'
         }, {
           title: '爱尔兰人',
-          src: require('../assets/movie/1.jpg'),
+          src: '/static/movie/1.jpg',
           date: '2000',
           genre: '喜剧',
           origin: '中国',
@@ -124,7 +124,7 @@ export default {
           IMDb_rate: '7.7'
         }, {
           title: '爱尔兰人',
-          src: require('../assets/movie/1.jpg'),
+          src: '/static/movie/1.jpg',
           date: '2000',
           genre: '喜剧',
           origin: '中国',
@@ -132,7 +132,7 @@ export default {
           IMDb_rate: '7.7'
         }, {
           title: '爱尔兰人',
-          src: require('../assets/movie/1.jpg'),
+          src: '/static/movie/1.jpg',
           date: '2000',
           genre: '喜剧',
           origin: '中国',

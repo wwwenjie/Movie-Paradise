@@ -16,7 +16,7 @@
       >
         <v-img
           :gradient="active ? 'to bottom,rgba(64, 64, 64, 0) 0%,rgba(64, 64, 64, 50) 100%' : undefined"
-          src="../assets/movie/3.jpg"
+          src="/static/movie/3.jpg"
           class="ma-4"
           height="180"
           width="130"

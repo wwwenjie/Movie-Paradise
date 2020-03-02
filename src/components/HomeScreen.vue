@@ -2,7 +2,7 @@
   <v-img
     width="100%"
     max-height="80vh"
-    src="../assets/test.jpg"
+    :src="posterUrl"
     alt="home"
     gradient="to bottom,rgba(64, 64, 64, 0) 70%,rgba(30, 30, 30, 100) 100%"
   >
@@ -11,7 +11,12 @@
 
 <script>
 export default {
-  name: 'HomeScreen'
+  name: 'HomeScreen',
+  data () {
+    return {
+      posterUrl: '/static/test.jpg'
+    }
+  }
 }
 </script>
 
