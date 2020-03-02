@@ -3,16 +3,14 @@
     id="inspire"
   >
     <app-navigation-drawer
+      v-if="this.$vuetify.breakpoint.mdAndUp&this.isHome"
       :drawer.sync="drawer"
-      :class="{'d-none':this.$vuetify.breakpoint.mdAndDown&!this.isHome}"
     />
     <app-bar
+      v-if="this.$vuetify.breakpoint.mdAndUp&this.isHome"
       :drawer.sync="drawer"
-      :class="{'d-none':this.$vuetify.breakpoint.mdAndDown&!this.isHome}"
     />
-    <v-content
-      :class="{'pt-0':this.$vuetify.breakpoint.mdAndDown&this.isHome}"
-    >
+    <v-content>
       <v-container
         fluid
         class="fill-height pa-0">
@@ -21,11 +19,15 @@
         </v-fade-transition>
       </v-container>
     </v-content>
+    <app-navigation-bottom
+      v-if="this.$vuetify.breakpoint.mdAndDown&this.isHome"
+    />
   </v-app>
 </template>
 
 <script>
 import AppNavigationDrawer from './components/AppNavigationDrawer'
+import AppNavigationBottom from './components/AppNavigationBottom'
 import AppBar from './components/AppBar'
 import storeMap from './mixins/storeMap'
 
@@ -34,6 +36,7 @@ export default {
   mixins: [storeMap],
   components: {
     'app-navigation-drawer': AppNavigationDrawer,
+    'app-navigation-bottom': AppNavigationBottom,
     'app-bar': AppBar
   },
   props: {
