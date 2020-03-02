@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home'
 import MovieDetail from '../views/MovieDetail'
+import Setting from '../views/Settings'
 
 Vue.use(VueRouter)
 
@@ -15,6 +16,11 @@ const routes = [
   {
     path: '/movie/:movieId',
     component: MovieDetail,
+    props: true
+  },
+  {
+    path: '/settings',
+    component: Setting,
     props: true
   },
   {

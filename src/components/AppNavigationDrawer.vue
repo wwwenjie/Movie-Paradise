@@ -26,7 +26,7 @@
         </v-list-item-action>
         <v-list-item-title class="grey--text text--darken-1">{{$t('more')}}</v-list-item-title>
       </v-list-item>
-      <v-list-item link>
+      <v-list-item link :to="{ path: '/settings' }">
         <v-list-item-action>
           <v-icon color="grey darken-1">mdi-settings</v-icon>
         </v-list-item-action>
