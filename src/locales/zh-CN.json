@@ -22,7 +22,7 @@
     "genre": "类别",
     "alias": "别名",
     "name": "片名",
-    "origin": "产地"
+    "region": "产地"
   },
   "search": "搜索...",
   "setting": "设置",

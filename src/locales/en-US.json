@@ -22,7 +22,7 @@
     "genre": "Genre",
     "alias": "Alias",
     "name": "Name",
-    "origin": "Origin"
+    "region": "Origin"
   },
   "search": "Search...",
   "setting": "Setting",
