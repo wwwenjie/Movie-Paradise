@@ -16,7 +16,7 @@
       >
         <v-img
           :gradient="active ? 'to bottom,rgba(64, 64, 64, 0) 0%,rgba(64, 64, 64, 50) 100%' : undefined"
-          src="/static/movie/3.jpg"
+          :src="detail.poster"
           class="ma-4"
           height="180"
           width="130"
@@ -68,14 +68,26 @@ export default {
   computed: {
     detail () {
       return {
-        name: { title: this.$t('movie.name'), value: this.$i18n.locale === 'zh-CN' ? '囧妈' : 'Lost in Russia' },
-        date: { title: this.$t('movie.date'), value: '2020' },
-        genre: { title: this.$t('movie.genre'), value: '剧情 / 喜剧' },
-        origin: { title: this.$t('movie.origin'), value: '中国' },
-        rate: [{ title: this.$t('movie.douban'), value: '6.7' }, {
-          title: this.$t('movie.IMDb'),
-          value: '7.4'
-        }]
+        id: 27110296,
+        imdb_id: 'tt9282616',
+        info: {
+          genre: '剧情 / 喜剧',
+          region: '中国',
+          language: '汉语普通话/贵州话'
+        },
+        title: '无名之辈',
+        title_en: 'A Cool Fish',
+        year: '2020',
+
+        rating: {
+          douban_score: '8.1',
+          douban_votes: 748793,
+          tags: '黑色幽默/小人物/人性/方言/喜剧/中国大陆/温情/剧情',
+          imdb_score: '7.1',
+          imdb_votes: 1050
+        },
+        poster: '/static/movie/3.jpg',
+        actors: '徐峥/王传君/周一围/谭卓/章宇/杨新鸣/王佳佳/王砚辉/贾晨飞/龚蓓苾/宁浩/李乃文/岳小军/苇青/富冠铭/巴拉特·巴蒂/喜利图/张海艳/朱耕佑'
       }
     }
   }

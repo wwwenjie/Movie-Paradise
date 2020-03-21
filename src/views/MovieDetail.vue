@@ -9,7 +9,7 @@
       flat
       color="gery"
     >
-      <span class="ma-auto">交友网站 App War</span>
+      <span class="ma-auto">半个喜剧 Almost a Comedy</span>
       <v-btn
         fab
         fixed
@@ -25,7 +25,7 @@
     <v-img
       width="100%"
       max-height="50vh"
-      src="../assets/test.jpg"
+      :src="posterUrl"
       alt="Movie Poster Cover"
       gradient="to bottom,rgba(64, 64, 64, 0) 60%,rgba(30, 30, 30, 100) 100%"
       class="cover"
@@ -34,7 +34,7 @@
       v-class="{pad:'mt-4',laptop:'mt-12'}"
       width="40%"
       height="30vh"
-      src="../assets/test.jpg"
+      :src="posterUrl"
       alt="Movie Poster"
       class="mx-auto"
     />
@@ -47,18 +47,26 @@
         cols="12"
         class="text-center mt-2"
       >
-        <span class="body-1 mx-2 font-weight-bold">2018</span>
-        <span class="body-1 mx-2 font-weight-bold">喜剧</span>
-        <span class="body-1 mx-2 font-weight-bold">115分钟</span>
+        <span class="body-1 mx-2 font-weight-bold">2019</span>
+        <span class="body-1 mx-2 font-weight-bold">喜剧/爱情</span>
+        <span class="body-1 mx-2 font-weight-bold">111分钟</span>
       </v-col>
       <v-col
         cols="12"
         class="text-center"
       >
-        <v-btn depressed width="90%" class="mt-4 red">
+        <v-btn
+          depressed width="90%"
+          class="mt-4 red"
+          @click="dialog=true">
           <v-icon left>mdi-play</v-icon>
           预告片
         </v-btn>
+        <move-detail-video
+          :dialog.sync="dialog"
+          :src="videoUrl"
+          :title="videoTitle"
+        />
       </v-col>
       <v-col
         cols="12"
@@ -66,11 +74,10 @@
         <v-expansion-panels flat>
           <v-expansion-panel style="background-color: transparent !important;">
             <v-expansion-panel-header class="mt-4 py-0 text-justify body-2">
-              邦和茱儿，两个App新创团队负责人；一次偶然的相遇，让他们无可自拔地爱上彼此，并发现双方拥有许多共同兴趣。这启发邦打造出崭新风格的交友App「Inviter」
+              三个自由浪漫的年轻人，过着各怀心思的人生：有人急着摆脱单身，有人想在结婚前放荡一番，有人想在大城市站稳脚跟。
             </v-expansion-panel-header>
             <v-expansion-panel-content class="text-justify body-2">
-              ，让更多网友得以认识拥有相同兴趣的人。不过邦却万万没料到，拥有相同内容与风格的App「Amjoin」随后上线，人气与下载量甚至威胁到「Inviter」。而这个疑似抄袭的App，竟是来自茱儿的团队，让邦和茱儿就此成了竞争对手…。
-              同时，一年一度的新创团队争霸战即将来临，甚至祭出1亿泰铢高额奖金。竞赛期间，邦和茱儿以对手身份再度碰面；双方为了获取巨额奖金，都试图派出间谍渗透到对方的研发团队。不过千算万算，两人却算不到逐渐在心中滋长的爱苗…。随着间谍计划逐渐失控，邦与茱儿在这场争霸战中谁胜谁负？在他们争面子、夺奖金的同时，两人的情愫也掀起更多波澜…。
+              因为一次情感出轨，三人扭结成了一团“嬉笑怒骂”的乱麻。当各种价值观碰撞在一起， 当一个人需要平衡亲情友情与爱情......他们慌乱的生活，就像是半个喜剧。
             </v-expansion-panel-content>
           </v-expansion-panel>
         </v-expansion-panels>
@@ -79,7 +86,7 @@
         cols="12"
         class="px-6"
       >
-        <span class="caption grey--text">演员: 你我他，他和她</span>
+        <span class="caption grey--text">演员: 任素汐 / 吴昱翰 / 刘迅 / 汤敏 / 赵海燕</span>
       </v-col>
       <v-col
         cols="4"
@@ -114,12 +121,22 @@
 
 <script>
 import HomeList from '../components/HomeList'
+import MovieDetailVideo from '../components/MovieDetailVideo'
 
 export default {
   name: 'MovieDetail',
   props: ['movieId'],
   components: {
-    'home-list': HomeList
+    'home-list': HomeList,
+    'move-detail-video': MovieDetailVideo
+  },
+  data () {
+    return {
+      posterUrl: '/static/test.jpg',
+      dialog: false,
+      videoUrl: '/static/video.mp4',
+      videoTitle: '预告片2：终极版'
+    }
   },
   methods: {
     goBack () {
@@ -128,6 +145,11 @@ export default {
   },
   mounted () {
     this.$vuetify.goTo(0)
+  },
+  beforeRouteEnter (to, from, next) {
+    next(vm => {
+      vm.$store.commit('SET_IS_HOME', true)
+    })
   }
 }
 </script>
