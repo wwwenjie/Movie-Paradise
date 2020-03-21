@@ -31,12 +31,12 @@
       class="cover"
     />
     <v-img
+      v-class="{pad:'mt-4',laptop:'mt-12'}"
       width="40%"
       height="30vh"
       src="../assets/test.jpg"
       alt="Movie Poster"
       class="mx-auto"
-      :class="[this.$vuetify.breakpoint.mdAndDown?'mt-4':'mt-12']"
     />
     <v-row
       no-gutters
