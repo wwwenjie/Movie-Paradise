@@ -4,10 +4,8 @@
     style="width: 100%"
   >
     <v-app-bar
-      app
       dense
       flat
-      color="gery"
     >
       <span class="ma-auto">半个喜剧 Almost a Comedy</span>
       <v-btn
@@ -145,11 +143,6 @@ export default {
   },
   mounted () {
     this.$vuetify.goTo(0)
-  },
-  beforeRouteEnter (to, from, next) {
-    next(vm => {
-      vm.$store.commit('SET_IS_HOME', true)
-    })
   }
 }
 </script>

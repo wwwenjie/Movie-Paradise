@@ -3,24 +3,25 @@
     id="inspire"
   >
     <app-navigation-drawer
-      v-if="this.$vuetify.breakpoint.mdAndUp&this.isHome"
+      v-if="this.$vuetify.breakpoint.mdAndUp"
       :drawer.sync="drawer"
     />
     <app-bar
-      v-if="this.$vuetify.breakpoint.mdAndUp&this.isHome"
+      v-if="this.$vuetify.breakpoint.mdAndUp"
       :drawer.sync="drawer"
     />
     <v-content>
       <v-container
         fluid
-        class="fill-height pa-0">
+        class="fill-height pa-0"
+      >
         <v-fade-transition>
           <router-view></router-view>
         </v-fade-transition>
       </v-container>
     </v-content>
     <app-navigation-bottom
-      v-if="this.$vuetify.breakpoint.mdAndDown&this.isHome"
+      v-if="this.$vuetify.breakpoint.mdAndDown"
     />
   </v-app>
 </template>
@@ -38,9 +39,6 @@ export default {
     'app-navigation-drawer': AppNavigationDrawer,
     'app-navigation-bottom': AppNavigationBottom,
     'app-bar': AppBar
-  },
-  props: {
-    source: String
   },
 
   data () {

@@ -22,15 +22,6 @@ export default {
     responsiveComponent () {
       return this.$vuetify.breakpoint.smAndDown ? 'home-scroll' : 'home-list'
     }
-  },
-  beforeRouteEnter (to, from, next) {
-    next(vm => {
-      vm.$store.commit('SET_IS_HOME', true)
-    })
-  },
-  beforeRouteLeave (to, from, next) {
-    this.$store.commit('SET_IS_HOME', false)
-    next()
   }
 }
 </script>

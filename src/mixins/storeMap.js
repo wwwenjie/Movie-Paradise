@@ -5,14 +5,10 @@ import {
 } from 'vuex'
 
 export default {
-  computed: mapState({
-    isHome: 'isHome'
-  }),
+  computed: mapState({}),
   methods: {
     ...mapActions({}),
-    ...mapMutations({
-      setIsHome: 'SET_IS_HOME'
-    })
+    ...mapMutations({})
   }
 
 }

@@ -10,5 +10,12 @@ module.exports = {
       localeDir: 'locales',
       enableInSFC: false
     }
+  },
+
+  configureWebpack: config => {
+    if (process.env.NODE_ENV === 'development') {
+      config.devtool = 'source-map'
+    }
   }
+
 }
