@@ -1,7 +1,7 @@
 <template>
   <v-expand-transition>
     <v-sheet
-      v-if="model != null"
+      v-if="model !== undefined"
       tile
     >
       <v-row

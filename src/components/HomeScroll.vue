@@ -62,7 +62,7 @@ export default {
   },
   data: function () {
     return {
-      model: null
+      model: undefined
     }
   },
   computed: {
