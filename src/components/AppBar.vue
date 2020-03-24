@@ -7,8 +7,8 @@
     color="red"
   >
     <v-app-bar-nav-icon @click.stop="onClickDrawer"/>
-    <v-icon class="mx-4 hidden-xs-only">mdi-youtube</v-icon>
-    <v-toolbar-title class="mr-12 align-center">
+    <v-toolbar-title @click="goHomePage" class="pl-0">
+      <v-icon large class="ml-4">mdi-youtube</v-icon>
       <span class="title">{{$t('appName')}}</span>
     </v-toolbar-title>
     <v-spacer/>
@@ -35,6 +35,10 @@ export default {
   methods: {
     onClickDrawer () {
       this.$emit('update:drawer', !this.drawer)
+    },
+    goHomePage () {
+      // handle NavigationDuplicated
+      this.$router.push({ path: '/' }).catch(err => err)
     }
   }
 }
