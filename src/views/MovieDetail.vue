@@ -3,23 +3,18 @@
     class="fill-height"
     style="width: 100%"
   >
-    <v-app-bar
+    <v-toolbar
       dense
       flat
     >
-      <span class="ma-auto">半个喜剧 Almost a Comedy</span>
+      <v-toolbar-title>半个喜剧 Almost a Comedy</v-toolbar-title>
+      <v-spacer></v-spacer>
       <v-btn
-        fab
-        fixed
-        small
-        text
-        size="small"
-        class="cancel-button"
-        @click="goBack"
-      >
+        icon
+        @click="goBack">
         <v-icon>mdi-close-circle</v-icon>
       </v-btn>
-    </v-app-bar>
+    </v-toolbar>
     <v-img
       width="100%"
       max-height="50vh"
@@ -150,12 +145,6 @@ export default {
 <style scoped>
   .index div {
     z-index: 1;
-  }
-
-  .cancel-button {
-    z-index: 99;
-    right: 6px;
-    top: 6px;
   }
 
   .cover {
