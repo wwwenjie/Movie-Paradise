@@ -1,7 +1,7 @@
 <template>
   <v-sheet
+    width="100%"
     class="fill-height"
-    style="width: 100%"
   >
     <v-toolbar
       dense

@@ -1,9 +1,12 @@
 <template>
-  <div class="app-home">
+  <v-sheet
+    width="100%"
+    class="fill-height"
+  >
     <home-screen/>
     <component v-bind:is="responsiveComponent" genre="最新"></component>
     <component v-bind:is="responsiveComponent" genre="动作"></component>
-  </div>
+  </v-sheet>
 </template>
 
 <script>
@@ -27,7 +30,5 @@ export default {
 </script>
 
 <style>
-  .app-home {
-    width: 100%;
-  }
+
 </style>

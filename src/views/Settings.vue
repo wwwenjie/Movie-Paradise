@@ -1,7 +1,7 @@
 <template>
   <v-sheet
-    class="fill-height"
     width="100%"
+    class="fill-height"
   >
     <v-toolbar class="hidden-md-and-up">
       <v-toolbar-title>Settings</v-toolbar-title>

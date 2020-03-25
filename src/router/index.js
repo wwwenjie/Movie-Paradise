@@ -1,8 +1,9 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home'
-import MovieDetail from '../views/MovieDetail'
+import Search from '../views/Search'
 import Setting from '../views/Settings'
+import MovieDetail from '../views/MovieDetail'
 
 Vue.use(VueRouter)
 
@@ -14,8 +15,8 @@ const routes = [
     component: Home
   },
   {
-    path: '/movie/:movieId',
-    component: MovieDetail,
+    path: '/search',
+    component: Search,
     props: true
   },
   {
@@ -24,6 +25,12 @@ const routes = [
     props: true
   },
   {
+    path: '/movie/:movieId',
+    component: MovieDetail,
+    props: true
+  },
+  {
+    // it supposed to be 404 page
     path: '*',
     redirect: '/'
   }
