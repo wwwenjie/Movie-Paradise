@@ -1,31 +1,16 @@
 <template>
   <v-bottom-navigation
-    v-model="bottomNav"
     app
     grow
   >
     <v-btn
-      value="recent"
+      v-for="item in items"
+      :key="item.title"
       height="inherit"
+      @click="goTo(item.title.toLocaleLowerCase())"
     >
-      <span>Recent</span>
-      <v-icon>mdi-history</v-icon>
-    </v-btn>
-
-    <v-btn
-      value="favorites"
-      height="inherit"
-    >
-      <span>Favorites</span>
-      <v-icon>mdi-heart</v-icon>
-    </v-btn>
-
-    <v-btn
-      value="nearby"
-      height="inherit"
-    >
-      <span>Nearby</span>
-      <v-icon>mdi-map-marker</v-icon>
+      <span>{{item.title}}</span>
+      <v-icon>{{item.icon}}</v-icon>
     </v-btn>
   </v-bottom-navigation>
 </template>
@@ -35,7 +20,16 @@ export default {
   name: 'AppNavigationBottom',
   data () {
     return {
-      bottomNav: 'recent'
+      items: [
+        { title: 'Home', icon: 'mdi-home' },
+        { title: 'Search', icon: 'mdi-movie-search' },
+        { title: 'Settings', icon: 'mdi-settings' }
+      ]
+    }
+  },
+  methods: {
+    goTo (routePath) {
+      this.$router.push({ path: routePath })
     }
   }
 }
