@@ -55,7 +55,7 @@
           <v-icon left>mdi-play</v-icon>
           预告片
         </v-btn>
-        <move-detail-video
+        <movie-detail-video
           :dialog.sync="dialog"
           :src="videoUrl"
           :title="videoTitle"
@@ -104,7 +104,7 @@
       </v-col>
     </v-row>
     <v-divider></v-divider>
-    <home-list
+    <movie-list
       genre="相关影片"
       :show-extend="this.$vuetify.breakpoint.mdAndUp"
       :flex="this.$vuetify.breakpoint.smAndUp?3:6"
@@ -113,15 +113,15 @@
 </template>
 
 <script>
-import HomeList from '../components/HomeList'
+import MovieList from '../components/global/MovieList'
 import MovieDetailVideo from '../components/MovieDetailVideo'
 
 export default {
   name: 'MovieDetail',
   props: ['movieId'],
   components: {
-    'home-list': HomeList,
-    'move-detail-video': MovieDetailVideo
+    'movie-list': MovieList,
+    'movie-detail-video': MovieDetailVideo
   },
   data () {
     return {

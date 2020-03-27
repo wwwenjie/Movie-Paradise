@@ -11,19 +11,19 @@
 
 <script>
 import HomeScreen from '../components/HomeScreen'
-import HomeScroll from '../components/HomeScroll'
-import HomeList from '../components/HomeList'
+import MovieScroll from '../components/global/MovieScroll'
+import MovieList from '../components/global/MovieList'
 
 export default {
   name: 'Home',
   components: {
     'home-screen': HomeScreen,
-    'home-scroll': HomeScroll,
-    'home-list': HomeList
+    'movie-scroll': MovieScroll,
+    'movie-list': MovieList
   },
   computed: {
     responsiveComponent () {
-      return this.$vuetify.breakpoint.smAndDown ? 'home-scroll' : 'home-list'
+      return this.$vuetify.breakpoint.smAndDown ? 'movie-scroll' : 'movie-list'
     }
   }
 }

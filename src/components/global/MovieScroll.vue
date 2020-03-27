@@ -39,7 +39,7 @@
         </v-img>
       </v-slide-item>
     </v-slide-group>
-    <home-scroll-detail
+    <movie-scroll-detail
       :model="model"
       :detail="detail"
     />
@@ -47,12 +47,12 @@
 </template>
 
 <script>
-import HomeScrollDetail from './HomeScrollDetail'
+import MovieScrollDetail from './MovieScrollDetail'
 
 export default {
-  name: 'HomeScroll',
+  name: 'MovieScroll',
   components: {
-    'home-scroll-detail': HomeScrollDetail
+    'movie-scroll-detail': MovieScrollDetail
   },
   props: {
     genre: {
