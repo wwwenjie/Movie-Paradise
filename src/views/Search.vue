@@ -9,6 +9,7 @@
       label="Search"
       prepend-inner-icon="mdi-magnify"
       class="pa-2"
+      :loading="loading"
       hide-details
       clearable
       outlined
