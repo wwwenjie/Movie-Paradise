@@ -1,6 +1,7 @@
 <template>
   <v-app-bar
     app
+    dark
     dense
     flat
     clipped-left
@@ -16,15 +17,28 @@
       align="center"
       style="max-width: 650px"
     >
-      <v-text-field
-        :append-icon-cb="() => {}"
+      <v-autocomplete
+        v-if="this.$vuetify.breakpoint.lgAndUp"
+        v-model="select"
+        :loading="loading"
+        :items="items"
+        :search-input.sync="search"
         :placeholder="$t('search')"
-        single-line
-        append-icon="mdi-magnify"
-        color="white"
+        prepend-inner-icon="mdi-magnify"
         hide-details
-      />
+        clearable
+      >
+        <template slot="no-data">
+          <v-list-item>Opps, can not find this movie</v-list-item>
+        </template>
+      </v-autocomplete>
     </v-row>
+    <v-spacer/>
+    <v-btn
+      outlined
+    >
+      Login
+    </v-btn>
   </v-app-bar>
 </template>
 
@@ -32,6 +46,23 @@
 export default {
   name: 'AppBar',
   props: ['drawer'],
+  data () {
+    return {
+      loading: false,
+      select: null,
+      search: null,
+      items: []
+    }
+  },
+  watch: {
+    // live search
+    search () {
+      this.loading = true
+      setTimeout(() => {
+        this.loading = false
+      }, 2000)
+    }
+  },
   methods: {
     onClickDrawer () {
       this.$emit('update:drawer', !this.drawer)
