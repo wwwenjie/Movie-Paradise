@@ -9,10 +9,10 @@
       label="Search"
       prepend-inner-icon="mdi-magnify"
       class="pa-2"
+      hide-details
       clearable
       outlined
       dense
-      loading
       @focus="onFocus"
       @change="search"
     >
@@ -26,12 +26,22 @@
         ></v-progress-linear>
       </template>
     </v-text-field>
+    <movie-list
+      genre="Result"
+      :show-extend="this.$vuetify.breakpoint.mdAndUp"
+      :flex="this.$vuetify.breakpoint.smAndUp?3:6"
+    />
   </v-sheet>
 </template>
 
 <script>
+import MovieList from '../components/global/MovieList'
+
 export default {
   name: 'Search',
+  components: {
+    'movie-list': MovieList
+  },
   data () {
     return {
       loading: false
