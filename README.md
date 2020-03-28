@@ -42,4 +42,6 @@ locales / i18n resources
 components / components used by pages
 
 assets / resources
+
+api / api
 ```
