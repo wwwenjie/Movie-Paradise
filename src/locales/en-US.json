@@ -16,9 +16,8 @@
   "info": {},
   "more": "More",
   "movie": {
-    "IMDb": "IMDb",
     "douban": "DouBan",
-    "date": "Date",
+    "year": "Year",
     "genre": "Genre",
     "alias": "Alias",
     "name": "Name",

@@ -4,18 +4,13 @@
       v-if="model !== undefined"
       tile
     >
-      <v-row
-        v-for="(item,key) in detail"
-        :key="key"
-        justify="start"
-        class="ml-4"
-      >
-        <h3 v-if="item.value && key!=='rate'" class="title">{{item.title}}: {{item.value}}</h3>
-        <div v-else-if="key==='rate'">
-          <h3 v-if="item[0].value" class="title d-inline">{{item[0].title}} {{item[0].value}}</h3>
-          <h3 v-if="item[1].value" class="title d-inline"> / {{item[1].title}} {{item[1].value}}</h3>
-        </div>
-      </v-row>
+      <div class="ml-4">
+        <p class="title">{{detail.title}}</p>
+        <p>{{$t('movie.douban')}} {{detail.rating.douban_score}} / IMDB {{detail.rating.imdb_score}}</p>
+        <p>{{$t('movie.genre')}}: {{detail.info.genre}}</p>
+        <p>{{$t('movie.region')}}: {{detail.info.region}}</p>
+        <p>{{$t('movie.year')}}: {{detail.year}}</p>
+      </div>
       <v-row
         justify="center"
       >

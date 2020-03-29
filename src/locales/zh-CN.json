@@ -16,10 +16,9 @@
   "info": {},
   "more": "更多",
   "movie": {
-    "IMDb": "IMDb",
     "douban": "豆瓣",
-    "date": "年代",
-    "genre": "类别",
+    "year": "上映时间",
+    "genre": "类型",
     "alias": "别名",
     "name": "片名",
     "region": "产地"

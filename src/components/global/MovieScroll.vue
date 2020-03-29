@@ -48,9 +48,12 @@
 
 <script>
 import MovieScrollDetail from './MovieScrollDetail'
+import storeMap from '../../mixins/storeMap'
+import { getMovie } from '../../api/movie'
 
 export default {
   name: 'MovieScroll',
+  mixins: [storeMap],
   components: {
     'movie-scroll-detail': MovieScrollDetail
   },
@@ -62,34 +65,51 @@ export default {
   },
   data: function () {
     return {
-      model: undefined
-    }
-  },
-  computed: {
-    detail () {
-      return {
-        id: 27110296,
-        imdb_id: 'tt9282616',
+      model: undefined,
+      // detail from `https://api.dianying.fm/movies/${title_en}` or `https://api.dianying.fm/movies?ids=${id}`
+      detail: {
+        _id: undefined,
         info: {
-          genre: '剧情 / 喜剧',
-          region: '中国',
-          language: '汉语普通话/贵州话'
+          director: undefined,
+          writer: undefined,
+          actors: undefined,
+          genre: undefined,
+          region: undefined,
+          language: undefined,
+          release: undefined,
+          duration: undefined,
+          alias: undefined,
+          summary: undefined
         },
-        title: '无名之辈',
-        title_en: 'A Cool Fish',
-        year: '2020',
-
+        imdb_id: undefined,
+        title: undefined,
+        year: undefined,
+        title_en: undefined,
         rating: {
-          douban_score: '8.1',
-          douban_votes: 748793,
-          tags: '黑色幽默/小人物/人性/方言/喜剧/中国大陆/温情/剧情',
-          imdb_score: '7.1',
-          imdb_votes: 1050
+          douban_score: undefined,
+          douban_votes: undefined,
+          tags: undefined,
+          imdb_score: undefined,
+          imdb_votes: undefined
         },
-        poster: '/static/movie/3.jpg',
-        actors: '徐峥/王传君/周一围/谭卓/章宇/杨新鸣/王佳佳/王砚辉/贾晨飞/龚蓓苾/宁浩/李乃文/岳小军/苇青/富冠铭/巴拉特·巴蒂/喜利图/张海艳/朱耕佑'
+        poster: undefined,
+        recs: [],
+        path: undefined,
+        update_time: undefined,
+        tmdb_id: undefined
       }
     }
+  },
+  mounted () {
+    getMovie(1).then(res => {
+      // make sure the key of data is same with the key response
+      for (let [key, value] of Object.entries(res)) {
+        this.detail[key] = value
+      }
+    }).catch(err => {
+      console.log(err)
+      this.callSnack({ text: err })
+    })
   }
 }
 </script>
