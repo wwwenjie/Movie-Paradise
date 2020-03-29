@@ -2,6 +2,8 @@
   <v-app
     id="inspire"
   >
+    <!--global snackbar-->
+    <snackbar :show.sync="snackCon.show" :snack-con="snackCon"/>
     <app-navigation-drawer
       v-if="this.$vuetify.breakpoint.mdAndUp"
       :drawer.sync="drawer"
@@ -30,6 +32,7 @@
 import AppNavigationDrawer from './components/AppNavigationDrawer'
 import AppNavigationBottom from './components/AppNavigationBottom'
 import AppBar from './components/AppBar'
+import Snackbar from './components/global/Snackbar'
 import storeMap from './mixins/storeMap'
 
 export default {
@@ -38,7 +41,8 @@ export default {
   components: {
     'app-navigation-drawer': AppNavigationDrawer,
     'app-navigation-bottom': AppNavigationBottom,
-    'app-bar': AppBar
+    'app-bar': AppBar,
+    'snackbar': Snackbar
   },
 
   data () {

@@ -5,10 +5,13 @@ import {
 } from 'vuex'
 
 export default {
-  computed: mapState({}),
+  computed: mapState({
+    snackCon: 'snackCon'
+  }),
   methods: {
     ...mapActions({}),
-    ...mapMutations({})
+    ...mapMutations({
+      callSnack: 'CALL_SNACK'
+    })
   }
-
 }

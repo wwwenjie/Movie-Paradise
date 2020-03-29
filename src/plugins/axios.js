@@ -1,5 +1,6 @@
 // inspired by vue-element-admin
 // https://panjiachen.github.io/vue-element-admin-site/guide/essentials/server.html#front-end-request-flow
+
 import axios from 'axios'
 
 // create an axios instance
@@ -47,16 +48,16 @@ service.interceptors.response.use(
    */
   response => {
     const res = response.data
-    // if the custom code is not 200, it is judged as an error.
-    // structure: code(Number) message(String) data(Object)
-    // data{ success(Boolean) ... } success is required when post/put/patch/delete
-    if (res.code !== 200) {
+    // if there is a code and error, it is judged as an error.
+    // error: code(Number) error(String)
+    // success: Object { success(Boolean) ... } success is required when post/put/patch/delete
+    if (res.code && res.error) {
       // for debug
       console.log('Error, response below:')
       console.log(res)
-      return Promise.reject(new Error(res.message || 'Error'))
+      return Promise.reject(new Error(res.error || 'Error'))
     } else {
-      return res.data
+      return res
     }
   },
   // http status
