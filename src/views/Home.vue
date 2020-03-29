@@ -13,6 +13,7 @@
 import HomeScreen from '../components/HomeScreen'
 import MovieScroll from '../components/global/MovieScroll'
 import MovieList from '../components/global/MovieList'
+import { getMovie, delMovie } from '../api/movie'
 
 export default {
   name: 'Home',
@@ -25,6 +26,14 @@ export default {
     responsiveComponent () {
       return this.$vuetify.breakpoint.smAndDown ? 'movie-scroll' : 'movie-list'
     }
+  },
+  mounted () {
+    getMovie(1).then(response => {
+      console.log(response)
+    })
+    delMovie(1).then(response => {
+      console.log(response)
+    })
   }
 }
 </script>

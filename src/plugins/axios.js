@@ -47,15 +47,19 @@ service.interceptors.response.use(
    */
   response => {
     const res = response.data
-    // if the custom code is not 20000, it is judged as an error.
-    if (res.code !== 20000) {
-      // return Promise.reject(new Error(res.message || 'Error'))
-      // waiting for server api
-      return res
+    // if the custom code is not 200, it is judged as an error.
+    // structure: code(Number) message(String) data(Object)
+    // data{ success(Boolean) ... } success is required when post/put/patch/delete
+    if (res.code !== 200) {
+      // for debug
+      console.log('Error, response below:')
+      console.log(res)
+      return Promise.reject(new Error(res.message || 'Error'))
     } else {
-      return res
+      return res.data
     }
   },
+  // http status
   error => {
     if (error && error.response) {
       switch (error.response.status) {
@@ -96,7 +100,7 @@ service.interceptors.response.use(
           break
       }
     }
-    console.log('err' + error) // for debug
+    console.log(`Error: ${error.message}`) // for debug
     return Promise.reject(error)
   }
 )
