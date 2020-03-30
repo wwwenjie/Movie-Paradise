@@ -1,20 +1,64 @@
 <template>
   <v-img
-    :src="poster"
+    :src="detail.poster"
     :contain="this.$vuetify.breakpoint.mdAndUp"
+    :gradient="this.$vuetify.theme.dark ? 'to bottom,rgba(64, 64, 64, 0) 70%,rgba(30, 30, 30, 100) 100%':'to bottom,rgba(150, 150, 150, 0) 70%,rgba(255, 255, 255, 100) 100%'"
     width="100%"
     max-height="80vh"
     alt="poster"
-    lazy-src="/static/test.jpg"
-    gradient="to bottom,rgba(64, 64, 64, 0) 70%,rgba(30, 30, 30, 100) 100%"
+    @error="error = true"
   >
-    <template v-slot:placeholder>
+    <template v-slot:default>
       <v-row
-        class="fill-height"
-        align="center"
-        justify="center"
+        align="end"
+        style="height: 100%"
       >
-        <v-progress-circular indeterminate></v-progress-circular>
+        <v-row
+          justify="center"
+        >
+          <v-col
+            v-if="error"
+            cols="12"
+            class="text-center"
+          >
+            <p class="title font-weight-bold mb-0">Oops, 海报加载失败</p>
+            <p class="title font-weight-bold mb-0">今天为您推荐:</p>
+          </v-col>
+          <v-col
+            cols="12"
+            class="text-center pa-0"
+          >
+            <p class="title font-weight-bold mb-0">{{detail.title}}</p>
+            <p class="mb-0">{{detail.info.genre}}</p>
+          </v-col>
+          <v-col
+            cols="3"
+            class="text-center"
+          >
+            <v-icon class="d-block">mdi-plus</v-icon>
+            <span class="caption">加入片库</span>
+          </v-col>
+          <v-col
+            cols="5"
+            class="text-center"
+          >
+            <v-btn
+              light
+              width="100%"
+              class="font-weight-bold mb-2"
+            >
+              <v-icon left>mdi-play</v-icon>
+              预告片
+            </v-btn>
+          </v-col>
+          <v-col
+            cols="3"
+            class="text-center"
+          >
+            <v-icon class="d-block">mdi-information-outline</v-icon>
+            <span class="caption">更多信息</span>
+          </v-col>
+        </v-row>
       </v-row>
     </template>
   </v-img>
@@ -24,9 +68,11 @@
 export default {
   name: 'HomeScreen',
   props: {
-    poster: {
-      type: String,
-      default: '/static/test.jpg'
+    detail: undefined
+  },
+  data () {
+    return {
+      error: false
     }
   }
 }

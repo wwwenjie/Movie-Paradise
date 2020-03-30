@@ -3,7 +3,7 @@
     width="100%"
     class="fill-height"
   >
-    <home-screen :poster="poster"/>
+    <home-screen :detail="detail"/>
     <component v-bind:is="responsiveComponent" genre="最新"></component>
     <component v-bind:is="responsiveComponent" genre="动作"></component>
   </v-sheet>
@@ -26,7 +26,7 @@ export default {
   },
   data () {
     return {
-      poster: undefined
+      detail: undefined
     }
   },
   computed: {
@@ -36,7 +36,7 @@ export default {
   },
   mounted () {
     getMovie(1).then(res => {
-      this.poster = res.poster
+      this.detail = res
     }).catch(err => {
       console.log(err)
       this.callSnack({ text: err })

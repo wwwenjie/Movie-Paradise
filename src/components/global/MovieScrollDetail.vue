@@ -22,11 +22,10 @@
           <span class="caption">加入片库</span>
         </v-col>
         <v-col
-          cols="6"
+          cols="5"
         >
           <v-btn
             light
-            depressed
             width="100%"
             class="font-weight-bold"
             @click="goDetail"

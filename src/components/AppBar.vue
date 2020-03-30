@@ -29,7 +29,7 @@
         clearable
       >
         <template slot="no-data">
-          <v-list-item>Opps, can not find this movie</v-list-item>
+          <v-list-item>Oops, can not find this movie</v-list-item>
         </template>
       </v-autocomplete>
     </v-row>
