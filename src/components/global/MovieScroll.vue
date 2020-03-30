@@ -49,6 +49,7 @@
 <script>
 import MovieScrollDetail from './MovieScrollDetail'
 import { getMovie } from '../../api/movie'
+import { undefinedMovie } from '../../utils'
 import { message } from '../../utils/message'
 
 export default {
@@ -65,38 +66,7 @@ export default {
   data: function () {
     return {
       model: undefined,
-      // detail from `https://api.dianying.fm/movies/${title_en}` or `https://api.dianying.fm/movies?ids=${id}`
-      detail: {
-        _id: undefined,
-        info: {
-          director: undefined,
-          writer: undefined,
-          actors: undefined,
-          genre: undefined,
-          region: undefined,
-          language: undefined,
-          release: undefined,
-          duration: undefined,
-          alias: undefined,
-          summary: undefined
-        },
-        imdb_id: undefined,
-        title: undefined,
-        year: undefined,
-        title_en: undefined,
-        rating: {
-          douban_score: undefined,
-          douban_votes: undefined,
-          tags: undefined,
-          imdb_score: undefined,
-          imdb_votes: undefined
-        },
-        poster: undefined,
-        recs: [],
-        path: undefined,
-        update_time: undefined,
-        tmdb_id: undefined
-      }
+      detail: undefinedMovie()
     }
   },
   mounted () {
