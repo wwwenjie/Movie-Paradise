@@ -18,7 +18,9 @@
         class="fill-height pa-0"
       >
         <v-fade-transition>
-          <router-view></router-view>
+          <keep-alive>
+            <router-view></router-view>
+          </keep-alive>
         </v-fade-transition>
       </v-container>
     </v-content>
