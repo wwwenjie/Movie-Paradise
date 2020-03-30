@@ -48,12 +48,11 @@
 
 <script>
 import MovieScrollDetail from './MovieScrollDetail'
-import storeMap from '../../mixins/storeMap'
 import { getMovie } from '../../api/movie'
+import { message } from '../../utils/message'
 
 export default {
   name: 'MovieScroll',
-  mixins: [storeMap],
   components: {
     'movie-scroll-detail': MovieScrollDetail
   },
@@ -108,7 +107,7 @@ export default {
       }
     }).catch(err => {
       console.log(err)
-      this.callSnack({ text: err })
+      message({ text: err, type: 'error' })
     })
   }
 }

@@ -65,15 +65,25 @@
 </template>
 
 <script>
+import { getMovie } from '../api/movie'
+import { message } from '../utils/message'
+
 export default {
   name: 'HomeScreen',
-  props: {
-    detail: undefined
-  },
   data () {
     return {
-      error: false
+      error: false,
+      // set undefined will cause error cannot read ... of undefined
+      detail: { info: {} }
     }
+  },
+  mounted () {
+    getMovie(Math.round(Math.random() * 1000)).then(res => {
+      this.detail = res
+    }).catch(err => {
+      console.log(err)
+      message({ text: err, type: 'error' })
+    })
   }
 }
 </script>
