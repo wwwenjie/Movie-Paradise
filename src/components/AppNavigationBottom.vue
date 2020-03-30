@@ -29,7 +29,7 @@ export default {
   },
   methods: {
     goTo (routePath) {
-      this.$router.push({ path: routePath })
+      this.$router.push({ path: `/${routePath}` })
     }
   }
 }
