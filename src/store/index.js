@@ -8,18 +8,16 @@ export default new Vuex.Store({
     snackCon: {
       show: false,
       text: '',
-      closeText: '',
+      closeText: 'Close',
       type: '',
       timeout: 0
     }
   },
   mutations: {
-    CALL_SNACK (state, config) {
-      state.snackCon.show = config.show !== false
-      state.snackCon.text = config.text
-      state.snackCon.closeText = config.closeText || 'Close'
-      state.snackCon.type = config.type
-      state.snackCon.timeout = config.timeout || 0
+    CALL_MESSAGE (state, config) {
+      for (let [key, value] of Object.entries(config)) {
+        state.snackCon[key] = value
+      }
     }
   },
   actions: {},

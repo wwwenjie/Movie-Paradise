@@ -32,6 +32,8 @@ App.vue / root component
 
 views / independent pages
 
+utils / utils
+
 store / state management
 
 router / route management

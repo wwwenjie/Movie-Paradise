@@ -1,8 +1,4 @@
-import {
-  mapActions,
-  mapState,
-  mapMutations
-} from 'vuex'
+import { mapActions, mapMutations, mapState } from 'vuex'
 
 export default {
   computed: mapState({
@@ -10,8 +6,6 @@ export default {
   }),
   methods: {
     ...mapActions({}),
-    ...mapMutations({
-      callSnack: 'CALL_SNACK'
-    })
+    ...mapMutations({})
   }
 }

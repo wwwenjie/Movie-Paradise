@@ -25,7 +25,7 @@ export default {
     },
     snackCon: {
       type: Object,
-      // the default value is set at store CALL_SNACK
+      // the default value is set at store snackCon
       default: () => ({
         text: '',
         closeText: '',
