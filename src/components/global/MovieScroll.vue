@@ -31,6 +31,7 @@
             class="ma-4"
             height="180"
             width="130"
+            @error="error = true"
             @click="toggle"
           >
             <v-row
@@ -47,6 +48,16 @@
                 ></v-icon>
               </v-scale-transition>
             </v-row>
+            <template v-if="error" v-slot:default>
+              <div class="d-flex align-center fill-height text-center">
+                <span
+                  class="headline"
+                  style="white-space:normal;word-break: break-all;"
+                >
+                  {{detail.title}}
+                </span>
+              </div>
+            </template>
           </v-img>
         </v-slide-item>
       </v-slide-group>
@@ -79,6 +90,7 @@ export default {
     return {
       model: undefined,
       loading: true,
+      error: false,
       detail: undefinedMovie()
     }
   },
@@ -88,11 +100,11 @@ export default {
       for (let [key, value] of Object.entries(res)) {
         this.detail[key] = value
       }
+      this.loading = false
     }).catch(err => {
       console.log(err)
       message({ text: err, type: 'error' })
     })
-    this.loading = false
   }
 }
 </script>
