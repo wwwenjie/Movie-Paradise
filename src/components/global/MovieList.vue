@@ -6,6 +6,7 @@
   >
     <v-container fluid>
       <v-row
+        align="center"
         justify="space-around"
         class="mx-sm-4"
       >
@@ -16,44 +17,54 @@
           <p class="title pl-md-2 mb-0">{{genre}}</p>
         </v-col>
         <v-col
-          v-for="(card,index) in cards"
+          v-for="(movie,index) in movies"
           :key="index"
           cols="6"
           sm="4"
-          class=movie-list-md-col
+          class="movie-list-md-col"
           @click="goDetail"
         >
-          <v-card
-            :loading="loading?'secondary':false"
-            hover
+          <v-skeleton-loader
+            :loading="loading"
+            type="card"
+            transition="fade-transition"
           >
-            <v-img
-              :src="card.src"
-              class="align-end"
-              gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
+            <v-card
+              :loading="loading?'secondary':false"
+              hover
+              style="border-radius: 0"
             >
-              <v-card-title v-text="card.title" class="pb-0"></v-card-title>
-              <v-card-text class="text--primary pb-1">
-                <div>{{card.origin}} / {{$t('movie.douban')}} {{card.douban_rate}} / IMDb {{card.IMDb_rate}}</div>
-                <div></div>
-              </v-card-text>
-            </v-img>
+              <v-img
+                :src="movie.poster"
+                class="align-end"
+                gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
+              >
+                <template v-slot:default>
+                  <v-card-title v-text="movie.title" class="pb-0"></v-card-title>
+                  <v-card-text class="text--primary pb-1">
+                    <div>{{movie.info.region}} / {{$t('movie.douban')}} {{movie.rating.douban_score}} / IMDb
+                      {{movie.rating.imdb_score}}
+                    </div>
+                  </v-card-text>
+                </template>
+              </v-img>
 
-            <v-card-actions class="hidden-xs-only">
-              <v-list-item class="grow">
-                <span>{{card.date}}</span>
-                <span class="mx-1">·</span>
-                <span>{{card.genre}}</span>
-                <v-row
-                  align="center"
-                  justify="end"
-                >
-                  <v-icon class="mr-1">mdi-heart</v-icon>
-                  <v-icon class="mr-1">mdi-share-variant</v-icon>
-                </v-row>
-              </v-list-item>
-            </v-card-actions>
-          </v-card>
+              <v-card-actions class="hidden-xs-only">
+                <v-list-item class="grow">
+                  <span>{{movie.year}}</span>
+                  <span class="mx-1">·</span>
+                  <span>{{movie.info.genre}}</span>
+                  <v-row
+                    align="center"
+                    justify="end"
+                  >
+                    <v-icon class="mr-1">mdi-heart</v-icon>
+                    <v-icon class="mr-1">mdi-share-variant</v-icon>
+                  </v-row>
+                </v-list-item>
+              </v-card-actions>
+            </v-card>
+          </v-skeleton-loader>
         </v-col>
       </v-row>
     </v-container>
@@ -62,6 +73,9 @@
 
 <script>
 import router from '../../router'
+import { message } from '../../utils/message'
+import { undefinedMovie } from '../../utils'
+import { getMovieByGenre } from '../../api/movie'
 
 export default {
   name: 'MovieList',
@@ -73,74 +87,8 @@ export default {
   },
   data () {
     return {
-      loading: false,
-      cards: [
-        {
-          title: '爱尔兰人',
-          src: '/static/movie/1.jpg',
-          date: '2000',
-          genre: '喜剧',
-          origin: '中国',
-          douban_rate: '7.7',
-          IMDb_rate: '7.7'
-        }, {
-          title: '爱尔兰人',
-          src: '/static/movie/1.jpg',
-          date: '2000',
-          genre: '喜剧',
-          origin: '中国',
-          douban_rate: '7.7',
-          IMDb_rate: '7.7'
-        }, {
-          title: '爱尔兰人',
-          src: '/static/movie/1.jpg',
-          date: '2000',
-          genre: '喜剧',
-          origin: '中国',
-          douban_rate: '7.7',
-          IMDb_rate: '7.7'
-        }, {
-          title: '爱尔兰人',
-          src: '/static/movie/1.jpg',
-          date: '2000',
-          genre: '喜剧',
-          origin: '中国',
-          douban_rate: '7.7',
-          IMDb_rate: '7.7'
-        }, {
-          title: '爱尔兰人',
-          src: '/static/movie/1.jpg',
-          date: '2000',
-          genre: '喜剧',
-          origin: '中国',
-          douban_rate: '7.7',
-          IMDb_rate: '7.7'
-        }, {
-          title: '爱尔兰人',
-          src: '/static/movie/1.jpg',
-          date: '2000',
-          genre: '喜剧',
-          origin: '中国',
-          douban_rate: '7.7',
-          IMDb_rate: '7.7'
-        }, {
-          title: '爱尔兰人',
-          src: '/static/movie/1.jpg',
-          date: '2000',
-          genre: '喜剧',
-          origin: '中国',
-          douban_rate: '7.7',
-          IMDb_rate: '7.7'
-        }, {
-          title: '爱尔兰人',
-          src: '/static/movie/1.jpg',
-          date: '2000',
-          genre: '喜剧',
-          origin: '中国',
-          douban_rate: '7.7',
-          IMDb_rate: '7.7'
-        }
-      ]
+      loading: true,
+      movies: [undefinedMovie()]
     }
   },
   methods: {
@@ -148,6 +96,18 @@ export default {
       let movieId = '1'
       router.push({ path: `/movie/${movieId}` })
     }
+  },
+  mounted () {
+    // 3 cols for sm, 2/4 for xs/md
+    let limit = this.$vuetify.breakpoint.sm ? 9 : 8
+    // preload empty object to load skeleton
+    this.movies = [...Array(limit)].map(() => undefinedMovie())
+    getMovieByGenre('test', limit).then(res => {
+      this.movies = res.movies
+      this.loading = false
+    }).catch(err => {
+      message({ text: err, type: 'error' })
+    })
   }
 }
 </script>

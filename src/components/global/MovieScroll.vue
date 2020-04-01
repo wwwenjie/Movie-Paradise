@@ -20,60 +20,65 @@
         class="mt-n4 mx-1"
       >
         <v-slide-item
-          v-for="n in 10"
-          :key="n"
+          v-for="(movie,index) in movies"
+          :key="index"
           v-slot:default="{ active, toggle }"
           class="mx-1"
         >
           <v-img
             :gradient="active ? 'to bottom,rgba(64, 64, 64, 0) 0%,rgba(64, 64, 64, 50) 100%' : undefined"
-            :src="detail.poster"
+            :src="movie.poster"
             class="ma-4"
             height="180"
             width="130"
-            @error="error = true"
+            @error="error[index] = true"
             @click="toggle"
           >
-            <v-row
-              class="fill-height"
-              align="center"
-              justify="center"
-            >
-              <v-scale-transition>
-                <v-icon
-                  v-if="active"
-                  color="white"
-                  size="48"
-                  v-text="'mdi-close-circle-outline'"
-                ></v-icon>
-              </v-scale-transition>
-            </v-row>
-            <template v-if="error" v-slot:default>
-              <div class="d-flex align-center fill-height text-center">
+            <template v-slot:default>
+              <!--some errors need to be fixed:-->
+              <!--css: 'error' div occupy icon space-->
+              <!--unknown: 'error' div doesnt load if doesnt click group-->
+              <div v-if="error[index]" class="d-flex align-center fill-height text-center">
                 <span
                   class="headline"
                   style="white-space:normal;word-break: break-all;"
                 >
-                  {{detail.title}}
+                  {{movie.title}}
                 </span>
               </div>
+              <v-row
+                class="fill-height"
+                align="center"
+                justify="center"
+              >
+                <v-scale-transition>
+                  <v-icon
+                    v-if="active"
+                    color="white"
+                    size="48"
+                    v-text="'mdi-close-circle-outline'"
+                  ></v-icon>
+                </v-scale-transition>
+              </v-row>
             </template>
           </v-img>
         </v-slide-item>
       </v-slide-group>
     </v-skeleton-loader>
-    <movie-scroll-detail
-      :model="model"
-      :detail="detail"
-    />
+    <v-expand-transition>
+      <movie-scroll-detail
+        :model="model"
+        :detail="movies[model]"
+      />
+    </v-expand-transition>
   </v-sheet>
 </template>
 
 <script>
 import MovieScrollDetail from './MovieScrollDetail'
-import { getMovie } from '../../api/movie'
-import { undefinedMovie } from '../../utils'
 import { message } from '../../utils/message'
+import { undefinedMovie } from '../../utils'
+import { getMovieByGenre } from '../../api/movie'
 
 export default {
   name: 'MovieScroll',
@@ -89,17 +94,17 @@ export default {
   data: function () {
     return {
       model: undefined,
+      limit: 8,
       loading: true,
-      error: false,
-      detail: undefinedMovie()
+      error: [false],
+      movies: [undefinedMovie()]
     }
   },
   mounted () {
-    getMovie(1).then(res => {
-      // make sure the key of data is same with the key response
-      for (let [key, value] of Object.entries(res)) {
-        this.detail[key] = value
-      }
+    this.error = [...Array(this.limit)].map(() => false)
+    this.movies = [...Array(this.limit)].map(() => undefinedMovie())
+    getMovieByGenre(this.genre, this.limit).then(res => {
+      this.movies = res.movies
       this.loading = false
     }).catch(err => {
       console.log(err)

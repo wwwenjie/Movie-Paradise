@@ -7,9 +7,9 @@ export function getMovie (id) {
   })
 }
 
-export function delMovie (id) {
+export function getMovieByGenre (genre = 'newest', limit = 10) {
   return request({
-    url: `/movies/${id}`,
-    method: 'delete'
+    url: `/movies/?genre=${genre}&limit=${limit}`,
+    method: 'get'
   })
 }

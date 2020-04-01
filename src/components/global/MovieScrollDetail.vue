@@ -6,7 +6,7 @@
     >
       <div class="ml-4">
         <p class="title">{{detail.title}}</p>
-        <p>{{$t('movie.douban')}} {{detail.rating.douban_score}} / IMDB {{detail.rating.imdb_score}}</p>
+        <p>{{$t('movie.douban')}} {{detail.rating.douban_score}} / IMDb {{detail.rating.imdb_score}}</p>
         <p>{{$t('movie.genre')}}: {{detail.info.genre}}</p>
         <p>{{$t('movie.region')}}: {{detail.info.region}}</p>
         <p>{{$t('movie.year')}}: {{detail.year}}</p>
