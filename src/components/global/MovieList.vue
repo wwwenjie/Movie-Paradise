@@ -4,24 +4,33 @@
     width="100%"
     tile
   >
-    <p class="title ml-3 mb-0">{{genre}}</p>
     <v-container fluid>
-      <v-row dense>
+      <v-row
+        justify="space-around"
+        class="mx-sm-4"
+      >
+        <v-col
+          cols="12"
+          class="pb-0"
+        >
+          <p class="title pl-md-2 mb-0">{{genre}}</p>
+        </v-col>
         <v-col
           v-for="(card,index) in cards"
           :key="index"
-          :cols=flex
+          cols="6"
+          sm="4"
+          class=movie-list-md-col
           @click="goDetail"
         >
           <v-card
-            hover
             :loading="loading?'secondary':false"
+            hover
           >
             <v-img
               :src="card.src"
-              class="white--text align-end"
+              class="align-end"
               gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
-              height="200px"
             >
               <v-card-title v-text="card.title" class="pb-0"></v-card-title>
               <v-card-text class="text--primary pb-1">
@@ -30,7 +39,7 @@
               </v-card-text>
             </v-img>
 
-            <v-card-actions v-if="showExtend">
+            <v-card-actions class="hidden-xs-only">
               <v-list-item class="grow">
                 <span>{{card.date}}</span>
                 <span class="mx-1">·</span>
@@ -60,14 +69,6 @@ export default {
     genre: {
       type: String,
       default: 'Default'
-    },
-    flex: {
-      type: Number,
-      default: 3
-    },
-    showExtend: {
-      type: Boolean,
-      default: true
     }
   },
   data () {
@@ -151,6 +152,12 @@ export default {
 }
 </script>
 
-<style scoped>
-
+<style lang="sass">
+  $width: 23%
+  /*md and up 960px*/
+  @media (min-width: 960px)
+    .movie-list-md-col
+      width: $width
+      max-width: $width
+      flex-basis: $width
 </style>

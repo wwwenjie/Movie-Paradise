@@ -23,7 +23,7 @@ export default {
   },
   computed: {
     responsiveComponent () {
-      return this.$vuetify.breakpoint.smAndDown ? 'movie-scroll' : 'movie-list'
+      return this.$vuetify.breakpoint.xs ? 'movie-scroll' : 'movie-list'
     }
   }
 }

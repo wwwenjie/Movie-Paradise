@@ -27,11 +27,7 @@
         ></v-progress-linear>
       </template>
     </v-text-field>
-    <movie-list
-      genre="Result"
-      :show-extend="this.$vuetify.breakpoint.mdAndUp"
-      :flex="this.$vuetify.breakpoint.smAndUp?3:6"
-    />
+    <movie-list genre="Result"/>
   </v-sheet>
 </template>
 

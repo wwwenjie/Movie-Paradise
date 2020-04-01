@@ -11,26 +11,36 @@
       <v-spacer></v-spacer>
       <v-btn
         icon
-        @click="goBack">
+        @click="goBack"
+      >
         <v-icon>mdi-close-circle</v-icon>
       </v-btn>
     </v-toolbar>
-    <v-img
-      width="100%"
-      max-height="50vh"
-      :src="posterUrl"
-      alt="Movie Poster Cover"
-      gradient="to bottom,rgba(64, 64, 64, 0) 60%,rgba(30, 30, 30, 100) 100%"
-      class="cover"
-    />
-    <v-img
-      v-class="{pad:'mt-4',laptop:'mt-12'}"
-      width="40%"
-      height="30vh"
-      :src="posterUrl"
-      alt="Movie Poster"
-      class="mx-auto"
-    />
+    <v-row
+      justify="center"
+    >
+      <v-col cols="12">
+        <v-img
+          width="100%"
+          max-height="50vh"
+          :src="posterUrl"
+          alt="Movie Poster Cover"
+          gradient="to bottom,rgba(64, 64, 64, 0) 60%,rgba(30, 30, 30, 100) 100%"
+          class="cover"
+        />
+      </v-col>
+      <v-col
+        cols=8
+        sm="5"
+        md="3"
+      >
+        <v-img
+          :src="posterUrl"
+          alt="Movie Poster"
+          class="mx-auto"
+        />
+      </v-col>
+    </v-row>
     <v-row
       no-gutters
       justify="space-around"
@@ -61,9 +71,7 @@
           :title="videoTitle"
         />
       </v-col>
-      <v-col
-        cols="12"
-      >
+      <v-col cols="12">
         <v-expansion-panels flat>
           <v-expansion-panel style="background-color: transparent !important;">
             <v-expansion-panel-header class="mt-4 py-0 text-justify body-2">
@@ -104,11 +112,7 @@
       </v-col>
     </v-row>
     <v-divider></v-divider>
-    <movie-list
-      genre="相关影片"
-      :show-extend="this.$vuetify.breakpoint.mdAndUp"
-      :flex="this.$vuetify.breakpoint.smAndUp?3:6"
-    />
+    <movie-list genre="相关影片"/>
   </v-sheet>
 </template>
 

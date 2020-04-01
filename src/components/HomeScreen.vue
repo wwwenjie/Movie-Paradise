@@ -8,7 +8,7 @@
   >
     <v-img
       :src="detail.poster"
-      :contain="this.$vuetify.breakpoint.mdAndUp"
+      :contain="this.$vuetify.breakpoint.smAndUp"
       :gradient="this.$vuetify.theme.dark ? 'to bottom,rgba(64, 64, 64, 0) 70%,rgba(30, 30, 30, 100) 100%':'to bottom,rgba(150, 150, 150, 0) 70%,rgba(255, 255, 255, 100) 100%'"
       width="100%"
       max-height="80vh"
