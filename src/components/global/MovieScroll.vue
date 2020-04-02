@@ -31,18 +31,20 @@
             class="ma-4"
             aspect-ratio="0.684"
             width="140"
-            @error="error[index] = true"
+            @error="$set(error, index, true)"
             @click="toggle"
           >
             <template v-slot:placeholder>
               <v-skeleton-loader
-                v-if="!error[index]"
-                loading
-                type="image"
-                transition="fade-transition"
+                :boilerplate="error[index]"
+                tile
+                type="image@2"
               >
               </v-skeleton-loader>
-              <div class="d-flex align-center fill-height text-center" style="position: absolute;top: 0; width: 100%">
+              <div
+                class="d-flex align-center fill-height text-center"
+                style="position: absolute;top: 0; width: 100%"
+              >
                 <span
                   class="headline mx-auto"
                   style="white-space:normal;word-break: break-all;"

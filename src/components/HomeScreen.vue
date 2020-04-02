@@ -11,10 +11,19 @@
       :contain="this.$vuetify.breakpoint.smAndUp"
       :gradient="this.$vuetify.theme.dark ? 'to bottom,rgba(64, 64, 64, 0) 70%,rgba(30, 30, 30, 100) 100%':'to bottom,rgba(150, 150, 150, 0) 70%,rgba(255, 255, 255, 100) 100%'"
       width="100%"
+      min-height="40vh"
       max-height="80vh"
       alt="poster"
       @error="error = true"
     >
+      <template v-slot:placeholder>
+        <v-skeleton-loader
+          :boilerplate="error"
+          tile
+          type="image@2"
+        >
+        </v-skeleton-loader>
+      </template>
       <template v-slot:default>
         <v-row
           align="end"

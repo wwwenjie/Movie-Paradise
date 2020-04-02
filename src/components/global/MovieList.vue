@@ -40,7 +40,16 @@
                 gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
                 aspect-ratio="0.684"
                 class="align-end"
+                @error="$set(error, index, true)"
               >
+                <template v-slot:placeholder>
+                  <v-skeleton-loader
+                    :boilerplate="error[index]"
+                    tile
+                    type="image@2"
+                  >
+                  </v-skeleton-loader>
+                </template>
                 <template v-slot:default>
                   <v-card-title v-text="movie.title" class="pb-0"></v-card-title>
                   <v-card-text class="text--primary pb-1">
@@ -90,6 +99,7 @@ export default {
   data () {
     return {
       loading: true,
+      error: [false],
       movies: [undefinedMovie()]
     }
   },
@@ -103,6 +113,7 @@ export default {
     // 3 cols for sm, 2/4 for xs/md
     let limit = this.$vuetify.breakpoint.sm ? 9 : 8
     // preload empty object to load skeleton
+    this.error = [...Array(limit)].map(() => false)
     this.movies = [...Array(limit)].map(() => undefinedMovie())
     getMovieByGenre('test', limit).then(res => {
       this.movies = res.movies
