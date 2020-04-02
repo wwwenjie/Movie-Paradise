@@ -34,10 +34,12 @@
               hover
               style="border-radius: 0"
             >
+              <!--aspect-ratio: 650/950-->
               <v-img
                 :src="movie.poster"
-                class="align-end"
                 gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
+                aspect-ratio="0.684"
+                class="align-end"
               >
                 <template v-slot:default>
                   <v-card-title v-text="movie.title" class="pb-0"></v-card-title>

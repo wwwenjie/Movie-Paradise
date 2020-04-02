@@ -29,23 +29,29 @@
             :gradient="active ? 'to bottom,rgba(64, 64, 64, 0) 0%,rgba(64, 64, 64, 50) 100%' : undefined"
             :src="movie.poster"
             class="ma-4"
-            height="180"
-            width="130"
+            aspect-ratio="0.684"
+            width="140"
             @error="error[index] = true"
             @click="toggle"
           >
-            <template v-slot:default>
-              <!--some errors need to be fixed:-->
-              <!--css: 'error' div occupy icon space-->
-              <!--unknown: 'error' div doesnt load if doesnt click group-->
-              <div v-if="error[index]" class="d-flex align-center fill-height text-center">
+            <template v-slot:placeholder>
+              <v-skeleton-loader
+                v-if="!error[index]"
+                loading
+                type="image"
+                transition="fade-transition"
+              >
+              </v-skeleton-loader>
+              <div class="d-flex align-center fill-height text-center" style="position: absolute;top: 0; width: 100%">
                 <span
-                  class="headline"
+                  class="headline mx-auto"
                   style="white-space:normal;word-break: break-all;"
                 >
                   {{movie.title}}
                 </span>
               </div>
+            </template>
+            <template v-slot:default>
               <v-row
                 class="fill-height"
                 align="center"
