@@ -84,7 +84,7 @@
 
 <script>
 import router from '../../router'
-import { message } from '../../utils/message'
+import Message from '../../utils/message'
 import { undefinedMovie } from '../../utils'
 import { getMovieByGenre } from '../../api/movie'
 
@@ -119,7 +119,7 @@ export default {
       this.movies = res.movies
       this.loading = false
     }).catch(err => {
-      message({ text: err, type: 'error' })
+      Message.error(err)
     })
   }
 }

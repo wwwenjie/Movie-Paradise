@@ -7,7 +7,7 @@
     min-height="70vh"
   >
     <v-img
-      :src="detail.poster"
+      :src="movie.poster"
       :contain="this.$vuetify.breakpoint.smAndUp"
       :gradient="this.$vuetify.theme.dark ? 'to bottom,rgba(64, 64, 64, 0) 70%,rgba(30, 30, 30, 100) 100%':'to bottom,rgba(150, 150, 150, 0) 70%,rgba(255, 255, 255, 100) 100%'"
       width="100%"
@@ -44,8 +44,8 @@
               cols="12"
               class="text-center pa-0"
             >
-              <p class="title font-weight-bold mb-0">{{detail.title}}</p>
-              <p class="mb-0">{{detail.info.genre}}</p>
+              <p class="title font-weight-bold mb-0">{{movie.title}}</p>
+              <p class="mb-0">{{movie.info.genre}}</p>
             </v-col>
             <v-col
               cols="3"
@@ -82,8 +82,9 @@
 </template>
 
 <script>
+import Message from '../utils/message'
+import { undefinedMovie } from '../utils'
 import { getMovie } from '../api/movie'
-import { message } from '../utils/message'
 
 export default {
   name: 'HomeScreen',
@@ -92,16 +93,16 @@ export default {
       loading: true,
       error: false,
       // set undefined will cause error cannot read ... of undefined
-      detail: { info: {} }
+      movie: undefinedMovie()
     }
   },
   mounted () {
     getMovie(Math.round(Math.random() * 1000)).then(res => {
-      this.detail = res
+      this.movie = res
       this.loading = false
     }).catch(err => {
       console.log(err)
-      message({ text: err, type: 'error' })
+      Message.error(err)
     })
   }
 }

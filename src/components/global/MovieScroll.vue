@@ -84,7 +84,7 @@
 
 <script>
 import MovieScrollDetail from './MovieScrollDetail'
-import { message } from '../../utils/message'
+import Message from '../../utils/message'
 import { undefinedMovie } from '../../utils'
 import { getMovieByGenre } from '../../api/movie'
 
@@ -116,7 +116,7 @@ export default {
       this.loading = false
     }).catch(err => {
       console.log(err)
-      message({ text: err, type: 'error' })
+      Message.error(err)
     })
   }
 }
