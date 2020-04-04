@@ -58,9 +58,3 @@ export default {
   }
 }
 </script>
-
-<style>
-  html{
-    filter: grayscale(100%);
-  }
-</style>
