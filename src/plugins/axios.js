@@ -2,6 +2,7 @@
 // https://panjiachen.github.io/vue-element-admin-site/guide/essentials/server.html#front-end-request-flow
 
 import axios from 'axios'
+import Message from '../utils/message'
 
 // create an axios instance
 const service = axios.create({
@@ -29,6 +30,7 @@ service.interceptors.request.use(
   },
   error => {
     // do something with request error
+    Message.error(error)
     console.log(error) // for debug
     return Promise.reject(error)
   }
@@ -52,9 +54,8 @@ service.interceptors.response.use(
     // error: code(Number) error(String)
     // success: Object { success(Boolean) ... } success is required when post/put/patch/delete
     if (res.code && res.error) {
-      // for debug
-      console.log('Error, response below:')
-      console.log(res)
+      Message.error(res)
+      console.log(res) // for debug
       return Promise.reject(new Error(res.error || 'Error'))
     } else {
       return res
@@ -101,6 +102,7 @@ service.interceptors.response.use(
           break
       }
     }
+    Message.error(error.message)
     console.log(`Error: ${error.message}`) // for debug
     return Promise.reject(error)
   }

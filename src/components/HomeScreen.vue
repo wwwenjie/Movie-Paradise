@@ -82,7 +82,6 @@
 </template>
 
 <script>
-import Message from '../utils/message'
 import { undefinedMovie } from '../utils'
 import { getMovie } from '../api/movie'
 
@@ -92,7 +91,6 @@ export default {
     return {
       loading: true,
       error: false,
-      // set undefined will cause error cannot read ... of undefined
       movie: undefinedMovie()
     }
   },
@@ -100,9 +98,6 @@ export default {
     getMovie(Math.round(Math.random() * 1000)).then(res => {
       this.movie = res
       this.loading = false
-    }).catch(err => {
-      console.log(err)
-      Message.error(err)
     })
   }
 }

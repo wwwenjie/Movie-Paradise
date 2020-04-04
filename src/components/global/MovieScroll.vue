@@ -84,7 +84,6 @@
 
 <script>
 import MovieScrollDetail from './MovieScrollDetail'
-import Message from '../../utils/message'
 import { undefinedMovie } from '../../utils'
 import { getMovieByGenre } from '../../api/movie'
 
@@ -102,7 +101,6 @@ export default {
   data: function () {
     return {
       model: undefined,
-      limit: 8,
       loading: true,
       error: [false],
       movies: [undefinedMovie()]
@@ -111,12 +109,9 @@ export default {
   mounted () {
     this.error = [...Array(this.limit)].map(() => false)
     this.movies = [...Array(this.limit)].map(() => undefinedMovie())
-    getMovieByGenre(this.genre, this.limit).then(res => {
+    getMovieByGenre(this.genre).then(res => {
       this.movies = res.movies
       this.loading = false
-    }).catch(err => {
-      console.log(err)
-      Message.error(err)
     })
   }
 }
