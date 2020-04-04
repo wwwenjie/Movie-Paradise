@@ -46,7 +46,7 @@
                   <v-skeleton-loader
                     :boilerplate="error[index]"
                     tile
-                    type="image@2"
+                    type="image@3"
                   >
                   </v-skeleton-loader>
                 </template>
