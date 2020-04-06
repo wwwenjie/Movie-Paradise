@@ -117,6 +117,14 @@ export default {
 }
 </script>
 
-<style scoped>
-
+<style>
+  .v-slide-group__wrapper {
+    overflow-x: scroll !important;
+    /*firefox*/
+    scrollbar-width: none;
+  }
+  /*chrome*/
+  .v-slide-group__wrapper::-webkit-scrollbar {
+    display: none;
+  }
 </style>
