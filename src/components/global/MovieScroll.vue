@@ -14,69 +14,62 @@
       type="image"
       transition="fade-transition"
     >
-      <v-slide-group
-        center-active
-        v-model="model"
-        class="mt-n4 mx-1"
-      >
-        <v-slide-item
+      <div class="px-1 movie-scroll-img">
+        <v-img
           v-for="(movie,index) in movies"
           :key="index"
-          v-slot:default="{ active, toggle }"
+          :gradient="active === index ? 'to bottom,rgba(64, 64, 64, 0) 0%,rgba(64, 64, 64, 50) 100%' : undefined"
+          :src="movie.poster"
           class="mx-1"
+          aspect-ratio="0.684"
+          width="30vw"
+          min-width="120px"
+          @error="$set(error, index, true)"
+          @click="active = index"
         >
-          <v-img
-            :gradient="active ? 'to bottom,rgba(64, 64, 64, 0) 0%,rgba(64, 64, 64, 50) 100%' : undefined"
-            :src="movie.poster"
-            class="ma-4"
-            aspect-ratio="0.684"
-            width="140"
-            @error="$set(error, index, true)"
-            @click="toggle"
-          >
-            <template v-slot:placeholder>
-              <v-skeleton-loader
-                :boilerplate="error[index]"
-                tile
-                type="image@2"
-              >
-              </v-skeleton-loader>
-              <div
-                class="d-flex align-center fill-height text-center"
-                style="position: absolute;top: 0; width: 100%"
-              >
+          <template v-slot:placeholder>
+            <v-skeleton-loader
+              :boilerplate="error[index]"
+              tile
+              type="image@2"
+            >
+            </v-skeleton-loader>
+            <div
+              class="d-flex align-center fill-height text-center"
+              style="position: absolute;top: 0; width: 100%"
+            >
                 <span
                   class="headline mx-auto"
                   style="white-space:normal;word-break: break-all;"
                 >
                   {{movie.title}}
                 </span>
-              </div>
-            </template>
-            <template v-slot:default>
+            </div>
+          </template>
+          <template v-slot:default>
+            <v-scale-transition>
               <v-row
+                v-if="active === index"
                 class="fill-height"
                 align="center"
                 justify="center"
+                @click.stop="active=undefined"
               >
-                <v-scale-transition>
-                  <v-icon
-                    v-if="active"
-                    color="white"
-                    size="48"
-                    v-text="'mdi-close-circle-outline'"
-                  ></v-icon>
-                </v-scale-transition>
+                <v-icon
+                  color="white"
+                  size="48"
+                  v-text="'mdi-close-circle-outline'"
+                ></v-icon>
               </v-row>
-            </template>
-          </v-img>
-        </v-slide-item>
-      </v-slide-group>
+            </v-scale-transition>
+          </template>
+        </v-img>
+      </div>
     </v-skeleton-loader>
     <v-expand-transition>
       <movie-scroll-detail
-        :model="model"
-        :detail="movies[model]"
+        v-show="active !== undefined"
+        :detail="movies[active]"
       />
     </v-expand-transition>
   </v-sheet>
@@ -100,8 +93,8 @@ export default {
   },
   data: function () {
     return {
-      model: undefined,
       loading: true,
+      active: undefined,
       error: [false],
       movies: [undefinedMovie()]
     }
@@ -117,14 +110,14 @@ export default {
 }
 </script>
 
-<style>
-  .v-slide-group__wrapper {
-    overflow-x: scroll !important;
+<style lang="sass">
+  .movie-scroll-img
+    display: inline-flex
+    overflow-x: scroll
+    width: 100vw
     /*firefox*/
-    scrollbar-width: none;
-  }
-  /*chrome*/
-  .v-slide-group__wrapper::-webkit-scrollbar {
-    display: none;
-  }
+    scrollbar-width: none
+    /*chrome safari*/
+    &::-webkit-scrollbar
+      display: none
 </style>
