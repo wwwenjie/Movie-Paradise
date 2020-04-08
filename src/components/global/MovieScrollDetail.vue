@@ -42,10 +42,16 @@
 
 <script>
 import router from '../../router'
+import { undefinedMovie } from '../../utils'
 
 export default {
   name: 'MovieScrollDetail',
-  props: ['detail'],
+  props: {
+    detail: {
+      type: Object,
+      default: () => undefinedMovie()
+    }
+  },
   methods: {
     goDetail () {
       let movieId = '1'
