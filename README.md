@@ -5,7 +5,7 @@
 Movie Paradise is a web app built by Vue, Spring Boot, and maybe a little Python.  
 It can show some movies information and provide download link, live watch functions.
 
-[Demo](https://movie.jinwenjie.me) The demo site is updated from time to time with the latest source code.  
+[Demo site](https://movie.jinwenjie.me)  is updated every day with the latest source code.  
 [Mock API](http://rap2.jinwenjie.me:3000/repository/editor?id=1) Based on [Rap2](https://github.com/thx/rap2-delos)
 
 ### Status: Pre-Alpha
