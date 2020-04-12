@@ -4,10 +4,10 @@
     grow
   >
     <v-btn
-      v-for="item in items"
-      :key="item.title"
+      v-for="(item,index) in items"
+      :key="index"
       height="inherit"
-      @click="goTo(item.title.toLocaleLowerCase())"
+      @click="goTo(index)"
     >
       <span>{{item.title}}</span>
       <v-icon>{{item.icon}}</v-icon>
@@ -18,18 +18,19 @@
 <script>
 export default {
   name: 'AppNavigationBottom',
-  data () {
-    return {
-      items: [
-        { title: 'Home', icon: 'mdi-home' },
-        { title: 'Search', icon: 'mdi-movie-search' },
-        { title: 'Settings', icon: 'mdi-settings' }
+  computed: {
+    items () {
+      return [
+        { title: this.$t('home'), icon: 'mdi-home' },
+        { title: this.$t('search'), icon: 'mdi-movie-search' },
+        { title: this.$t('settings'), icon: 'mdi-settings' }
       ]
     }
   },
   methods: {
-    goTo (routePath) {
-      this.$router.push({ path: `/${routePath}` })
+    goTo (index) {
+      const routes = ['home', 'search', 'settings']
+      this.$router.push({ path: `/${routes[index]}` })
     }
   }
 }

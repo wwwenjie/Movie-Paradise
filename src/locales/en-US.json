@@ -1,5 +1,8 @@
 {
   "appName": "Movie Paradise",
+  "home": "Home",
+  "search": "Search",
+  "settings": "Settings",
   "error": {},
   "genre": {
     "action": "Action",
@@ -23,7 +26,6 @@
     "name": "Name",
     "region": "Origin"
   },
-  "search": "Search...",
-  "setting": "Setting",
-  "language": "简体中文"
+  "darkTheme": "Dark Theme",
+  "language": "Language"
 }

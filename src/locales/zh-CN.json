@@ -1,5 +1,8 @@
 {
   "appName": "电影天堂",
+  "home": "首页",
+  "search": "搜索",
+  "settings": "设置",
   "error": {},
   "genre": {
     "action": "动作",
@@ -23,7 +26,6 @@
     "name": "片名",
     "region": "产地"
   },
-  "search": "搜索...",
-  "setting": "设置",
-  "language": "English"
+  "darkTheme": "夜间模式",
+  "language": "语言"
 }
