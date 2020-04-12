@@ -4,7 +4,7 @@
     class="fill-height"
   >
     <v-toolbar class="hidden-md-and-up">
-      <v-toolbar-title>Settings</v-toolbar-title>
+      <v-toolbar-title>{{$t('settings')}}</v-toolbar-title>
     </v-toolbar>
     <v-list>
       <v-list-item @click="switchDarkMode">
@@ -13,7 +13,7 @@
         </v-list-item-icon>
 
         <v-list-item-content>
-          <v-list-item-title>Dark Mode</v-list-item-title>
+          <v-list-item-title>{{$t('darkTheme')}}</v-list-item-title>
         </v-list-item-content>
 
         <v-list-item-action>
@@ -21,7 +21,7 @@
         </v-list-item-action>
       </v-list-item>
 
-      <v-list-item @click="switchLocale">
+      <v-list-item @click="dialogLanguage=!dialogLanguage">
         <v-list-item-icon>
           <v-icon>mdi-translate</v-icon>
         </v-list-item-icon>
@@ -31,9 +31,26 @@
         </v-list-item-content>
 
         <v-list-item-action>
-          <!--add meaningless variables to increase user experience-->
-          <!--it supposed to drop a menu-->
-          <v-switch :input-value="locale"/>
+          <span class="my-auto">{{this.$i18n.locale}}</span>
+          <v-dialog v-model="dialogLanguage" max-width="300px">
+            <v-card>
+              <v-card-title>Select Language</v-card-title>
+              <v-divider></v-divider>
+              <v-card-text class="pa-0">
+                <v-list>
+                  <v-list-item
+                    v-for="item in this.$i18n.availableLocales"
+                    :key="item"
+                    @click="switchLocale(item)"
+                  >
+                    <v-list-item-content class="pl-2">
+                      <v-list-item-title>{{item}}</v-list-item-title>
+                    </v-list-item-content>
+                  </v-list-item>
+                </v-list>
+              </v-card-text>
+            </v-card>
+          </v-dialog>
         </v-list-item-action>
       </v-list-item>
     </v-list>
@@ -44,15 +61,17 @@
 export default {
   name: 'Setting',
   data: () => ({
-    locale: false
+    dialogLanguage: false
   }),
   methods: {
     switchDarkMode () {
       this.$vuetify.theme.dark = !this.$vuetify.theme.dark
     },
-    switchLocale () {
-      this.locale = !this.locale
-      this.$i18n.locale === 'zh-CN' ? this.$i18n.locale = 'en-US' : this.$i18n.locale = 'zh-CN'
+    switchLocale (locale) {
+      this.$i18n.locale = locale
+      setTimeout(() => {
+        this.dialogLanguage = false
+      }, 100)
     }
   }
 }
