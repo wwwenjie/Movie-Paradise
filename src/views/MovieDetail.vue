@@ -7,7 +7,7 @@
       dense
       flat
       class="movie-detail-header"
-      :style="this.$vuetify.theme.isDark?'background-color: rgb(39, 39, 39, 0.6)':'background-color: rgb(255, 255, 255, 0.6)'"
+      :style="{'background-color':this.$vuetify.theme.isDark ? 'rgb(39, 39, 39, 0.6)':'rgb(255, 255, 255, 0.6)','top':this.$vuetify.breakpoint.mdAndDown?'0':'48px'}"
     >
       <v-toolbar-title>半个喜剧 Almost a Comedy</v-toolbar-title>
       <v-spacer></v-spacer>
@@ -19,7 +19,6 @@
       </v-btn>
     </v-toolbar>
     <v-row
-      v-class="['mt-6', 'mt-8']"
       justify="center"
     >
       <v-col cols="12">
@@ -153,8 +152,7 @@ export default {
   .movie-detail {
     &-header {
       z-index: 2;
-      position: fixed;
-      width: 100%;
+      position: sticky;
       -webkit-backdrop-filter: saturate(180%) blur(20px);
       backdrop-filter: saturate(180%) blur(20px);
     }
