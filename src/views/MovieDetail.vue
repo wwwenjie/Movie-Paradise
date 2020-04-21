@@ -19,6 +19,7 @@
       </v-btn>
     </v-toolbar>
     <v-row
+      v-class="['mt-6', 'mt-8']"
       justify="center"
     >
       <v-col cols="12">

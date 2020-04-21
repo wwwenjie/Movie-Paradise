@@ -1,9 +1,21 @@
 export default {
+  // [[md down], [md up]]
+  // [['mt-6', 'ml-12'], ['mt-12']]
+  // md down: mt-6 ml-12
+  // md up: mt-12
+  // ['', 'mt-12']
+  // md down: null
+  // md up: mt-12
   bind: function (el, binding, vnode) {
-    if (vnode.context.$vuetify.breakpoint.mdAndDown) {
-      el.classList.add(binding.value.pad === undefined ? '' : binding.value.pad)
+    const index = vnode.context.$vuetify.breakpoint.mdAndDown ? 0 : 1
+    if (Array.isArray(binding.value[index])) {
+      binding.value[index].map(className => {
+        el.classList.add(className)
+      })
     } else {
-      el.classList.add(binding.value.laptop === undefined ? '' : binding.value.laptop)
+      if (binding.value[index] !== '') {
+        el.classList.add(binding.value[index])
+      }
     }
   }
 }
