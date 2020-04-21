@@ -30,7 +30,7 @@
         <v-list-item-action>
           <v-icon color="grey darken-1">mdi-settings</v-icon>
         </v-list-item-action>
-        <v-list-item-title class="grey--text text--darken-1">{{$t('setting')}}</v-list-item-title>
+        <v-list-item-title class="grey--text text--darken-1">{{$t('settings')}}</v-list-item-title>
       </v-list-item>
     </v-list>
   </v-navigation-drawer>
