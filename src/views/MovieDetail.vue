@@ -6,6 +6,8 @@
     <v-toolbar
       dense
       flat
+      class="movie-detail-header"
+      :style="this.$vuetify.theme.isDark?'background-color: rgb(39, 39, 39, 0.6)':'background-color: rgb(255, 255, 255, 0.6)'"
     >
       <v-toolbar-title>半个喜剧 Almost a Comedy</v-toolbar-title>
       <v-spacer></v-spacer>
@@ -26,7 +28,7 @@
           :src="posterUrl"
           alt="Movie Poster Cover"
           gradient="to bottom,rgba(64, 64, 64, 0) 60%,rgba(30, 30, 30, 100) 100%"
-          class="cover"
+          class="movie-detail-cover"
         />
       </v-col>
       <v-col
@@ -44,7 +46,7 @@
     <v-row
       no-gutters
       justify="space-around"
-      class="index"
+      class="movie-detail-index"
     >
       <v-col
         cols="12"
@@ -146,13 +148,23 @@ export default {
 }
 </script>
 
-<style scoped>
-  .index div {
-    z-index: 1;
-  }
+<style lang="scss">
+  .movie-detail {
+    &-header {
+      z-index: 2;
+      position: fixed;
+      width: 100%;
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      backdrop-filter: saturate(180%) blur(20px);
+    }
 
-  .cover {
-    position: absolute;
-    filter: blur(20px);
+    &-cover {
+      position: absolute;
+      filter: blur(20px);
+    }
+
+    &-index div {
+      z-index: 1;
+    }
   }
 </style>
