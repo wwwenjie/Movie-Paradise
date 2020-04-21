@@ -62,10 +62,16 @@
                 light
                 width="100%"
                 class="font-weight-bold mb-2"
+                @click="dialog = true"
               >
                 <v-icon left>mdi-play</v-icon>
                 预告片
               </v-btn>
+              <movie-detail-video
+                :dialog.sync="dialog"
+                :src="videoUrl"
+                :title="videoTitle"
+              />
             </v-col>
             <v-col
               cols="3"
@@ -84,14 +90,21 @@
 <script>
 import { undefinedMovie } from '../utils'
 import { getMovie } from '../api/movie'
+import MovieDetailVideo from './MovieDetailVideo'
 
 export default {
   name: 'HomeScreen',
+  components: {
+    'movie-detail-video': MovieDetailVideo
+  },
   data () {
     return {
       loading: true,
       error: false,
-      movie: undefinedMovie()
+      movie: undefinedMovie(),
+      dialog: false,
+      videoUrl: '/static/video.mp4',
+      videoTitle: '预告片2：终极版'
     }
   },
   mounted () {

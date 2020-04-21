@@ -63,7 +63,7 @@
         <v-btn
           depressed width="90%"
           class="mt-4 red"
-          @click="dialog=true">
+          @click="dialog = true">
           <v-icon left>mdi-play</v-icon>
           预告片
         </v-btn>
