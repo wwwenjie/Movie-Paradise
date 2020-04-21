@@ -51,8 +51,8 @@
                   </v-skeleton-loader>
                 </template>
                 <template v-slot:default>
-                  <v-card-title v-text="movie.title" class="pb-0"></v-card-title>
-                  <v-card-text class="text--primary pb-1">
+                  <v-card-title v-text="movie.title" class="white--text pb-0"></v-card-title>
+                  <v-card-text class="white--text pb-1">
                     <div>{{movie.info.region}} / {{$t('movie.douban')}} {{movie.rating.douban_score}} / IMDb
                       {{movie.rating.imdb_score}}
                     </div>

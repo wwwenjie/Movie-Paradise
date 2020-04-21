@@ -50,6 +50,7 @@
             <v-col
               cols="3"
               class="text-center"
+              style="cursor: pointer"
             >
               <v-icon class="d-block">mdi-plus</v-icon>
               <span class="caption">加入片库</span>
@@ -76,6 +77,8 @@
             <v-col
               cols="3"
               class="text-center"
+              style="cursor: pointer"
+              @click="goDetail(movie._id)"
             >
               <v-icon class="d-block">mdi-information-outline</v-icon>
               <span class="caption">更多信息</span>
@@ -91,6 +94,7 @@
 import { undefinedMovie } from '../utils'
 import { getMovie } from '../api/movie'
 import MovieDetailVideo from './MovieDetailVideo'
+import router from '../router'
 
 export default {
   name: 'HomeScreen',
@@ -112,6 +116,11 @@ export default {
       this.movie = res
       this.loading = false
     })
+  },
+  methods: {
+    goDetail (movieId = 1) {
+      router.push({ path: `/movie/${movieId}` })
+    }
   }
 }
 </script>

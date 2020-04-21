@@ -6,9 +6,9 @@
   >
     <v-text-field
       ref="input"
-      label="Search"
       prepend-inner-icon="mdi-magnify"
       class="pa-2"
+      :label="$t('search')"
       :loading="loading"
       hide-details
       clearable
