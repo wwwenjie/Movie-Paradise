@@ -8,7 +8,7 @@
           muted
           class="home-video-video"
           @durationchange="duration = timeTranslate(videoDom.duration)"
-          @timeupdate="currentTime = timeTranslate(videoDom.currentTime)"
+          @timeupdate="onTimeUpdate(videoDom.currentTime)"
           @playing="paused = false"
           @ended="paused = true"
         >
@@ -48,7 +48,15 @@
               {{icon}}
             </v-icon>
           </v-btn>
-          <!--TODO Progress Bar-->
+          <div
+            class="home-video-control-container"
+            @click="progressChange($event)"
+          >
+            <span
+              ref="progress"
+              class="home-video-control-progress"
+            ></span>
+          </div>
           <span class="home-video-control-text white--text">{{ currentTime }} / {{ duration }}</span>
         </div>
       </div>
@@ -75,6 +83,8 @@ export default {
     paused: function (val) {
       if (val) {
         this.icon = 'mdi-restart'
+      } else {
+        this.icon = this.videoDom.muted ? 'mdi-volume-off' : 'mdi-volume-high'
       }
     }
   },
@@ -88,6 +98,17 @@ export default {
       }
       this.icon = this.videoDom.muted ? 'mdi-volume-off' : 'mdi-volume-high'
     },
+    onTimeUpdate (currentTime) {
+      this.currentTime = this.timeTranslate(currentTime)
+      const percentage = 100 * this.videoDom.currentTime / this.videoDom.duration
+      this.$refs.progress.style.width = percentage + '%'
+    },
+    progressChange (e) {
+      this.paused = false
+      this.videoDom.currentTime = e.offsetX / e.currentTarget.offsetWidth * this.videoDom.duration
+      this.videoDom.play()
+      this.$refs.progress.style.width = e.offsetX / e.currentTarget.offsetWidth + '%'
+    },
     timeTranslate (t) {
       let m = Math.floor(t / 60)
       m < 10 && (m = '0' + m)
@@ -98,6 +119,8 @@ export default {
 </script>
 
 <style lang="sass">
+  $progress-width: 135px
+  $progress-height: 36px
   .home-video
     &-video
       object-fit: cover
@@ -107,7 +130,6 @@ export default {
     &-grid
       display: grid
       grid-template-columns: 1fr
-      grid-template-rows: minmax(216px, 1fr)
       grid-template-areas: "overflow"
 
       &-video
@@ -126,7 +148,7 @@ export default {
       padding-left: 5vw
 
       &-button
-        background-color: rgba(51, 51, 51, 0.6) !important
+        background-color: rgba(51, 51, 51, .6) !important
         color: white !important
         padding: 0 24px !important
 
@@ -142,12 +164,27 @@ export default {
 
       &-button
         margin-right: 5px
-        background-color: rgba(51, 51, 51, 0.6)
-        border: 1px solid rgba(255, 255, 255, 0.5)
+        background-color: rgba(51, 51, 51, .6)
+        border: 1px solid rgba(255, 255, 255, .5)
 
       &-text
+        width: $progress-width
+        height: $progress-height
         border: 3px white
         border-style: none none none solid
-        background-color: rgba(51, 51, 51, 0.6)
+        background-color: rgba(51, 51, 51, .6)
         padding: 6px 30px 6px 6px
+
+      &-container
+        position: absolute
+        width: $progress-width
+        height: $progress-height
+        cursor: pointer
+        z-index: 1
+
+      &-progress
+        position: absolute
+        height: 100%
+        background-color: rgba(255, 255, 255, .5)
+        transition: all .2s
 </style>
