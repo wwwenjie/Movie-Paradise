@@ -107,7 +107,7 @@ export default {
       this.paused = false
       this.videoDom.currentTime = e.offsetX / e.currentTarget.offsetWidth * this.videoDom.duration
       this.videoDom.play()
-      this.$refs.progress.style.width = e.offsetX / e.currentTarget.offsetWidth + '%'
+      this.$refs.progress.style.width = 100 * e.offsetX / e.currentTarget.offsetWidth + '%'
     },
     timeTranslate (t) {
       let m = Math.floor(t / 60)
