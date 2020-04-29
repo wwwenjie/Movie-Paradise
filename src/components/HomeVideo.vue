@@ -6,6 +6,9 @@
           ref="video"
           autoplay
           muted
+          playsinline
+          x5-playsinline
+          webkit-playsinline
           class="home-video-video"
           @durationchange="duration = timeTranslate(videoDom.duration)"
           @timeupdate="onTimeUpdate(videoDom.currentTime)"
