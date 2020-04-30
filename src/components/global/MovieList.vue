@@ -108,16 +108,15 @@ export default {
       router.push({ path: `/movie/${movieId}` })
     }
   },
-  mounted () {
+  async mounted () {
     // 3 cols for sm, 2/4 for xs/md
     let limit = this.$vuetify.breakpoint.sm ? 9 : 8
     // preload empty object to load skeleton
     this.error = [...Array(limit)].map(() => false)
     this.movies = [...Array(limit)].map(() => undefinedMovie())
-    getMovieByGenre('test', limit).then(res => {
-      this.movies = res.movies
-      this.loading = false
-    })
+    const res = await getMovieByGenre('test', limit)
+    this.movies = res.movies
+    this.loading = false
   }
 }
 </script>

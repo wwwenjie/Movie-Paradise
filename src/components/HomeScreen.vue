@@ -111,11 +111,9 @@ export default {
       videoTitle: '预告片2：终极版'
     }
   },
-  mounted () {
-    getMovie(Math.round(Math.random() * 1000)).then(res => {
-      this.movie = res
-      this.loading = false
-    })
+  async mounted () {
+    this.movie = await getMovie(Math.round(Math.random() * 1000))
+    this.loading = false
   },
   methods: {
     goDetail (movieId = 1) {
