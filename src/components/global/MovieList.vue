@@ -22,7 +22,7 @@
           cols="6"
           sm="4"
           class="movie-list-md-col"
-          @click="goDetail"
+          @click="goDetail(movie._id)"
         >
           <v-skeleton-loader
             :loading="loading"
@@ -103,9 +103,8 @@ export default {
     }
   },
   methods: {
-    goDetail () {
-      let movieId = '1'
-      router.push({ path: `/movie/${movieId}` })
+    goDetail (id) {
+      router.push({ path: `/movie/${id}` })
     }
   },
   async mounted () {
@@ -114,8 +113,7 @@ export default {
     // preload empty object to load skeleton
     this.error = [...Array(limit)].map(() => false)
     this.movies = [...Array(limit)].map(() => undefinedMovie())
-    const res = await getMovieByGenre('test', limit)
-    this.movies = res.movies
+    this.movies = await getMovieByGenre('test', limit)
     this.loading = false
   }
 }

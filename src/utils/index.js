@@ -28,6 +28,7 @@ export function undefinedMovie () {
     },
     poster: undefined,
     recs: [],
+    trailers: [],
     path: undefined,
     update_time: undefined,
     tmdb_id: undefined

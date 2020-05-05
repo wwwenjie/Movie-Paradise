@@ -9,7 +9,7 @@
       class="movie-detail-header"
       :style="{'background-color':this.$vuetify.theme.isDark ? 'rgb(39, 39, 39, 0.6)':'rgb(255, 255, 255, 0.6)','top':this.$vuetify.breakpoint.mdAndDown?'0':'48px'}"
     >
-      <v-toolbar-title>半个喜剧 Almost a Comedy</v-toolbar-title>
+      <v-toolbar-title>{{ movie.title }} {{ movie.title_en }}</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn
         icon
@@ -22,10 +22,11 @@
       justify="center"
     >
       <v-col cols="12">
+        <!--TODO: douban img return 403, use dianying api or local poster-->
         <v-img
           width="100%"
           max-height="50vh"
-          :src="posterUrl"
+          :src="movie.poster"
           alt="Movie Poster Cover"
           gradient="to bottom,rgba(64, 64, 64, 0) 60%,rgba(30, 30, 30, 100) 100%"
           class="movie-detail-cover"
@@ -37,7 +38,7 @@
         md="3"
       >
         <v-img
-          :src="posterUrl"
+          :src="movie.poster"
           alt="Movie Poster"
           class="mx-auto"
         />
@@ -52,25 +53,26 @@
         cols="12"
         class="text-center mt-2"
       >
-        <span class="body-1 mx-2 font-weight-bold">2019</span>
-        <span class="body-1 mx-2 font-weight-bold">喜剧/爱情</span>
-        <span class="body-1 mx-2 font-weight-bold">111分钟</span>
+        <span class="body-1 mx-2 font-weight-bold">{{ movie.year }}</span>
+        <span class="body-1 mx-2 font-weight-bold">{{ movie.info.genre }}</span>
+        <span class="body-1 mx-2 font-weight-bold">{{ movie.info.duration }}</span>
       </v-col>
       <v-col
         cols="12"
         class="text-center"
       >
         <v-btn
-          depressed width="90%"
+          depressed
+          :disabled="!movie.trailers"
+          width="90%"
           class="mt-4 red"
           @click="dialog = true">
           <v-icon left>mdi-play</v-icon>
-          预告片
+          {{ movie.trailers? '预告片':'暂无预告片' }}
         </v-btn>
         <movie-detail-video
           :dialog.sync="dialog"
-          :src="videoUrl"
-          :title="videoTitle"
+          :trailers="movie.trailers"
         />
       </v-col>
       <v-col cols="12">
@@ -89,7 +91,7 @@
         cols="12"
         class="px-6"
       >
-        <span class="caption grey--text">演员: 任素汐 / 吴昱翰 / 刘迅 / 汤敏 / 赵海燕</span>
+        <span class="caption grey--text">演员: {{ movie.info.actors }}</span>
       </v-col>
       <v-col
         cols="4"
@@ -121,29 +123,30 @@
 <script>
 import MovieList from '../components/global/MovieList'
 import MovieDetailVideo from '../components/MovieDetailVideo'
+import { getMovie } from '../api/movie'
+import { undefinedMovie } from '../utils'
 
 export default {
   name: 'MovieDetail',
-  props: ['movieId'],
   components: {
     'movie-list': MovieList,
     'movie-detail-video': MovieDetailVideo
   },
+  props: ['movieId'],
   data () {
     return {
-      posterUrl: '/static/test.jpg',
-      dialog: false,
-      videoUrl: '/static/video.mp4',
-      videoTitle: '预告片2：终极版'
+      movie: undefinedMovie(),
+      dialog: false
     }
+  },
+  async mounted () {
+    this.$vuetify.goTo(0)
+    this.movie = await getMovie(this.movieId)
   },
   methods: {
     goBack () {
       this.$router.back()
     }
-  },
-  mounted () {
-    this.$vuetify.goTo(0)
   }
 }
 </script>

@@ -2,14 +2,17 @@
 
 > This project is for learning and communication purposes only, not for commercial use. The data comes from third-party websites.
 
-Movie Paradise is a web app built by Vue, Spring Boot, and maybe a little Python.  
+Movie Paradise is a web app built by Vue, Koa, and maybe a little Python.  
 It can show some movies information and provide download link, live watch functions.
 
 [Demo site](https://movie.jinwenjie.me)  is updated every day with the latest source code.  
 [Mock API](http://rap2.jinwenjie.me:3000/repository/editor?id=1) Based on [Rap2](https://github.com/thx/rap2-delos)
 
-### Status: Pre-Alpha
-I'm writing the front-end part and learning spring boot
+### Status: Alpha
+Most of the front end has been completed, the back end is under development
+
+### Development (back-end)
+- [back end repository](https://github.com/wwwenjie/movie-paradise-koa)
 
 ### Development (front-end)
 - clone this repo

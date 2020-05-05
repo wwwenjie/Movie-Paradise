@@ -100,10 +100,10 @@ export default {
     }
   },
   async mounted () {
-    this.error = [...Array(this.limit)].map(() => false)
-    this.movies = [...Array(this.limit)].map(() => undefinedMovie())
-    const res = await getMovieByGenre(this.genre)
-    this.movies = res.movies
+    const limit = 6
+    this.error = [...Array(limit)].map(() => false)
+    this.movies = [...Array(limit)].map(() => undefinedMovie())
+    this.movies = await getMovieByGenre(this.genre)
     this.loading = false
   }
 }

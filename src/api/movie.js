@@ -9,7 +9,7 @@ export function getMovie (id) {
 
 export function getMovieByGenre (genre = 'newest', limit = 10) {
   return request({
-    url: `/movies/?genre=${genre}&limit=${limit}`,
+    url: `/movies?genre=${genre}&limit=${limit}`,
     method: 'get'
   })
 }

@@ -70,8 +70,7 @@
               </v-btn>
               <movie-detail-video
                 :dialog.sync="dialog"
-                :src="videoUrl"
-                :title="videoTitle"
+                :trailers="movie.trailers"
               />
             </v-col>
             <v-col
@@ -112,7 +111,7 @@ export default {
     }
   },
   async mounted () {
-    this.movie = await getMovie(Math.round(Math.random() * 1000))
+    this.movie = await getMovie(Math.round(Math.random() * 10))
     this.loading = false
   },
   methods: {

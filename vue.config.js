@@ -3,6 +3,10 @@ module.exports = {
     'vuetify'
   ],
 
+  devServer: {
+    proxy: process.env.VUE_APP_BASE_API
+  },
+
   pluginOptions: {
     i18n: {
       locale: 'zh-CN',
