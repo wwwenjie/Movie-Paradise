@@ -52,7 +52,7 @@ export default {
 
   data () {
     return {
-      drawer: undefined
+      drawer: null
     }
   },
 

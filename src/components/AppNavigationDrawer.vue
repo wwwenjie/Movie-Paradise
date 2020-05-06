@@ -52,7 +52,11 @@
 <script>
 export default {
   name: 'AppNavigationDrawer',
-  props: ['drawer'],
+  props: {
+    drawer: {
+      type: Boolean
+    }
+  },
   computed: {
     drawerVisible: {
       get: function () {

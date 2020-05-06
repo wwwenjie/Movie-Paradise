@@ -53,7 +53,11 @@
 <script>
 export default {
   name: 'AppBar',
-  props: ['drawer'],
+  props: {
+    drawer: {
+      type: Boolean
+    }
+  },
   data () {
     return {
       loading: false,

@@ -154,7 +154,12 @@ export default {
     'movie-list': MovieList,
     'movie-detail-video': MovieDetailVideo
   },
-  props: ['movieId'],
+  props: {
+    movieId: {
+      type: Number,
+      default: undefined
+    }
+  },
   data () {
     return {
       movie: undefinedMovie(),

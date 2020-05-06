@@ -52,6 +52,20 @@
                   />
                 </template>
                 <template v-slot:default>
+                  <div class="movie-list-error">
+                    <v-row
+                      style="height: inherit"
+                      align-content="center"
+                      justify="center"
+                    >
+                      <v-icon
+                        x-large
+                        color="white"
+                      >
+                        mdi-image-off
+                      </v-icon>
+                    </v-row>
+                  </div>
                   <v-card-title
                     class="white--text pb-0"
                     v-text="movie.title"
@@ -136,4 +150,10 @@ export default {
       width: $width
       max-width: $width
       flex-basis: $width
+  .movie-list-error
+    position: absolute
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
 </style>
