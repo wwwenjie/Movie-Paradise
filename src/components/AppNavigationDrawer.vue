@@ -4,7 +4,9 @@
     app
     clipped
   >
-    <v-subheader class="mt-4 grey--text text--darken-1">{{$t('genre.genre')}}</v-subheader>
+    <v-subheader class="mt-4 grey--text text--darken-1">
+      {{ $t('genre.genre') }}
+    </v-subheader>
     <v-list dense>
       <v-list-item
         v-for="item in genre"
@@ -22,15 +24,26 @@
       </v-list-item>
       <v-list-item link>
         <v-list-item-action>
-          <v-icon color="grey darken-1">mdi-plus-circle-outline</v-icon>
+          <v-icon color="grey darken-1">
+            mdi-plus-circle-outline
+          </v-icon>
         </v-list-item-action>
-        <v-list-item-title class="grey--text text--darken-1">{{$t('more')}}</v-list-item-title>
+        <v-list-item-title class="grey--text text--darken-1">
+          {{ $t('more') }}
+        </v-list-item-title>
       </v-list-item>
-      <v-list-item link :to="{ path: '/settings' }">
+      <v-list-item
+        link
+        :to="{ path: '/settings' }"
+      >
         <v-list-item-action>
-          <v-icon color="grey darken-1">mdi-settings</v-icon>
+          <v-icon color="grey darken-1">
+            mdi-settings
+          </v-icon>
         </v-list-item-action>
-        <v-list-item-title class="grey--text text--darken-1">{{$t('settings')}}</v-list-item-title>
+        <v-list-item-title class="grey--text text--darken-1">
+          {{ $t('settings') }}
+        </v-list-item-title>
       </v-list-item>
     </v-list>
   </v-navigation-drawer>

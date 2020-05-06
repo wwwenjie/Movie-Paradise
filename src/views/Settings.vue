@@ -4,7 +4,7 @@
     class="fill-height"
   >
     <v-toolbar class="hidden-md-and-up">
-      <v-toolbar-title>{{$t('settings')}}</v-toolbar-title>
+      <v-toolbar-title>{{ $t('settings') }}</v-toolbar-title>
     </v-toolbar>
     <v-list>
       <v-list-item @click="switchDarkMode">
@@ -13,11 +13,11 @@
         </v-list-item-icon>
 
         <v-list-item-content>
-          <v-list-item-title>{{$t('darkTheme')}}</v-list-item-title>
+          <v-list-item-title>{{ $t('darkTheme') }}</v-list-item-title>
         </v-list-item-content>
 
         <v-list-item-action>
-          <v-switch :input-value="this.$vuetify.theme.dark"/>
+          <v-switch :input-value="this.$vuetify.theme.dark" />
         </v-list-item-action>
       </v-list-item>
 
@@ -27,15 +27,18 @@
         </v-list-item-icon>
 
         <v-list-item-content>
-          <v-list-item-title>{{$t('language')}}</v-list-item-title>
+          <v-list-item-title>{{ $t('language') }}</v-list-item-title>
         </v-list-item-content>
 
         <v-list-item-action>
-          <span class="my-auto">{{this.$i18n.locale}}</span>
-          <v-dialog v-model="dialogLanguage" max-width="300px">
+          <span class="my-auto">{{ this.$i18n.locale }}</span>
+          <v-dialog
+            v-model="dialogLanguage"
+            max-width="300px"
+          >
             <v-card>
               <v-card-title>Select Language</v-card-title>
-              <v-divider></v-divider>
+              <v-divider />
               <v-card-text class="pa-0">
                 <v-list>
                   <v-list-item
@@ -44,7 +47,7 @@
                     @click="switchLocale(item)"
                   >
                     <v-list-item-content class="pl-2">
-                      <v-list-item-title>{{item}}</v-list-item-title>
+                      <v-list-item-title>{{ item }}</v-list-item-title>
                     </v-list-item-content>
                   </v-list-item>
                 </v-list>

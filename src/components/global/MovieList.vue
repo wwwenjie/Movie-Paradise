@@ -14,7 +14,9 @@
           cols="12"
           class="pb-0"
         >
-          <p class="title pl-md-2 mb-0">{{genre}}</p>
+          <p class="title pl-md-2 mb-0">
+            {{ genre }}
+          </p>
         </v-col>
         <v-col
           v-for="(movie,index) in movies"
@@ -47,14 +49,17 @@
                     :boilerplate="error[index]"
                     tile
                     type="image@3"
-                  >
-                  </v-skeleton-loader>
+                  />
                 </template>
                 <template v-slot:default>
-                  <v-card-title v-text="movie.title" class="white--text pb-0"></v-card-title>
+                  <v-card-title
+                    class="white--text pb-0"
+                    v-text="movie.title"
+                  />
                   <v-card-text class="white--text pb-1">
-                    <div>{{movie.info.region}} / {{$t('movie.douban')}} {{movie.rating.douban_score}} / IMDb
-                      {{movie.rating.imdb_score}}
+                    <div>
+                      {{ movie.info.region }} / {{ $t('movie.douban') }} {{ movie.rating.douban_score }} / IMDb
+                      {{ movie.rating.imdb_score }}
                     </div>
                   </v-card-text>
                 </template>
@@ -62,15 +67,19 @@
 
               <v-card-actions class="hidden-xs-only">
                 <v-list-item class="grow">
-                  <span>{{movie.year}}</span>
+                  <span>{{ movie.year }}</span>
                   <span class="mx-1">·</span>
-                  <span>{{movie.info.genre}}</span>
+                  <span>{{ movie.info.genre }}</span>
                   <v-row
                     align="center"
                     justify="end"
                   >
-                    <v-icon class="mr-1">mdi-heart</v-icon>
-                    <v-icon class="mr-1">mdi-share-variant</v-icon>
+                    <v-icon class="mr-1">
+                      mdi-heart
+                    </v-icon>
+                    <v-icon class="mr-1">
+                      mdi-share-variant
+                    </v-icon>
                   </v-row>
                 </v-list-item>
               </v-card-actions>
@@ -102,11 +111,6 @@ export default {
       movies: [undefinedMovie()]
     }
   },
-  methods: {
-    goDetail (id) {
-      router.push({ path: `/movie/${id}` })
-    }
-  },
   async mounted () {
     // 3 cols for sm, 2/4 for xs/md
     let limit = this.$vuetify.breakpoint.sm ? 9 : 8
@@ -115,6 +119,11 @@ export default {
     this.movies = [...Array(limit)].map(() => undefinedMovie())
     this.movies = await getMovieByGenre('test', limit)
     this.loading = false
+  },
+  methods: {
+    goDetail (id) {
+      router.push({ path: `/movie/${id}` })
+    }
   }
 }
 </script>

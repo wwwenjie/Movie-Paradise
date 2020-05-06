@@ -9,8 +9,8 @@
       height="inherit"
       @click="goTo(index)"
     >
-      <span>{{item.title}}</span>
-      <v-icon>{{item.icon}}</v-icon>
+      <span>{{ item.title }}</span>
+      <v-icon>{{ item.icon }}</v-icon>
     </v-btn>
   </v-bottom-navigation>
 </template>

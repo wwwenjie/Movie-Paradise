@@ -7,7 +7,9 @@
       type="chip"
       transition="fade-transition"
     >
-      <p class="title ml-2 mb-0">{{genre}}</p>
+      <p class="title ml-2 mb-0">
+        {{ genre }}
+      </p>
     </v-skeleton-loader>
     <v-skeleton-loader
       :loading="loading"
@@ -32,18 +34,17 @@
               :boilerplate="error[index]"
               tile
               type="image@2"
-            >
-            </v-skeleton-loader>
+            />
             <div
               class="d-flex align-center fill-height text-center"
               style="position: absolute;top: 0; width: 100%"
             >
-                <span
-                  class="headline mx-auto"
-                  style="white-space:normal;word-break: break-all;"
-                >
-                  {{movie.title}}
-                </span>
+              <span
+                class="headline mx-auto"
+                style="white-space:normal;word-break: break-all;"
+              >
+                {{ movie.title }}
+              </span>
             </div>
           </template>
           <template v-slot:default>
@@ -59,7 +60,7 @@
                   color="white"
                   size="48"
                   v-text="'mdi-close-circle-outline'"
-                ></v-icon>
+                />
               </v-row>
             </v-scale-transition>
           </template>

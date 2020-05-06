@@ -21,8 +21,7 @@
           :boilerplate="error"
           tile
           type="image@2"
-        >
-        </v-skeleton-loader>
+        />
       </template>
       <template v-slot:default>
         <v-row
@@ -37,22 +36,32 @@
               cols="12"
               class="text-center"
             >
-              <p class="title font-weight-bold mb-0">Oops, 海报加载失败</p>
-              <p class="title font-weight-bold mb-0">今天为您推荐:</p>
+              <p class="title font-weight-bold mb-0">
+                Oops, 海报加载失败
+              </p>
+              <p class="title font-weight-bold mb-0">
+                今天为您推荐:
+              </p>
             </v-col>
             <v-col
               cols="12"
               class="text-center pa-0"
             >
-              <p class="title font-weight-bold">{{movie.title}}</p>
-              <p class="mb-0">{{movie.info.genre}}</p>
+              <p class="title font-weight-bold">
+                {{ movie.title }}
+              </p>
+              <p class="mb-0">
+                {{ movie.info.genre }}
+              </p>
             </v-col>
             <v-col
               cols="3"
               class="text-center"
               style="cursor: pointer"
             >
-              <v-icon class="d-block">mdi-plus</v-icon>
+              <v-icon class="d-block">
+                mdi-plus
+              </v-icon>
               <span class="caption">加入片库</span>
             </v-col>
             <v-col
@@ -65,7 +74,9 @@
                 class="font-weight-bold mb-2"
                 @click="dialog = true"
               >
-                <v-icon left>mdi-play</v-icon>
+                <v-icon left>
+                  mdi-play
+                </v-icon>
                 预告片
               </v-btn>
               <movie-detail-video
@@ -79,7 +90,9 @@
               style="cursor: pointer"
               @click="goDetail(movie._id)"
             >
-              <v-icon class="d-block">mdi-information-outline</v-icon>
+              <v-icon class="d-block">
+                mdi-information-outline
+              </v-icon>
               <span class="caption">更多信息</span>
             </v-col>
           </v-row>

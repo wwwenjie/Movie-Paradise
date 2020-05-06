@@ -7,12 +7,20 @@
     clipped-left
     color="red"
   >
-    <v-app-bar-nav-icon @click.stop="onClickDrawer"/>
-    <v-toolbar-title @click="goHomePage" class="pl-0">
-      <v-icon large class="ml-4">mdi-youtube</v-icon>
-      <span class="title">{{$t('appName')}}</span>
+    <v-app-bar-nav-icon @click.stop="onClickDrawer" />
+    <v-toolbar-title
+      class="pl-0"
+      @click="goHomePage"
+    >
+      <v-icon
+        large
+        class="ml-4"
+      >
+        mdi-youtube
+      </v-icon>
+      <span class="title">{{ $t('appName') }}</span>
     </v-toolbar-title>
-    <v-spacer/>
+    <v-spacer />
     <v-row
       align="center"
       style="max-width: 650px"
@@ -33,7 +41,7 @@
         </template>
       </v-autocomplete>
     </v-row>
-    <v-spacer/>
+    <v-spacer />
     <v-btn
       outlined
     >

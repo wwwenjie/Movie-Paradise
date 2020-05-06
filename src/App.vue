@@ -3,7 +3,10 @@
     id="inspire"
   >
     <!--global snackbar-->
-    <snackbar :show.sync="snackCon.show" :snack-con="snackCon"/>
+    <snackbar
+      :show.sync="snackCon.show"
+      :snack-con="snackCon"
+    />
     <app-navigation-drawer
       v-if="this.$vuetify.breakpoint.mdAndUp"
       :drawer.sync="drawer"
@@ -19,7 +22,7 @@
       >
         <v-fade-transition>
           <keep-alive>
-            <router-view></router-view>
+            <router-view />
           </keep-alive>
         </v-fade-transition>
       </v-container>
@@ -38,14 +41,14 @@ import Snackbar from './components/global/Snackbar'
 import storeMap from './mixins/storeMap'
 
 export default {
-  name: 'Movie_Paradise',
-  mixins: [storeMap],
+  name: 'MovieParadise',
   components: {
     'app-navigation-drawer': AppNavigationDrawer,
     'app-navigation-bottom': AppNavigationBottom,
     'app-bar': AppBar,
     'snackbar': Snackbar
   },
+  mixins: [storeMap],
 
   data () {
     return {

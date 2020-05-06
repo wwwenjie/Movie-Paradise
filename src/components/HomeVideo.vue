@@ -37,7 +37,9 @@
           <v-btn
             class="home-video-info-button mt-2 font-weight-bold"
           >
-            <v-icon left>mdi-information-outline</v-icon>
+            <v-icon left>
+              mdi-information-outline
+            </v-icon>
             更多信息
           </v-btn>
         </div>
@@ -48,7 +50,7 @@
             @click="statusChange"
           >
             <v-icon>
-              {{icon}}
+              {{ icon }}
             </v-icon>
           </v-btn>
           <div
@@ -58,7 +60,7 @@
             <span
               ref="progress"
               class="home-video-control-progress"
-            ></span>
+            />
           </div>
           <span class="home-video-control-text white--text">{{ currentTime }} / {{ duration }}</span>
         </div>
@@ -79,9 +81,6 @@ export default {
       currentTime: '00:00'
     }
   },
-  mounted () {
-    this.videoDom = this.$refs.video
-  },
   watch: {
     paused: function (val) {
       if (val) {
@@ -90,6 +89,9 @@ export default {
         this.icon = this.videoDom.muted ? 'mdi-volume-off' : 'mdi-volume-high'
       }
     }
+  },
+  mounted () {
+    this.videoDom = this.$refs.video
   },
   methods: {
     statusChange () {

@@ -3,9 +3,15 @@
     width="100%"
     class="fill-height"
   >
-    <component v-bind:is="responsiveBillboard"></component>
-    <component v-bind:is="responsiveMovie" genre="最新"></component>
-    <component v-bind:is="responsiveMovie" genre="动作"></component>
+    <component :is="responsiveBillboard" />
+    <component
+      :is="responsiveMovie"
+      genre="最新"
+    />
+    <component
+      :is="responsiveMovie"
+      genre="动作"
+    />
   </v-sheet>
 </template>
 

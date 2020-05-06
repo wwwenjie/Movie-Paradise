@@ -10,7 +10,7 @@
       :style="{'background-color':this.$vuetify.theme.isDark ? 'rgb(39, 39, 39, 0.6)':'rgb(255, 255, 255, 0.6)','top':this.$vuetify.breakpoint.mdAndDown?'0':'48px'}"
     >
       <v-toolbar-title>{{ movie.title }} {{ movie.title_en }}</v-toolbar-title>
-      <v-spacer></v-spacer>
+      <v-spacer />
       <v-btn
         icon
         @click="goBack"
@@ -33,7 +33,7 @@
         />
       </v-col>
       <v-col
-        cols=8
+        cols="8"
         sm="5"
         md="3"
       >
@@ -79,8 +79,11 @@
           :disabled="!movie.trailers"
           width="90%"
           class="mt-4 red"
-          @click="dialog = true">
-          <v-icon left>mdi-play</v-icon>
+          @click="dialog = true"
+        >
+          <v-icon left>
+            mdi-play
+          </v-icon>
           {{ movie.trailers? '预告片':'暂无预告片' }}
         </v-btn>
         <movie-detail-video
@@ -110,26 +113,32 @@
         cols="4"
         class="px-6 text-center"
       >
-        <v-icon class="d-block">mdi-plus</v-icon>
+        <v-icon class="d-block">
+          mdi-plus
+        </v-icon>
         <span class="caption grey--text">加入片库</span>
       </v-col>
       <v-col
         cols="4"
         class="px-6 text-center"
       >
-        <v-icon class="d-block">mdi-download</v-icon>
+        <v-icon class="d-block">
+          mdi-download
+        </v-icon>
         <span class="caption grey--text">下载链接</span>
       </v-col>
       <v-col
         cols="4"
         class="px-6 text-center"
       >
-        <v-icon class="d-block">mdi-heart</v-icon>
+        <v-icon class="d-block">
+          mdi-heart
+        </v-icon>
         <span class="caption grey--text">加入喜欢</span>
       </v-col>
     </v-row>
-    <v-divider></v-divider>
-    <movie-list genre="相关影片"/>
+    <v-divider />
+    <movie-list genre="相关影片" />
   </v-sheet>
 </template>
 

@@ -24,10 +24,10 @@
           class="mt-n1"
           absolute
           rounded
-        ></v-progress-linear>
+        />
       </template>
     </v-text-field>
-    <movie-list genre="Result"/>
+    <movie-list genre="Result" />
   </v-sheet>
 </template>
 

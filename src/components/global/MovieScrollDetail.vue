@@ -1,11 +1,13 @@
 <template>
   <v-sheet tile>
     <div class="ml-4">
-      <p class="title">{{detail.title}}</p>
-      <p>{{$t('movie.douban')}} {{detail.rating.douban_score}} / IMDb {{detail.rating.imdb_score}}</p>
-      <p>{{$t('movie.genre')}}: {{detail.info.genre}}</p>
-      <p>{{$t('movie.region')}}: {{detail.info.region}}</p>
-      <p>{{$t('movie.year')}}: {{detail.year}}</p>
+      <p class="title">
+        {{ detail.title }}
+      </p>
+      <p>{{ $t('movie.douban') }} {{ detail.rating.douban_score }} / IMDb {{ detail.rating.imdb_score }}</p>
+      <p>{{ $t('movie.genre') }}: {{ detail.info.genre }}</p>
+      <p>{{ $t('movie.region') }}: {{ detail.info.region }}</p>
+      <p>{{ $t('movie.year') }}: {{ detail.year }}</p>
     </div>
     <v-row
       justify="center"
@@ -14,7 +16,9 @@
         cols="3"
         class="pa-0 pt-2 text-center"
       >
-        <v-icon class="d-block">mdi-plus</v-icon>
+        <v-icon class="d-block">
+          mdi-plus
+        </v-icon>
         <span class="caption">加入片库</span>
       </v-col>
       <v-col
@@ -33,7 +37,9 @@
         cols="3"
         class="pa-0 pt-2 text-center"
       >
-        <v-icon class="d-block">mdi-share</v-icon>
+        <v-icon class="d-block">
+          mdi-share
+        </v-icon>
         <span class="caption">分享</span>
       </v-col>
     </v-row>
