@@ -41,7 +41,20 @@
           :src="movie.poster"
           alt="Movie Poster"
           class="mx-auto"
-        />
+        >
+          <template v-slot:default>
+            <v-row>
+              <v-col
+                cols="12"
+                class="text-center"
+              >
+                <p class="title font-weight-bold mb-0">
+                  Oops, 海报加载失败
+                </p>
+              </v-col>
+            </v-row>
+          </template>
+        </v-img>
       </v-col>
     </v-row>
     <v-row
@@ -143,9 +156,15 @@ export default {
     this.$vuetify.goTo(0)
     this.movie = await getMovie(this.movieId)
   },
+  // same components update data
+  async beforeRouteUpdate (to, from, next) {
+    next()
+    this.$vuetify.goTo(0)
+    this.movie = await getMovie(to.params.movieId)
+  },
   methods: {
     goBack () {
-      this.$router.back()
+      this.$router.push({ path: '/' })
     }
   }
 }

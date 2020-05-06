@@ -44,7 +44,7 @@
               cols="12"
               class="text-center pa-0"
             >
-              <p class="title font-weight-bold mb-0">{{movie.title}}</p>
+              <p class="title font-weight-bold">{{movie.title}}</p>
               <p class="mb-0">{{movie.info.genre}}</p>
             </v-col>
             <v-col
@@ -91,7 +91,7 @@
 
 <script>
 import { undefinedMovie } from '../utils'
-import { getMovie } from '../api/movie'
+import { getMovieByGenre } from '../api/movie'
 import MovieDetailVideo from './MovieDetailVideo'
 import router from '../router'
 
@@ -111,7 +111,8 @@ export default {
     }
   },
   async mounted () {
-    this.movie = await getMovie(Math.round(Math.random() * 10))
+    const movies = await getMovieByGenre('today', 10)
+    this.movie = movies[Math.ceil(Math.random() * 10)]
     this.loading = false
   },
   methods: {

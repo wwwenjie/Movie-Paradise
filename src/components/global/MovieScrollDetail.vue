@@ -24,7 +24,7 @@
           light
           width="100%"
           class="font-weight-bold"
-          @click="goDetail"
+          @click="goDetail(detail._id)"
         >
           详情
         </v-btn>
@@ -53,8 +53,7 @@ export default {
     }
   },
   methods: {
-    goDetail () {
-      let movieId = '1'
+    goDetail (movieId) {
       router.push({ path: `/movie/${movieId}` })
     }
   }
