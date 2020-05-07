@@ -42,7 +42,7 @@
                 gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
                 aspect-ratio="0.684"
                 class="align-end"
-                @error="$set(error, index, true)"
+                @error="posterLoadFail(index)"
               >
                 <template v-slot:placeholder>
                   <v-skeleton-loader
@@ -50,9 +50,10 @@
                     tile
                     type="image@3"
                   />
-                </template>
-                <template v-slot:default>
-                  <div class="movie-list-error">
+                  <div
+                    v-if="error[index]"
+                    class="movie-list-error"
+                  >
                     <v-row
                       style="height: inherit"
                       align-content="center"
@@ -66,6 +67,8 @@
                       </v-icon>
                     </v-row>
                   </div>
+                </template>
+                <template v-slot:default>
                   <v-card-title
                     class="white--text pb-0"
                     v-text="movie.title"
@@ -109,6 +112,7 @@
 import router from '../../router'
 import { undefinedMovie } from '../../utils'
 import { getMovieByGenre } from '../../api/movie'
+import fallbackPoster from '../../utils/fallbackPoster'
 
 export default {
   name: 'MovieList',
@@ -137,6 +141,10 @@ export default {
   methods: {
     goDetail (id) {
       router.push({ path: `/movie/${id}` })
+    },
+    posterLoadFail (index) {
+      let movie = this.movies[index]
+      this.$set(this.error, index, fallbackPoster(movie))
     }
   }
 }
