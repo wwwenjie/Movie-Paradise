@@ -26,7 +26,7 @@
           aspect-ratio="0.684"
           width="30vw"
           min-width="120px"
-          @error="$set(error, index, true)"
+          @error="posterLoadFail(index)"
           @click="active = index"
         >
           <template v-slot:placeholder>
@@ -80,6 +80,7 @@
 import MovieScrollDetail from './MovieScrollDetail'
 import { undefinedMovie } from '../../utils'
 import { getMovieByGenre } from '../../api/movie'
+import fallbackPoster from '../../utils/fallbackPoster'
 
 export default {
   name: 'MovieScroll',
@@ -106,6 +107,12 @@ export default {
     this.movies = [...Array(limit)].map(() => undefinedMovie())
     this.movies = await getMovieByGenre(this.genre)
     this.loading = false
+  },
+  methods: {
+    posterLoadFail (index) {
+      let movie = this.movies[index]
+      this.$set(this.error, index, fallbackPoster(movie))
+    }
   }
 }
 </script>

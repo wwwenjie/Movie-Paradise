@@ -14,7 +14,7 @@
       min-height="40vh"
       max-height="80vh"
       alt="poster"
-      @error="error = true"
+      @error="posterLoadFail"
     >
       <template v-slot:placeholder>
         <v-skeleton-loader
@@ -107,6 +107,7 @@ import { undefinedMovie } from '../utils'
 import { getMovieByGenre } from '../api/movie'
 import MovieDetailVideo from './MovieDetailVideo'
 import router from '../router'
+import fallbackPoster from '../utils/fallbackPoster'
 
 export default {
   name: 'HomeScreen',
@@ -131,6 +132,9 @@ export default {
   methods: {
     goDetail (movieId = 1) {
       router.push({ path: `/movie/${movieId}` })
+    },
+    posterLoadFail () {
+      this.error = fallbackPoster(this.movie)
     }
   }
 }
