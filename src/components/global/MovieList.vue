@@ -24,7 +24,7 @@
           cols="6"
           sm="4"
           class="movie-list-md-col"
-          @click="goDetail(movie._id)"
+          @click="goDetail(movie.path)"
         >
           <v-skeleton-loader
             :loading="loading"
@@ -111,15 +111,23 @@
 <script>
 import router from '../../router'
 import { undefinedMovie } from '../../utils'
-import { getMovieByGenre } from '../../api/movie'
+import { getMovieByIds, getMovieByGenre, getMovieByType } from '../../api/movie'
 import fallbackPoster from '../../utils/fallbackPoster'
 
 export default {
   name: 'MovieList',
   props: {
+    type: {
+      type: String,
+      default: undefined
+    },
+    ids: {
+      type: Array,
+      default: undefined
+    },
     genre: {
       type: String,
-      default: 'Default'
+      default: undefined
     }
   },
   data () {
@@ -129,18 +137,29 @@ export default {
       movies: [undefinedMovie()]
     }
   },
+  watch: {
+    ids: async function (ids) {
+      this.movies = await getMovieByIds(ids)
+    }
+  },
   async mounted () {
     // 3 cols for sm, 2/4 for xs/md
     let limit = this.$vuetify.breakpoint.sm ? 9 : 8
     // preload empty object to load skeleton
     this.error = [...Array(limit)].map(() => false)
     this.movies = [...Array(limit)].map(() => undefinedMovie())
-    this.movies = await getMovieByGenre('test', limit)
+    if (this.type) {
+      this.movies = await getMovieByType(this.type, limit)
+    } else if (this.ids) {
+      // watch ids to get movies, need to wait father props ready
+    } else {
+      this.movies = await getMovieByGenre(this.genre, limit)
+    }
     this.loading = false
   },
   methods: {
-    goDetail (id) {
-      router.push({ path: `/movie/${id}` })
+    goDetail (path) {
+      router.push({ path: `/movie/${path}` })
     },
     posterLoadFail (index) {
       let movie = this.movies[index]

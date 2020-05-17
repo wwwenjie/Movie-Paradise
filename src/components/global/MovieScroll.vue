@@ -79,7 +79,7 @@
 <script>
 import MovieScrollDetail from './MovieScrollDetail'
 import { undefinedMovie } from '../../utils'
-import { getMovieByGenre } from '../../api/movie'
+import { getMovieByGenre, getMovieByType } from '../../api/movie'
 import fallbackPoster from '../../utils/fallbackPoster'
 
 export default {
@@ -88,9 +88,13 @@ export default {
     'movie-scroll-detail': MovieScrollDetail
   },
   props: {
+    type: {
+      type: String,
+      default: undefined
+    },
     genre: {
       type: String,
-      default: 'Default'
+      default: undefined
     }
   },
   data: function () {
@@ -105,7 +109,11 @@ export default {
     const limit = 6
     this.error = [...Array(limit)].map(() => false)
     this.movies = [...Array(limit)].map(() => undefinedMovie())
-    this.movies = await getMovieByGenre(this.genre)
+    if (this.type) {
+      this.movies = await getMovieByType(this.type, limit)
+    } else {
+      this.movies = await getMovieByGenre(this.genre, limit)
+    }
     this.loading = false
   },
   methods: {

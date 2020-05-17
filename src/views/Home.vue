@@ -6,7 +6,13 @@
     <component :is="responsiveBillboard" />
     <component
       :is="responsiveMovie"
-      genre="最新"
+      genre="时下流行"
+      type="newest"
+    />
+    <component
+      :is="responsiveMovie"
+      genre="即将上线"
+      type="coming"
     />
     <component
       :is="responsiveMovie"

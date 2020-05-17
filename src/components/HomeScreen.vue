@@ -88,7 +88,7 @@
               cols="3"
               class="text-center"
               style="cursor: pointer"
-              @click="goDetail(movie._id)"
+              @click="goDetail"
             >
               <v-icon class="d-block">
                 mdi-information-outline
@@ -104,7 +104,7 @@
 
 <script>
 import { undefinedMovie } from '../utils'
-import { getMovieByGenre } from '../api/movie'
+import { getMovieByType } from '../api/movie'
 import MovieDetailVideo from './MovieDetailVideo'
 import router from '../router'
 import fallbackPoster from '../utils/fallbackPoster'
@@ -125,13 +125,13 @@ export default {
     }
   },
   async mounted () {
-    const movies = await getMovieByGenre('today', 10)
-    this.movie = movies[Math.ceil(Math.random() * 10)]
+    const movies = await getMovieByType('today')
+    this.movie = movies[Math.floor(Math.random() * 10)]
     this.loading = false
   },
   methods: {
-    goDetail (movieId = 1) {
-      router.push({ path: `/movie/${movieId}` })
+    goDetail () {
+      router.push({ path: `/movie/${this.movie.path}` })
     },
     posterLoadFail () {
       this.error = fallbackPoster(this.movie)

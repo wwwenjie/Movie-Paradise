@@ -41,9 +41,12 @@
           :src="movie.poster"
           alt="Movie Poster"
           class="mx-auto"
+          @error="posterLoadFail"
         >
           <template v-slot:default>
-            <v-row>
+            <v-row
+              v-if="error"
+            >
               <v-col
                 cols="12"
                 class="text-center"
@@ -138,15 +141,19 @@
       </v-col>
     </v-row>
     <v-divider />
-    <movie-list genre="相关影片" />
+    <movie-list
+      genre="相关影片"
+      :ids="movie.recs"
+    />
   </v-sheet>
 </template>
 
 <script>
 import MovieList from '../components/global/MovieList'
 import MovieDetailVideo from '../components/MovieDetailVideo'
-import { getMovie } from '../api/movie'
+import { getMovieByPath } from '../api/movie'
 import { undefinedMovie } from '../utils'
+import fallbackPoster from '../utils/fallbackPoster'
 
 export default {
   name: 'MovieDetail',
@@ -155,28 +162,32 @@ export default {
     'movie-detail-video': MovieDetailVideo
   },
   props: {
-    movieId: {
-      type: Number,
+    path: {
+      type: String,
       default: undefined
     }
   },
   data () {
     return {
       movie: undefinedMovie(),
-      dialog: false
+      dialog: false,
+      error: false
     }
   },
   async mounted () {
     this.$vuetify.goTo(0)
-    this.movie = await getMovie(this.movieId)
+    this.movie = await getMovieByPath(this.path)
   },
   // same components update data
   async beforeRouteUpdate (to, from, next) {
     next()
     this.$vuetify.goTo(0)
-    this.movie = await getMovie(to.params.movieId)
+    this.movie = await getMovieByPath(to.params.path)
   },
   methods: {
+    posterLoadFail () {
+      this.error = fallbackPoster(this.movie)
+    },
     goBack () {
       this.$router.push({ path: '/' })
     }

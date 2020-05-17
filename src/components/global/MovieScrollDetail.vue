@@ -28,7 +28,7 @@
           light
           width="100%"
           class="font-weight-bold"
-          @click="goDetail(detail._id)"
+          @click="goDetail"
         >
           详情
         </v-btn>
@@ -59,8 +59,8 @@ export default {
     }
   },
   methods: {
-    goDetail (movieId) {
-      router.push({ path: `/movie/${movieId}` })
+    goDetail () {
+      router.push({ path: `/movie/${this.detail.path}` })
     }
   }
 }

@@ -27,7 +27,11 @@
         />
       </template>
     </v-text-field>
-    <movie-list genre="Result" />
+    <!--live search, debounce-->
+    <movie-list
+      genre="搜索结果"
+      type="newest"
+    />
   </v-sheet>
 </template>
 

@@ -91,7 +91,9 @@ export default {
   },
   watch: {
     trailers: function () {
-      this.trailer = this.trailers[0]
+      if (this.trailers) {
+        this.trailer = this.trailers[0]
+      }
     }
   }
 }

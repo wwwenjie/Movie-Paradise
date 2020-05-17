@@ -12,7 +12,9 @@ const service = axios.create({
   // default type json
   headers: {
     'Content-type': 'application/json'
-  }
+  },
+  // default method
+  method: 'GET'
 })
 
 // request interceptor
