@@ -1,18 +1,33 @@
 <template>
   <v-snackbar
-    v-model="snackbarVisible"
+    v-model="snackCon.show"
     :color="snackCon.type"
     :timeout="snackCon.timeout"
-    :multi-line="this.$vuetify.breakpoint.mdAndDown"
+    :vertical="this.$vuetify.breakpoint.smAndDown"
     top
   >
     {{ snackCon.text }}
-    <v-btn
-      text
-      @click="snackbarVisible = false"
+    <div
+      class="d-flex"
+      style="justify-content: flex-end"
     >
-      {{ snackCon.closeText }}
-    </v-btn>
+      <v-btn
+        v-if="snackCon.confirmText"
+        text
+        class="mt-0"
+        @click="confirm"
+      >
+        {{ snackCon.confirmText }}
+      </v-btn>
+      <v-btn
+        v-if="snackCon.declineText"
+        text
+        class="mt-0"
+        @click="decline"
+      >
+        {{ snackCon.declineText }}
+      </v-btn>
+    </div>
   </v-snackbar>
 </template>
 
@@ -27,22 +42,36 @@ export default {
       type: Object,
       // the default value is set at store snackCon
       default: () => ({
-        text: '',
-        closeText: '',
-        type: '',
+        text: undefined,
+        type: undefined,
+        confirmText: undefined,
+        declineText: undefined,
+        callbackConfirm: function () {},
+        callbackDecline: function () {},
         timeout: 0
       })
     }
   },
-  computed: {
-    snackbarVisible: {
-      get: function () {
-        return this.show
-      },
-      set: function (newValue) {
-        this.$emit('update:show', newValue)
-        return newValue
-      }
+  methods: {
+    confirm () {
+      this.snackCon.callbackConfirm()
+      this.reset()
+    },
+    decline () {
+      this.snackCon.callbackDecline()
+      this.reset()
+    },
+    reset () {
+      this.$store.commit('CALL_MESSAGE', {
+        show: false,
+        text: 'Default Text',
+        type: 'info',
+        confirmText: undefined,
+        declineText: undefined,
+        callbackConfirm: () => {},
+        callbackDecline: () => {},
+        timeout: 0
+      })
     }
   }
 }

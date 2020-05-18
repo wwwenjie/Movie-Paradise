@@ -4,7 +4,7 @@
   >
     <!--global snackbar-->
     <snackbar
-      :show.sync="snackCon.show"
+      :show="snackCon.show"
       :snack-con="snackCon"
     />
     <app-navigation-drawer
@@ -39,6 +39,7 @@ import AppNavigationBottom from './components/AppNavigationBottom'
 import AppBar from './components/AppBar'
 import Snackbar from './components/global/Snackbar'
 import storeMap from './mixins/storeMap'
+import Message from './utils/message'
 
 export default {
   name: 'MovieParadise',
@@ -58,6 +59,25 @@ export default {
 
   created () {
     this.$vuetify.theme.dark = this.darkMode
+    if (!this.allowImprove.asked) {
+      Message.call({
+        text: 'Allow us to create additional requests to better our website',
+        confirmText: 'SURE',
+        declineText: 'DENY',
+        callbackConfirm: () => {
+          this.setAllowImprove({ allow: true, asked: true })
+          setTimeout(() => {
+            Message.call({
+              text: 'Thank You!',
+              timeout: 1500
+            }, 1000)
+          })
+        },
+        callbackDecline: () => {
+          this.setAllowImprove({ allow: false, asked: true })
+        }
+      })
+    }
   }
 }
 </script>

@@ -19,10 +19,13 @@ export default new Vuex.Store({
   ],
   state: {
     snackCon: {
-      show: false,
-      text: '',
-      closeText: 'Close',
-      type: '',
+      show: undefined,
+      text: 'Default Text',
+      type: 'info',
+      confirmText: 'Okay',
+      declineText: 'No',
+      callbackConfirm: () => {},
+      callbackDecline: () => {},
       timeout: 0
     },
     darkMode: true,

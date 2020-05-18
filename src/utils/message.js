@@ -15,10 +15,20 @@ export default class Message {
   }
 
   static success (text = 'Success') {
-    this.call({ text: text, type: 'success' })
+    this.call({
+      text: text,
+      confirmText: 'Okay',
+      declineText: undefined,
+      type: 'success'
+    })
   }
 
   static error (text = 'Error') {
-    this.call({ text: text, type: 'error' })
+    this.call({
+      text: text,
+      confirmText: 'Okay',
+      declineText: undefined,
+      type: 'error'
+    })
   }
 }
