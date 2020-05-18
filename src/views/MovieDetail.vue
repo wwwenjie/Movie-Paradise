@@ -77,6 +77,7 @@
         cols="12"
         class="text-center"
       >
+        <!--todo: handle trailers = []-->
         <v-btn
           depressed
           :disabled="!movie.trailers"
@@ -95,13 +96,14 @@
         />
       </v-col>
       <v-col cols="12">
+        <!--todo: load more text in md and up-->
         <v-expansion-panels flat>
           <v-expansion-panel style="background-color: transparent !important;">
             <v-expansion-panel-header class="mt-4 py-0 text-justify body-2">
-              三个自由浪漫的年轻人，过着各怀心思的人生：有人急着摆脱单身，有人想在结婚前放荡一番，有人想在大城市站稳脚跟。
+              {{ movie.info.summary.slice(0,100).trim() }}
             </v-expansion-panel-header>
             <v-expansion-panel-content class="text-justify body-2">
-              因为一次情感出轨，三人扭结成了一团“嬉笑怒骂”的乱麻。当各种价值观碰撞在一起， 当一个人需要平衡亲情友情与爱情......他们慌乱的生活，就像是半个喜剧。
+              {{ movie.info.summary.substring(100).trim() }}
             </v-expansion-panel-content>
           </v-expansion-panel>
         </v-expansion-panels>
@@ -141,6 +143,7 @@
       </v-col>
     </v-row>
     <v-divider />
+    <!--todo: handel recs null error-->
     <movie-list
       genre="相关影片"
       :ids="movie.recs"
@@ -174,9 +177,12 @@ export default {
       error: false
     }
   },
-  async mounted () {
-    this.$vuetify.goTo(0)
-    this.movie = await getMovieByPath(this.path)
+  // exit component and enter again
+  async beforeRouteEnter (to, from, next) {
+    next(async vm => {
+      vm.$vuetify.goTo(0)
+      vm.movie = await getMovieByPath(to.params.path)
+    })
   },
   // same components update data
   async beforeRouteUpdate (to, from, next) {

@@ -13,7 +13,8 @@ export function undefinedMovie () {
       release: undefined,
       duration: undefined,
       alias: undefined,
-      summary: undefined
+      // fix split undefined in movie detail
+      summary: ''
     },
     imdb_id: undefined,
     title: undefined,
