@@ -1,11 +1,18 @@
 import { mapActions, mapMutations, mapState } from 'vuex'
 
 export default {
-  computed: mapState({
-    snackCon: 'snackCon'
-  }),
+  computed: mapState([
+    'snackCon',
+    'darkMode',
+    'locale',
+    'allowImprove'
+  ]),
   methods: {
-    ...mapActions({}),
-    ...mapMutations({})
+    ...mapMutations({
+      setDarkMode: 'SET_DARK_MODE',
+      setLocate: 'SET_LOCALE',
+      setAllowImprove: 'SET_ALLOW_IMPROVE'
+    }),
+    ...mapActions({})
   }
 }

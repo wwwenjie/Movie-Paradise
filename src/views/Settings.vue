@@ -61,17 +61,21 @@
 </template>
 
 <script>
+import storeMap from '../mixins/storeMap'
 export default {
   name: 'Setting',
+  mixins: [storeMap],
   data: () => ({
     dialogLanguage: false
   }),
   methods: {
     switchDarkMode () {
-      this.$vuetify.theme.dark = !this.$vuetify.theme.dark
+      this.$vuetify.theme.dark = !this.darkMode
+      this.setDarkMode(this.$vuetify.theme.dark)
     },
     switchLocale (locale) {
       this.$i18n.locale = locale
+      this.setLocate(locale)
       setTimeout(() => {
         this.dialogLanguage = false
       }, 100)
