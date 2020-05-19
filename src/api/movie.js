@@ -8,7 +8,7 @@ export function getMovieByPath (path) {
 
 export function getMovieByIds (ids) {
   return request({
-    url: '/movies/',
+    url: '/movies',
     params: {
       ids: ids.join('-')
     }
@@ -32,6 +32,15 @@ export function getMovieByType (type, limit = 8, offset = 0) {
     params: {
       limit: limit,
       offset: offset
+    }
+  })
+}
+
+export function searchByTitle (keyword) {
+  return request({
+    url: '/movies',
+    params: {
+      keyword: keyword
     }
   })
 }

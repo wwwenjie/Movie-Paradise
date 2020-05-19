@@ -128,6 +128,10 @@ export default {
     genre: {
       type: String,
       default: undefined
+    },
+    searchResult: {
+      type: Array,
+      default: undefined
     }
   },
   data () {
@@ -140,6 +144,9 @@ export default {
   watch: {
     ids: async function (ids) {
       this.movies = await getMovieByIds(ids)
+    },
+    searchResult: function (searchResult) {
+      this.movies = searchResult
     }
   },
   async mounted () {
@@ -152,6 +159,8 @@ export default {
       this.movies = await getMovieByType(this.type, limit)
     } else if (this.ids) {
       // watch ids to get movies, need to wait father props ready
+    } else if (this.searchResult) {
+      // watch
     } else {
       this.movies = await getMovieByGenre(this.genre, limit)
     }

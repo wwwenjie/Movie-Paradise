@@ -6,14 +6,15 @@
   >
     <v-text-field
       ref="input"
-      prepend-inner-icon="mdi-magnify"
-      class="pa-2"
+      v-model="keyword"
       :label="$t('search')"
       :loading="loading"
       hide-details
       clearable
       outlined
       dense
+      prepend-inner-icon="mdi-magnify"
+      class="pa-2"
       @focus="onFocus"
       @change="search"
     >
@@ -27,16 +28,21 @@
         />
       </template>
     </v-text-field>
-    <!--live search, debounce-->
+    <div>
+      <p class="ml-2 mb-0 title">
+        {{ promptText }}
+      </p>
+    </div>
     <movie-list
-      genre="搜索结果"
-      type="newest"
+      v-if="movies.length!==0"
+      :search-result="movies"
     />
   </v-sheet>
 </template>
 
 <script>
 import MovieList from '../components/global/MovieList'
+import { searchByTitle } from '../api/movie'
 
 export default {
   name: 'Search',
@@ -45,17 +51,30 @@ export default {
   },
   data () {
     return {
-      loading: false
+      loading: false,
+      keyword: '',
+      movies: [],
+      promptText: 'Search 50,000+ movies'
     }
+  },
+  beforeRouteLeave (to, from, next) {
+    next()
+    this.keyword = ''
+    this.movies = []
+    this.promptText = 'Search 50,000+ movies'
   },
   methods: {
     onFocus () {
       this.loading = false
     },
-    search () {
+    // todo: live search, debounce
+    async search () {
       this.$refs.input.blur()
       this.loading = true
       // searching
+      this.movies = await searchByTitle(this.keyword)
+      this.loading = false
+      this.promptText = this.movies.length === 0 ? 'Sorry, cant find this movie' : `Find ${this.movies.length} movies (max: 15)`
     }
   }
 }
