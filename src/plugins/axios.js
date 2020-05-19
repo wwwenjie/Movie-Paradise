@@ -8,7 +8,7 @@ import Message from '../utils/message'
 const service = axios.create({
   baseURL: process.env.VUE_APP_BASE_API, // url = base url + request url
   // withCredentials: true, // send cookies when cross-domain requests
-  timeout: 5000, // request timeout
+  timeout: 8000, // request timeout
   // default type json
   headers: {
     'Content-type': 'application/json'
@@ -77,7 +77,7 @@ service.interceptors.response.use(
           error.message = '拒绝访问'
           break
         case 404:
-          error.message = `请求地址出错: ${error.response.config.url}`
+          error.message = `未找到请求页面: ${error.response.config.url}`
           break
         case 408:
           error.message = '请求超时'

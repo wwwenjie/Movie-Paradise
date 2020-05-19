@@ -30,6 +30,7 @@ export function undefinedMovie () {
     poster: undefined,
     recs: [],
     trailers: [],
+    backdrops: [],
     path: undefined,
     update_time: undefined,
     tmdb_id: undefined

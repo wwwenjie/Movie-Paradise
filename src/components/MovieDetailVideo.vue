@@ -4,6 +4,7 @@
     max-width="920"
   >
     <v-card>
+      <!--todo: check name-->
       <v-card-title class="headline">
         {{ trailer.name }}
       </v-card-title>

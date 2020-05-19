@@ -157,6 +157,7 @@ import MovieDetailVideo from '../components/MovieDetailVideo'
 import { getMovieByPath } from '../api/movie'
 import { undefinedMovie } from '../utils'
 import fallbackPoster from '../utils/fallbackPoster'
+import { getBackdrops, getTrailers, patchTrailers, patchBackdrops, headPoster, patchPoster } from '../api/improvement'
 
 export default {
   name: 'MovieDetail',
@@ -180,17 +181,41 @@ export default {
   // exit component and enter again
   async beforeRouteEnter (to, from, next) {
     next(async vm => {
-      vm.$vuetify.goTo(0)
-      vm.movie = await getMovieByPath(to.params.path)
+      await vm.init(vm, to.params.path)
     })
   },
   // same components update data
   async beforeRouteUpdate (to, from, next) {
     next()
-    this.$vuetify.goTo(0)
-    this.movie = await getMovieByPath(to.params.path)
+    await this.init(this, to.params.path)
   },
   methods: {
+    async init (_this, path) {
+      _this.$vuetify.goTo(0)
+      _this.movie = await getMovieByPath(path)
+      const allow = _this.$store.state.allowImprove.allow
+      const id = _this.movie._id
+      // trailers = [] means no trailers, null means need patch
+      if (_this.movie.trailers === null) {
+        _this.movie.trailers = await getTrailers(id)
+        if (allow) {
+          await patchTrailers(id, _this.movie.trailers)
+        }
+      }
+      if (_this.movie.backdrops === null && allow) {
+        const res = await getBackdrops(_this.movie.path)
+        await patchBackdrops(id, res.backdrops ? res.backdrops : [])
+      }
+      if (allow) {
+        try {
+          await headPoster(id)
+        } catch (e) {
+          //
+          console.log('404 not ound, adding this poster to our oss. thanks for improvement')
+          await patchPoster(id)
+        }
+      }
+    },
     posterLoadFail () {
       this.error = fallbackPoster(this.movie)
     },
