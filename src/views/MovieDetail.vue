@@ -77,10 +77,9 @@
         cols="12"
         class="text-center"
       >
-        <!--todo: handle trailers = []-->
         <v-btn
           depressed
-          :disabled="!movie.trailers"
+          :disabled="emptyTrailers"
           width="90%"
           class="mt-4 red"
           @click="dialog = true"
@@ -88,9 +87,10 @@
           <v-icon left>
             mdi-play
           </v-icon>
-          {{ movie.trailers? '预告片':'暂无预告片' }}
+          {{ emptyTrailers ? '暂无预告片':'预告片' }}
         </v-btn>
         <movie-detail-video
+          v-if="!emptyTrailers"
           :dialog.sync="dialog"
           :trailers="movie.trailers"
         />
@@ -176,6 +176,11 @@ export default {
       movie: undefinedMovie(),
       dialog: false,
       error: false
+    }
+  },
+  computed: {
+    emptyTrailers: function () {
+      return this.movie.trailers && Array.isArray(this.movie.trailers) && this.movie.trailers.length === 0
     }
   },
   // exit component and enter again

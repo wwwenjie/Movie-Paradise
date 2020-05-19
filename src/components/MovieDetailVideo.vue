@@ -4,7 +4,6 @@
     max-width="920"
   >
     <v-card>
-      <!--todo: check name-->
       <v-card-title class="headline">
         {{ trailer.name }}
       </v-card-title>
@@ -27,11 +26,11 @@
       <v-card-actions>
         <!--TODO: other style for mobile-->
         <v-btn
-          v-for="item in trailers"
+          v-for="(item,index) in trailers"
           :key="item._id"
           color="white darken-1"
           text
-          @click="trailer = item"
+          @click="changeVideo(index)"
         >
           {{ item.name }}
         </v-btn>
@@ -95,6 +94,17 @@ export default {
       if (this.trailers) {
         this.trailer = this.trailers[0]
       }
+    }
+  },
+  mounted () {
+    if (this.trailers) {
+      this.trailer = this.trailers[0]
+    }
+  },
+  methods: {
+    changeVideo (index) {
+      this.trailer = this.trailers[index]
+      this.$refs.video.load()
     }
   }
 }
