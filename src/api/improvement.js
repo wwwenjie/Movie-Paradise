@@ -15,7 +15,7 @@ export function patchPoster (id) {
 export function patchTrailers (id, trailers) {
   return request({
     method: 'PATCH',
-    url: '/movies/trailer',
+    url: '/movies/trailers',
     data: {
       id: id,
       trailers: trailers
@@ -26,7 +26,7 @@ export function patchTrailers (id, trailers) {
 export function patchBackdrops (id, backdrops) {
   return request({
     method: 'PATCH',
-    url: '/movies/backdrop',
+    url: '/movies/backdrops',
     data: {
       id: id,
       backdrops: backdrops
