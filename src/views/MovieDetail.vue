@@ -157,7 +157,7 @@ import MovieDetailVideo from '../components/MovieDetailVideo'
 import { getMovieByPath } from '../api/movie'
 import { undefinedMovie } from '../utils'
 import fallbackPoster from '../utils/fallbackPoster'
-import { getBackdrops, getTrailers, patchTrailers, patchBackdrops, headPoster, patchPoster } from '../api/improvement'
+import { patchTrailers, patchBackdrops, headPoster, patchPoster } from '../api/improvement'
 
 export default {
   name: 'MovieDetail',
@@ -180,7 +180,7 @@ export default {
   },
   computed: {
     emptyTrailers: function () {
-      return this.movie.trailers && Array.isArray(this.movie.trailers) && this.movie.trailers.length === 0
+      return this.movie.trailers === null || (Array.isArray(this.movie.trailers) && this.movie.trailers.length === 0)
     }
   },
   // exit component and enter again
@@ -202,14 +202,10 @@ export default {
       const id = _this.movie._id
       // trailers = [] means no trailers, null means need patch
       if (_this.movie.trailers === null) {
-        _this.movie.trailers = await getTrailers(id)
-        if (allow) {
-          await patchTrailers(id, _this.movie.trailers)
-        }
+        this.movie.trailers = await patchTrailers(id)
       }
       if (_this.movie.backdrops === null && allow) {
-        const res = await getBackdrops(_this.movie.path)
-        await patchBackdrops(id, res.backdrops ? res.backdrops : [])
+        await patchBackdrops(_this.movie.path)
       }
       if (allow) {
         try {
