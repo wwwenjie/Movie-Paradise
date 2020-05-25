@@ -215,7 +215,7 @@ export default {
         try {
           await headPoster(id)
         } catch (e) {
-          //
+          // eslint-disable-next-line no-console
           console.log('404 not ound, adding this poster to our oss. thanks for improvement')
           await patchPoster(id)
         }

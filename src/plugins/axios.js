@@ -33,7 +33,8 @@ service.interceptors.request.use(
   error => {
     // do something with request error
     Message.error(error)
-    console.log(error) // for debug
+    // eslint-disable-next-line no-console
+    console.log(error)
     return Promise.reject(error)
   }
 )
@@ -57,7 +58,8 @@ service.interceptors.response.use(
     // success: Object { success(Boolean) ... } success is required when post/put/patch/delete
     if (res.code && res.error) {
       Message.error(res)
-      console.log(res) // for debug
+      // eslint-disable-next-line no-console
+      console.log(res)
       return Promise.reject(new Error(res.error || 'Error'))
     } else {
       return res
@@ -105,7 +107,8 @@ service.interceptors.response.use(
       }
     }
     Message.error(error.message)
-    console.log(`Error: ${error.message}`) // for debug
+    // eslint-disable-next-line no-console
+    console.log(`Error: ${error.message}`)
     return Promise.reject(error)
   }
 )
