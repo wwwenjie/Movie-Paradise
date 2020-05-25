@@ -8,7 +8,7 @@
       transition="fade-transition"
     >
       <p class="title ml-2 mb-0">
-        {{ genre }}
+        {{ title }}
       </p>
     </v-skeleton-loader>
     <v-skeleton-loader
@@ -88,6 +88,10 @@ export default {
     'movie-scroll-detail': MovieScrollDetail
   },
   props: {
+    title: {
+      type: String,
+      default: undefined
+    },
     type: {
       type: String,
       default: undefined

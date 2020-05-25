@@ -6,16 +6,17 @@
     <component :is="responsiveBillboard" />
     <component
       :is="responsiveMovie"
-      genre="时下流行"
+      title="时下流行"
       type="newest"
     />
     <component
       :is="responsiveMovie"
-      genre="即将上线"
+      title="即将上线"
       type="coming"
     />
     <component
       :is="responsiveMovie"
+      title="动作"
       genre="动作"
     />
   </v-sheet>

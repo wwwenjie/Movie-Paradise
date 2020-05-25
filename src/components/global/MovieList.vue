@@ -14,8 +14,11 @@
           cols="12"
           class="pb-0"
         >
-          <p class="title pl-md-2 mb-0">
-            {{ genre }}
+          <p
+            v-class="['title','headline']"
+            class="pl-md-2 mb-0"
+          >
+            {{ title }}
           </p>
         </v-col>
         <v-col
@@ -117,6 +120,10 @@ import fallbackPoster from '../../utils/fallbackPoster'
 export default {
   name: 'MovieList',
   props: {
+    title: {
+      type: String,
+      default: undefined
+    },
     type: {
       type: String,
       default: undefined
@@ -143,10 +150,18 @@ export default {
   },
   watch: {
     ids: async function (ids) {
-      this.movies = await getMovieByIds(ids)
+      if (ids) {
+        this.movies = await getMovieByIds(ids)
+        this.loading = false
+      }
     },
     searchResult: function (searchResult) {
       this.movies = searchResult
+      this.loading = false
+    },
+    genre: async function (genre) {
+      this.movies = await getMovieByGenre(genre)
+      this.loading = false
     }
   },
   async mounted () {
@@ -157,14 +172,15 @@ export default {
     this.movies = [...Array(limit)].map(() => undefinedMovie())
     if (this.type) {
       this.movies = await getMovieByType(this.type, limit)
+      this.loading = false
     } else if (this.ids) {
       // watch ids to get movies, need to wait father props ready
     } else if (this.searchResult) {
       // watch
     } else {
       this.movies = await getMovieByGenre(this.genre, limit)
+      this.loading = false
     }
-    this.loading = false
   },
   methods: {
     goDetail (path) {

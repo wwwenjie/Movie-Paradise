@@ -22,7 +22,6 @@
       justify="center"
     >
       <v-col cols="12">
-        <!--TODO: douban img return 403, use dianying api or local poster-->
         <v-img
           width="100%"
           max-height="50vh"
@@ -143,10 +142,15 @@
       </v-col>
     </v-row>
     <v-divider />
-    <!--todo: handel recs null error-->
     <movie-list
-      genre="相关影片"
+      v-if="movie.recs"
+      title="相关影片"
       :ids="movie.recs"
+    />
+    <movie-list
+      v-else
+      title="猜你喜欢"
+      :genre="movie.info.genre.split('/')[0]"
     />
   </v-sheet>
 </template>
