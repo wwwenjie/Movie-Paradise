@@ -27,17 +27,17 @@
     >
       <v-autocomplete
         v-if="this.$vuetify.breakpoint.lgAndUp"
-        v-model="select"
         :loading="loading"
-        :items="items"
-        :search-input.sync="search"
-        :placeholder="$t('search')"
+        :items="titleList"
+        :search-input.sync="title"
+        placeholder="Search 60,000+ movies"
         prepend-inner-icon="mdi-magnify"
         hide-details
         clearable
+        @change="goToDetail"
       >
         <template slot="no-data">
-          <v-list-item>Oops, can not find this movie</v-list-item>
+          <v-list-item>Sorry, cant find this movie</v-list-item>
         </template>
       </v-autocomplete>
     </v-row>
@@ -51,6 +51,8 @@
 </template>
 
 <script>
+import { getMovieByType, searchByTitle } from '../api/movie'
+
 export default {
   name: 'AppBar',
   props: {
@@ -61,19 +63,35 @@ export default {
   data () {
     return {
       loading: false,
-      select: null,
-      search: null,
-      items: []
+      title: undefined,
+      titleList: [],
+      movies: [],
+      timeout: undefined
     }
   },
   watch: {
     // live search
-    search () {
-      this.loading = true
-      setTimeout(() => {
+    async title (title) {
+      clearTimeout(this.timeout)
+      this.timeout = setTimeout(async () => {
+        if (!title) {
+          return
+        }
+        this.loading = true
+        this.movies = await searchByTitle(title)
+        this.titleList = this.movies.map(movie => {
+          return movie.title
+        })
         this.loading = false
-      }, 2000)
+      }, this.timeout)
     }
+  },
+  async mounted () {
+    // load newest movies in titleList
+    this.movies = await getMovieByType('newest')
+    this.titleList = this.movies.map(movie => {
+      return movie.title
+    })
   },
   methods: {
     onClickDrawer () {
@@ -82,6 +100,16 @@ export default {
     goHomePage () {
       // handle NavigationDuplicated
       this.$router.push({ path: '/' }).catch(err => err)
+    },
+    goToDetail () {
+      // timeout to wait title update, or it will get the value before
+      setTimeout(() => {
+        this.movies.map(movie => {
+          if (this.title === movie.title) {
+            this.$router.push({ path: `/movie/${movie.path}` })
+          }
+        })
+      }, 100)
     }
   }
 }

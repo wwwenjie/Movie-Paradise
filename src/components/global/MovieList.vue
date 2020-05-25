@@ -155,9 +155,12 @@ export default {
         this.loading = false
       }
     },
-    searchResult: function (searchResult) {
-      this.movies = searchResult
-      this.loading = false
+    searchResult: {
+      handler (searchResult) {
+        this.movies = searchResult
+        this.loading = false
+      },
+      deep: true
     },
     genre: async function (genre) {
       this.movies = await getMovieByGenre(genre)

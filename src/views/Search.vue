@@ -17,7 +17,7 @@
       prepend-inner-icon="mdi-magnify"
       class="pa-2"
       @focus="onFocus"
-      @change="search"
+      @input="debounce(search,1000)"
     >
       <template v-slot:progress>
         <v-progress-linear
@@ -35,7 +35,7 @@
       </p>
     </div>
     <movie-list
-      v-if="movies.length!==0"
+      v-show="movies.length!==0"
       :search-result="movies"
     />
   </v-sheet>
@@ -55,27 +55,36 @@ export default {
       loading: false,
       keyword: '',
       movies: [],
-      promptText: 'Search 50,000+ movies'
+      promptText: 'Search 60,000+ movies',
+      timeout: undefined
     }
   },
   beforeRouteLeave (to, from, next) {
     next()
     this.keyword = ''
     this.movies = []
-    this.promptText = 'Search 50,000+ movies'
+    this.promptText = 'Search 60,000+ movies'
   },
   methods: {
     onFocus () {
       this.loading = false
     },
-    // todo: live search, debounce
     async search () {
-      this.$refs.input.blur()
+      if (this.keyword.length === 0) {
+        this.movies = []
+        this.promptText = 'Search 60,000+ movies'
+        return
+      }
       this.loading = true
-      // searching
       this.movies = await searchByTitle(this.keyword)
       this.loading = false
       this.promptText = this.movies.length === 0 ? 'Sorry, cant find this movie' : `Find ${this.movies.length} movies (max: 15)`
+    },
+    debounce (func, timeout) {
+      clearTimeout(this.timeout)
+      this.timeout = setTimeout(function () {
+        func.apply(this)
+      }, timeout)
     }
   }
 }
