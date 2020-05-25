@@ -1,12 +1,15 @@
 # Movie Paradise
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/3261a25a-796e-4e36-bbba-0a3db3bf37b4/deploy-status)](https://app.netlify.com/sites/movieparadise/deploys)  
+
 > This project is for learning and communication purposes only, not for commercial use. The data comes from third-party websites.
 
 Movie Paradise is a web app built by Vue, Koa, and maybe a little Python.  
 It can show some movies information and provide download link, live watch functions.
 
-[Demo site](https://movie.jinwenjie.me)  is updated every day with the latest source code.  
-[Swagger API](https://api.jinwenjie.me/swagger-html)  
+### Deploying
+[The site](https://movieparadise.netlify.app/) is automatically deployed when commits land in master, via [Netlify](https://www.netlify.com/).  
+[Swagger API](https://api.movie.jinwenjie.me/swagger-html)  
 (deprecated) [Mock API](http://rap2.jinwenjie.me:3000/repository/editor?id=1) Based on [Rap2](https://github.com/thx/rap2-delos)
 
 ### Status: Alpha

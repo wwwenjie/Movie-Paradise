@@ -16,10 +16,10 @@
           @ended="paused = true"
         >
           <source
-            src="static/video2.mp4"
+            src="https://movie-paradise.oss-ap-southeast-1.aliyuncs.com/video/trailer.mp4"
             type="video/mp4"
           >
-          抱歉，您的浏览器不支持内嵌视频，不过不用担心，你可以 <a href="/static/video.mp4">下载</a>并用你喜欢的播放器观看!
+          抱歉，您的浏览器不支持内嵌视频，不过不用担心，你可以 <a href="https://movie-paradise.oss-ap-southeast-1.aliyuncs.com/video/trailer.mp4">下载</a>并用你喜欢的播放器观看!
         </video>
       </div>
       <div class="home-video-grid-layer">
