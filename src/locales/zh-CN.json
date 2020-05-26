@@ -4,18 +4,7 @@
   "search": "搜索",
   "settings": "设置",
   "error": {},
-  "genre": {
-    "action": "动作",
-    "animation": "动画",
-    "comedy": "喜剧",
-    "documentary": "记录",
-    "genre": "分类",
-    "horror": "恐怖",
-    "mystery": "悬疑",
-    "romance": "爱情",
-    "sci-fi": "科幻",
-    "thriller": "惊悚"
-  },
+  "genre": "分类",
   "info": {},
   "more": "更多",
   "movie": {

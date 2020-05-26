@@ -5,13 +5,15 @@ export default {
     'snackCon',
     'darkMode',
     'locale',
-    'allowImprove'
+    'allowImprove',
+    'genreStore'
   ]),
   methods: {
     ...mapMutations({
       setDarkMode: 'SET_DARK_MODE',
       setLocate: 'SET_LOCALE',
-      setAllowImprove: 'SET_ALLOW_IMPROVE'
+      setAllowImprove: 'SET_ALLOW_IMPROVE',
+      setGenreStore: 'SET_GENRE_STORE'
     }),
     ...mapActions({})
   }

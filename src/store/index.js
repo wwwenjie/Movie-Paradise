@@ -33,7 +33,8 @@ export default new Vuex.Store({
     allowImprove: {
       allow: false,
       asked: false
-    }
+    },
+    genreStore: []
   },
   mutations: {
     CALL_MESSAGE (state, config) {
@@ -49,6 +50,9 @@ export default new Vuex.Store({
     },
     SET_ALLOW_IMPROVE (state, value) {
       state.allowImprove = value
+    },
+    SET_GENRE_STORE (state, value) {
+      state.genreStore = value
     }
   },
   actions: {},

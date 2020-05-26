@@ -4,18 +4,7 @@
   "search": "Search",
   "settings": "Settings",
   "error": {},
-  "genre": {
-    "action": "Action",
-    "animation": "Animation",
-    "comedy": "Comedy",
-    "documentary": "Documentary",
-    "genre": "Genre",
-    "horror": "Horror",
-    "mystery": "Mystery",
-    "romance": "Romance",
-    "sci-fi": "Sci-Fi",
-    "thriller": "Thriller"
-  },
+  "genre": "Genre",
   "info": {},
   "more": "More",
   "movie": {

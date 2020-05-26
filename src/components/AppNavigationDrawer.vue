@@ -5,31 +5,44 @@
     clipped
   >
     <v-subheader class="mt-4 grey--text text--darken-1">
-      {{ $t('genre.genre') }}
+      {{ $t('genre') }}
     </v-subheader>
     <v-list dense>
       <v-list-item
-        v-for="item in genre"
-        :key="item.text"
+        v-for="genre in genreStore"
+        :key="genre.name"
         link
       >
-        <v-list-item-action>
-          <v-icon>{{ item.icon }}</v-icon>
-        </v-list-item-action>
+        <v-list-item-action />
         <v-list-item-content>
           <v-list-item-title>
-            {{ item.text }}
+            {{ locale==='zh-CN'? genre.name : genre.name_en }}
           </v-list-item-title>
         </v-list-item-content>
       </v-list-item>
-      <v-list-item link>
+      <v-list-item
+        @click="moreGenre"
+      >
         <v-list-item-action>
           <v-icon color="grey darken-1">
             mdi-plus-circle-outline
           </v-icon>
         </v-list-item-action>
         <v-list-item-title class="grey--text text--darken-1">
-          {{ $t('more') }}
+          <div
+            class="d-flex"
+            style="justify-content: space-between"
+          >
+            {{ $t('more') }}
+            <v-btn
+              v-if="genreStore.length > 6"
+              outlined
+              x-small
+              @click.stop="setGenreStore(genreStore.slice(0,6))"
+            >
+              {{ $t('clear') }}
+            </v-btn>
+          </div>
         </v-list-item-title>
       </v-list-item>
       <v-list-item
@@ -50,8 +63,12 @@
 </template>
 
 <script>
+import { getGenres } from '../api/genre'
+import storeMap from '../mixins/storeMap'
+
 export default {
   name: 'AppNavigationDrawer',
+  mixins: [storeMap],
   props: {
     drawer: {
       type: Boolean
@@ -66,15 +83,18 @@ export default {
         this.$emit('update:drawer', newValue)
         return newValue
       }
-    },
-    genre () {
-      return [
-        { icon: '', text: this.$t('genre.action') },
-        { icon: '', text: this.$t('genre.comedy') },
-        { icon: '', text: this.$t('genre.sci-fi') },
-        { icon: '', text: this.$t('genre.romance') },
-        { icon: '', text: this.$t('genre.mystery') }
-      ]
+    }
+  },
+  async mounted () {
+    if (this.genreStore.length === 0) {
+      this.setGenreStore(await getGenres())
+    } else {
+      this.setGenreStore(this.genreStore.slice(0, 6))
+    }
+  },
+  methods: {
+    async moreGenre () {
+      this.setGenreStore(this.genreStore.concat(await getGenres(5, this.genreStore.length)))
     }
   }
 }
