@@ -40,7 +40,7 @@
             <v-icon left>
               mdi-information-outline
             </v-icon>
-            更多信息
+            {{ $t('moreInfo') }}
           </v-btn>
         </div>
         <div class="home-video-control">

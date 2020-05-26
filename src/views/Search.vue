@@ -4,7 +4,6 @@
     width="100%"
     class="fill-height"
   >
-    <!--todo: fix double search when click enter-->
     <v-text-field
       ref="input"
       v-model="keyword"

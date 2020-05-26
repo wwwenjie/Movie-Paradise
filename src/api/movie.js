@@ -1,5 +1,6 @@
 import request from '../plugins/axios'
 
+// todo: interceptor for localStorage
 export function getMovieByPath (path) {
   return request({
     url: `/movies/${path}`

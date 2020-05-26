@@ -78,7 +78,7 @@
                   />
                   <v-card-text class="white--text pb-1">
                     <div>
-                      {{ movie.info.region }} / {{ $t('movie.douban') }} {{ movie.rating.douban_score }} / IMDb
+                      {{ movie.info.region }} / {{ $t('douban') }} {{ movie.rating.douban_score }} / IMDb
                       {{ movie.rating.imdb_score }}
                     </div>
                   </v-card-text>

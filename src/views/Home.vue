@@ -6,19 +6,19 @@
     <component :is="responsiveBillboard" />
     <component
       :is="responsiveMovie"
-      title="时下流行"
+      :title="$t('popular')"
       type="newest"
     />
     <component
       :is="responsiveMovie"
-      title="即将上线"
+      :title="$t('upcoming')"
       type="coming"
     />
     <component
       :is="responsiveMovie"
       v-for="genre in genres"
       :key="genre.name"
-      :title="genre.name"
+      :title="locale === 'zh-CN' ? genre.name : genre.name_en"
       :genre="genre.name"
     />
   </v-sheet>

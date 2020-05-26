@@ -62,7 +62,7 @@
               <v-icon class="d-block">
                 mdi-plus
               </v-icon>
-              <span class="caption">加入片库</span>
+              <span class="caption">{{ $t('myList') }}</span>
             </v-col>
             <v-col
               cols="5"
@@ -77,7 +77,7 @@
                 <v-icon left>
                   mdi-play
                 </v-icon>
-                预告片
+                {{ $t('trailer') }}
               </v-btn>
               <movie-detail-video
                 :dialog.sync="dialog"
@@ -93,7 +93,7 @@
               <v-icon class="d-block">
                 mdi-information-outline
               </v-icon>
-              <span class="caption">更多信息</span>
+              <span class="caption">{{ $t('moreInfo') }}</span>
             </v-col>
           </v-row>
         </v-row>
