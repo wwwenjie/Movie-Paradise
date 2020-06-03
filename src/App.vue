@@ -40,6 +40,7 @@ import AppBar from './components/AppBar'
 import Snackbar from './components/global/Snackbar'
 import storeMap from './mixins/storeMap'
 import Message from './utils/message'
+import { getGenres } from './api/genre'
 
 export default {
   name: 'MovieParadise',
@@ -57,7 +58,7 @@ export default {
     }
   },
 
-  created () {
+  async created () {
     this.$vuetify.theme.dark = this.darkMode
     if (!this.allowImprove.asked) {
       Message.call({
@@ -77,6 +78,9 @@ export default {
           this.setAllowImprove({ allow: false, asked: true })
         }
       })
+    }
+    if (this.genreStore.length === 0) {
+      this.setGenreStore(await getGenres(100))
     }
   }
 }

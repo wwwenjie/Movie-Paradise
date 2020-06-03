@@ -35,7 +35,7 @@
     </div>
     <movie-list
       v-show="movies.length!==0"
-      :search-result="movies"
+      :movie-array="movies"
     />
   </v-sheet>
 </template>

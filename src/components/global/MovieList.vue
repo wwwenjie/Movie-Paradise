@@ -146,7 +146,7 @@ export default {
       type: String,
       default: undefined
     },
-    searchResult: {
+    movieArray: {
       type: Array,
       default: undefined
     }
@@ -165,9 +165,9 @@ export default {
         this.loading = false
       }
     },
-    searchResult: {
-      handler (searchResult) {
-        this.movies = searchResult
+    movieArray: {
+      handler (movieArray) {
+        this.movies = movieArray
         this.loading = false
       },
       deep: true
@@ -184,7 +184,7 @@ export default {
       this.loading = false
     } else if (this.ids) {
       // watch ids to get movies, need to wait father props ready
-    } else if (this.searchResult) {
+    } else if (this.movieArray) {
       // watch
     } else {
       this.movies = await getMovieByGenre(this.genre, limit)

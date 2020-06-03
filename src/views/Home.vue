@@ -14,20 +14,23 @@
       :title="$t('upcoming')"
       type="coming"
     />
-    <v-lazy
+    <component
+      :is="responsiveMovie"
       v-for="genre in genres"
       :key="genre.name"
-      :options="{
-        threshold: .5
-      }"
-      min-height="150"
+      :title="locale === 'zh-CN' ? genre.name : genre.name_en"
+      :genre="genre.name"
+    />
+    <p
+      ref="load"
+      class="display-1 justify-center d-flex"
     >
-      <component
-        :is="responsiveMovie"
-        :title="locale === 'zh-CN' ? genre.name : genre.name_en"
-        :genre="genre.name"
-      />
-    </v-lazy>
+      Loading...
+    </p>
+    <v-progress-linear
+      indeterminate
+      color="red"
+    />
   </v-sheet>
 </template>
 
@@ -62,11 +65,20 @@ export default {
   },
   watch: {
     genreStore: {
-      handler (newValue) {
-        this.genres = newValue.slice(0, 15)
+      handler (genreStore) {
+        this.genres = genreStore.slice(0, 2)
       },
       immediate: true
     }
+  },
+  mounted () {
+    const defaultAppend = 2
+    const intersectionObserver = new IntersectionObserver(
+      async entries => {
+        if (entries[0].intersectionRatio <= 0) return
+        this.genres = this.genres.concat(this.genreStore.slice(this.genres.length, this.genres.length + defaultAppend))
+      })
+    intersectionObserver.observe(this.$refs.load)
   }
 }
 </script>

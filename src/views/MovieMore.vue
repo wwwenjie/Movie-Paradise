@@ -1,9 +1,12 @@
 <template>
-  <v-sheet>
+  <v-sheet
+    width="100%"
+    min-height="100%"
+  >
     <movie-list
+      v-show="!loading"
       :title="$route.query.title"
-      :search-result="movies"
-      style="min-height: 100vh"
+      :movie-array="movies"
     />
     <p
       ref="load"
@@ -21,6 +24,7 @@
 <script>
 import { getMovieByGenre, getMovieByType } from '../api/movie'
 import MovieList from '../components/global/MovieList'
+
 export default {
   name: 'MovieMore',
   components: {
@@ -29,6 +33,7 @@ export default {
   data () {
     return {
       movies: [],
+      loading: true,
       offset: undefined,
       intersectionObserver: undefined
     }
@@ -47,14 +52,16 @@ export default {
       _this.$vuetify.goTo(0)
       const initLimit = _this.$vuetify.breakpoint.sm ? 21 : 16
       const defaultAppend = _this.$vuetify.breakpoint.sm ? 9 : 8
+      _this.loading = true
       _this.movies = await _this.getMovies(initLimit)
+      _this.loading = false
       _this.offset = initLimit
       // remove previous
       if (_this.intersectionObserver) {
         _this.intersectionObserver.unobserve(_this.$refs.load)
       }
       _this.intersectionObserver = new IntersectionObserver(
-        async function (entries) {
+        async entries => {
           if (entries[0].intersectionRatio <= 0) return
           const appendMovies = await _this.getMovies(defaultAppend, _this.offset)
           _this.movies = _this.movies.concat(appendMovies)

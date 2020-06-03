@@ -64,7 +64,6 @@
 </template>
 
 <script>
-import { getGenres } from '../api/genre'
 import storeMap from '../mixins/storeMap'
 
 export default {
@@ -91,11 +90,13 @@ export default {
       }
     }
   },
-  async mounted () {
-    if (this.genreStore.length === 0) {
-      this.setGenreStore(await getGenres(100))
+  watch: {
+    genreStore: {
+      handler (genreStore) {
+        this.genres = genreStore.slice(0, 6)
+      },
+      immediate: true
     }
-    this.genres = this.genreStore.slice(0, 6)
   },
   methods: {
     moreGenre () {
