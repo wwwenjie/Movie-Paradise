@@ -47,7 +47,7 @@
               cols="12"
               class="text-center pa-0"
             >
-              <p class="title font-weight-bold">
+              <p class="headline font-weight-bold mb-1">
                 {{ movie.title }}
               </p>
               <p class="mb-0">
@@ -58,11 +58,12 @@
               cols="3"
               class="text-center"
               style="cursor: pointer"
+              @click="shuffle"
             >
               <v-icon class="d-block">
-                mdi-plus
+                mdi-shuffle-variant
               </v-icon>
-              <span class="caption">{{ $t('myList') }}</span>
+              <span class="caption">{{ $t('shuffle') }}</span>
             </v-col>
             <v-col
               cols="5"
@@ -115,20 +116,23 @@ export default {
   },
   data () {
     return {
+      movie: undefinedMovie(),
       loading: true,
       error: false,
-      movie: undefinedMovie(),
-      dialog: false,
-      videoUrl: '/static/video.mp4',
-      videoTitle: '预告片2：终极版'
+      dialog: false
     }
   },
   async mounted () {
-    const movies = await getMovieByType('today')
-    this.movie = movies[Math.floor(Math.random() * 10)]
+    this.movie = await getMovieByType('today')
     this.loading = false
   },
   methods: {
+    async shuffle () {
+      // avoid loading cache
+      this.$store.commit('SET_MOVIE_CACHE', { today: null })
+      this.movie = await getMovieByType('today')
+      this.$store.commit('SET_MOVIE_CACHE', { today: this.movie })
+    },
     goDetail () {
       this.$router.push({ path: `/movie/${this.movie.path}` })
     },

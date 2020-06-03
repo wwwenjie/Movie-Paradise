@@ -19,6 +19,7 @@ const zhCN = {
   share: '分享',
   moreInfo: '更多信息',
   trailer: '预告片',
+  shuffle: '更换封面',
 
   // 搜索
   search: '搜索',

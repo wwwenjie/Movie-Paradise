@@ -16,7 +16,7 @@
           @ended="paused = true"
         >
           <source
-            src="https://movie-paradise.oss-ap-southeast-1.aliyuncs.com/video/trailer.mp4"
+            :src="videoUrl"
             type="video/mp4"
           >
           抱歉，您的浏览器不支持内嵌视频，不过不用担心，你可以 <a href="https://movie-paradise.oss-ap-southeast-1.aliyuncs.com/video/trailer.mp4">下载</a>并用你喜欢的播放器观看!
@@ -28,19 +28,29 @@
             v-class="['display-1','display-2']"
             class="white--text font-weight-bold"
           >
-            我们与恶的距离
+            {{ movie.title }}
           </span>
           <div class="white--text mt-2">
-            <span class="d-block">中国台湾 / 豆瓣 9.5</span>
-            <span class="d-block">剧情 / 社会 / 现实</span>
+            <span class="d-block">{{ movie.info.region }} / {{ $t('douban') }} {{ movie.rating.douban_score }} / IMDb
+              {{ movie.rating.imdb_score }}</span>
+            <span class="d-block">{{ movie.info.genre }}</span>
           </div>
           <v-btn
             class="home-video-info-button mt-2 font-weight-bold"
+            @click="$router.push({ path: `/movie/${movie.path}` })"
           >
             <v-icon left>
               mdi-information-outline
             </v-icon>
             {{ $t('moreInfo') }}
+          </v-btn>
+          <v-btn
+            class="home-video-info-button mt-2 ml-2"
+            @click="shuffle"
+          >
+            <v-icon center>
+              mdi-shuffle-variant
+            </v-icon>
           </v-btn>
         </div>
         <div class="home-video-control">
@@ -70,12 +80,17 @@
 </template>
 
 <script>
+import { undefinedMovie } from '../utils'
+import { getMovieByType } from '../api/movie'
+
 export default {
   name: 'HomeVideo',
   data () {
     return {
+      movie: undefinedMovie(),
       paused: true,
       videoDom: undefined,
+      videoUrl: '',
       icon: 'mdi-volume-off',
       duration: '00:00',
       currentTime: '00:00'
@@ -90,10 +105,22 @@ export default {
       }
     }
   },
-  mounted () {
-    this.videoDom = this.$refs.video
+  async mounted () {
+    await this.init()
   },
   methods: {
+    async init () {
+      this.movie = await getMovieByType('today')
+      this.videoUrl = this.movie.trailers[0].play_url
+      this.videoDom = this.$refs.video
+      this.videoDom.load()
+    },
+    async shuffle () {
+      // avoid loading cache
+      this.$store.commit('SET_MOVIE_CACHE', { today: null })
+      await this.init()
+      this.$store.commit('SET_MOVIE_CACHE', { today: this.movie })
+    },
     statusChange () {
       if (this.paused) {
         this.videoDom.currentTime = 0

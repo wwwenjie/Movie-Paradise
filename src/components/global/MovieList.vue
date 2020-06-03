@@ -28,7 +28,7 @@
             class="ml-2 mb-2"
             @click="goMore"
           >
-            More
+            {{ $t('more') }}
           </v-btn>
         </v-col>
         <v-col

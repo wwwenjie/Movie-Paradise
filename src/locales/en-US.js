@@ -19,6 +19,7 @@ const enUS = {
   share: 'Share',
   moreInfo: 'Info',
   trailer: 'Trailer',
+  shuffle: 'Shuffle',
 
   // search
   search: 'Search',
