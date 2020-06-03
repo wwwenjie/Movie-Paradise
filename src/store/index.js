@@ -34,7 +34,8 @@ export default new Vuex.Store({
       allow: false,
       asked: false
     },
-    genreStore: []
+    genreStore: [],
+    movieCache: {}
   },
   mutations: {
     CALL_MESSAGE (state, config) {
@@ -53,6 +54,11 @@ export default new Vuex.Store({
     },
     SET_GENRE_STORE (state, value) {
       state.genreStore = value
+    },
+    SET_MOVIE_CACHE (state, cache) {
+      for (let [key, value] of Object.entries(cache)) {
+        state.movieCache[key] = value
+      }
     }
   },
   actions: {},
