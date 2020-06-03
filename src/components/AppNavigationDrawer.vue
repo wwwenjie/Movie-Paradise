@@ -9,7 +9,7 @@
     </v-subheader>
     <v-list dense>
       <v-list-item
-        v-for="genre in genreStore"
+        v-for="genre in genres"
         :key="genre.name"
         link
       >
@@ -35,10 +35,10 @@
           >
             {{ $t('more') }}
             <v-btn
-              v-if="genreStore.length > 6"
+              v-if="genres.length > 6"
               outlined
               x-small
-              @click.stop="setGenreStore(genreStore.slice(0,6))"
+              @click.stop="genres = genres.slice(0, 6)"
             >
               {{ $t('clear') }}
             </v-btn>
@@ -74,6 +74,11 @@ export default {
       type: Boolean
     }
   },
+  data () {
+    return {
+      genres: []
+    }
+  },
   computed: {
     drawerVisible: {
       get: function () {
@@ -87,14 +92,13 @@ export default {
   },
   async mounted () {
     if (this.genreStore.length === 0) {
-      this.setGenreStore(await getGenres())
-    } else {
-      this.setGenreStore(this.genreStore.slice(0, 6))
+      this.setGenreStore(await getGenres(100))
     }
+    this.genres = this.genreStore.slice(0, 6)
   },
   methods: {
-    async moreGenre () {
-      this.setGenreStore(this.genreStore.concat(await getGenres(5, this.genreStore.length)))
+    moreGenre () {
+      this.genres = this.genres.concat(this.genreStore.slice(this.genres.length, this.genres.length + 5))
     }
   }
 }

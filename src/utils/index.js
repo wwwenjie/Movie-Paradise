@@ -36,3 +36,7 @@ export function undefinedMovie () {
     tmdb_id: undefined
   }
 }
+
+export async function sleep (ms = 2000) {
+  return new Promise(resolve => setTimeout(resolve, ms))
+}

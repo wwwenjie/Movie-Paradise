@@ -14,13 +14,20 @@
       :title="$t('upcoming')"
       type="coming"
     />
-    <component
-      :is="responsiveMovie"
+    <v-lazy
       v-for="genre in genres"
       :key="genre.name"
-      :title="locale === 'zh-CN' ? genre.name : genre.name_en"
-      :genre="genre.name"
-    />
+      :options="{
+        threshold: .5
+      }"
+      min-height="150"
+    >
+      <component
+        :is="responsiveMovie"
+        :title="locale === 'zh-CN' ? genre.name : genre.name_en"
+        :genre="genre.name"
+      />
+    </v-lazy>
   </v-sheet>
 </template>
 
@@ -55,14 +62,8 @@ export default {
   },
   watch: {
     genreStore: {
-      handler (newValue, oldValue) {
-        // for first load
-        if (!oldValue) {
-          this.genres = newValue
-        } else if (newValue.length > oldValue.length) {
-          // dont remove genre already loaded (user click clear button)
-          this.genres = newValue
-        }
+      handler (newValue) {
+        this.genres = newValue.slice(0, 15)
       },
       immediate: true
     }
