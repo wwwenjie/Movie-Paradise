@@ -3,6 +3,7 @@
     class="mx-auto"
     width="100%"
     tile
+    flat
   >
     <v-container fluid>
       <v-row
@@ -14,12 +15,21 @@
           cols="12"
           class="pb-0"
         >
-          <p
-            v-class="['title','headline']"
-            class="pl-md-2 mb-0"
+          <span
+            class="pl-md-2 pl-lg-3 mb-0 headline"
           >
             {{ title }}
-          </p>
+          </span>
+          <v-btn
+            v-if="$route.path === '/'"
+            outlined
+            small
+            top
+            class="ml-2 mb-2"
+            @click="goMore"
+          >
+            More
+          </v-btn>
         </v-col>
         <v-col
           v-for="(movie,index) in movies"
@@ -161,10 +171,6 @@ export default {
         this.loading = false
       },
       deep: true
-    },
-    genre: async function (genre) {
-      this.movies = await getMovieByGenre(genre)
-      this.loading = false
     }
   },
   async mounted () {
@@ -188,6 +194,14 @@ export default {
   methods: {
     goDetail (path) {
       router.push({ path: `/movie/${path}` })
+    },
+    goMore () {
+      if (this.type) {
+        router.push({ path: '/movies', query: { type: this.type, title: this.title } })
+      }
+      if (this.genre) {
+        router.push({ path: '/movies', query: { genre: this.genre, title: this.title } })
+      }
     },
     posterLoadFail (index) {
       let movie = this.movies[index]

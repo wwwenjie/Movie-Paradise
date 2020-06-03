@@ -106,7 +106,6 @@
 import { undefinedMovie } from '../utils'
 import { getMovieByType } from '../api/movie'
 import MovieDetailVideo from './MovieDetailVideo'
-import router from '../router'
 import fallbackPoster from '../utils/fallbackPoster'
 
 export default {
@@ -131,7 +130,7 @@ export default {
   },
   methods: {
     goDetail () {
-      router.push({ path: `/movie/${this.movie.path}` })
+      this.$router.push({ path: `/movie/${this.movie.path}` })
     },
     posterLoadFail () {
       this.error = fallbackPoster(this.movie)

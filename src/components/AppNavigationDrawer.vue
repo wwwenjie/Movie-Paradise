@@ -12,6 +12,7 @@
         v-for="genre in genres"
         :key="genre.name"
         link
+        @click="goMore(genre)"
       >
         <v-list-item-action />
         <v-list-item-content>
@@ -99,6 +100,14 @@ export default {
   methods: {
     moreGenre () {
       this.genres = this.genres.concat(this.genreStore.slice(this.genres.length, this.genres.length + 5))
+    },
+    goMore (genre) {
+      this.$router.push({ path: '/movies',
+        query: {
+          genre: genre.name,
+          title: this.locale === 'zh-CN' ? genre.name : genre.name_en
+        }
+      })
     }
   }
 }
