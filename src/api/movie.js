@@ -48,6 +48,7 @@ export async function getMovieByType (type, limit = 8, offset = 0) {
     })
     if (offset === 0) {
       store.commit('SET_MOVIE_CACHE', { [type]: movies })
+      store.commit('SET_CACHE_DATE', new Date().getTime())
     }
     return movies
   }

@@ -24,8 +24,10 @@ export default new Vuex.Store({
       type: 'info',
       confirmText: 'Okay',
       declineText: 'No',
-      callbackConfirm: () => {},
-      callbackDecline: () => {},
+      callbackConfirm: () => {
+      },
+      callbackDecline: () => {
+      },
       timeout: 0
     },
     darkMode: true,
@@ -35,7 +37,8 @@ export default new Vuex.Store({
       asked: false
     },
     genreStore: [],
-    movieCache: {}
+    movieCache: {},
+    lastCacheDate: 0
   },
   mutations: {
     CALL_MESSAGE (state, config) {
@@ -59,6 +62,12 @@ export default new Vuex.Store({
       for (let [key, value] of Object.entries(cache)) {
         state.movieCache[key] = value
       }
+    },
+    SET_CACHE_DATE (state, value) {
+      state.lastCacheDate = value
+    },
+    CLEAN_MOVIE_CACHE (state) {
+      state.movieCache = { }
     }
   },
   actions: {},
