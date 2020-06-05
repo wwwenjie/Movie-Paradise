@@ -30,14 +30,14 @@
         :loading="loading"
         :items="titleList"
         :search-input.sync="title"
-        placeholder="Search 60,000+ movies"
+        :placeholder="$t('searchText')"
         prepend-inner-icon="mdi-magnify"
         hide-details
         clearable
         @change="goToDetail"
       >
         <template slot="no-data">
-          <v-list-item>Sorry, cant find this movie</v-list-item>
+          <v-list-item>{{ $t('searchNotFound') }}</v-list-item>
         </template>
       </v-autocomplete>
     </v-row>

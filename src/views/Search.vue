@@ -54,7 +54,7 @@ export default {
       loading: false,
       keyword: '',
       movies: [],
-      promptText: 'Search 60,000+ movies',
+      promptText: this.$t('searchText'),
       timeout: undefined
     }
   },
@@ -62,7 +62,7 @@ export default {
     next()
     this.keyword = ''
     this.movies = []
-    this.promptText = 'Search 60,000+ movies'
+    this.promptText = this.$t('searchText')
   },
   methods: {
     onFocus () {
@@ -71,13 +71,13 @@ export default {
     async search () {
       if (this.keyword.length === 0) {
         this.movies = []
-        this.promptText = 'Search 60,000+ movies'
+        this.promptText = this.$t('searchText')
         return
       }
       this.loading = true
       this.movies = await searchByTitle(this.keyword)
       this.loading = false
-      this.promptText = this.movies.length === 0 ? 'Sorry, cant find this movie' : `Find ${this.movies.length} movies (max: 15)`
+      this.promptText = this.movies.length === 0 ? this.$t('searchNotFound') : this.$t('searchResult', { number: this.movies.length })
     },
     debounce (func, timeout) {
       clearTimeout(this.timeout)

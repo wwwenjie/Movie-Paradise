@@ -27,6 +27,8 @@ const enUS = {
   // search
   search: 'Search',
   searchText: 'Search 60,000+ movies',
+  searchNotFound: 'Sorry, cant find this movie',
+  searchResult: 'Find {number} movies',
 
   // settings
   settings: 'Settings',

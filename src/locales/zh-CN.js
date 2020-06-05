@@ -27,6 +27,8 @@ const zhCN = {
   // 搜索
   search: '搜索',
   searchText: '搜索 60,000+ 部电影',
+  searchNotFound: '抱歉，找不到此电影',
+  searchResult: '找到 {number} 部电影',
 
   // 设置
   settings: '设置',
