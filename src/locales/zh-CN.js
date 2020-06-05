@@ -5,6 +5,7 @@ const zhCN = {
   genre: '分类',
   more: '更多',
   clear: '清除',
+  success: '成功',
   error: {},
   info: {},
 
@@ -20,6 +21,8 @@ const zhCN = {
   moreInfo: '更多信息',
   trailer: '预告片',
   shuffle: '更换封面',
+  relatedMovies: '相关影片',
+  mayLike: '猜你喜欢',
 
   // 搜索
   search: '搜索',
@@ -29,6 +32,8 @@ const zhCN = {
   settings: '设置',
   darkTheme: '夜间模式',
   language: '语言',
+  langChangeInfo: '某些内容可能需要刷新页面',
+  clearCache: '清除缓存',
 
   // 电影列表
   popular: '时下流行',

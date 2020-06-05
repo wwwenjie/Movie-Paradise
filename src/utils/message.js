@@ -10,16 +10,24 @@ export default class Message {
     store.commit('CALL_MESSAGE', config)
   }
 
-  static default (text = 'Default Text') {
-    this.call({ text: text })
+  static info (text = 'Info') {
+    this.call({
+      text: text,
+      confirmText: undefined,
+      declineText: undefined,
+      type: 'info',
+      timeout: 2000
+    })
   }
 
+  // color of success is not cool with our website, not recommended
   static success (text = 'Success') {
     this.call({
       text: text,
       confirmText: 'Okay',
       declineText: undefined,
-      type: 'success'
+      type: 'success',
+      timeout: 2000
     })
   }
 

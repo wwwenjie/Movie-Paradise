@@ -5,6 +5,7 @@ const enUS = {
   genre: 'Genre',
   more: 'More',
   clear: 'Clear',
+  success: 'Success',
   error: {},
   info: {},
 
@@ -20,6 +21,8 @@ const enUS = {
   moreInfo: 'Info',
   trailer: 'Trailer',
   shuffle: 'Shuffle',
+  relatedMovies: 'Related Movies',
+  mayLike: 'You May Also Like',
 
   // search
   search: 'Search',
@@ -29,6 +32,8 @@ const enUS = {
   settings: 'Settings',
   darkTheme: 'Dark Theme',
   language: 'Language',
+  langChangeInfo: 'Some content may require refresh page',
+  clearCache: 'Clear Cache',
 
   // movie list
   popular: 'Popular',

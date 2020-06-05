@@ -80,7 +80,7 @@ export default {
       })
     }
     if (new Date() - 86400000 > this.$store.state.lastCacheDate) {
-      this.$store.commit('CLEAN_MOVIE_CACHE')
+      this.$store.commit('CLEAR_MOVIE_CACHE')
     }
     if (this.genreStore.length === 0) {
       this.setGenreStore(await getGenres(100))

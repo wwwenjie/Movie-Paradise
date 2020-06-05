@@ -144,12 +144,12 @@
     <v-divider />
     <movie-list
       v-if="movie.recs"
-      title="相关影片"
+      :title="$t('relatedMovies')"
       :ids="movie.recs"
     />
     <movie-list
       v-else
-      title="猜你喜欢"
+      :title="$t('mayLike')"
       :genre="movie.info.genre.split('/')[0]"
     />
   </v-sheet>

@@ -11,11 +11,9 @@
         <v-list-item-icon>
           <v-icon>mdi-circle-half-full</v-icon>
         </v-list-item-icon>
-
         <v-list-item-content>
           <v-list-item-title>{{ $t('darkTheme') }}</v-list-item-title>
         </v-list-item-content>
-
         <v-list-item-action>
           <v-switch :input-value="this.$vuetify.theme.dark" />
         </v-list-item-action>
@@ -25,11 +23,9 @@
         <v-list-item-icon>
           <v-icon>mdi-translate</v-icon>
         </v-list-item-icon>
-
         <v-list-item-content>
           <v-list-item-title>{{ $t('language') }}</v-list-item-title>
         </v-list-item-content>
-
         <v-list-item-action>
           <span class="my-auto">{{ this.$i18n.locale }}</span>
           <v-dialog
@@ -56,12 +52,30 @@
           </v-dialog>
         </v-list-item-action>
       </v-list-item>
+
+      <v-list-item @click="clearCache">
+        <v-list-item-icon>
+          <v-icon>mdi-cached</v-icon>
+        </v-list-item-icon>
+        <v-list-item-content>
+          <v-list-item-title>{{ $t('clearCache') }}</v-list-item-title>
+        </v-list-item-content>
+        <v-list-item-action>
+          <v-btn
+            outlined
+            small
+          >
+            {{ $t('clear') }}
+          </v-btn>
+        </v-list-item-action>
+      </v-list-item>
     </v-list>
   </v-sheet>
 </template>
 
 <script>
 import storeMap from '../mixins/storeMap'
+import Message from '../utils/message'
 export default {
   name: 'Setting',
   mixins: [storeMap],
@@ -78,7 +92,12 @@ export default {
       this.setLocate(locale)
       setTimeout(() => {
         this.dialogLanguage = false
+        Message.info(this.$t('langChangeInfo'))
       }, 100)
+    },
+    clearCache () {
+      this.$store.commit('CLEAR_MOVIE_CACHE')
+      Message.info(this.$t('success'))
     }
   }
 }

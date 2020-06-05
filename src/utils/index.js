@@ -40,3 +40,17 @@ export function undefinedMovie () {
 export async function sleep (ms = 2000) {
   return new Promise(resolve => setTimeout(resolve, ms))
 }
+
+export function deepCopy (source) {
+  // ignore Date RegExp DOM
+  if (!source || typeof source !== 'object') {
+    return source
+  }
+  let target = Array.isArray(source) ? [] : {}
+  for (const key in source) {
+    if (source.hasOwnProperty(key)) {
+      target[key] = typeof source[key] !== 'object' ? source[key] : deepCopy(source[key])
+    }
+  }
+  return target
+}

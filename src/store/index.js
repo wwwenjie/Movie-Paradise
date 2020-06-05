@@ -66,7 +66,7 @@ export default new Vuex.Store({
     SET_CACHE_DATE (state, value) {
       state.lastCacheDate = value
     },
-    CLEAN_MOVIE_CACHE (state) {
+    CLEAR_MOVIE_CACHE (state) {
       state.movieCache = { }
     }
   },
