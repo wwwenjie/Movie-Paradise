@@ -8,6 +8,10 @@ const zhCN = {
   success: '成功',
   error: {},
   info: {},
+  UIPMessage: '允许我们创建额外请求来优化我们的网站',
+  sure: '没问题',
+  deny: '拒绝',
+  thanks: '谢谢您！',
 
   // 电影详情
   douban: '豆瓣',
@@ -28,7 +32,7 @@ const zhCN = {
   search: '搜索',
   searchText: '搜索 60,000+ 部电影',
   searchNotFound: '抱歉，找不到此电影',
-  searchResult: '找到 {number} 部电影',
+  searchResult: '找到 {count} 部电影',
 
   // 设置
   settings: '设置',

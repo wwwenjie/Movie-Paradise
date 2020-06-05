@@ -8,6 +8,10 @@ const enUS = {
   success: 'Success',
   error: {},
   info: {},
+  UIPMessage: 'Allow us to create additional requests to better our website',
+  sure: 'Sure',
+  deny: 'Deny',
+  thanks: 'Thank You!',
 
   // movie detail
   douban: 'DouBan',

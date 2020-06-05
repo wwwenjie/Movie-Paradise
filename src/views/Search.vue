@@ -1,5 +1,5 @@
 <template>
-  <!--for pad and down only-->
+  <!--for mobile only-->
   <v-sheet
     width="100%"
     class="fill-height"
@@ -77,7 +77,7 @@ export default {
       this.loading = true
       this.movies = await searchByTitle(this.keyword)
       this.loading = false
-      this.promptText = this.movies.length === 0 ? this.$t('searchNotFound') : this.$t('searchResult', { number: this.movies.length })
+      this.promptText = this.movies.length === 0 ? this.$t('searchNotFound') : this.$t('searchResult', { count: this.movies.length })
     },
     debounce (func, timeout) {
       clearTimeout(this.timeout)

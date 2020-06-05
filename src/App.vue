@@ -62,14 +62,14 @@ export default {
     this.$vuetify.theme.dark = this.darkMode
     if (!this.allowImprove.asked) {
       Message.call({
-        text: 'Allow us to create additional requests to better our website',
-        confirmText: 'SURE',
-        declineText: 'DENY',
+        text: this.$t('UIPMessage'),
+        confirmText: this.$t('sure'),
+        declineText: this.$t('deny'),
         callbackConfirm: () => {
           this.setAllowImprove({ allow: true, asked: true })
           setTimeout(() => {
             Message.call({
-              text: 'Thank You!',
+              text: this.$t('thanks'),
               timeout: 1500
             }, 1000)
           })
