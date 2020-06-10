@@ -7,6 +7,18 @@
       <v-toolbar-title>{{ $t('settings') }}</v-toolbar-title>
     </v-toolbar>
     <v-list>
+      <v-list-item @click="onAccount">
+        <v-list-item-icon>
+          <v-icon>mdi-account</v-icon>
+        </v-list-item-icon>
+        <v-list-item-content>
+          <v-list-item-title>{{ $t('account') }}</v-list-item-title>
+        </v-list-item-content>
+        <v-list-item-action>
+          {{ token ? userName : $t('notLogged') }}
+        </v-list-item-action>
+      </v-list-item>
+
       <v-list-item @click="switchDarkMode">
         <v-list-item-icon>
           <v-icon>mdi-circle-half-full</v-icon>
@@ -70,19 +82,32 @@
         </v-list-item-action>
       </v-list-item>
     </v-list>
+    <account />
   </v-sheet>
 </template>
 
 <script>
 import storeMap from '../mixins/storeMap'
 import Message from '../utils/message'
+import Account from './Account'
 export default {
   name: 'Setting',
+  components: {
+    'account': Account
+  },
   mixins: [storeMap],
   data: () => ({
     dialogLanguage: false
   }),
   methods: {
+    onAccount () {
+      if (this.token) {
+        // todo: account page
+        Message.info('Account page is under developing')
+      } else {
+        this.setPopAccount(true)
+      }
+    },
     switchDarkMode () {
       this.$vuetify.theme.dark = !this.darkMode
       this.setDarkMode(this.$vuetify.theme.dark)

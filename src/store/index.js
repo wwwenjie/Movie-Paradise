@@ -38,7 +38,11 @@ export default new Vuex.Store({
     },
     genreStore: [],
     movieCache: {},
-    lastCacheDate: 0
+    lastCacheDate: 0,
+    popAccount: false,
+    uid: undefined,
+    token: undefined,
+    userName: undefined
   },
   mutations: {
     CALL_MESSAGE (state, config) {
@@ -68,6 +72,14 @@ export default new Vuex.Store({
     },
     CLEAR_MOVIE_CACHE (state) {
       state.movieCache = { }
+    },
+    SET_POP_ACCOUNT (state, value) {
+      state.popAccount = value
+    },
+    SET_LOGIN_DATA (state, value) {
+      state.uid = value.uid
+      state.token = value.token
+      state.userName = value.name
     }
   },
   actions: {},

@@ -7,6 +7,9 @@
       :show="snackCon.show"
       :snack-con="snackCon"
     />
+    <account
+      :dialog="popAccount"
+    />
     <app-navigation-drawer
       v-if="this.$vuetify.breakpoint.mdAndUp"
       :drawer.sync="drawer"
@@ -40,6 +43,7 @@ import AppBar from './components/AppBar'
 import Snackbar from './components/global/Snackbar'
 import storeMap from './mixins/storeMap'
 import Message from './utils/message'
+import Account from './views/Account'
 import { getGenres } from './api/genre'
 
 export default {
@@ -48,7 +52,8 @@ export default {
     'app-navigation-drawer': AppNavigationDrawer,
     'app-navigation-bottom': AppNavigationBottom,
     'app-bar': AppBar,
-    'snackbar': Snackbar
+    'snackbar': Snackbar,
+    'account': Account
   },
   mixins: [storeMap],
 

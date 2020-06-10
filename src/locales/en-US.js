@@ -36,6 +36,8 @@ const enUS = {
 
   // settings
   settings: 'Settings',
+  account: 'Account',
+  notLogged: 'Not Logged',
   darkTheme: 'Dark Theme',
   language: 'Language',
   langChangeInfo: 'Some content may require refresh page',
@@ -45,7 +47,23 @@ const enUS = {
   popular: 'Popular',
   trending: 'Trending',
   newest: 'Newest',
-  upcoming: 'Upcoming'
+  upcoming: 'Upcoming',
+
+  // account
+  login: 'Login',
+  register: 'Register',
+  close: 'close',
+  loginText: 'Login your account for a better experience',
+  registerText: 'Register an account in our website',
+  nickName: 'Nickname',
+  email: 'Email',
+  password: 'Password',
+  confirmPassword: 'Confirm Password',
+  interests: 'Interests',
+  ruleRequired: 'Required',
+  ruleMin: 'At least 8 characters',
+  ruleEmail: 'Invalid e-mail',
+  ruleSame: 'Password must be the same'
 }
 
 export default enUS

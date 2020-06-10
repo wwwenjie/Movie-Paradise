@@ -6,14 +6,20 @@ export default {
     'darkMode',
     'locale',
     'allowImprove',
-    'genreStore'
+    'genreStore',
+    'popAccount',
+    'uid',
+    'token',
+    'userName'
   ]),
   methods: {
     ...mapMutations({
       setDarkMode: 'SET_DARK_MODE',
       setLocate: 'SET_LOCALE',
       setAllowImprove: 'SET_ALLOW_IMPROVE',
-      setGenreStore: 'SET_GENRE_STORE'
+      setGenreStore: 'SET_GENRE_STORE',
+      setPopAccount: 'SET_POP_ACCOUNT',
+      setLoginData: 'SET_LOGIN_DATA'
     }),
     ...mapActions({})
   }

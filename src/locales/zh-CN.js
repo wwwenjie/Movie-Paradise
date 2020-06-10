@@ -36,6 +36,8 @@ const zhCN = {
 
   // 设置
   settings: '设置',
+  account: '账号',
+  notLogged: '未登陆',
   darkTheme: '夜间模式',
   language: '语言',
   langChangeInfo: '某些内容可能需要刷新页面',
@@ -45,7 +47,23 @@ const zhCN = {
   popular: '时下流行',
   trending: '最近热门',
   newest: '最新发布',
-  upcoming: '即将上线'
+  upcoming: '即将上线',
+
+  // account
+  login: '登陆',
+  register: '注册',
+  close: '关闭',
+  loginText: '登陆您的账号以获取最佳体验',
+  registerText: '在我们网站注册账号',
+  nickName: '用户名',
+  email: '电子邮箱',
+  password: '密码',
+  confirmPassword: '确认密码',
+  interests: '兴趣',
+  ruleRequired: '必填项',
+  ruleMin: '至少 8 个字符',
+  ruleEmail: '无效的电子邮箱',
+  ruleSame: '两次密码必须一致'
 }
 
 export default zhCN
