@@ -2,14 +2,22 @@
   <v-app
     id="inspire"
   >
-    <!--global snackbar-->
+    <!--global components start-->
+    <loading
+      v-if="loadingCon.loading"
+      :loading="loadingCon.loading"
+      :timeout="loadingCon.timeout"
+    />
     <snackbar
+      v-if="snackCon.show"
       :show="snackCon.show"
       :snack-con="snackCon"
     />
     <account
+      v-if="popAccount"
       :dialog="popAccount"
     />
+    <!--global components end-->
     <app-navigation-drawer
       v-if="this.$vuetify.breakpoint.mdAndUp"
       :drawer.sync="drawer"
@@ -45,6 +53,7 @@ import storeMap from './mixins/storeMap'
 import Message from './utils/message'
 import Account from './views/Account'
 import { getGenres } from './api/genre'
+import Loading from './components/global/Loading'
 
 export default {
   name: 'MovieParadise',
@@ -52,6 +61,7 @@ export default {
     'app-navigation-drawer': AppNavigationDrawer,
     'app-navigation-bottom': AppNavigationBottom,
     'app-bar': AppBar,
+    'loading': Loading,
     'snackbar': Snackbar,
     'account': Account
   },

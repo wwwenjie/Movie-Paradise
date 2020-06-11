@@ -64,7 +64,7 @@ export default {
     reset () {
       this.$store.commit('CALL_MESSAGE', {
         show: false,
-        text: 'Default Text',
+        text: undefined,
         type: 'info',
         confirmText: undefined,
         declineText: undefined,

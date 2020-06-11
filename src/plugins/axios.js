@@ -27,8 +27,7 @@ service.interceptors.request.use(
     return config
   },
   error => {
-    Message.error('Unknown Error Occurred')
-    console.log(error)
+    Message.error(error.message)
     return Promise.reject(error)
   }
 )
@@ -40,11 +39,10 @@ service.interceptors.response.use(
   },
   // custom error will be handled here
   error => {
-    if (error.response.data.message) {
+    if (error.response) {
       Message.error(error.response.data.message)
     } else {
-      Message.error('Unknown Error Occurred')
-      console.log(error)
+      Message.error(error.message)
     }
     return Promise.reject(error)
   }

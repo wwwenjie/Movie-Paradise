@@ -19,16 +19,20 @@ export default new Vuex.Store({
   ],
   state: {
     snackCon: {
-      show: undefined,
-      text: 'Default Text',
+      show: false,
+      text: undefined,
       type: 'info',
-      confirmText: 'Okay',
-      declineText: 'No',
+      confirmText: undefined,
+      declineText: undefined,
       callbackConfirm: () => {
       },
       callbackDecline: () => {
       },
       timeout: 0
+    },
+    loadingCon: {
+      loading: false,
+      timeout: 10000
     },
     darkMode: true,
     locale: 'zh-CN',
@@ -49,6 +53,10 @@ export default new Vuex.Store({
       for (let [key, value] of Object.entries(config)) {
         state.snackCon[key] = value
       }
+    },
+    REVERSE_LOADING (state, timeout = 10000) {
+      state.loadingCon.loading = !state.loadingCon.loading
+      state.loadingCon.timeout = timeout
     },
     SET_DARK_MODE (state, value) {
       state.darkMode = value

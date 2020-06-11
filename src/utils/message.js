@@ -1,8 +1,10 @@
 import store from '../store'
 
 export default class Message {
-  // function for setting more params
-  // show,text,closeText,type,timeout
+  /**
+   * show: boolean, text: string, type: string, confirmText: string, declineText:string
+   * callbackConfirm: function, callbackDecline: function, timeout: number
+   */
   static call (config) {
     if (config.show === undefined) {
       config.show = true
@@ -20,13 +22,14 @@ export default class Message {
     })
   }
 
-  // color of success is not cool with our website, not recommended
+  // alias of info
   static success (text = 'Success') {
+    console.log(this)
     this.call({
       text: text,
-      confirmText: 'Okay',
+      confirmText: undefined,
       declineText: undefined,
-      type: 'success',
+      type: 'info',
       timeout: 2000
     })
   }
@@ -34,7 +37,7 @@ export default class Message {
   static error (text = 'Error') {
     this.call({
       text: text,
-      confirmText: 'Okay',
+      confirmText: undefined,
       declineText: undefined,
       type: 'error'
     })
