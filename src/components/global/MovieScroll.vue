@@ -65,6 +65,18 @@
             </v-scale-transition>
           </template>
         </v-img>
+        <div
+          ref="load"
+          class="d-flex align-center"
+        >
+          <v-progress-circular
+            :size="70"
+            :width="7"
+            indeterminate
+            color="red"
+            class="mx-4 my-auto"
+          />
+        </div>
       </div>
     </v-skeleton-loader>
     <v-expand-transition>
@@ -106,24 +118,38 @@ export default {
       loading: true,
       active: undefined,
       error: [false],
-      movies: [undefinedMovie()]
+      movies: [undefinedMovie()],
+      limit: 6,
+      offset: 0
     }
   },
   async mounted () {
-    const limit = 6
-    this.error = [...Array(limit)].map(() => false)
-    this.movies = [...Array(limit)].map(() => undefinedMovie())
-    if (this.type) {
-      this.movies = await getMovieByType(this.type, limit)
-    } else {
-      this.movies = await getMovieByGenre(this.genre, limit)
-    }
+    this.error = [...Array(this.limit)].map(() => false)
+    this.movies = [...Array(this.limit)].map(() => undefinedMovie())
     this.loading = false
+    this.movies = await this.getMovies()
+    await new Promise(resolve => setTimeout(resolve, 500))
+    const intersectionObserver = new IntersectionObserver(
+      async entries => {
+        if (entries[0].intersectionRatio <= 0) return
+        this.offset += this.limit
+        this.movies = this.movies.concat(await this.getMovies())
+      })
+    this.$nextTick(() => {
+      intersectionObserver.observe(this.$refs.load)
+    })
   },
   methods: {
     posterLoadFail (index) {
       let movie = this.movies[index]
       this.$set(this.error, index, fallbackPoster(movie))
+    },
+    getMovies () {
+      if (this.type) {
+        return getMovieByType(this.type, this.limit, this.offset)
+      } else {
+        return getMovieByGenre(this.genre, this.limit, this.offset)
+      }
     }
   }
 }
