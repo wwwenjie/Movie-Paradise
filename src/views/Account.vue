@@ -163,14 +163,15 @@ export default {
       if (this.loginMode) {
         const res = await setLoading(login(this.user))
         this.setLoginData(res)
-        Message.info('Success')
+        Message.success()
         setTimeout(() => {
           this.setPopAccount(false)
+          this.$router.push({ path: '/account' })
         }, 500)
       } else {
         if (this.confirmPassword === this.user.password) {
           await register(this.user)
-          Message.info('Success')
+          Message.success()
           setTimeout(() => {
             this.$refs.login.$el.click()
           }, 1000)

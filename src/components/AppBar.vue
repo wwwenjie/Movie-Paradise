@@ -46,14 +46,13 @@
       outlined
       @click="onAccount"
     >
-      {{ $store.state.token ? $store.state.userName : $t('notLogged') }}
+      {{ $store.state.token ? $store.state.userStore.name : $t('notLogged') }}
     </v-btn>
   </v-app-bar>
 </template>
 
 <script>
 import { getMovieByType, searchByTitle } from '../api/movie'
-import Message from '../utils/message'
 
 export default {
   name: 'AppBar',
@@ -115,8 +114,7 @@ export default {
     },
     onAccount () {
       if (this.$store.state.token) {
-        // todo: account page
-        Message.info('Account page is under developing')
+        this.$router.push({ path: '/account' })
       } else {
         this.$store.commit('SET_POP_ACCOUNT', true)
       }

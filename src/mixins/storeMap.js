@@ -9,9 +9,8 @@ export default {
     'allowImprove',
     'genreStore',
     'popAccount',
-    'uid',
     'token',
-    'userName'
+    'userStore'
   ]),
   methods: {
     ...mapMutations({
@@ -22,7 +21,8 @@ export default {
       setAllowImprove: 'SET_ALLOW_IMPROVE',
       setGenreStore: 'SET_GENRE_STORE',
       setPopAccount: 'SET_POP_ACCOUNT',
-      setLoginData: 'SET_LOGIN_DATA'
+      setLoginData: 'SET_LOGIN_DATA',
+      clearLoginData: 'CLEAR_LOGIN_DATA'
     }),
     ...mapActions({})
   }

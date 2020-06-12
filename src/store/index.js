@@ -44,9 +44,8 @@ export default new Vuex.Store({
     movieCache: {},
     lastCacheDate: 0,
     popAccount: false,
-    uid: undefined,
     token: undefined,
-    userName: undefined
+    userStore: undefined
   },
   mutations: {
     CALL_MESSAGE (state, config) {
@@ -87,10 +86,13 @@ export default new Vuex.Store({
     SET_POP_ACCOUNT (state, value) {
       state.popAccount = value
     },
-    SET_LOGIN_DATA (state, value) {
-      state.uid = value.uid
-      state.token = value.token
-      state.userName = value.name
+    SET_LOGIN_DATA (state, token) {
+      state.token = token
+      state.userStore = JSON.parse(atob(token.split('.')[1]))
+    },
+    CLEAR_LOGIN_DATA (state) {
+      state.token = undefined
+      state.userStore = undefined
     }
   },
   actions: {},

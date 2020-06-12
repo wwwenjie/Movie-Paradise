@@ -15,7 +15,7 @@
           <v-list-item-title>{{ $t('account') }}</v-list-item-title>
         </v-list-item-content>
         <v-list-item-action>
-          {{ token ? userName : $t('notLogged') }}
+          {{ token ? userStore.name : $t('notLogged') }}
         </v-list-item-action>
       </v-list-item>
 
@@ -45,7 +45,7 @@
             max-width="300px"
           >
             <v-card>
-              <v-card-title>Select Language</v-card-title>
+              <v-card-title>{{ $t('selectLanguage') }}</v-card-title>
               <v-divider />
               <v-card-text class="pa-0">
                 <v-list>
@@ -102,8 +102,7 @@ export default {
   methods: {
     onAccount () {
       if (this.token) {
-        // todo: account page
-        Message.info('Account page is under developing')
+        this.$router.push({ path: '/account' })
       } else {
         this.setPopAccount(true)
       }
@@ -122,7 +121,7 @@ export default {
     },
     clearCache () {
       this.$store.commit('CLEAR_MOVIE_CACHE')
-      Message.info(this.$t('success'))
+      Message.success()
     }
   }
 }

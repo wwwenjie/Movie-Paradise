@@ -12,6 +12,7 @@ const enUS = {
   sure: 'Sure',
   deny: 'Deny',
   thanks: 'Thank You!',
+  todo: 'Sorry, this feature is not yet implemented, but we will complete it ASAP',
 
   // movie detail
   douban: 'DouBan',
@@ -20,7 +21,7 @@ const enUS = {
   name: 'Name',
   region: 'Origin',
   detail: 'Detail',
-  myList: 'My List',
+  addList: 'My List',
   share: 'Share',
   moreInfo: 'Info',
   trailer: 'Trailer',
@@ -68,7 +69,11 @@ const enUS = {
   optional: 'Optional',
 
   // account detail
-  logout: 'Logout'
+  logout: 'Logout',
+  myList: 'My List',
+  myLike: 'My Like',
+  watched: 'Watched',
+  deleteAccount: 'Delete Account'
 }
 
 export default enUS

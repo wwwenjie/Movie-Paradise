@@ -15,3 +15,9 @@ export function register (user) {
     data: user
   })
 }
+
+export function getUserByUid (uid) {
+  return request({
+    url: `/users/${uid}`
+  })
+}

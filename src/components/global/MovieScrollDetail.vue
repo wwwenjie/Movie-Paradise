@@ -19,7 +19,7 @@
         <v-icon class="d-block">
           mdi-plus
         </v-icon>
-        <span class="caption">{{ $t('myList') }}</span>
+        <span class="caption">{{ $t('addList') }}</span>
       </v-col>
       <v-col
         cols="5"

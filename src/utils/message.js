@@ -23,7 +23,7 @@ export default class Message {
   }
 
   // alias of info
-  static success (text = 'Success') {
+  static success (text = this.getDefaultSuccessText()) {
     this.call({
       text: text,
       confirmText: undefined,
@@ -33,7 +33,7 @@ export default class Message {
     })
   }
 
-  static error (text = 'Error') {
+  static error (text = this.getDefaultErrorText()) {
     this.call({
       text: text,
       confirmText: undefined,
@@ -41,5 +41,21 @@ export default class Message {
       type: 'error',
       timeout: 2000
     })
+  }
+
+  static getDefaultSuccessText () {
+    if (store.state.locale === 'zh-CN') {
+      return '成功'
+    } else {
+      return 'Success'
+    }
+  }
+
+  static getDefaultErrorText () {
+    if (store.state.locale === 'zh-CN') {
+      return '错误'
+    } else {
+      return 'Error'
+    }
   }
 }

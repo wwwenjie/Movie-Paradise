@@ -5,6 +5,7 @@ import Search from '../views/Search'
 import Setting from '../views/Settings'
 import MovieDetail from '../views/MovieDetail'
 import MovieMore from '../views/MovieMore'
+import AccountDetail from '../views/AccountDetail'
 
 Vue.use(VueRouter)
 
@@ -33,6 +34,11 @@ const routes = [
   {
     path: '/movies',
     component: MovieMore,
+    props: true
+  },
+  {
+    path: '/account',
+    component: AccountDetail,
     props: true
   },
   {

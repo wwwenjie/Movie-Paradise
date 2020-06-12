@@ -12,6 +12,7 @@ const zhCN = {
   sure: '没问题',
   deny: '拒绝',
   thanks: '谢谢您！',
+  todo: '很抱歉，该功能暂未实现，不过我们将尽快完成',
 
   // 电影详情
   douban: '豆瓣',
@@ -20,7 +21,7 @@ const zhCN = {
   name: '片名',
   region: '产地',
   detail: '详情',
-  myList: '加入片库',
+  addList: '加入片库',
   share: '分享',
   moreInfo: '更多信息',
   trailer: '预告片',
@@ -68,7 +69,11 @@ const zhCN = {
   optional: '可选项',
 
   // 账号详情
-  logout: '登出'
+  logout: '登出',
+  myList: '列表',
+  myLike: '收藏',
+  watched: '看过',
+  deleteAccount: '注销账号'
 }
 
 export default zhCN
