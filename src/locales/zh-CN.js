@@ -70,10 +70,18 @@ const zhCN = {
 
   // 账号详情
   logout: '登出',
+  myComments: '我的评论',
   myList: '列表',
   myLike: '收藏',
   watched: '看过',
-  deleteAccount: '注销账号'
+  deleteAccount: '注销账号',
+
+  // 账号详情修改
+  editAccount: '修改账号',
+  desc: '简介',
+  edit: '修改',
+  save: '保存',
+  currentPassword: '当前密码'
 }
 
 export default zhCN

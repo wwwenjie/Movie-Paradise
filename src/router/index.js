@@ -6,6 +6,7 @@ import Setting from '../views/Settings'
 import MovieDetail from '../views/MovieDetail'
 import MovieMore from '../views/MovieMore'
 import AccountDetail from '../views/AccountDetail'
+import AccountDetailEdit from '../views/AccountDetailEdit'
 
 Vue.use(VueRouter)
 
@@ -39,6 +40,11 @@ const routes = [
   {
     path: '/account',
     component: AccountDetail,
+    props: true
+  },
+  {
+    path: '/account/edit',
+    component: AccountDetailEdit,
     props: true
   },
   {

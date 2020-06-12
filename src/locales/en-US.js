@@ -70,10 +70,18 @@ const enUS = {
 
   // account detail
   logout: 'Logout',
+  myComments: 'My Comments',
   myList: 'My List',
   myLike: 'My Like',
   watched: 'Watched',
-  deleteAccount: 'Delete Account'
+  deleteAccount: 'Delete Account',
+
+  // account detail edit
+  editAccount: 'Edit Account',
+  desc: 'Description',
+  edit: 'Edit',
+  save: 'Save',
+  currentPassword: 'Current Password'
 }
 
 export default enUS

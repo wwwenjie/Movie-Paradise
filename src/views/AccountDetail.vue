@@ -18,13 +18,14 @@
     </v-toolbar>
     <v-list>
       <v-list-item
-        @click="todo"
+        @click="$router.push({ path: '/account/edit' })"
       >
         <v-list-item-avatar color="grey" />
         <v-list-item-content>
           <v-list-item-title class="headline">
             {{ userStore ? userStore.name : user.name }}
           </v-list-item-title>
+          <!--todo: refactor userStore to store all user data(from request, not jwt), now the desc doesn't work after update-->
           <v-list-item-subtitle>{{ userStore ? userStore.desc : user.desc }}</v-list-item-subtitle>
         </v-list-item-content>
         <v-list-item-action>
@@ -62,6 +63,11 @@ export default {
     return {
       user: undefined,
       lists: [
+        {
+          text: this.$t('myComments'),
+          icon: 'mdi-comment-text-multiple ',
+          method: 'todo'
+        },
         {
           text: this.$t('myList'),
           icon: 'mdi-view-list',
