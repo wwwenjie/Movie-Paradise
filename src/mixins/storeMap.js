@@ -15,7 +15,8 @@ export default {
   ]),
   methods: {
     ...mapMutations({
-      reverseLoading: 'REVERSE_LOADING',
+      callLoading: 'CALL_LOADING',
+      closeLoading: 'CLOSE_LOADING',
       setDarkMode: 'SET_DARK_MODE',
       setLocate: 'SET_LOCALE',
       setAllowImprove: 'SET_ALLOW_IMPROVE',

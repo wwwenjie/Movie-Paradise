@@ -32,7 +32,7 @@ export default new Vuex.Store({
     },
     loadingCon: {
       loading: false,
-      timeout: 10000
+      timeout: 8000
     },
     darkMode: true,
     locale: 'zh-CN',
@@ -54,9 +54,12 @@ export default new Vuex.Store({
         state.snackCon[key] = value
       }
     },
-    REVERSE_LOADING (state, timeout = 10000) {
-      state.loadingCon.loading = !state.loadingCon.loading
+    CALL_LOADING (state, timeout = 8000) {
+      state.loadingCon.loading = true
       state.loadingCon.timeout = timeout
+    },
+    CLOSE_LOADING (state) {
+      state.loadingCon.loading = false
     },
     SET_DARK_MODE (state, value) {
       state.darkMode = value

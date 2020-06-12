@@ -86,8 +86,12 @@
                 v-model="user.interests"
                 :items="genreStore.map(genre=>{
                   return locale === 'zh-CN' ? genre.name : genre.name_en
-                }).slice(0,10)"
+                }).slice(0,20)"
                 :label="$t('interests')"
+                :hint="$t('optional')"
+                persistent-hint
+                disable-lookup
+                chips
                 multiple
               />
             </v-col>
@@ -121,6 +125,7 @@
 import storeMap from '../mixins/storeMap'
 import { login, register } from '../api/user'
 import Message from '../utils/message'
+import { setLoading } from '../utils'
 
 export default {
   name: 'Account',
@@ -156,10 +161,12 @@ export default {
   methods: {
     async onSubmit () {
       if (this.loginMode) {
-        const res = await login(this.user)
+        const res = await setLoading(login(this.user))
         this.setLoginData(res)
         Message.info('Success')
-        setTimeout(() => { this.setPopAccount(false) }, 1000)
+        setTimeout(() => {
+          this.setPopAccount(false)
+        }, 500)
       } else {
         if (this.confirmPassword === this.user.password) {
           await register(this.user)

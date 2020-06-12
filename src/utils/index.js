@@ -1,3 +1,5 @@
+import store from '../store'
+
 // return a definedMovie detail structure
 // detail from `https://api.dianying.fm/movies/${title_en}` or `https://api.dianying.fm/movies?ids=${id}`
 export function undefinedMovie () {
@@ -53,4 +55,23 @@ export function deepCopy (source) {
     }
   }
   return target
+}
+
+/**
+ * @param promise: Promise<*>
+ * @param timeout: number, max loading time
+ * @return res: Promise<res>
+ */
+export async function setLoading (promise, timeout = 8000) {
+  // if promise is resolved in 500 ms, dont call loading
+  const pid = setTimeout(() => {
+    store.commit('CALL_LOADING', timeout)
+  }, 500)
+  try {
+    return await promise
+    // always clear timeout and close loading, error will be handled in axios
+  } finally {
+    clearTimeout(pid)
+    store.commit('CLOSE_LOADING')
+  }
 }

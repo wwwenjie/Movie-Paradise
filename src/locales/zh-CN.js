@@ -40,6 +40,7 @@ const zhCN = {
   notLogged: '未登陆',
   darkTheme: '夜间模式',
   language: '语言',
+  selectLanguage: '选择语言',
   langChangeInfo: '某些内容可能需要刷新页面',
   clearCache: '清除缓存',
 
@@ -63,7 +64,11 @@ const zhCN = {
   ruleRequired: '必填项',
   ruleMin: '至少 8 个字符',
   ruleEmail: '无效的电子邮箱',
-  ruleSame: '两次密码必须一致'
+  ruleSame: '两次密码必须一致',
+  optional: '可选项',
+
+  // 账号详情
+  logout: '登出'
 }
 
 export default zhCN

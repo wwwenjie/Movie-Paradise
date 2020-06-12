@@ -40,6 +40,7 @@ const enUS = {
   notLogged: 'Not Logged',
   darkTheme: 'Dark Theme',
   language: 'Language',
+  selectLanguage: 'Select Language',
   langChangeInfo: 'Some content may require refresh page',
   clearCache: 'Clear Cache',
 
@@ -63,7 +64,11 @@ const enUS = {
   ruleRequired: 'Required',
   ruleMin: 'At least 8 characters',
   ruleEmail: 'Invalid e-mail',
-  ruleSame: 'Password must be the same'
+  ruleSame: 'Password must be the same',
+  optional: 'Optional',
+
+  // account detail
+  logout: 'Logout'
 }
 
 export default enUS

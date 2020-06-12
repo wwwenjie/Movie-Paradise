@@ -3,6 +3,7 @@
 
 import axios from 'axios'
 import Message from '../utils/message'
+import store from '../store'
 
 // create an axios instance
 const service = axios.create({
@@ -20,13 +21,14 @@ service.interceptors.request.use(
   config => {
     // add auth
     if (localStorage.getItem('vuex')) {
-      if (JSON.parse(localStorage.getItem('vuex')).token) {
-        config.headers.Authorization = 'Bearer ' + JSON.parse(localStorage.getItem('vuex')).token
+      if (store.state.token) {
+        config.headers.Authorization = 'Bearer ' + store.state.token
       }
     }
     return config
   },
   error => {
+    store.commit('CLOSE_LOADING')
     Message.error(error.message)
     return Promise.reject(error)
   }
@@ -39,6 +41,7 @@ service.interceptors.response.use(
   },
   // custom error will be handled here
   error => {
+    store.commit('CLOSE_LOADING')
     if (error.response) {
       Message.error(error.response.data.message)
     } else {

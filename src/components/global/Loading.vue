@@ -1,6 +1,8 @@
 <template>
+  <!--higher priority than dialog-->
   <v-overlay
     :value="loading"
+    style="z-index: 999"
   >
     <v-progress-circular
       :size="70"
@@ -12,8 +14,6 @@
 </template>
 
 <script>
-import Message from '../../utils/message'
-
 export default {
   name: 'Loading',
   props: {
@@ -43,8 +43,7 @@ export default {
     }, 1500)
     // auto close when time out
     setTimeout(() => {
-      Message.error('time out')
-      this.$store.commit('REVERSE_LOADING')
+      this.$store.commit('CLOSE_LOADING')
     }, this.timeout)
   },
   destroyed  () {

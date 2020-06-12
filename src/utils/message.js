@@ -24,7 +24,6 @@ export default class Message {
 
   // alias of info
   static success (text = 'Success') {
-    console.log(this)
     this.call({
       text: text,
       confirmText: undefined,
@@ -39,7 +38,8 @@ export default class Message {
       text: text,
       confirmText: undefined,
       declineText: undefined,
-      type: 'error'
+      type: 'error',
+      timeout: 2000
     })
   }
 }
