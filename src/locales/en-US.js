@@ -67,6 +67,7 @@ const enUS = {
   ruleEmail: 'Invalid e-mail',
   ruleSame: 'Password must be the same',
   optional: 'Optional',
+  validFail: 'Form verification failed',
 
   // account detail
   logout: 'Logout',

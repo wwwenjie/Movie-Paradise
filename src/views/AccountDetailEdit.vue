@@ -68,6 +68,7 @@
         <v-card-text>
           <v-text-field
             v-if="card.requireCheck"
+            v-model="card.currentPassword"
             clearable
             :placeholder="$t('currentPassword')"
           />
@@ -94,6 +95,7 @@
 import storeMap from '../mixins/storeMap'
 import Message from '../utils/message'
 import { getUserByUid, updateUser } from '../api/user'
+import { setLoading } from '../utils'
 
 // todo: upload avatar
 export default {
@@ -106,7 +108,8 @@ export default {
         title: '',
         value: '',
         update: '',
-        requireCheck: false
+        requireCheck: false,
+        currentPassword: ''
       },
       user: {
         name: '',
@@ -148,11 +151,11 @@ export default {
       this.card.requireCheck = list.value === 'email' || list.value === 'password'
       this.dialog = true
     },
-    // todo: check password (backend)
     async onSave () {
-      await updateUser({
-        [this.card.update]: this.card.value
-      })
+      await setLoading(updateUser({
+        [this.card.update]: this.card.value,
+        currentPassword: this.card.currentPassword
+      }))
       Message.success()
       this.user[this.card.update] = this.card.value
       this.dialog = false

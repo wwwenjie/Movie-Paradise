@@ -67,6 +67,7 @@ const zhCN = {
   ruleEmail: '无效的电子邮箱',
   ruleSame: '两次密码必须一致',
   optional: '可选项',
+  validFail: '表单验证未通过',
 
   // 账号详情
   logout: '登出',

@@ -31,8 +31,12 @@
             {{ movie.title }}
           </span>
           <div class="white--text mt-2">
-            <span class="d-block">{{ movie.info.region }} / {{ $t('douban') }} {{ movie.rating.douban_score }} / IMDb
-              {{ movie.rating.imdb_score }}</span>
+            <span class="d-block">{{ movie.info.region }}
+              <span v-if="movie.rating.douban_score">
+                / {{ $t('douban') }} {{ movie.rating.douban_score }}</span>
+              <span v-if="movie.rating.imdb_score">
+                / IMDb {{ movie.rating.imdb_score }} </span>
+            </span>
             <span class="d-block">{{ movie.info.genre }}</span>
           </div>
           <v-btn

@@ -3,7 +3,7 @@
     v-model="dialog"
     persistent
     :fullscreen="$vuetify.breakpoint.xsOnly"
-    max-width="600px"
+    max-width="500px"
   >
     <v-card>
       <v-tabs
@@ -30,72 +30,53 @@
       </v-card-title>
       <v-card-text>
         <v-container>
-          <v-row>
-            <v-col
-              v-show="!loginMode"
-              cols="12"
-            >
-              <v-text-field
-                v-model="user.name"
-                :label="$t('nickName')"
-                :rules="[rules.required]"
-                counter
-                maxlength="25"
-              />
-            </v-col>
-            <v-col
-              cols="12"
-            >
-              <v-text-field
-                v-model="user.email"
-                validate-on-blur
-                :label="$t('email')"
-                :rules="[rules.required, rules.email]"
-              />
-            </v-col>
-            <v-col
-              cols="12"
-            >
-              <v-text-field
-                v-model="user.password"
-                :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
-                :rules="[rules.required, rules.min]"
-                :type="showPassword ? 'text' : 'password'"
-                :label="$t('password')"
-                @click:append="showPassword = !showPassword"
-              />
-            </v-col>
-            <v-col
-              v-show="!loginMode"
-              cols="12"
-            >
-              <v-text-field
-                v-model="confirmPassword"
-                :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
-                :rules="[rules.required, rules.min, rules.same]"
-                :type="showPassword ? 'text' : 'password'"
-                :label="$t('confirmPassword')"
-                @click:append="showPassword = !showPassword"
-              />
-            </v-col>
-            <v-col
-              v-show="!loginMode"
-              cols="12"
-            >
-              <v-autocomplete
-                v-model="user.interests"
-                :items="genreStore.map(genre=>{
-                  return locale === 'zh-CN' ? genre.name : genre.name_en
-                }).slice(0,20)"
-                :label="$t('interests')"
-                :hint="$t('optional')"
-                persistent-hint
-                disable-lookup
-                chips
-                multiple
-              />
-            </v-col>
-          </v-row>
+          <v-form v-model="valid">
+            <v-text-field
+              v-if="!loginMode"
+              v-model="user.name"
+              :label="$t('nickName')"
+              :rules="[rules.required]"
+              counter
+              maxlength="25"
+            />
+            <v-text-field
+              v-model="user.email"
+              validate-on-blur
+              :label="$t('email')"
+              :rules="[rules.required, rules.email]"
+            />
+            <v-text-field
+              v-model="user.password"
+              :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+              :rules="[rules.required, rules.min]"
+              :type="showPassword ? 'text' : 'password'"
+              :label="$t('password')"
+              :validate-on-blur="loginMode"
+              @click:append="showPassword = !showPassword"
+            />
+            <v-text-field
+              v-if="!loginMode"
+              v-model="confirmPassword"
+              :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+              :rules="[rules.required, rules.min, rules.same]"
+              :type="showPassword ? 'text' : 'password'"
+              :label="$t('confirmPassword')"
+              @click:append="showPassword = !showPassword"
+            />
+            <v-combobox
+              v-if="!loginMode"
+              v-model="user.interests"
+              :items="genreStore.map(genre=>{
+                return locale === 'zh-CN' ? genre.name : genre.name_en
+              }).slice(0,20)"
+              :label="$t('interests')"
+              :hint="$t('optional')"
+              persistent-hint
+              disable-lookup
+              chips
+              multiple
+            />
+          </v-form>
         </v-container>
       </v-card-text>
       <v-card-actions class="mx-6">
@@ -142,17 +123,19 @@ export default {
         name: '',
         email: '',
         password: '',
-        interests: undefined
+        interests: ''
       },
+      valid: false,
       confirmPassword: '',
       loginMode: true,
       showPassword: false,
+      index: 0,
       rules: {
         required: value => !!value || this.$t('ruleRequired'),
         min: value => value.length >= 8 || this.$t('ruleMin'),
-        email: value => {
+        email: () => {
           const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-          return pattern.test(value) || this.$t('ruleEmail')
+          return pattern.test(this.user.email) || this.$t('ruleEmail')
         },
         same: value => value === this.user.password || this.$t('ruleSame')
       }
@@ -160,6 +143,10 @@ export default {
   },
   methods: {
     async onSubmit () {
+      if (!this.valid) {
+        Message.error(this.$t('validFail'))
+        return
+      }
       if (this.loginMode) {
         const res = await setLoading(login(this.user))
         this.setLoginData(res)
@@ -169,15 +156,11 @@ export default {
           this.$router.push({ path: '/account' })
         }, 500)
       } else {
-        if (this.confirmPassword === this.user.password) {
-          await register(this.user)
-          Message.success()
-          setTimeout(() => {
-            this.$refs.login.$el.click()
-          }, 1000)
-        } else {
-          Message.error('Password must be the same')
-        }
+        await register(this.user)
+        Message.success()
+        setTimeout(() => {
+          this.$refs.login.$el.click()
+        }, 1000)
       }
     }
   }
