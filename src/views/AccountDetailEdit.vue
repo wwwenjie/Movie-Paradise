@@ -78,11 +78,8 @@
             :placeholder="card.title"
           />
         </v-card-text>
-        <v-card-actions class="justify-end">
-          <v-btn
-            class="mx-4"
-            @click="onSave"
-          >
+        <v-card-actions class="justify-end mx-4">
+          <v-btn @click="onSave">
             {{ $t('save') }}
           </v-btn>
         </v-card-actions>

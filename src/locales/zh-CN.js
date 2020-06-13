@@ -82,7 +82,14 @@ const zhCN = {
   desc: '简介',
   edit: '修改',
   save: '保存',
-  currentPassword: '当前密码'
+  currentPassword: '当前密码',
+
+  // 评论
+  comments: '评论',
+  moreComments: '更多评论',
+  noComments: '暂无评论，点击右下方按钮新建一条吧',
+  createComment: '新建评论',
+  howDoYouThink: '你觉得这部电影怎么样？'
 }
 
 export default zhCN

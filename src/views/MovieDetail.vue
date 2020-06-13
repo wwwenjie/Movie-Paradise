@@ -62,7 +62,7 @@
     <v-row
       no-gutters
       justify="space-around"
-      class="movie-detail-index"
+      class="movie-detail-index mx-0 mx-sm-8"
     >
       <v-col
         cols="12"
@@ -80,7 +80,7 @@
           depressed
           :disabled="emptyTrailers"
           width="90%"
-          class="mt-4 red"
+          class="mt-4 red white--text"
           @click="dialog = true"
         >
           <v-icon left>
@@ -141,16 +141,14 @@
         <span class="caption grey--text">加入喜欢</span>
       </v-col>
     </v-row>
-    <v-divider />
-    <movie-list
-      v-if="movie.recs"
-      :title="$t('relatedMovies')"
-      :ids="movie.recs"
+    <movie-detail-comment
+      :show-btn.sync="showBtn"
+      :movie-id="movie._id"
     />
     <movie-list
-      v-else
-      :title="$t('mayLike')"
-      :genre="movie.info.genre.split('/')[0]"
+      :title="movie.recs ? $t('relatedMovies') : $t('mayLike')"
+      :ids="movie.recs ? movie.recs : null"
+      :genre="movie.recs ? null : movie.info.genre.split('/')[0]"
     />
   </v-sheet>
 </template>
@@ -158,6 +156,7 @@
 <script>
 import MovieList from '../components/global/MovieList'
 import MovieDetailVideo from '../components/MovieDetailVideo'
+import MovieDetailComment from '../components/MovieDetailComment'
 import { getMovieByPath } from '../api/movie'
 import { undefinedMovie } from '../utils'
 import fallbackPoster from '../utils/fallbackPoster'
@@ -167,7 +166,8 @@ export default {
   name: 'MovieDetail',
   components: {
     'movie-list': MovieList,
-    'movie-detail-video': MovieDetailVideo
+    'movie-detail-video': MovieDetailVideo,
+    'movie-detail-comment': MovieDetailComment
   },
   props: {
     path: {
@@ -179,7 +179,8 @@ export default {
     return {
       movie: undefinedMovie(),
       dialog: false,
-      error: false
+      error: false,
+      showBtn: false
     }
   },
   computed: {

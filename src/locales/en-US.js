@@ -82,7 +82,14 @@ const enUS = {
   desc: 'Description',
   edit: 'Edit',
   save: 'Save',
-  currentPassword: 'Current Password'
+  currentPassword: 'Current Password',
+
+  // comments
+  comments: 'Comments',
+  moreComments: 'More Comments',
+  noComments: 'There are no comments yet, you can click the button at the bottom right to create a new one',
+  createComment: 'Create Comments',
+  howDoYouThink: 'How do you think of this movie?'
 }
 
 export default enUS

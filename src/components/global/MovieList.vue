@@ -176,6 +176,15 @@ export default {
         this.loading = false
       },
       deep: true
+    },
+    genre: {
+      async handler (genre) {
+        if (genre) {
+          this.movies = await getMovieByGenre(genre, this.$vuetify.breakpoint.sm ? 9 : 8)
+          this.loading = false
+        }
+      },
+      immediate: true
     }
   },
   async mounted () {
@@ -186,13 +195,6 @@ export default {
     this.movies = [...Array(limit)].map(() => undefinedMovie())
     if (this.type) {
       this.movies = await getMovieByType(this.type, limit)
-      this.loading = false
-    } else if (this.ids) {
-      // watch ids to get movies, need to wait father props ready
-    } else if (this.movieArray) {
-      // watch
-    } else {
-      this.movies = await getMovieByGenre(this.genre, limit)
       this.loading = false
     }
   },
