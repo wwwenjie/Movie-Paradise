@@ -65,6 +65,7 @@
           <v-fab-transition>
             <v-btn
               v-show="showBtn"
+              ref="button"
               fab
               fixed
               bottom
@@ -109,6 +110,7 @@
 <script>
 import { createComment, getComments } from '../api/comment'
 import Message from '../utils/message'
+import { setLoading } from '../utils'
 
 export default {
   name: 'MovieDetailComment',
@@ -145,11 +147,15 @@ export default {
     },
     async saveComment () {
       // todo: refactor userStore and add user data
-      await createComment({
+      const comment = {
+        movie_id: this.movieId,
         rating: this.rating,
         summary: this.summary
-      })
+      }
+      await setLoading(createComment(comment))
       Message.success()
+      this.comments.unshift(comment)
+      this.$refs.button.$el.click()
     },
     todo () {
       Message.info(this.$t('todo'))
