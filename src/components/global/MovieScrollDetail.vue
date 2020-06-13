@@ -4,7 +4,14 @@
       <p class="title">
         {{ detail.title }}
       </p>
-      <p>{{ $t('douban') }} {{ detail.rating.douban_score }} / IMDb {{ detail.rating.imdb_score }}</p>
+      <p>
+        <span v-if="detail.rating && detail.rating.douban_score">
+          {{ $t('douban') }} {{ detail.rating.douban_score }}
+        </span>
+        <span v-if="detail.rating && detail.rating.imdb_score">
+          IMDb {{ detail.rating.imdb_score }}
+        </span>
+      </p>
       <p>{{ $t('genre') }}: {{ detail.info.genre }}</p>
       <p>{{ $t('region') }}: {{ detail.info.region }}</p>
       <p>{{ $t('year') }}: {{ detail.year }}</p>
