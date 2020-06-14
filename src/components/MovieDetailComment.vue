@@ -116,7 +116,7 @@
 <script>
 import { createComment, getComments } from '../api/comment'
 import Message from '../utils/message'
-import { setLoading } from '../utils'
+import { isSafari, setLoading } from '../utils'
 import storeMap from '../mixins/storeMap'
 
 export default {
@@ -149,7 +149,8 @@ export default {
       this.comments = await getComments(movieId)
       this.comments.forEach(comment => {
         if (comment.user_avatar) {
-          comment.user_avatar += '?x-oss-process=style/comment'
+          comment.user_avatar += '?x-oss-process=style/'
+          comment.user_avatar += isSafari() ? 'comment_safari' : 'comment'
         }
       })
     }

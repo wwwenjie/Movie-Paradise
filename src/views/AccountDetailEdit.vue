@@ -109,7 +109,7 @@
 import storeMap from '../mixins/storeMap'
 import Message from '../utils/message'
 import { updateUser, uploadAvatar } from '../api/user'
-import { setLoading } from '../utils'
+import { isSafari, setLoading } from '../utils'
 
 export default {
   name: 'AccountDetailEdit',
@@ -176,9 +176,14 @@ export default {
       }
       let param = new FormData()
       param.append('avatar', file, file.name)
-      const url = await setLoading(uploadAvatar(param))
+      let url = await setLoading(uploadAvatar(param))
+      if (isSafari()) {
+        url += '?lastMod=' + new Date().getTime().toString()
+      } else {
+        url += '?x-oss-process=style/webp' + '&lastMod=' + new Date().getTime().toString()
+      }
       this.setLoginData({
-        avatar: url + '?x-oss-process=style/webp' + '&lastMod=' + new Date().getTime().toString()
+        avatar: url
       })
       Message.success()
     }

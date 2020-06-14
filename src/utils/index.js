@@ -75,3 +75,10 @@ export async function setLoading (promise, timeout = 8000) {
     store.commit('CLOSE_LOADING')
   }
 }
+
+export function isSafari () {
+  const ua = navigator.userAgent.toLowerCase()
+  return ua.indexOf('applewebkit') > -1 && ua.indexOf('mobile') > -1 && ua.indexOf('safari') > -1 &&
+    ua.indexOf('linux') === -1 && ua.indexOf('android') === -1 && ua.indexOf('chrome') === -1 &&
+    ua.indexOf('ios') === -1 && ua.indexOf('browser') === -1
+}
