@@ -83,13 +83,15 @@ const zhCN = {
   edit: '修改',
   save: '保存',
   currentPassword: '当前密码',
+  reLogin: '请重新登陆',
 
   // 评论
   comments: '评论',
   moreComments: '更多评论',
   noComments: '暂无评论，点击右下方按钮新建一条吧',
   createComment: '新建评论',
-  howDoYouThink: '你觉得这部电影怎么样？'
+  howDoYouThink: '你觉得这部电影怎么样？',
+  loginFirst: '请先登陆'
 }
 
 export default zhCN

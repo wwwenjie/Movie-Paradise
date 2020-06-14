@@ -153,7 +153,6 @@ export default {
         Message.success()
         setTimeout(() => {
           this.setPopAccount(false)
-          this.$router.push({ path: '/account' })
         }, 500)
       } else {
         await register(this.user)

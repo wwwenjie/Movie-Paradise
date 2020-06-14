@@ -83,13 +83,15 @@ const enUS = {
   edit: 'Edit',
   save: 'Save',
   currentPassword: 'Current Password',
+  reLogin: 'Please login again',
 
   // comments
   comments: 'Comments',
   moreComments: 'More Comments',
   noComments: 'There are no comments yet, you can click the button at the bottom right to create a new one',
   createComment: 'Create Comments',
-  howDoYouThink: 'How do you think of this movie?'
+  howDoYouThink: 'How do you think of this movie?',
+  loginFirst: 'Please login first'
 }
 
 export default enUS

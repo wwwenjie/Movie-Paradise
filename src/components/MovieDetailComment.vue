@@ -148,6 +148,11 @@ export default {
       this.$emit('update:showBtn', entries[0].isIntersecting)
     },
     async saveComment () {
+      if (!this.token) {
+        Message.info(this.$t('loginFirst'))
+        this.setPopAccount(true)
+        return
+      }
       const comment = {
         user_id: this.userStore._id,
         user_name: this.userStore.name,
