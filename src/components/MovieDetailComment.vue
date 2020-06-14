@@ -37,7 +37,7 @@
             >
               <img
                 v-if="comment.user_avatar"
-                :src="comment.user_avatar + '?x-oss-process=style/comment'"
+                :src="comment.user_avatar"
                 :alt="comment.user_name + ' avatar'"
               >
             </v-avatar>
@@ -147,6 +147,11 @@ export default {
   watch: {
     movieId: async function (movieId) {
       this.comments = await getComments(movieId)
+      this.comments.forEach(comment => {
+        if (comment.user_avatar) {
+          comment.user_avatar += '?x-oss-process=style/comment'
+        }
+      })
     }
   },
   methods: {
@@ -162,7 +167,8 @@ export default {
       const comment = {
         user_id: this.userStore._id,
         user_name: this.userStore.name,
-        user_avatar: this.userStore.avatar,
+        // remove lastMod
+        user_avatar: this.userStore.avatar.split('?').shift(),
         movie_id: this.movieId,
         rating: this.rating,
         summary: this.summary
