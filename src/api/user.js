@@ -30,3 +30,14 @@ export function updateUser (user) {
     data: user
   })
 }
+
+export function uploadAvatar (formData) {
+  return request({
+    url: `/users/${store.state.userStore._id}/avatar`,
+    method: 'post',
+    data: formData,
+    headers: {
+      'Content-Type': 'multipart/form-data'
+    }
+  })
+}

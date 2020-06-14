@@ -34,7 +34,13 @@
               color="grey"
               style="cursor:pointer"
               @click="todo"
-            />
+            >
+              <img
+                v-if="comment.user_avatar"
+                :src="comment.user_avatar + '?x-oss-process=style/comment'"
+                :alt="comment.user_name + ' avatar'"
+              >
+            </v-avatar>
           </v-list-item-avatar>
 
           <v-list-item-content>

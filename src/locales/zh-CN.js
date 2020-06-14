@@ -84,6 +84,7 @@ const zhCN = {
   save: '保存',
   currentPassword: '当前密码',
   reLogin: '请重新登陆',
+  avatarBig: '上传的头像过大，最大大小是 10M',
 
   // 评论
   comments: '评论',

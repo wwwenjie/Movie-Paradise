@@ -84,6 +84,7 @@ const enUS = {
   save: 'Save',
   currentPassword: 'Current Password',
   reLogin: 'Please login again',
+  avatarBig: 'Avatar uploaded is too big, max size is 10M',
 
   // comments
   comments: 'Comments',

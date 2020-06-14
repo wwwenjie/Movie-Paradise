@@ -28,10 +28,27 @@
             <v-avatar
               color="grey"
               size="120"
-              style="cursor:pointer"
+              style="cursor: pointer"
               v-on="on"
-              @click="todo"
-            />
+              @click="$refs.image.click()"
+            >
+              <img
+                v-if="userStore.avatar"
+                :src="userStore.avatar"
+                :alt="userStore.name + ' avatar'"
+              >
+              <span v-else>
+                {{ userStore.name }}
+              </span>
+              <input
+                ref="image"
+                type="file"
+                accept="image/*"
+                name="image"
+                class="d-none"
+                @change="handleAvatar($event)"
+              >
+            </v-avatar>
           </template>
           <span>Change Avatar</span>
         </v-tooltip>
@@ -91,10 +108,9 @@
 <script>
 import storeMap from '../mixins/storeMap'
 import Message from '../utils/message'
-import { updateUser } from '../api/user'
+import { updateUser, uploadAvatar } from '../api/user'
 import { setLoading } from '../utils'
 
-// todo: upload avatar
 export default {
   name: 'AccountDetailEdit',
   mixins: [storeMap],
@@ -126,9 +142,6 @@ export default {
     }
   },
   methods: {
-    todo () {
-      Message.info(this.$t('todo'))
-    },
     onEdit (list) {
       this.card.value = this.userStore[list.value]
       this.card.title = list.title
@@ -153,6 +166,21 @@ export default {
         Message.success()
       }
       this.dialog = false
+    },
+    async handleAvatar (event) {
+      const file = event.target.files[0]
+      const imgMaxSize = 10 * 1024 * 1024
+      if (file.size > imgMaxSize) {
+        Message.error(this.$t('avatarBig'))
+        return
+      }
+      let param = new FormData()
+      param.append('avatar', file, file.name)
+      const url = await setLoading(uploadAvatar(param))
+      this.setLoginData({
+        avatar: url + '?x-oss-process=style/webp' + '&lastMod=' + new Date().getTime().toString()
+      })
+      Message.success()
     }
   }
 }

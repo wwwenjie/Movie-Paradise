@@ -20,7 +20,13 @@
       <v-list-item
         @click="$router.push({ path: '/account/edit' })"
       >
-        <v-list-item-avatar color="grey" />
+        <v-list-item-avatar color="grey">
+          <img
+            v-if="userStore.avatar"
+            :src="userStore.avatar"
+            :alt="userStore.name + ' avatar'"
+          >
+        </v-list-item-avatar>
         <v-list-item-content>
           <v-list-item-title class="headline">
             {{ userStore.name }}
