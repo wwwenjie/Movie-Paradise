@@ -32,7 +32,10 @@
         class="fill-height pa-0"
       >
         <v-fade-transition>
-          <keep-alive>
+          <keep-alive
+            :exclude="/^AccountDetail/"
+            :max="10"
+          >
             <router-view />
           </keep-alive>
         </v-fade-transition>

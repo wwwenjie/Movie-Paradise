@@ -25,7 +25,7 @@ export function getUserByUid (uid) {
 
 export function updateUser (user) {
   return request({
-    url: `/users/${store.state.userStore.uid}`,
+    url: `/users/${store.state.userStore._id}`,
     method: 'patch',
     data: user
   })

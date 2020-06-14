@@ -23,10 +23,9 @@
         <v-list-item-avatar color="grey" />
         <v-list-item-content>
           <v-list-item-title class="headline">
-            {{ userStore ? userStore.name : user.name }}
+            {{ userStore.name }}
           </v-list-item-title>
-          <!--todo: refactor userStore to store all user data(from request, not jwt), now the desc doesn't work after update-->
-          <v-list-item-subtitle>{{ userStore ? userStore.desc : user.desc }}</v-list-item-subtitle>
+          <v-list-item-subtitle>{{ userStore.desc }}</v-list-item-subtitle>
         </v-list-item-content>
         <v-list-item-action>
           <v-btn icon>
@@ -54,14 +53,12 @@
 <script>
 import storeMap from '../mixins/storeMap'
 import Message from '../utils/message'
-import { getUserByUid } from '../api/user'
 
 export default {
   name: 'AccountDetail',
   mixins: [storeMap],
   data () {
     return {
-      user: undefined,
       lists: [
         {
           text: this.$t('myComments'),
@@ -91,9 +88,6 @@ export default {
         }
       ]
     }
-  },
-  async mounted () {
-    this.user = await getUserByUid(this.userStore.uid)
   },
   methods: {
     switchMethod (method) {

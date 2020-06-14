@@ -51,7 +51,7 @@
                 class="text-truncate"
                 style="max-width: 200px"
               >
-                {{ user[list.value] }}
+                {{ userStore[list.value] }}
               </span>
               <v-icon>mdi-chevron-right</v-icon>
             </v-list-item-action>
@@ -91,7 +91,7 @@
 <script>
 import storeMap from '../mixins/storeMap'
 import Message from '../utils/message'
-import { getUserByUid, updateUser } from '../api/user'
+import { updateUser } from '../api/user'
 import { setLoading } from '../utils'
 
 // todo: upload avatar
@@ -107,14 +107,6 @@ export default {
         update: '',
         requireCheck: false,
         currentPassword: ''
-      },
-      user: {
-        name: '',
-        desc: '',
-        email: '',
-        password: '',
-        interests: '',
-        create_time: ''
       },
       lists: [
         {
@@ -133,16 +125,12 @@ export default {
       ]
     }
   },
-  async mounted () {
-    this.user = await getUserByUid(this.userStore.uid)
-    this.user.password = ''
-  },
   methods: {
     todo () {
       Message.info(this.$t('todo'))
     },
     onEdit (list) {
-      this.card.value = this.user[list.value]
+      this.card.value = this.userStore[list.value]
       this.card.title = list.title
       this.card.update = list.value
       this.card.requireCheck = list.value === 'email' || list.value === 'password'
@@ -153,8 +141,17 @@ export default {
         [this.card.update]: this.card.value,
         currentPassword: this.card.currentPassword
       }))
-      Message.success()
-      this.user[this.card.update] = this.card.value
+      if (['email', 'password'].includes(this.card.update)) {
+        this.$router.back()
+        this.$router.back()
+        this.clearLoginData()
+        Message.success(this.$t('reLogin'))
+      } else {
+        this.setLoginData({
+          [this.card.update]: this.card.value
+        })
+        Message.success()
+      }
       this.dialog = false
     }
   }

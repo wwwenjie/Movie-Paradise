@@ -2,7 +2,7 @@ import request from '../plugins/axios'
 
 export function getComments (movieId, limit = 6, offset = 0) {
   return request({
-    url: `/comments/movies/${movieId}`,
+    url: `/movies/${movieId}/comments`,
     params: {
       limit: limit,
       offset: offset

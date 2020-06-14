@@ -111,9 +111,11 @@
 import { createComment, getComments } from '../api/comment'
 import Message from '../utils/message'
 import { setLoading } from '../utils'
+import storeMap from '../mixins/storeMap'
 
 export default {
   name: 'MovieDetailComment',
+  mixins: [storeMap],
   props: {
     showBtn: {
       type: Boolean,
@@ -146,8 +148,10 @@ export default {
       this.$emit('update:showBtn', entries[0].isIntersecting)
     },
     async saveComment () {
-      // todo: refactor userStore and add user data
       const comment = {
+        user_id: this.userStore._id,
+        user_name: this.userStore.name,
+        user_avatar: this.userStore.avatar,
         movie_id: this.movieId,
         rating: this.rating,
         summary: this.summary
