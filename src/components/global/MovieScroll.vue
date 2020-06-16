@@ -141,7 +141,7 @@ export default {
   },
   methods: {
     posterLoadFail (index) {
-      let movie = this.movies[index]
+      const movie = this.movies[index]
       this.$set(this.error, index, fallbackPoster(movie))
     },
     getMovies () {

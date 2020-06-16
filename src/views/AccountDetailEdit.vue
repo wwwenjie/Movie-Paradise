@@ -24,7 +24,7 @@
         class="text-center"
       >
         <v-tooltip bottom>
-          <template v-slot:activator="{ on, attrs }">
+          <template v-slot:activator="{ on }">
             <v-avatar
               color="grey"
               size="120"
@@ -174,7 +174,7 @@ export default {
         Message.error(this.$t('avatarBig'))
         return
       }
-      let param = new FormData()
+      const param = new FormData()
       param.append('avatar', file, file.name)
       let url = await setLoading(uploadAvatar(param))
       if (isSafari()) {

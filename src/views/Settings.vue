@@ -93,7 +93,7 @@ import Account from './Account'
 export default {
   name: 'Setting',
   components: {
-    'account': Account
+    account: Account
   },
   mixins: [storeMap],
   data: () => ({

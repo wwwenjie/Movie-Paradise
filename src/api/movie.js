@@ -3,13 +3,13 @@ import store from '../store'
 import { deepCopy } from '../utils'
 
 // avoid for loop when find name_en
-let genreObject = {}
+const genreObject = {}
 store.state.genreStore.forEach(genre => {
   genreObject[genre.name] = genre.name_en
 })
 
 function movieInterceptor (movies) {
-  let result = translate(movies)
+  const result = translate(movies)
   return result
 }
 

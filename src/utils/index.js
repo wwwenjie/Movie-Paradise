@@ -48,8 +48,9 @@ export function deepCopy (source) {
   if (!source || typeof source !== 'object') {
     return source
   }
-  let target = Array.isArray(source) ? [] : {}
+  const target = Array.isArray(source) ? [] : {}
   for (const key in source) {
+    // eslint-disable-next-line no-prototype-builtins
     if (source.hasOwnProperty(key)) {
       target[key] = typeof source[key] !== 'object' ? source[key] : deepCopy(source[key])
     }

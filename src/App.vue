@@ -64,9 +64,9 @@ export default {
     'app-navigation-drawer': AppNavigationDrawer,
     'app-navigation-bottom': AppNavigationBottom,
     'app-bar': AppBar,
-    'loading': Loading,
-    'snackbar': Snackbar,
-    'account': Account
+    loading: Loading,
+    snackbar: Snackbar,
+    account: Account
   },
   mixins: [storeMap],
 

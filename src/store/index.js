@@ -49,7 +49,7 @@ export default new Vuex.Store({
   },
   mutations: {
     CALL_MESSAGE (state, config) {
-      for (let [key, value] of Object.entries(config)) {
+      for (const [key, value] of Object.entries(config)) {
         state.snackCon[key] = value
       }
     },
@@ -73,7 +73,7 @@ export default new Vuex.Store({
       state.genreStore = value
     },
     SET_MOVIE_CACHE (state, cache) {
-      for (let [key, value] of Object.entries(cache)) {
+      for (const [key, value] of Object.entries(cache)) {
         state.movieCache[key] = value
       }
     },
@@ -91,7 +91,7 @@ export default new Vuex.Store({
         state.token = user.token
         delete user.token
       }
-      for (let [key, value] of Object.entries(user)) {
+      for (const [key, value] of Object.entries(user)) {
         state.userStore[key] = value
       }
     },
