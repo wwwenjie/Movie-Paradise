@@ -8,7 +8,7 @@ import store from '../store'
 // create an axios instance
 const service = axios.create({
   baseURL: process.env.VUE_APP_BASE_API, // url = base url + request url
-  timeout: 8000,
+  timeout: 12000,
   headers: {
     'Content-type': 'application/json'
   },

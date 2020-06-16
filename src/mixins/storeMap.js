@@ -2,8 +2,8 @@ import { mapActions, mapMutations, mapState } from 'vuex'
 
 export default {
   computed: mapState([
-    'snackCon',
-    'loadingCon',
+    'messageCon',
+    'loading',
     'darkMode',
     'locale',
     'allowImprove',

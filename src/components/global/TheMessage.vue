@@ -1,32 +1,32 @@
 <template>
   <v-snackbar
-    v-if="snackCon.show"
-    v-model="snackCon.show"
-    :color="snackCon.type"
-    :timeout="snackCon.timeout"
+    v-if="messageCon.show"
+    v-model="messageCon.show"
+    :color="messageCon.type"
+    :timeout="messageCon.timeout"
     :vertical="this.$vuetify.breakpoint.smAndDown"
     top
   >
-    {{ snackCon.text }}
+    {{ messageCon.text }}
     <div
       class="d-flex"
       style="justify-content: flex-end"
     >
       <v-btn
-        v-if="snackCon.confirmText"
+        v-if="messageCon.confirmText"
         text
         class="mt-0"
         @click="confirm"
       >
-        {{ snackCon.confirmText }}
+        {{ messageCon.confirmText }}
       </v-btn>
       <v-btn
-        v-if="snackCon.declineText"
+        v-if="messageCon.declineText"
         text
         class="mt-0"
         @click="decline"
       >
-        {{ snackCon.declineText }}
+        {{ messageCon.declineText }}
       </v-btn>
     </div>
   </v-snackbar>
@@ -36,15 +36,15 @@
 import storeMap from '../../mixins/storeMap'
 
 export default {
-  name: 'Snackbar',
+  name: 'TheMessage',
   mixins: [storeMap],
   methods: {
     confirm () {
-      this.snackCon.callbackConfirm()
+      this.messageCon.callbackConfirm()
       this.reset()
     },
     decline () {
-      this.snackCon.callbackDecline()
+      this.messageCon.callbackDecline()
       this.reset()
     },
     reset () {
@@ -56,7 +56,7 @@ export default {
         declineText: undefined,
         callbackConfirm: () => {},
         callbackDecline: () => {},
-        timeout: 0
+        timeout: -1
       })
     }
   }

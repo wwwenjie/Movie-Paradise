@@ -110,7 +110,7 @@ import Message from '../../utils/message'
 import { setLoading } from '../../utils'
 
 export default {
-  name: 'Account',
+  name: 'TheAccount',
   mixins: [storeMap],
   data () {
     return {

@@ -1,8 +1,8 @@
 <template>
   <!--higher priority than dialog-->
   <v-overlay
-    v-if="$store.state.loadingCon.loading"
-    :value="$store.state.loadingCon.loading"
+    v-if="$store.state.loading"
+    :value="$store.state.loading"
     style="z-index: 999"
   >
     <v-progress-circular
@@ -16,7 +16,7 @@
 
 <script>
 export default {
-  name: 'Loading',
+  name: 'TheLoading',
   data () {
     return {
       colors: ['red', 'purple', 'blue', 'green', 'amber'],
@@ -31,11 +31,11 @@ export default {
       } else {
         this.index++
       }
-    }, this.$store.state.loadingCon.timeout)
-    // auto close when time out
+    }, 15000)
+    // auto close after 15s, note: axios will close it when timeout, here is just for in case
     setTimeout(() => {
       this.$store.commit('CLOSE_LOADING')
-    }, this.timeout)
+    }, 15000)
   },
   destroyed  () {
     clearInterval(this.pid)

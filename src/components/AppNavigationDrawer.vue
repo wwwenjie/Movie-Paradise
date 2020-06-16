@@ -52,7 +52,7 @@
       >
         <v-list-item-action>
           <v-icon color="grey darken-1">
-            mdi-settings
+            mdi-cog
           </v-icon>
         </v-list-item-action>
         <v-list-item-title class="grey--text text--darken-1">

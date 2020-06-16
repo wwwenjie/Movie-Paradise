@@ -18,7 +18,7 @@ export default new Vuex.Store({
     })
   ],
   state: {
-    snackCon: {
+    messageCon: {
       show: false,
       text: undefined,
       type: 'info',
@@ -28,12 +28,9 @@ export default new Vuex.Store({
       },
       callbackDecline: () => {
       },
-      timeout: 0
+      timeout: -1
     },
-    loadingCon: {
-      loading: false,
-      timeout: 8000
-    },
+    loading: false,
     darkMode: true,
     locale: 'zh-CN',
     allowImprove: {
@@ -50,15 +47,14 @@ export default new Vuex.Store({
   mutations: {
     CALL_MESSAGE (state, config) {
       for (const [key, value] of Object.entries(config)) {
-        state.snackCon[key] = value
+        state.messageCon[key] = value
       }
     },
-    CALL_LOADING (state, timeout = 8000) {
-      state.loadingCon.loading = true
-      state.loadingCon.timeout = timeout
+    CALL_LOADING (state) {
+      state.loading = true
     },
     CLOSE_LOADING (state) {
-      state.loadingCon.loading = false
+      state.loading = false
     },
     SET_DARK_MODE (state, value) {
       state.darkMode = value

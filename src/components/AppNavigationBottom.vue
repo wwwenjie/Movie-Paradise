@@ -23,7 +23,7 @@ export default {
       return [
         { title: this.$t('home'), icon: 'mdi-home' },
         { title: this.$t('search'), icon: 'mdi-movie-search' },
-        { title: this.$t('settings'), icon: 'mdi-settings' }
+        { title: this.$t('settings'), icon: 'mdi-cog' }
       ]
     }
   },

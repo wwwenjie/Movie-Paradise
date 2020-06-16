@@ -82,7 +82,6 @@
         </v-list-item-action>
       </v-list-item>
     </v-list>
-    <account />
   </v-sheet>
 </template>
 
