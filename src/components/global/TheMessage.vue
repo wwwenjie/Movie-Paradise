@@ -1,5 +1,6 @@
 <template>
   <v-snackbar
+    v-if="snackCon.show"
     v-model="snackCon.show"
     :color="snackCon.type"
     :timeout="snackCon.timeout"
@@ -32,26 +33,11 @@
 </template>
 
 <script>
+import storeMap from '../../mixins/storeMap'
+
 export default {
   name: 'Snackbar',
-  props: {
-    show: {
-      type: Boolean
-    },
-    snackCon: {
-      type: Object,
-      // the default value is set at store snackCon
-      default: () => ({
-        text: undefined,
-        type: undefined,
-        confirmText: undefined,
-        declineText: undefined,
-        callbackConfirm: function () {},
-        callbackDecline: function () {},
-        timeout: 0
-      })
-    }
-  },
+  mixins: [storeMap],
   methods: {
     confirm () {
       this.snackCon.callbackConfirm()

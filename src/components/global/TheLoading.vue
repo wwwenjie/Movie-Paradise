@@ -1,7 +1,8 @@
 <template>
   <!--higher priority than dialog-->
   <v-overlay
-    :value="loading"
+    v-if="$store.state.loadingCon.loading"
+    :value="$store.state.loadingCon.loading"
     style="z-index: 999"
   >
     <v-progress-circular
@@ -16,16 +17,6 @@
 <script>
 export default {
   name: 'Loading',
-  props: {
-    loading: {
-      type: Boolean,
-      default: false
-    },
-    timeout: {
-      type: Number,
-      default: 10000
-    }
-  },
   data () {
     return {
       colors: ['red', 'purple', 'blue', 'green', 'amber'],
@@ -40,7 +31,7 @@ export default {
       } else {
         this.index++
       }
-    }, 1500)
+    }, this.$store.state.loadingCon.timeout)
     // auto close when time out
     setTimeout(() => {
       this.$store.commit('CLOSE_LOADING')

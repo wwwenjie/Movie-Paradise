@@ -1,6 +1,7 @@
 <template>
   <v-dialog
-    v-model="dialog"
+    v-if="popAccount"
+    v-model="popAccount"
     persistent
     :fullscreen="$vuetify.breakpoint.xsOnly"
     max-width="500px"
@@ -103,20 +104,14 @@
 </template>
 
 <script>
-import storeMap from '../mixins/storeMap'
-import { login, register } from '../api/user'
-import Message from '../utils/message'
-import { setLoading } from '../utils'
+import storeMap from '../../mixins/storeMap'
+import { login, register } from '../../api/user'
+import Message from '../../utils/message'
+import { setLoading } from '../../utils'
 
 export default {
   name: 'Account',
   mixins: [storeMap],
-  props: {
-    dialog: {
-      type: Boolean,
-      default: false
-    }
-  },
   data () {
     return {
       user: {

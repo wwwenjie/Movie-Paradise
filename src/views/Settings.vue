@@ -89,12 +89,9 @@
 <script>
 import storeMap from '../mixins/storeMap'
 import Message from '../utils/message'
-import Account from './Account'
+
 export default {
   name: 'Setting',
-  components: {
-    account: Account
-  },
   mixins: [storeMap],
   data: () => ({
     dialogLanguage: false
