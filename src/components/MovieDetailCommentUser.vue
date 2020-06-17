@@ -29,7 +29,9 @@
           {{ $t('allComments') }}
         </v-list-item>
         <v-list-item>
-          <comment-list :comments="comments" />
+          <comment-list
+            :comments="comments"
+          />
         </v-list-item>
       </v-list>
     </v-page>

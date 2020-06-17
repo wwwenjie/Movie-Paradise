@@ -8,6 +8,8 @@ import MovieMore from '../views/MovieMore'
 import AccountDetail from '../views/AccountDetail'
 import AccountDetailEdit from '../components/AccountDetailEdit'
 import AccountDetailComment from '../components/AccountDetailComment'
+import About from '../views/About'
+import Feedback from '../views/Feedback'
 
 Vue.use(VueRouter)
 
@@ -52,6 +54,16 @@ const routes = [
     path: '/account/comment',
     component: AccountDetailComment,
     props: (route) => ({ userId: route.query.userId })
+  },
+  {
+    path: '/feedback',
+    component: Feedback,
+    props: true
+  },
+  {
+    path: '/about',
+    component: About,
+    props: true
   },
   {
     // it supposed to be 404 page

@@ -12,34 +12,34 @@ export default class Message {
     store.commit('CALL_MESSAGE', config)
   }
 
-  static info (text = 'Info') {
+  static info (text = 'Info', timeout = 2000) {
     this.call({
       text: text,
       confirmText: undefined,
       declineText: undefined,
       type: 'info',
-      timeout: 2000
+      timeout: timeout
     })
   }
 
   // alias of info
-  static success (text = this.getDefaultSuccessText()) {
+  static success (text = this.getDefaultSuccessText(), timeout = 2000) {
     this.call({
       text: text,
       confirmText: undefined,
       declineText: undefined,
       type: 'info',
-      timeout: 2000
+      timeout: timeout
     })
   }
 
-  static error (text = this.getDefaultErrorText()) {
+  static error (text = this.getDefaultErrorText(), timeout = 2000) {
     this.call({
       text: text,
       confirmText: undefined,
       declineText: undefined,
       type: 'error',
-      timeout: 2000
+      timeout: timeout
     })
   }
 

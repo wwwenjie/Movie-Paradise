@@ -1,7 +1,6 @@
 <template>
   <!--higher priority than dialog-->
   <v-overlay
-    v-if="$store.state.loading"
     :value="$store.state.loading"
     style="z-index: 999"
   >
@@ -24,14 +23,14 @@ export default {
       pid: undefined
     }
   },
-  mounted  () {
+  mounted () {
     this.pid = setInterval(() => {
       if (this.index === this.colors.length - 1) {
         this.index = 0
       } else {
         this.index++
       }
-    }, 15000)
+    }, 1500)
     // auto close after 15s, note: axios will close it when timeout, here is just for in case
     setTimeout(() => {
       this.$store.commit('CLOSE_LOADING')

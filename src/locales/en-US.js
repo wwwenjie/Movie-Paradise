@@ -44,6 +44,7 @@ const enUS = {
   selectLanguage: 'Select Language',
   langChangeInfo: 'Some content may require refresh page',
   clearCache: 'Clear Cache',
+  about: 'About',
 
   // movie list
   popular: 'Popular',
@@ -94,7 +95,25 @@ const enUS = {
   howDoYouThink: 'How do you think of this movie?',
   loginFirst: 'Please login first',
   noUserComments: 'This user dosen\'t have comments',
-  allComments: 'All of user\'s comments'
+  allComments: 'All of user\'s comments',
+
+  // 反馈
+  feedback: 'Feedback',
+  category: 'Category *',
+  bugFeedback: 'Report a problem',
+  featureFeedback: 'Suggest a feature',
+  movieFeedback: 'Report a incorrect movie information',
+  summarizeFeedback: 'Summarize your feedback *',
+  detailFeedback: 'Explain in more detail (optional)',
+  emailFeedback: 'Leave your email to track feedback (optional)',
+  developer: 'Developer?',
+  githubFeedback: 'Create new issues on Github',
+  submit: 'Submit',
+
+  // about
+  version: 'Version',
+  intro: 'Introduction',
+  introText: 'Movie Paradise is an open source, free, and ad-free movie preview website. Movie Paradise has currently collected more than 60,000 movies, and we will continue to update the latest movies in the later period. We will later develop a module for users to upload movies independently, which means that we will include more and more movies. We hope to bring a good movie preview experience to users worldwide if conditions permit. The entire code of Movie Paradise has been open sourced on the Github. Interested programmers are welcome to join the development of Movie Paradise.'
 }
 
 export default enUS

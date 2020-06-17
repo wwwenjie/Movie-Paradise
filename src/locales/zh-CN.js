@@ -44,6 +44,7 @@ const zhCN = {
   selectLanguage: '选择语言',
   langChangeInfo: '某些内容可能需要刷新页面',
   clearCache: '清除缓存',
+  about: '关于',
 
   // 电影列表
   popular: '时下流行',
@@ -94,7 +95,25 @@ const zhCN = {
   howDoYouThink: '你觉得这部电影怎么样？',
   loginFirst: '请先登陆',
   noUserComment: '该用户暂时没有评论',
-  allComments: '该用户的所有评论'
+  allComments: '该用户的所有评论',
+
+  // 反馈
+  feedback: '反馈',
+  category: '分类 *',
+  bugFeedback: '反馈一个问题',
+  featureFeedback: '建议一个新功能',
+  movieFeedback: '电影信息有误',
+  summarizeFeedback: '简述您的反馈 *',
+  detailFeedback: '具体的反馈（可选）',
+  emailFeedback: '留下您的邮箱以追踪反馈（可选）',
+  developer: '开发人员？',
+  githubFeedback: '在 Github 提交 Issues',
+  submit: '提交',
+
+  // 关于
+  version: '版本',
+  intro: '介绍',
+  introText: '电影天堂（Movie Paradise）是开源、免费、无广告的电影预览网站。电影天堂目前已经收录了六万余部电影，同时我们将在后期持续更新最新电影。我们后期将开发用户自主上传电影模块，意味着我们收录的电影将会越来越多。我们希望在条件允许的情况下为全球用户带来一个良好的电影预览体验。电影天堂的全部代码已开源于 Github 平台，欢迎有兴趣的编程爱好者加入到电影天堂的开发中。'
 }
 
 export default zhCN

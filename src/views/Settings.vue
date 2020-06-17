@@ -81,6 +81,40 @@
           </v-btn>
         </v-list-item-action>
       </v-list-item>
+
+      <v-list-item @click="$router.push({path:'/feedback'})">
+        <v-list-item-icon>
+          <v-icon>mdi-comment-check-outline </v-icon>
+        </v-list-item-icon>
+        <v-list-item-content>
+          <v-list-item-title>{{ $t('feedback') }}</v-list-item-title>
+        </v-list-item-content>
+        <v-list-item-action>
+          <v-btn
+            icon
+            small
+          >
+            <v-icon>mdi-chevron-right</v-icon>
+          </v-btn>
+        </v-list-item-action>
+      </v-list-item>
+
+      <v-list-item @click="$router.push({path:'/about'})">
+        <v-list-item-icon>
+          <v-icon>mdi-information-outline</v-icon>
+        </v-list-item-icon>
+        <v-list-item-content>
+          <v-list-item-title>{{ $t('about') }}</v-list-item-title>
+        </v-list-item-content>
+        <v-list-item-action>
+          <v-btn
+            icon
+            small
+          >
+            <v-icon>mdi-chevron-right</v-icon>
+          </v-btn>
+        </v-list-item-action>
+      </v-list-item>
     </v-list>
   </v-sheet>
 </template>

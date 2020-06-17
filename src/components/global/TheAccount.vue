@@ -1,6 +1,5 @@
 <template>
   <v-dialog
-    v-if="popAccount"
     v-model="popAccount"
     persistent
     :fullscreen="$vuetify.breakpoint.xsOnly"

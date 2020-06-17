@@ -1,9 +1,9 @@
 <template>
   <v-page
-    title="my comment"
+    :title="$t('myComments')"
   >
     <comment-list
-      :user-id="userId"
+      :comments="comments"
     />
   </v-page>
 </template>
@@ -11,6 +11,7 @@
 <script>
 import VPage from '../components/global/VPage'
 import CommentList from '../components/global/CommentList'
+import { getCommentByUserId } from '../api/comment'
 
 export default {
   name: 'AccountDetailComment',
@@ -23,6 +24,14 @@ export default {
       type: String,
       default: undefined
     }
+  },
+  data () {
+    return {
+      comments: []
+    }
+  },
+  async mounted () {
+    this.comments = await getCommentByUserId(this.userId)
   }
 }
 </script>

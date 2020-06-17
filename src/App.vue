@@ -3,9 +3,9 @@
     id="inspire"
   >
     <!--global components start-->
-    <the-loading />
-    <the-message />
-    <the-account />
+    <the-loading v-if="loading" />
+    <the-message v-if="messageCon.show" />
+    <the-account v-if="popAccount" />
     <!--global components end-->
     <app-navigation-drawer
       v-if="this.$vuetify.breakpoint.mdAndUp"
@@ -75,10 +75,7 @@ export default {
         callbackConfirm: () => {
           this.setAllowImprove({ allow: true, asked: true })
           setTimeout(() => {
-            Message.call({
-              text: this.$t('thanks'),
-              timeout: 1500
-            }, 1000)
+            Message.info(this.$t('thanks'), 1500)
           })
         },
         callbackDecline: () => {
