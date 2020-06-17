@@ -14,24 +14,13 @@ jobs:
 
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [10.x, 12.x, 14.x]
-
     steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-    - name: Install
-      run: yarn --frozen-lockfile
-    - name: Lint
-      run: yarn lint
-    - name: Deploy
-      run: yarn deploy
-      env:
-        TENCENT_APP_ID: ${{ secrets.TENCENT_APP_ID }}
-        TENCENT_SECRET_ID: ${{ secrets.TENCENT_SECRET_ID }}
-        TENCENT_SECRET_KEY: ${{ secrets.TENCENT_SECRET_KEY }}
-        TENCENT_TOKEN: ${{ secrets.TENCENT_TOKEN }}
+      - uses: actions/checkout@v2
+      - name: Use Node.js 14.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: '14.x'
+      - name: Install
+        run: yarn --frozen-lockfile
+      - name: Lint
+        run: yarn lint
