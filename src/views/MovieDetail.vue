@@ -143,7 +143,7 @@
     </v-row>
     <movie-detail-comment
       :show-btn.sync="showBtn"
-      :movie-id="movie._id"
+      :movie="movie"
     />
     <movie-list
       :title="movie.recs ? $t('relatedMovies') : $t('mayLike')"

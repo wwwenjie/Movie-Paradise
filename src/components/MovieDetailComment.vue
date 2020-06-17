@@ -25,7 +25,7 @@
         {{ $t('noComments') }}
       </p>
       <div
-        v-for="comment in comments"
+        v-for="(comment,index) in comments"
         :key="comment.id"
       >
         <v-list-item>
@@ -33,7 +33,7 @@
             <v-avatar
               color="grey"
               style="cursor:pointer"
-              @click="todo"
+              @click="userDetail(index)"
             >
               <img
                 v-if="comment.user_avatar"
@@ -109,27 +109,34 @@
           </v-card-actions>
         </v-card>
       </v-dialog>
+      <comment-user
+        :user-id.sync="userId"
+      />
     </v-list>
   </v-card>
 </template>
 
 <script>
-import { createComment, getComments } from '../api/comment'
+import MovieDetailCommentUser from './MovieDetailCommentUser'
+import { createComment, getCommentByMovieId } from '../api/comment'
 import Message from '../utils/message'
-import { isSafari, setLoading } from '../utils'
+import { isSafari, setLoading, undefinedMovie } from '../utils'
 import storeMap from '../mixins/storeMap'
 
 export default {
   name: 'MovieDetailComment',
+  components: {
+    'comment-user': MovieDetailCommentUser
+  },
   mixins: [storeMap],
   props: {
     showBtn: {
       type: Boolean,
       default: false
     },
-    movieId: {
-      type: Number,
-      default: 0
+    movie: {
+      type: Object,
+      default: () => undefinedMovie()
     }
   },
   data () {
@@ -141,12 +148,13 @@ export default {
         rating: undefined
       }],
       rating: undefined,
-      summary: undefined
+      summary: undefined,
+      userId: undefined
     }
   },
   watch: {
-    movieId: async function (movieId) {
-      this.comments = await getComments(movieId)
+    movie: async function (movie) {
+      this.comments = await getCommentByMovieId(movie._id)
       this.comments.forEach(comment => {
         if (comment.user_avatar) {
           comment.user_avatar += '?x-oss-process=style/'
@@ -170,7 +178,9 @@ export default {
         user_name: this.userStore.name,
         // remove lastMod
         user_avatar: this.userStore.avatar.split('?').shift(),
-        movie_id: this.movieId,
+        movie_id: this.movie._id,
+        movie_title: this.movie.title,
+        movie_title_en: this.movie.title_en,
         rating: this.rating,
         summary: this.summary
       }
@@ -178,6 +188,10 @@ export default {
       Message.success()
       this.comments.unshift(comment)
       this.$refs.button.$el.click()
+    },
+    userDetail (index) {
+      this.userId = this.comments[index].user_id
+      console.log(this.userId)
     },
     todo () {
       Message.info(this.$t('todo'))

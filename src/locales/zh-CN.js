@@ -92,7 +92,9 @@ const zhCN = {
   noComments: '暂无评论，点击右下方按钮新建一条吧',
   createComment: '新建评论',
   howDoYouThink: '你觉得这部电影怎么样？',
-  loginFirst: '请先登陆'
+  loginFirst: '请先登陆',
+  noUserComment: '该用户暂时没有评论',
+  allComments: '该用户的所有评论'
 }
 
 export default zhCN

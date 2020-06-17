@@ -6,7 +6,8 @@ import Setting from '../views/Settings'
 import MovieDetail from '../views/MovieDetail'
 import MovieMore from '../views/MovieMore'
 import AccountDetail from '../views/AccountDetail'
-import AccountDetailEdit from '../views/AccountDetailEdit'
+import AccountDetailEdit from '../components/AccountDetailEdit'
+import AccountDetailComment from '../components/AccountDetailComment'
 
 Vue.use(VueRouter)
 
@@ -45,7 +46,12 @@ const routes = [
   {
     path: '/account/edit',
     component: AccountDetailEdit,
-    props: true
+    props: (route) => ({ userId: route.query.userId })
+  },
+  {
+    path: '/account/comment',
+    component: AccountDetailComment,
+    props: (route) => ({ userId: route.query.userId })
   },
   {
     // it supposed to be 404 page

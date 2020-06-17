@@ -1,24 +1,10 @@
 <template>
-  <v-sheet
-    width="100%"
-    class="fill-height"
+  <v-page
+    :title="$t('account')"
   >
-    <v-toolbar>
-      <v-btn
-        icon
-        @click="$router.back()"
-      >
-        <v-icon>mdi-chevron-left</v-icon>
-      </v-btn>
-      <v-toolbar-title
-        class="pl-0"
-      >
-        {{ $t('account') }}
-      </v-toolbar-title>
-    </v-toolbar>
     <v-list>
       <v-list-item
-        @click="$router.push({ path: '/account/edit' })"
+        @click="goEdit"
       >
         <v-list-item-avatar color="grey">
           <img
@@ -53,15 +39,19 @@
         </v-list-item-content>
       </v-list-item>
     </v-list>
-  </v-sheet>
+  </v-page>
 </template>
 
 <script>
+import VPage from '../components/global/VPage'
 import storeMap from '../mixins/storeMap'
 import Message from '../utils/message'
 
 export default {
   name: 'AccountDetail',
+  components: {
+    'v-page': VPage
+  },
   mixins: [storeMap],
   data () {
     return {
@@ -69,7 +59,7 @@ export default {
         {
           text: this.$t('myComments'),
           icon: 'mdi-comment-text-multiple ',
-          method: 'todo'
+          method: 'goComment'
         },
         {
           text: this.$t('myList'),
@@ -103,6 +93,12 @@ export default {
       this.clearLoginData()
       Message.success()
       this.$router.back()
+    },
+    goEdit () {
+      this.$router.push({ path: '/account/edit', query: { userId: this.userStore._id } })
+    },
+    goComment () {
+      this.$router.push({ path: '/account/comment', query: { userId: this.userStore._id } })
     },
     todo () {
       Message.info(this.$t('todo'))

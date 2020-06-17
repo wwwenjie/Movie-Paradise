@@ -1,22 +1,7 @@
 <template>
-  <v-sheet
-    width="100%"
-    class="fill-height"
+  <v-page
+    :title="$t('editAccount')"
   >
-    <v-toolbar>
-      <v-btn
-        icon
-        @click="$router.back()"
-      >
-        <v-icon>mdi-chevron-left</v-icon>
-      </v-btn>
-      <v-toolbar-title
-        class="pl-0"
-      >
-        {{ $t('editAccount') }}
-      </v-toolbar-title>
-    </v-toolbar>
-
     <v-row align="center">
       <v-col
         cols="12"
@@ -102,10 +87,11 @@
         </v-card-actions>
       </v-card>
     </v-dialog>
-  </v-sheet>
+  </v-page>
 </template>
 
 <script>
+import VPage from '../components/global/VPage'
 import storeMap from '../mixins/storeMap'
 import Message from '../utils/message'
 import { updateUser, uploadAvatar } from '../api/user'
@@ -113,6 +99,9 @@ import { isSafari, setLoading } from '../utils'
 
 export default {
   name: 'AccountDetailEdit',
+  components: {
+    'v-page': VPage
+  },
   mixins: [storeMap],
   data () {
     return {

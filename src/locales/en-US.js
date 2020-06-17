@@ -92,7 +92,9 @@ const enUS = {
   noComments: 'There are no comments yet, you can click the button at the bottom right to create a new one',
   createComment: 'Create Comments',
   howDoYouThink: 'How do you think of this movie?',
-  loginFirst: 'Please login first'
+  loginFirst: 'Please login first',
+  noUserComments: 'This user dosen\'t have comments',
+  allComments: 'All of user\'s comments'
 }
 
 export default enUS
