@@ -10,7 +10,6 @@
       elevation="12"
       style="z-index: 6"
     >
-      <v-btn
       {{ messageCon.text }}
       <template v-slot:action>
         <v-btn
