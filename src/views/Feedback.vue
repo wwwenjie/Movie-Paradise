@@ -80,7 +80,8 @@ export default {
         this.$t('bugFeedback'),
         this.$t('featureFeedback'),
         this.$t('movieErrorFeedback'),
-        this.$t('movieNotFoundFeedback')
+        this.$t('movieNotFoundFeedback'),
+        this.$t('securityFeedback')
       ]
     }
   },

@@ -38,7 +38,6 @@
           cols="6"
           sm="4"
           class="movie-list-md-col"
-          @click="goDetail(movie.path)"
         >
           <v-skeleton-loader
             :loading="loading"
@@ -57,6 +56,7 @@
                 aspect-ratio="0.684"
                 class="align-end"
                 @error="posterLoadFail(index)"
+                @click="goDetail(movie.path)"
               >
                 <template v-slot:placeholder>
                   <v-skeleton-loader
@@ -101,21 +101,34 @@
                 </template>
               </v-img>
 
-              <v-card-actions class="hidden-xs-only">
+              <v-card-actions
+                class="hidden-xs-only"
+                style="cursor: auto"
+              >
                 <v-list-item class="grow">
-                  <span>{{ movie.year }}</span>
-                  <span class="mx-1">·</span>
-                  <span>{{ movie.info.genre }}</span>
                   <v-row
                     align="center"
-                    justify="end"
+                    justify="space-between"
                   >
-                    <v-icon class="mr-1">
-                      mdi-heart
-                    </v-icon>
-                    <v-icon class="mr-1">
-                      mdi-share-variant
-                    </v-icon>
+                    <div>
+                      <span>{{ movie.year }}</span>
+                      <span class="mx-1">·</span>
+                      <span>{{ movie.info.genre }}</span>
+                    </div>
+                    <div>
+                      <v-icon
+                        class="mr-1"
+                        @click="addMovieToUser(movie._id,'list')"
+                      >
+                        mdi-heart
+                      </v-icon>
+                      <v-icon
+                        class="mr-1"
+                        @click="todo"
+                      >
+                        mdi-share-variant
+                      </v-icon>
+                    </div>
                   </v-row>
                 </v-list-item>
               </v-card-actions>
@@ -132,9 +145,12 @@ import router from '../../router'
 import { undefinedMovie } from '../../utils'
 import { getMovieByIds, getMovieByGenre, getMovieByType } from '../../api/movie'
 import fallbackPoster from '../../utils/fallbackPoster'
+import userMixin from '../../mixins/userMixin'
+import appMixin from '../../mixins/appMixin'
 
 export default {
   name: 'MovieList',
+  mixins: [userMixin, appMixin],
   props: {
     title: {
       type: String,

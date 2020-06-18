@@ -14,9 +14,7 @@ export default {
         Message.info(this.$t('exist'))
         return
       }
-      console.log(list)
       list.unshift(movieId)
-      console.log(list)
       await setLoading(
         updateUser({
           [type]: list

@@ -118,6 +118,7 @@ const zhCN = {
   featureFeedback: '建议一个新功能',
   movieErrorFeedback: '电影信息有误',
   movieNotFoundFeedback: '缺少某部电影',
+  securityFeedback: '反馈漏洞 (最高优先级)',
   summarizeFeedback: '简述您的反馈 *',
   detailFeedback: '详细说明（可选）',
   emailFeedback: '留下您的邮箱以追踪反馈（可选）',

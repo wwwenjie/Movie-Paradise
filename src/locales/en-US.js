@@ -118,6 +118,7 @@ const enUS = {
   featureFeedback: 'Suggest a feature',
   movieErrorFeedback: 'Report a incorrect movie information',
   movieNotFoundFeedback: 'Missing a movie',
+  securityFeedback: 'Report a vulnerability (top concern)',
   summarizeFeedback: 'Summarize your feedback *',
   detailFeedback: 'Explain in more detail (optional)',
   emailFeedback: 'Leave your email to track feedback (optional)',
