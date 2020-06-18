@@ -8,6 +8,7 @@ inputs:
   src:
     src: ./dist # (optional) path to the source folder. default is a hello world app.
     index: index.html
+    error: index.html
   region: ap-chengdu
   bucketName: movie-paradise
   protocol: https
