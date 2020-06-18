@@ -1,23 +1,27 @@
-# Movie Paradise [![Netlify Status](https://api.netlify.com/api/v1/badges/3261a25a-796e-4e36-bbba-0a3db3bf37b4/deploy-status)](https://app.netlify.com/sites/movieparadise/deploys)  
+# Movie Paradise
+![](https://github.com/wwwenjie/Movie-Paradise/workflows/deploy/badge.svg)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/3261a25a-796e-4e36-bbba-0a3db3bf37b4/deploy-status)](https://app.netlify.com/sites/movieparadise/deploys)
 
 > This project is for learning and communication purposes only, not for commercial use. The data comes from third-party websites.
 
 ### Introduction
 Movie Paradise is a web app built by Vue and Koa.  
-It can preview movies and provide download hash, online watch url, ~~live watch functions~~.
+It can preview movies and provide download hash, online watch url, ~~live watch functions~~.  
+[Demo Website](https://movieparadise.netlify.app)  
+[Optimized for China](https://movie-paradise-1256033731.cos-website.ap-chengdu.myqcloud.com)
 
-### Status: Alpha
-Most of basic features has been completed, more features are under development
+
+### Status: Beta
+Most of the features has been completed, more details to be optimized
 
 ### Deploying
-[The site](https://movieparadise.netlify.app/) is automatically deployed when commits land in master, via [Netlify](https://www.netlify.com/).  
+This site is automatically deployed when commits land in master, via [Netlify](https://www.netlify.com/).  
 Deploy this project easily through serverless, just run `yarn deploy`.  
-
-[Swagger API](https://api.movie.jinwenjie.me/swagger-html)  
-(deprecated) [Mock API](http://rap2.jinwenjie.me:3000/repository/editor?id=1) Based on [Rap2](https://github.com/thx/rap2-delos)
 
 ### Development (back-end)
 - [back end repository](https://github.com/wwwenjie/movie-paradise-koa)
+- [Swagger API](https://api.movie.jinwenjie.me/swagger-html)  
+- (deprecated) [Mock API](http://rap2.jinwenjie.me:3000/repository/editor?id=1) Based on [Rap2](https://github.com/thx/rap2-delos)
 
 ### Development (front-end)
 - clone this repo
