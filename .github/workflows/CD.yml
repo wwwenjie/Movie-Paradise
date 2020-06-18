@@ -24,6 +24,8 @@ jobs:
         run: yarn --frozen-lockfile
       - name: Lint
         run: yarn lint
+      - name: Build
+        run: yarn build
       - name: Deploy
         env:
           TENCENT_SECRET_ID: ${{ secrets.TENCENT_SECRET_ID }}
