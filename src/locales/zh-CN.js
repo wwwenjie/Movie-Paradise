@@ -81,8 +81,8 @@ const zhCN = {
   // 账号详情
   logout: '登出',
   myComments: '我的评论',
-  myList: '列表',
-  myLike: '收藏',
+  myList: '我的片库',
+  myLike: '我的收藏',
   watched: '看过',
   delete: '删除',
   deleteAccount: '删除账号',
@@ -107,6 +107,9 @@ const zhCN = {
   loginFirst: '请先登陆',
   noComments: '暂无评论',
   allComments: '该用户的所有评论',
+
+  // 用户电影列表
+  noMovies: '暂无电影',
 
   // 反馈
   feedback: '反馈',

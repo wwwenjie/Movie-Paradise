@@ -12,6 +12,7 @@
         class="mx-sm-4"
       >
         <v-col
+          v-if="title"
           cols="12"
           class="pb-0"
         >

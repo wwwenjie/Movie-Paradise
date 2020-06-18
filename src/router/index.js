@@ -8,7 +8,7 @@ import MovieMore from '../views/MovieMore'
 import AccountDetail from '../views/AccountDetail'
 import AccountDetailEdit from '../components/AccountDetailEdit'
 import AccountDetailComment from '../components/AccountDetailComment'
-import AccountDetailList from '../components/AccountDetailList'
+import AccountDetailMovie from '../components/AccountDetailMovie'
 import About from '../views/About'
 import Feedback from '../views/Feedback'
 
@@ -46,20 +46,12 @@ const routes = [
     component: AccountDetailEdit
   },
   {
-    path: '/account/comment',
+    path: '/account/comments',
     component: AccountDetailComment
   },
   {
-    path: '/account/list',
-    component: AccountDetailList
-  },
-  {
-    path: '/account/like',
-    component: AccountDetailList
-  },
-  {
-    path: '/account/watched',
-    component: AccountDetailList
+    path: '/account/movies',
+    component: AccountDetailMovie
   },
   {
     path: '/feedback',

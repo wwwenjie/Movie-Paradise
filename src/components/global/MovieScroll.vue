@@ -81,7 +81,7 @@
     </v-skeleton-loader>
     <v-expand-transition>
       <movie-scroll-detail
-        v-show="active !== undefined"
+        v-if="active !== undefined"
         :detail="movies[active]"
       />
     </v-expand-transition>

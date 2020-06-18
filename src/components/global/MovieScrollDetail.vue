@@ -21,12 +21,23 @@
     >
       <v-col
         cols="3"
-        class="pa-0 pt-2 text-center"
+        class="pa-0 pt-1 text-center"
       >
-        <v-icon class="d-block">
-          mdi-plus
-        </v-icon>
-        <span class="caption">{{ $t('addList') }}</span>
+        <v-btn
+          text
+          x-large
+          class="px-0"
+          @click="addMovieToUser(detail._id,'list')"
+        >
+          <div>
+            <v-icon class="d-block">
+              mdi-plus
+            </v-icon>
+            <span class="caption">
+              {{ $t('addList') }}
+            </span>
+          </div>
+        </v-btn>
       </v-col>
       <v-col
         cols="5"
@@ -42,12 +53,23 @@
       </v-col>
       <v-col
         cols="3"
-        class="pa-0 pt-2 text-center"
+        class="pa-0 pt-1 text-center"
       >
-        <v-icon class="d-block">
-          mdi-share
-        </v-icon>
-        <span class="caption">{{ $t('share') }}</span>
+        <v-btn
+          text
+          x-large
+          class="px-0"
+          @click="todo"
+        >
+          <div>
+            <v-icon class="d-block">
+              mdi-plus
+            </v-icon>
+            <span class="caption">
+              {{ $t('share') }}
+            </span>
+          </div>
+        </v-btn>
       </v-col>
     </v-row>
   </v-sheet>
@@ -56,9 +78,12 @@
 <script>
 import router from '../../router'
 import { undefinedMovie } from '../../utils'
+import userMixin from '../../mixins/userMixin'
+import appMixin from '../../mixins/appMixin'
 
 export default {
   name: 'MovieScrollDetail',
+  mixins: [userMixin, appMixin],
   props: {
     detail: {
       type: Object,

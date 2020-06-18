@@ -108,6 +108,9 @@ const enUS = {
   noComments: 'No comments yet',
   allComments: 'All of user\'s comments',
 
+  // 用户电影列表
+  noMovies: 'No Movies',
+
   // feedback
   feedback: 'Feedback',
   category: 'Category *',

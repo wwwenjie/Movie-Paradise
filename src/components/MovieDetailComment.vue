@@ -178,8 +178,9 @@ export default {
         user_id: this.userStore._id,
         user_name: this.userStore.name,
         // remove lastMod
-        user_avatar: this.userStore.avatar.split('?').shift(),
+        user_avatar: this.userStore.avatar ? this.userStore.avatar.split('?').shift() : undefined,
         movie_id: this.movie._id,
+        // bug: if movie is cached, the title will be English not Chinese
         movie_title: this.movie.title,
         movie_title_en: this.movie.title_en,
         rating: this.rating,

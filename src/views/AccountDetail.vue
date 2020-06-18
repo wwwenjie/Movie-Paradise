@@ -99,15 +99,15 @@ export default {
         {
           text: this.$t('myList'),
           icon: 'mdi-view-list',
-          method: 'todo'
+          method: 'goList'
         }, {
           text: this.$t('myLike'),
           icon: 'mdi-heart',
-          method: 'todo'
+          method: 'goLike'
         }, {
           text: this.$t('watched'),
           icon: 'mdi-movie-filter',
-          method: 'todo'
+          method: 'goWatched'
         }, {
           text: this.$t('logout'),
           icon: 'mdi-logout',
@@ -137,10 +137,20 @@ export default {
       this.logOut()
     },
     goEdit () {
-      this.$router.push({ path: '/account/edit', query: { userId: this.userStore._id } })
+      this.$router.push({ path: '/account/edit' })
     },
+    // todo: those list should have a edit and delete function. For mobile, swipe, for desktop show button
     goComment () {
-      this.$router.push({ path: '/account/comment', query: { userId: this.userStore._id } })
+      this.$router.push({ path: '/account/comments' })
+    },
+    goList () {
+      this.$router.push({ path: '/account/movies', query: { title: this.$t('myList') } })
+    },
+    goLike () {
+      this.$router.push({ path: '/account/movies', query: { title: this.$t('myLike') } })
+    },
+    goWatched () {
+      this.$router.push({ path: '/account/movies', query: { title: this.$t('watched') } })
     }
   }
 }
