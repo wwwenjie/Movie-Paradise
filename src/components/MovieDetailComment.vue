@@ -191,7 +191,6 @@ export default {
     },
     userDetail (index) {
       this.userId = this.comments[index].user_id
-      console.log(this.userId)
     },
     todo () {
       Message.info(this.$t('todo'))

@@ -28,10 +28,20 @@
         />
       </template>
     </v-text-field>
-    <div>
-      <p class="ml-2 mb-0 title">
+    <div class="mx-2">
+      <p class="mb-0 title">
         {{ promptText }}
       </p>
+      <div style="text-align: right">
+        <v-btn
+          v-show="promptText===$t('searchNotFound')"
+          outlined
+          class="mt-4"
+          @click="$router.push({ path: 'feedback' })"
+        >
+          {{ $t('feedback') }}
+        </v-btn>
+      </div>
     </div>
     <movie-list
       v-show="movies.length!==0"

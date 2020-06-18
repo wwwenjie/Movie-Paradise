@@ -20,10 +20,12 @@ const service = axios.create({
 service.interceptors.request.use(
   config => {
     // add auth
-    if (localStorage.getItem('vuex')) {
-      if (store.state.token) {
-        config.headers.Authorization = 'Bearer ' + store.state.token
-      }
+    if (store.state.token) {
+      config.headers.Authorization = 'Bearer ' + store.state.token
+    }
+    // add locale
+    if (store.state.locale) {
+      config.headers['Accept-Language'] = store.state.locale
     }
     return config
   },

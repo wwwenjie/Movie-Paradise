@@ -7,7 +7,7 @@
       class="mx-4 mt-4"
     >
       <v-select
-        v-model="category"
+        v-model="feedback.category"
         :label="$t('category')"
         :items="categories"
         :rules="[v => !!v || $t('ruleRequired')]"
@@ -15,7 +15,7 @@
       />
 
       <v-text-field
-        v-model="summary"
+        v-model="feedback.summary"
         :label="$t('summarizeFeedback')"
         :rules="[v => !!v || $t('ruleRequired')]"
         :counter="50"
@@ -23,12 +23,12 @@
       />
 
       <v-text-field
-        v-model="detail"
+        v-model="feedback.detail"
         :label="$t('detailFeedback')"
       />
 
       <v-text-field
-        v-model="email"
+        v-model="feedback.email"
         :label="$t('emailFeedback')"
       />
 
@@ -37,12 +37,12 @@
           class="body-2 grey--text"
         >
           {{ $t('developer') }}
-          <span
+          <a
             class="text-decoration-underline blue-grey--text"
             @click="github"
           >
             {{ $t('githubFeedback') }}
-          </span>
+          </a>
         </span>
         <v-btn @click="submit">
           {{ $t('submit') }}
@@ -54,6 +54,8 @@
 
 <script>
 import VPage from '../components/global/VPage'
+import { addFeedback } from '../api/feedback'
+import Message from '../utils/message'
 export default {
   name: 'Feedback',
   components: {
@@ -61,10 +63,12 @@ export default {
   },
   data () {
     return {
-      category: undefined,
-      summary: undefined,
-      detail: undefined,
-      email: undefined
+      feedback: {
+        category: undefined,
+        summary: undefined,
+        detail: undefined,
+        email: undefined
+      }
     }
   },
   computed: {
@@ -72,13 +76,15 @@ export default {
       return [
         this.$t('bugFeedback'),
         this.$t('featureFeedback'),
-        this.$t('movieFeedback')
+        this.$t('movieErrorFeedback'),
+        this.$t('movieNotFoundFeedback')
       ]
     }
   },
   methods: {
-    submit () {
-
+    async submit () {
+      await addFeedback(this.feedback)
+      Message.success()
     },
     github () {
       window.open('https://github.com/wwwenjie/Movie-Paradise/issues/new/choose', '_blank')

@@ -89,6 +89,15 @@ export default {
     if (this.genreStore.length === 0) {
       this.setGenreStore(await getGenres(100))
     }
+    // eslint-disable-next-line no-console
+    console.log('  __  __            _        _____                    _ _          \n' +
+      ' |  \\/  |          (_)      |  __ \\                  | (_)         \n' +
+      ' | \\  / | _____   ___  ___  | |__) |_ _ _ __ __ _  __| |_ ___  ___ \n' +
+      ' | |\\/| |/ _ \\ \\ / / |/ _ \\ |  ___/ _` | \'__/ _` |/ _` | / __|/ _ \\\n' +
+      ' | |  | | (_) \\ V /| |  __/ | |  | (_| | | | (_| | (_| | \\__ \\  __/\n' +
+      ' |_|  |_|\\___/ \\_/ |_|\\___| |_|   \\__,_|_|  \\__,_|\\__,_|_|___/\\___|\n')
+    // eslint-disable-next-line no-console
+    console.log('https://github.com/wwwenjie/Movie-Paradise')
   }
 }
 </script>
