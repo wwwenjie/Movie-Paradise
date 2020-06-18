@@ -10,7 +10,9 @@ const zhCN = {
   info: {},
   UIPMessage: '允许我们创建额外请求来优化我们的网站',
   sure: '没问题',
+  confirm: '确认',
   deny: '拒绝',
+  cancel: '取消',
   thanks: '谢谢您！',
   todo: '很抱歉，该功能暂未实现，不过我们将尽快完成',
 
@@ -76,7 +78,10 @@ const zhCN = {
   myList: '列表',
   myLike: '收藏',
   watched: '看过',
-  deleteAccount: '注销账号',
+  delete: '删除',
+  deleteAccount: '删除账号',
+  confirmDelete: '确认删除账号？',
+  confirmText: '这将永久删除您在我们网站的账号',
 
   // 账号详情修改
   editAccount: '修改账号',
@@ -90,11 +95,11 @@ const zhCN = {
   // 评论
   comments: '评论',
   moreComments: '更多评论',
-  noComments: '暂无评论，点击右下方按钮新建一条吧',
+  noMovieComments: '暂无评论，点击右下方按钮新建一条吧',
   createComment: '新建评论',
   howDoYouThink: '你觉得这部电影怎么样？',
   loginFirst: '请先登陆',
-  noUserComment: '该用户暂时没有评论',
+  noComments: '暂无评论',
   allComments: '该用户的所有评论',
 
   // 反馈

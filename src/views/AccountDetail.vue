@@ -39,6 +39,37 @@
         </v-list-item-content>
       </v-list-item>
     </v-list>
+
+    <v-dialog
+      v-model="dialog"
+      max-width="390"
+    >
+      <v-card>
+        <v-card-title class="headline">
+          {{ $t('confirmDelete') }}
+        </v-card-title>
+
+        <v-card-text>
+          {{ $t('confirmText') }}
+        </v-card-text>
+
+        <v-card-actions>
+          <v-spacer />
+          <v-btn
+            @click="dialog = false"
+          >
+            {{ $t('cancel') }}
+          </v-btn>
+          <v-btn
+            color="red"
+            class="white--text"
+            @click="deleteAccount"
+          >
+            {{ $t('delete') }}
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
   </v-page>
 </template>
 
@@ -46,6 +77,8 @@
 import VPage from '../components/global/VPage'
 import storeMap from '../mixins/storeMap'
 import Message from '../utils/message'
+import { deleteUser } from '../api/user'
+import { setLoading } from '../utils'
 
 export default {
   name: 'AccountDetail',
@@ -55,6 +88,7 @@ export default {
   mixins: [storeMap],
   data () {
     return {
+      dialog: false,
       lists: [
         {
           text: this.$t('myComments'),
@@ -80,7 +114,7 @@ export default {
         }, {
           text: this.$t('deleteAccount'),
           icon: 'mdi-delete-alert',
-          method: 'todo'
+          method: 'showDialog'
         }
       ]
     }
@@ -93,6 +127,13 @@ export default {
       this.clearLoginData()
       Message.success()
       this.$router.back()
+    },
+    showDialog () {
+      this.dialog = true
+    },
+    async deleteAccount () {
+      await setLoading(deleteUser())
+      this.logOut()
     },
     goEdit () {
       this.$router.push({ path: '/account/edit', query: { userId: this.userStore._id } })

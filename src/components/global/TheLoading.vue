@@ -2,7 +2,7 @@
   <!--higher priority than dialog-->
   <v-overlay
     :value="$store.state.loading"
-    style="z-index: 999"
+    style="z-index: 998"
   >
     <v-progress-circular
       :size="70"

@@ -9,7 +9,9 @@
           color="grey"
           size="80"
           class="my-4 mx-auto"
-        />
+        >
+          {{ $t('appName') }}
+        </v-avatar>
       </v-list-item>
 
       <v-list-item>

@@ -22,7 +22,7 @@
         v-if="comments.length===0"
         class="px-4 mb-0"
       >
-        {{ $t('noComments') }}
+        {{ $t('noMovieComments') }}
       </p>
       <div
         v-for="(comment,index) in comments"

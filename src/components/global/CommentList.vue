@@ -7,7 +7,7 @@
       v-if="comments.length===0"
       class="px-4 mb-0"
     >
-      {{ $t('noUserComment') }}
+      {{ $t('noComments') }}
     </p>
     <div
       v-for="comment in comments"

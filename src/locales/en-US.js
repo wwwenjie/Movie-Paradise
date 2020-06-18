@@ -10,7 +10,9 @@ const enUS = {
   info: {},
   UIPMessage: 'Allow us to create additional requests to better our website',
   sure: 'Sure',
+  confirm: 'Confirm',
   deny: 'Deny',
+  cancel: 'Cancel',
   thanks: 'Thank You!',
   todo: 'Sorry, this feature is not yet implemented, but we will complete it ASAP',
 
@@ -76,7 +78,10 @@ const enUS = {
   myList: 'My List',
   myLike: 'My Like',
   watched: 'Watched',
+  delete: 'Delete',
   deleteAccount: 'Delete Account',
+  confirmDelete: 'Confirm deleted',
+  confirmText: 'It will permanently delete your account on our website',
 
   // account detail edit
   editAccount: 'Edit Account',
@@ -90,14 +95,14 @@ const enUS = {
   // comments
   comments: 'Comments',
   moreComments: 'More Comments',
-  noComments: 'There are no comments yet, you can click the button at the bottom right to create a new one',
+  noMovieComments: 'There are no comments yet, you can click the button at the bottom right to create a new one',
   createComment: 'Create Comments',
   howDoYouThink: 'How do you think of this movie?',
   loginFirst: 'Please login first',
-  noUserComments: 'This user dosen\'t have comments',
+  noComments: 'No comments yet',
   allComments: 'All of user\'s comments',
 
-  // 反馈
+  // feedback
   feedback: 'Feedback',
   category: 'Category *',
   bugFeedback: 'Report a problem',

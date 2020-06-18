@@ -31,6 +31,13 @@ export function updateUser (user) {
   })
 }
 
+export function deleteUser () {
+  return request({
+    url: `/users/${store.state.userStore._id}`,
+    method: 'delete'
+  })
+}
+
 export function uploadAvatar (formData) {
   return request({
     url: `/users/${store.state.userStore._id}/avatar`,

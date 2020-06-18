@@ -1,14 +1,14 @@
 <template>
+  <!--higher priority than loading-->
   <v-fade-transition>
     <v-snackbar
       v-model="messageCon.show"
       :color="messageCon.type"
       :timeout="messageCon.timeout"
       :vertical="this.$vuetify.breakpoint.smAndDown"
-      absolute
       top
       elevation="12"
-      style="z-index: 6"
+      style="z-index: 999"
     >
       {{ messageCon.text }}
       <template v-slot:action>
