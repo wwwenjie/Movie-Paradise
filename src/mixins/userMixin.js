@@ -1,22 +1,29 @@
 import { updateUser } from '../api/user'
 import Message from '../utils/message'
-import { setLoading } from '../utils'
+import { deepCopy, setLoading } from '../utils'
 
 export default {
   methods: {
     async addMovieToUser (movieId, type) {
-      const list = this.$store.state.userStore[type]
+      if (!this.$store.state.token) {
+        this.$store.commit('SET_POP_ACCOUNT', true)
+        return
+      }
+      const list = deepCopy(this.$store.state.userStore[type])
       if (list.includes(movieId)) {
         Message.info(this.$t('exist'))
         return
       }
+      console.log(list)
+      list.unshift(movieId)
+      console.log(list)
       await setLoading(
         updateUser({
-          [type]: list.concat(movieId)
+          [type]: list
         })
       )
       this.$store.commit('SET_LOGIN_DATA', {
-        [type]: list.concat(movieId)
+        [type]: list
       })
       Message.success()
     }
