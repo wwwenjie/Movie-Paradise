@@ -79,13 +79,14 @@ import storeMap from '../mixins/storeMap'
 import Message from '../utils/message'
 import { deleteUser } from '../api/user'
 import { setLoading } from '../utils'
+import appMixin from '../mixins/appMixin'
 
 export default {
   name: 'AccountDetail',
   components: {
     'v-page': VPage
   },
-  mixins: [storeMap],
+  mixins: [storeMap, appMixin],
   data () {
     return {
       dialog: false,
@@ -140,9 +141,6 @@ export default {
     },
     goComment () {
       this.$router.push({ path: '/account/comment', query: { userId: this.userStore._id } })
-    },
-    todo () {
-      Message.info(this.$t('todo'))
     }
   }
 }

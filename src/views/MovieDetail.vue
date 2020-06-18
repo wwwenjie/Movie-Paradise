@@ -86,7 +86,7 @@
           <v-icon left>
             mdi-play
           </v-icon>
-          {{ emptyTrailers ? '暂无预告片':'预告片' }}
+          {{ emptyTrailers ? $t('noTrailer') : $t('trailer') }}
         </v-btn>
         <movie-detail-video
           v-if="!emptyTrailers"
@@ -111,34 +111,67 @@
         cols="12"
         class="px-6"
       >
-        <span class="caption grey--text">演员: {{ movie.info.actors }}</span>
+        <span class="caption grey--text">{{ $t('actors') }}: {{ movie.info.actors }}</span>
       </v-col>
       <v-col
         cols="4"
         class="px-6 text-center"
       >
-        <v-icon class="d-block">
-          mdi-plus
-        </v-icon>
-        <span class="caption grey--text">加入片库</span>
+        <v-btn
+          text
+          x-large
+          class="px-0"
+          @click="addMovieToUser(movie._id,'list')"
+        >
+          <div>
+            <v-icon class="d-block">
+              mdi-plus
+            </v-icon>
+            <span class="caption grey--text">
+              {{ $t('addList') }}
+            </span>
+          </div>
+        </v-btn>
       </v-col>
       <v-col
         cols="4"
         class="px-6 text-center"
       >
-        <v-icon class="d-block">
-          mdi-download
-        </v-icon>
-        <span class="caption grey--text">下载链接</span>
+        <v-btn
+          text
+          x-large
+          class="px-0"
+          @click="todo"
+        >
+          <div>
+            <v-icon class="d-block">
+              mdi-download
+            </v-icon>
+            <span class="caption grey--text">
+              {{ $t('downloadLink') }}
+            </span>
+          </div>
+        </v-btn>
       </v-col>
       <v-col
         cols="4"
         class="px-6 text-center"
       >
-        <v-icon class="d-block">
-          mdi-heart
-        </v-icon>
-        <span class="caption grey--text">加入喜欢</span>
+        <v-btn
+          text
+          x-large
+          class="px-0"
+          @click="addMovieToUser(movie._id,'like')"
+        >
+          <div>
+            <v-icon class="d-block">
+              mdi-heart
+            </v-icon>
+            <span class="caption grey--text">
+              {{ $t('addLike') }}
+            </span>
+          </div>
+        </v-btn>
       </v-col>
     </v-row>
     <movie-detail-comment
@@ -157,6 +190,8 @@
 import MovieList from '../components/global/MovieList'
 import MovieDetailVideo from '../components/MovieDetailVideo'
 import MovieDetailComment from '../components/MovieDetailComment'
+import userMixin from '../mixins/userMixin'
+import appMixin from '../mixins/appMixin'
 import { getMovieByPath } from '../api/movie'
 import { undefinedMovie } from '../utils'
 import fallbackPoster from '../utils/fallbackPoster'
@@ -169,6 +204,7 @@ export default {
     'movie-detail-video': MovieDetailVideo,
     'movie-detail-comment': MovieDetailComment
   },
+  mixins: [userMixin, appMixin],
   props: {
     path: {
       type: String,
@@ -225,6 +261,7 @@ export default {
     posterLoadFail () {
       this.error = fallbackPoster(this.movie)
     },
+    // todo: back but remove movie detail routes
     goBack () {
       this.$router.push({ path: '/' })
     }

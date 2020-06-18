@@ -8,6 +8,7 @@ import MovieMore from '../views/MovieMore'
 import AccountDetail from '../views/AccountDetail'
 import AccountDetailEdit from '../components/AccountDetailEdit'
 import AccountDetailComment from '../components/AccountDetailComment'
+import AccountDetailList from '../components/AccountDetailList'
 import About from '../views/About'
 import Feedback from '../views/Feedback'
 
@@ -22,48 +23,51 @@ const routes = [
   },
   {
     path: '/search',
-    component: Search,
-    props: true
+    component: Search
   },
   {
     path: '/settings',
-    component: Setting,
-    props: true
+    component: Setting
   },
   {
     path: '/movie/:path',
-    component: MovieDetail,
-    props: true
+    component: MovieDetail
   },
   {
     path: '/movies',
-    component: MovieMore,
-    props: true
+    component: MovieMore
   },
   {
     path: '/account',
-    component: AccountDetail,
-    props: true
+    component: AccountDetail
   },
   {
     path: '/account/edit',
-    component: AccountDetailEdit,
-    props: (route) => ({ userId: route.query.userId })
+    component: AccountDetailEdit
   },
   {
     path: '/account/comment',
-    component: AccountDetailComment,
-    props: (route) => ({ userId: route.query.userId })
+    component: AccountDetailComment
+  },
+  {
+    path: '/account/list',
+    component: AccountDetailList
+  },
+  {
+    path: '/account/like',
+    component: AccountDetailList
+  },
+  {
+    path: '/account/watched',
+    component: AccountDetailList
   },
   {
     path: '/feedback',
-    component: Feedback,
-    props: true
+    component: Feedback
   },
   {
     path: '/about',
-    component: About,
-    props: true
+    component: About
   },
   {
     // it supposed to be 404 page

@@ -122,13 +122,14 @@ import { createComment, getCommentByMovieId } from '../api/comment'
 import Message from '../utils/message'
 import { isSafari, setLoading, undefinedMovie } from '../utils'
 import storeMap from '../mixins/storeMap'
+import appMixin from '../mixins/appMixin'
 
 export default {
   name: 'MovieDetailComment',
   components: {
     'comment-user': MovieDetailCommentUser
   },
-  mixins: [storeMap],
+  mixins: [storeMap, appMixin],
   props: {
     showBtn: {
       type: Boolean,
@@ -191,9 +192,6 @@ export default {
     },
     userDetail (index) {
       this.userId = this.comments[index].user_id
-    },
-    todo () {
-      Message.info(this.$t('todo'))
     }
   }
 }

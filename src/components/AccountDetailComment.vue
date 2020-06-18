@@ -19,19 +19,13 @@ export default {
     'v-page': VPage,
     'comment-list': CommentList
   },
-  props: {
-    userId: {
-      type: String,
-      default: undefined
-    }
-  },
   data () {
     return {
       comments: []
     }
   },
   async mounted () {
-    this.comments = await getCommentByUserId(this.userId)
+    this.comments = await getCommentByUserId(this.$store.state.userStore._id)
   }
 }
 </script>

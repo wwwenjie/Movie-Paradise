@@ -4,6 +4,7 @@
   >
     <v-form
       ref="form"
+      v-model="valid"
       class="mx-4 mt-4"
     >
       <v-select
@@ -24,6 +25,7 @@
 
       <v-text-field
         v-model="feedback.detail"
+        clearable
         :label="$t('detailFeedback')"
       />
 
@@ -63,6 +65,7 @@ export default {
   },
   data () {
     return {
+      valid: false,
       feedback: {
         category: undefined,
         summary: undefined,
@@ -83,6 +86,10 @@ export default {
   },
   methods: {
     async submit () {
+      if (!this.valid) {
+        Message.error(this.$t('validFail'))
+        return
+      }
       await addFeedback(this.feedback)
       Message.success()
     },
