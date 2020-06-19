@@ -74,23 +74,9 @@
       </v-col>
       <v-col
         cols="12"
-        class="text-center"
+        class="text-center px-6"
       >
-        <v-btn
-          depressed
-          :disabled="emptyTrailers"
-          width="90%"
-          class="mt-4 red white--text"
-          @click="dialog = true"
-        >
-          <v-icon left>
-            mdi-play
-          </v-icon>
-          {{ emptyTrailers ? $t('noTrailer') : $t('trailer') }}
-        </v-btn>
         <movie-detail-video
-          v-if="!emptyTrailers"
-          :dialog.sync="dialog"
           :trailers="movie.trailers"
         />
       </v-col>
@@ -214,14 +200,8 @@ export default {
   data () {
     return {
       movie: undefinedMovie(),
-      dialog: false,
       error: false,
       showBtn: false
-    }
-  },
-  computed: {
-    emptyTrailers: function () {
-      return this.movie.trailers === null || (Array.isArray(this.movie.trailers) && this.movie.trailers.length === 0)
     }
   },
   // exit component and enter again

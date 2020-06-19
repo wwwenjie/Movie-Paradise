@@ -36,6 +36,7 @@ const enUS = {
   shuffle: 'Shuffle',
   relatedMovies: 'Related Movies',
   mayLike: 'You May Also Like',
+  noVideoSupport: 'Sorry, Your browser dosen\'t support video',
 
   // search
   search: 'Search',

@@ -69,19 +69,8 @@
               cols="5"
               class="text-center"
             >
-              <v-btn
-                light
-                width="100%"
-                class="font-weight-bold mb-2"
-                @click="dialog = true"
-              >
-                <v-icon left>
-                  mdi-play
-                </v-icon>
-                {{ $t('trailer') }}
-              </v-btn>
               <movie-detail-video
-                :dialog.sync="dialog"
+                light
                 :trailers="movie.trailers"
               />
             </v-col>
@@ -118,8 +107,7 @@ export default {
     return {
       movie: undefinedMovie(),
       loading: true,
-      error: false,
-      dialog: false
+      error: false
     }
   },
   async mounted () {

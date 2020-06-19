@@ -36,6 +36,7 @@ const zhCN = {
   shuffle: '更换封面',
   relatedMovies: '相关影片',
   mayLike: '猜你喜欢',
+  noVideoSupport: '抱歉，您的游览器不支持视频播放',
 
   // 搜索
   search: '搜索',

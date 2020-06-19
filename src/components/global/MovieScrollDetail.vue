@@ -63,7 +63,7 @@
         >
           <div>
             <v-icon class="d-block">
-              mdi-plus
+              mdi-share
             </v-icon>
             <span class="caption">
               {{ $t('share') }}

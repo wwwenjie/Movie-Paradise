@@ -1,58 +1,90 @@
 <template>
   <v-dialog
-    v-model="isShow"
+    v-model="dialog"
+    :fullscreen="$vuetify.breakpoint.smAndDown"
     max-width="920"
   >
-    <v-card>
-      <v-card-title class="headline">
-        {{ trailer.name }}
-      </v-card-title>
+    <template v-slot:activator="{ on, attrs }">
+      <v-btn
+        :light="light"
+        depressed
+        :disabled="emptyTrailers"
+        width="100%"
+        :class="[light ? 'font-weight-bold mb-2' : 'mt-4 red white--text']"
+        v-bind="attrs"
+        v-on="on"
+      >
+        <v-icon left>
+          mdi-play
+        </v-icon>
+        {{ emptyTrailers ? $t('noTrailer') : $t('trailer') }}
+      </v-btn>
+    </template>
+    <v-page
+      :title="$vuetify.breakpoint.smAndDown ? $t('trailer') : null"
+      :back-function="()=>{
+        // eslint-disable-next-line vue/this-in-template
+        this.dialog = false
+      }"
+    >
+      <v-card v-if="dialog">
+        <v-card-title class="headline">
+          {{ trailer.name }}
+        </v-card-title>
 
-      <v-card-text>
-        <video
-          ref="video"
-          controls
-          autoplay
-          style="width: 100%"
-        >
-          <source
-            :src="trailer.play_url"
-            type="video/mp4"
+        <v-card-text>
+          <video
+            ref="video"
+            controls
+            autoplay
+            style="width: 100%"
           >
-          抱歉，您的浏览器不支持内嵌视频，不过不用担心，你可以 <a :href="trailer.play_url">下载</a>并用你喜欢的播放器观看!
-        </video>
-      </v-card-text>
-      <v-divider />
-      <v-card-actions>
-        <!--TODO: other style for mobile-->
-        <v-btn
-          v-for="(item,index) in trailers"
-          :key="item._id"
-          color="white darken-1"
-          text
-          @click="changeVideo(index)"
-        >
-          {{ item.name }}
-        </v-btn>
-        <v-spacer />
-
-        <v-btn
-          color="white darken-1"
-          text
-          @click="isShow=false"
-        >
-          关闭
-        </v-btn>
-      </v-card-actions>
-    </v-card>
+            <source
+              :src="trailer.play_url"
+              type="video/mp4"
+            >
+            {{ $t('noVideoSupport') }}
+          </video>
+        </v-card-text>
+        <v-divider />
+        <v-card-actions>
+          <v-select
+            ref="select"
+            :value="trailer.name"
+            :items="trailers.map(trailer=>{
+              return trailer.name
+            })"
+            :style="{
+              'max-width': $vuetify.breakpoint.smAndDown ?
+                this.$vuetify.breakpoint.width*0.7 + 'px' : '500px'
+            }"
+            hide-details
+            solo
+            @input="changeVideo($event)"
+          />
+          <v-spacer />
+          <v-btn
+            text
+            @click="dialog = false"
+          >
+            {{ $t('close') }}
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-page>
   </v-dialog>
 </template>
 
 <script>
+import VPage from './global/VPage'
+
 export default {
   name: 'MovieDetailVideo',
+  components: {
+    'v-page': VPage
+  },
   props: {
-    dialog: {
+    light: {
       type: Boolean,
       default: false
     },
@@ -69,6 +101,7 @@ export default {
   },
   data: function () {
     return {
+      dialog: false,
       trailer: {
         cover_url: undefined,
         m: undefined,
@@ -79,31 +112,25 @@ export default {
     }
   },
   computed: {
-    isShow: {
-      get: function () {
-        return this.dialog
-      },
-      set: function (newValue) {
-        this.$emit('update:dialog', newValue)
-        this.$refs.video.pause()
-      }
+    emptyTrailers: function () {
+      return this.trailers === null || (Array.isArray(this.trailers) && this.trailers.length === 0)
     }
   },
   watch: {
-    trailers: function () {
-      if (this.trailers) {
-        this.trailer = this.trailers[0]
-      }
-    }
-  },
-  mounted () {
-    if (this.trailers) {
-      this.trailer = this.trailers[0]
+    trailers: {
+      handler: function () {
+        if (this.trailers) {
+          this.trailer = this.trailers[0]
+        }
+      },
+      immediate: true
     }
   },
   methods: {
-    changeVideo (index) {
-      this.trailer = this.trailers[index]
+    changeVideo (value) {
+      this.trailer = this.trailers.filter(trailer => {
+        return trailer.name === value
+      }).shift()
       this.$refs.video.load()
     }
   }
