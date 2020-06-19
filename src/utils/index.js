@@ -1,44 +1,5 @@
 import store from '../store'
 
-// return a definedMovie detail structure
-// detail from `https://api.dianying.fm/movies/${title_en}` or `https://api.dianying.fm/movies?ids=${id}`
-export function undefinedMovie () {
-  return {
-    _id: undefined,
-    info: {
-      director: undefined,
-      writer: undefined,
-      actors: undefined,
-      genre: undefined,
-      region: undefined,
-      language: undefined,
-      release: undefined,
-      duration: undefined,
-      alias: undefined,
-      // fix split undefined in movie detail
-      summary: ''
-    },
-    imdb_id: undefined,
-    title: undefined,
-    year: undefined,
-    title_en: undefined,
-    rating: {
-      douban_score: undefined,
-      douban_votes: undefined,
-      tags: undefined,
-      imdb_score: undefined,
-      imdb_votes: undefined
-    },
-    poster: undefined,
-    recs: [],
-    trailers: [],
-    backdrops: [],
-    path: undefined,
-    update_time: undefined,
-    tmdb_id: undefined
-  }
-}
-
 export async function sleep (ms = 2000) {
   return new Promise(resolve => setTimeout(resolve, ms))
 }
@@ -82,4 +43,66 @@ export function isSafari () {
   return ua.indexOf('applewebkit') > -1 && ua.indexOf('mobile') > -1 && ua.indexOf('safari') > -1 &&
     ua.indexOf('linux') === -1 && ua.indexOf('android') === -1 && ua.indexOf('chrome') === -1 &&
     ua.indexOf('ios') === -1 && ua.indexOf('browser') === -1
+}
+
+// return a definedMovie detail structure
+// detail from `https://api.dianying.fm/movies/${title_en}` or `https://api.dianying.fm/movies?ids=${id}`
+export function undefinedMovie () {
+  return {
+    _id: undefined,
+    info: {
+      director: undefined,
+      writer: undefined,
+      actors: undefined,
+      genre: undefined,
+      region: undefined,
+      language: undefined,
+      release: undefined,
+      duration: undefined,
+      alias: undefined,
+      // fix split undefined in movie detail
+      summary: ''
+    },
+    imdb_id: undefined,
+    title: undefined,
+    year: undefined,
+    title_en: undefined,
+    rating: {
+      douban_score: undefined,
+      douban_votes: undefined,
+      tags: undefined,
+      imdb_score: undefined,
+      imdb_votes: undefined
+    },
+    poster: undefined,
+    recs: [],
+    trailers: [],
+    backdrops: [],
+    path: undefined,
+    update_time: undefined,
+    tmdb_id: undefined
+  }
+}
+
+export function undefinedPlayLink () {
+  return {
+    _id: undefined,
+    douban_id: undefined,
+    like_count: undefined,
+    meta: {
+      date: undefined,
+      du: undefined,
+      du_s: undefined,
+      thid: undefined,
+      pay: undefined,
+      pv: undefined,
+      length: undefined,
+      ext: undefined
+    },
+    score: undefined,
+    site: undefined,
+    title: undefined,
+    type: undefined,
+    url: undefined
+  }
 }

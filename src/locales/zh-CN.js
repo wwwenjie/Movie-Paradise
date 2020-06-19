@@ -15,6 +15,7 @@ const zhCN = {
   cancel: '取消',
   thanks: '谢谢您！',
   todo: '很抱歉，该功能暂未实现，不过我们将尽快完成',
+  loading: '加载中',
 
   // 电影详情
   douban: '豆瓣',
@@ -27,7 +28,8 @@ const zhCN = {
   addList: '加入片库',
   addLike: '加入收藏',
   addWatch: '加入看过',
-  downloadLink: '下载链接',
+  playLinks: '播放链接',
+  downloadLinks: '下载链接',
   exist: '已存在',
   share: '分享',
   moreInfo: '更多信息',
@@ -37,6 +39,10 @@ const zhCN = {
   relatedMovies: '相关影片',
   mayLike: '猜你喜欢',
   noVideoSupport: '抱歉，您的游览器不支持视频播放',
+  resources: '"{title}" 的相关资源',
+  onlyOnline: '只展示在线资源',
+  noResources: '暂无相关资源',
+  network: '网络资源',
 
   // 搜索
   search: '搜索',

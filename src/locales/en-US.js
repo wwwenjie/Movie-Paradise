@@ -15,6 +15,7 @@ const enUS = {
   cancel: 'Cancel',
   thanks: 'Thank You!',
   todo: 'Sorry, this feature is not yet implemented, but we will complete it ASAP',
+  loading: 'Loading',
 
   // movie detail
   douban: 'DouBan',
@@ -27,7 +28,8 @@ const enUS = {
   addList: 'My List',
   addLike: 'My Like',
   addWatch: 'Watched',
-  downloadLink: 'Download',
+  playLinks: 'Play Links',
+  downloadLinks: 'Download',
   exist: 'Existed',
   share: 'Share',
   moreInfo: 'Info',
@@ -37,6 +39,10 @@ const enUS = {
   relatedMovies: 'Related Movies',
   mayLike: 'You May Also Like',
   noVideoSupport: 'Sorry, Your browser dosen\'t support video',
+  resources: 'Related resources about "{title}"',
+  onlyOnline: 'only display online resources',
+  noResources: 'No Resources',
+  network: 'Network',
 
   // search
   search: 'Search',

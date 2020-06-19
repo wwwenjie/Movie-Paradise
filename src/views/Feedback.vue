@@ -40,8 +40,9 @@
         >
           {{ $t('developer') }}
           <a
-            class="text-decoration-underline blue-grey--text"
-            @click="github"
+            class="text-decoration-none"
+            href="https://github.com/wwwenjie/Movie-Paradise/issues/new/choose"
+            target="_blank"
           >
             {{ $t('githubFeedback') }}
           </a>
@@ -93,9 +94,6 @@ export default {
       }
       await addFeedback(this.feedback)
       Message.success()
-    },
-    github () {
-      window.open('https://github.com/wwwenjie/Movie-Paradise/issues/new/choose', '_blank')
     }
   }
 }

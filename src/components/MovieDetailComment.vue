@@ -131,10 +131,6 @@ export default {
   },
   mixins: [storeMap, appMixin],
   props: {
-    showBtn: {
-      type: Boolean,
-      default: false
-    },
     movie: {
       type: Object,
       default: () => undefinedMovie()
@@ -142,6 +138,7 @@ export default {
   },
   data () {
     return {
+      showBtn: false,
       comments: [{
         user_name: undefined,
         user_avatar: undefined,
@@ -166,7 +163,7 @@ export default {
   },
   methods: {
     onComments (entries) {
-      this.$emit('update:showBtn', entries[0].isIntersecting)
+      this.showBtn = entries[0].isIntersecting
     },
     async saveComment () {
       if (!this.token) {

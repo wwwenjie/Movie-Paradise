@@ -123,21 +123,10 @@
         cols="4"
         class="px-6 text-center"
       >
-        <v-btn
-          text
-          x-large
-          class="px-0"
-          @click="todo"
-        >
-          <div>
-            <v-icon class="d-block">
-              mdi-download
-            </v-icon>
-            <span class="caption grey--text">
-              {{ $t('downloadLink') }}
-            </span>
-          </div>
-        </v-btn>
+        <movie-detail-play
+          :movie-id="movie._id"
+          :movie-title="movie.title"
+        />
       </v-col>
       <v-col
         cols="4"
@@ -161,7 +150,6 @@
       </v-col>
     </v-row>
     <movie-detail-comment
-      :show-btn.sync="showBtn"
       :movie="movie"
     />
     <movie-list
@@ -176,6 +164,7 @@
 import MovieList from '../components/global/MovieList'
 import MovieDetailVideo from '../components/MovieDetailVideo'
 import MovieDetailComment from '../components/MovieDetailComment'
+import MovieDetailPlay from '../components/MovieDetailPlay'
 import userMixin from '../mixins/userMixin'
 import appMixin from '../mixins/appMixin'
 import { getMovieByPath } from '../api/movie'
@@ -188,7 +177,8 @@ export default {
   components: {
     'movie-list': MovieList,
     'movie-detail-video': MovieDetailVideo,
-    'movie-detail-comment': MovieDetailComment
+    'movie-detail-comment': MovieDetailComment,
+    'movie-detail-play': MovieDetailPlay
   },
   mixins: [userMixin, appMixin],
   props: {
@@ -200,8 +190,7 @@ export default {
   data () {
     return {
       movie: undefinedMovie(),
-      error: false,
-      showBtn: false
+      error: false
     }
   },
   // exit component and enter again
