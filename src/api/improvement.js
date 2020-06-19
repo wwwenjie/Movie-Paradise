@@ -34,5 +34,5 @@ export function patchBackdrops (path) {
 
 export function headPoster (id) {
   // it is expected 404 error, so dont use request, use pure axios
-  return axios.head(`${Config.fallbackUrl[0]}${id}.jfif`)
+  return axios.head(`${Config.fallbackUrl[0]}${id}`)
 }
