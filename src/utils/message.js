@@ -25,6 +25,7 @@ export default class Message {
   // alias of info
   static success (text = this.getDefaultSuccessText(), timeout = 2000) {
     this.call({
+      icon: 'mdi-checkbox-marked-circle-outline',
       text: text,
       confirmText: undefined,
       declineText: undefined,
@@ -35,6 +36,7 @@ export default class Message {
 
   static error (text = this.getDefaultErrorText(), timeout = 2000) {
     this.call({
+      icon: 'mdi-close-circle-outline',
       text: text,
       confirmText: undefined,
       declineText: undefined,

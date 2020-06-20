@@ -20,6 +20,7 @@ export default new Vuex.Store({
   state: {
     messageCon: {
       show: false,
+      icon: undefined,
       text: undefined,
       type: 'info',
       confirmText: undefined,

@@ -31,10 +31,13 @@ export function updateUser (user) {
   })
 }
 
-export function deleteUser () {
+export function deleteUser (password) {
   return request({
     url: `/users/${store.state.userStore._id}`,
-    method: 'delete'
+    method: 'delete',
+    params: {
+      password: password
+    }
   })
 }
 

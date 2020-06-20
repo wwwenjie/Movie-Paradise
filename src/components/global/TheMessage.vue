@@ -10,6 +10,9 @@
       elevation="12"
       style="z-index: 999"
     >
+      <v-icon v-if="messageCon.icon">
+        {{ messageCon.icon }}
+      </v-icon>
       {{ messageCon.text }}
       <template v-slot:action>
         <v-btn
@@ -54,6 +57,7 @@ export default {
     reset () {
       this.$store.commit('CALL_MESSAGE', {
         show: false,
+        icon: undefined,
         text: undefined,
         type: 'info',
         confirmText: undefined,
