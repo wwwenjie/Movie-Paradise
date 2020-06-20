@@ -9,7 +9,16 @@
       class="movie-detail-header"
       :style="{'background-color':this.$vuetify.theme.isDark ? 'rgb(39, 39, 39, 0.6)':'rgb(255, 255, 255, 0.6)','top':this.$vuetify.breakpoint.mdAndDown?'0':'48px'}"
     >
-      <v-toolbar-title>{{ movie.title }} {{ movie.title_en }}</v-toolbar-title>
+      <v-toolbar-title>
+        <v-skeleton-loader
+          :loading="loading"
+          type="heading"
+          transition="fade-transition"
+          width="50vw"
+        >
+          <span>{{ movie.title }} {{ movie.title_en }}</span>
+        </v-skeleton-loader>
+      </v-toolbar-title>
       <v-spacer />
       <v-btn
         icon
@@ -36,27 +45,42 @@
         sm="5"
         md="3"
       >
-        <v-img
-          :src="movie.poster"
-          alt="Movie Poster"
-          class="mx-auto"
-          @error="posterLoadFail"
+        <v-skeleton-loader
+          :loading="loading"
+          :types="{ skeleton: 'image@2' }"
+          type="skeleton"
+          transition="fade-transition"
         >
-          <template v-slot:default>
-            <v-row
-              v-if="error"
-            >
-              <v-col
-                cols="12"
-                class="text-center"
+          <v-img
+            :src="movie.poster"
+            alt="Movie Poster"
+            class="mx-auto"
+            min-height="400px"
+            @error="posterLoadFail"
+          >
+            <template v-slot:placeholder>
+              <v-skeleton-loader
+                :loading="loading"
+                :types="{ skeleton: 'image@2' }"
+                type="skeleton"
+              />
+            </template>
+            <template v-slot:default>
+              <v-row
+                v-if="error"
               >
-                <p class="title font-weight-bold mb-0">
-                  Oops, 海报加载失败
-                </p>
-              </v-col>
-            </v-row>
-          </template>
-        </v-img>
+                <v-col
+                  cols="12"
+                  class="text-center"
+                >
+                  <p class="title font-weight-bold mb-0">
+                    {{ $t('posterLoadFail') }}
+                  </p>
+                </v-col>
+              </v-row>
+            </template>
+          </v-img>
+        </v-skeleton-loader>
       </v-col>
     </v-row>
     <v-row
@@ -66,11 +90,20 @@
     >
       <v-col
         cols="12"
-        class="text-center mt-2"
+        class="d-flex justify-center mt-2"
       >
-        <span class="body-1 mx-2 font-weight-bold">{{ movie.year }}</span>
-        <span class="body-1 mx-2 font-weight-bold">{{ movie.info.genre }}</span>
-        <span class="body-1 mx-2 font-weight-bold">{{ movie.info.duration }}</span>
+        <v-skeleton-loader
+          :loading="loading"
+          transition="fade-transition"
+          type="list-item"
+          width="50vw"
+        >
+          <div>
+            <span class="body-1 mx-2 font-weight-bold">{{ movie.year }}</span>
+            <span class="body-1 mx-2 font-weight-bold">{{ movie.info.genre }}</span>
+            <span class="body-1 mx-2 font-weight-bold">{{ movie.info.duration }}</span>
+          </div>
+        </v-skeleton-loader>
       </v-col>
       <v-col
         cols="12"
@@ -78,20 +111,27 @@
       >
         <movie-detail-video
           :trailers="movie.trailers"
+          :btn-loading="btnLoading"
         />
       </v-col>
       <v-col cols="12">
-        <!--todo: load more text in md and up-->
-        <v-expansion-panels flat>
-          <v-expansion-panel style="background-color: transparent !important;">
-            <v-expansion-panel-header class="mt-4 py-0 text-justify body-2">
-              {{ movie.info.summary.slice(0,100).trim() }}
-            </v-expansion-panel-header>
-            <v-expansion-panel-content class="text-justify body-2">
-              {{ movie.info.summary.substring(100).trim() }}
-            </v-expansion-panel-content>
-          </v-expansion-panel>
-        </v-expansion-panels>
+        <v-skeleton-loader
+          :loading="loading"
+          type="paragraph"
+          :class="{'my-6 mx-4' : loading}"
+        >
+          <!--todo: load more text in md and up-->
+          <v-expansion-panels flat>
+            <v-expansion-panel style="background-color: transparent !important;">
+              <v-expansion-panel-header class="mt-4 py-0 text-justify body-2">
+                {{ movie.info.summary.slice(0,100).trim() }}
+              </v-expansion-panel-header>
+              <v-expansion-panel-content class="text-justify body-2">
+                {{ movie.info.summary.substring(100).trim() }}
+              </v-expansion-panel-content>
+            </v-expansion-panel>
+          </v-expansion-panels>
+        </v-skeleton-loader>
       </v-col>
       <v-col
         cols="12"
@@ -190,6 +230,8 @@ export default {
   data () {
     return {
       movie: undefinedMovie(),
+      loading: true,
+      btnLoading: false,
       error: false
     }
   },
@@ -207,13 +249,17 @@ export default {
   methods: {
     async init (_this, path) {
       _this.$vuetify.goTo(0)
+      this.loading = true
+      this.btnLoading = true
       _this.movie = await getMovieByPath(path)
+      this.loading = false
       const allow = _this.$store.state.allowImprove.allow
       const id = _this.movie._id
       // trailers = [] means no trailers, null means need patch
       if (_this.movie.trailers === null) {
         this.movie.trailers = await patchTrailers(id)
       }
+      this.btnLoading = false
       if (_this.movie.backdrops === null && allow) {
         await patchBackdrops(_this.movie.path)
       }

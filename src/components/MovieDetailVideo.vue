@@ -7,6 +7,7 @@
     <template v-slot:activator="{ on, attrs }">
       <v-btn
         :light="light"
+        :loading="btnLoading"
         depressed
         :disabled="emptyTrailers"
         width="100%"
@@ -18,6 +19,11 @@
           mdi-play
         </v-icon>
         {{ emptyTrailers ? $t('noTrailer') : $t('trailer') }}
+        <template v-slot:loader>
+          <span class="custom-loader">
+            <v-icon light>mdi-cached</v-icon>
+          </span>
+        </template>
       </v-btn>
     </template>
     <v-page
@@ -97,6 +103,10 @@ export default {
         play_url: undefined,
         _id: undefined
       }])
+    },
+    btnLoading: {
+      type: Boolean,
+      default: false
     }
   },
   data: function () {
@@ -137,5 +147,41 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+  .custom-loader {
+    animation: loader 1s infinite;
+    display: flex;
+  }
+  @-moz-keyframes loader {
+    from {
+      transform: rotate(0);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  @-webkit-keyframes loader {
+    from {
+      transform: rotate(0);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  @-o-keyframes loader {
+    from {
+      transform: rotate(0);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  @keyframes loader {
+    from {
+      transform: rotate(0);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
 </style>

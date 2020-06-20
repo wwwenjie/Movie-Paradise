@@ -43,6 +43,8 @@ const enUS = {
   onlyOnline: 'only display online resources',
   noResources: 'No Resources',
   network: 'Network',
+  posterLoadFail: 'Fail to load poster',
+  todayRecommend: 'Recommended Today:',
 
   // search
   search: 'Search',

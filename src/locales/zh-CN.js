@@ -43,6 +43,8 @@ const zhCN = {
   onlyOnline: '只展示在线资源',
   noResources: '暂无相关资源',
   network: '网络资源',
+  posterLoadFail: '海报加载失败',
+  todayRecommend: '今天为您推荐：',
 
   // 搜索
   search: '搜索',

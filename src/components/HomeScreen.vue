@@ -11,7 +11,7 @@
       :contain="this.$vuetify.breakpoint.smAndUp"
       :gradient="this.$vuetify.theme.dark ? 'to bottom,rgba(64, 64, 64, 0) 70%,rgba(30, 30, 30, 100) 100%':'to bottom,rgba(150, 150, 150, 0) 70%,rgba(255, 255, 255, 100) 100%'"
       width="100%"
-      min-height="40vh"
+      min-height="60vh"
       max-height="80vh"
       alt="poster"
       @error="posterLoadFail"
@@ -37,10 +37,10 @@
               class="text-center"
             >
               <p class="title font-weight-bold mb-0">
-                Oops, 海报加载失败
+                {{ $t('posterLoadFail') }}
               </p>
               <p class="title font-weight-bold mb-0">
-                今天为您推荐:
+                {{ $t('todayRecommend') }}
               </p>
             </v-col>
             <v-col

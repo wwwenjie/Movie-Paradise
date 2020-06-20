@@ -182,7 +182,7 @@ export default {
   },
   watch: {
     ids: async function (ids) {
-      if (ids) {
+      if (ids && ids.length > 0) {
         this.movies = await getMovieByIds(ids)
         this.loading = false
       }

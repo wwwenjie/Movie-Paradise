@@ -155,13 +155,15 @@ export default {
   },
   watch: {
     movie: async function (movie) {
-      this.comments = await getCommentByMovieId(movie._id)
-      this.comments.forEach(comment => {
-        if (comment.user_avatar) {
-          comment.user_avatar += '?x-oss-process=style/'
-          comment.user_avatar += isSafari() ? 'comment_safari' : 'comment'
-        }
-      })
+      if (movie._id) {
+        this.comments = await getCommentByMovieId(movie._id)
+        this.comments.forEach(comment => {
+          if (comment.user_avatar) {
+            comment.user_avatar += '?x-oss-process=style/'
+            comment.user_avatar += isSafari() ? 'comment_safari' : 'comment'
+          }
+        })
+      }
     }
   },
   methods: {
