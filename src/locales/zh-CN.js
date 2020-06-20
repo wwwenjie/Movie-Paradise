@@ -113,7 +113,8 @@ const zhCN = {
   howDoYouThink: '你觉得这部电影怎么样？',
   loginFirst: '请先登陆',
   noComments: '暂无评论',
-  allComments: '该用户的所有评论',
+  userComments: '{userName} 的所有评论',
+  movieComments: '{movieTitle} 的所有评论',
 
   // 用户电影列表
   noMovies: '暂无电影',

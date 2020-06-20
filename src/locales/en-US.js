@@ -113,7 +113,8 @@ const enUS = {
   howDoYouThink: 'How do you think of this movie?',
   loginFirst: 'Please login first',
   noComments: 'No comments yet',
-  allComments: 'All of user\'s comments',
+  userComments: 'All of {userName}\'s comments',
+  movieComments: 'Comments of {movieTitle}',
 
   // 用户电影列表
   noMovies: 'No Movies',

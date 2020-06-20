@@ -14,11 +14,26 @@
       :key="comment.id"
     >
       <v-list-item>
+        <v-list-item-avatar
+          v-if="showUser"
+        >
+          <v-avatar
+            color="grey"
+            style="cursor:pointer"
+          >
+            <img
+              v-if="comment.user_avatar"
+              :src="comment.user_avatar"
+              :alt="comment.user_name + ' avatar'"
+            >
+          </v-avatar>
+        </v-list-item-avatar>
+
         <v-list-item-content>
           <v-list-item-title
             class="d-flex align-center justify-space-between"
           >
-            {{ comment.movie_title }}
+            {{ showUser ? comment.user_name : comment.movie_title }}
             <v-rating
               :value="comment.rating"
               small
@@ -33,7 +48,7 @@
           </v-list-item-subtitle>
         </v-list-item-content>
       </v-list-item>
-      <v-divider />
+      <v-divider :inset="showUser" />
     </div>
   </v-list>
 </template>
@@ -45,6 +60,11 @@ export default {
     comments: {
       type: Array,
       default: () => []
+    },
+    // show user name and avatar, hide movie name
+    showUser: {
+      type: Boolean,
+      default: false
     }
   }
 }

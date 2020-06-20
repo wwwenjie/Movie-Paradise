@@ -13,7 +13,7 @@
         <v-btn
           x-small
           outlined
-          @click="todo"
+          @click="movieId = movie._id"
         >
           {{ $t('moreComments') }}
         </v-btn>
@@ -109,15 +109,17 @@
           </v-card-actions>
         </v-card>
       </v-dialog>
-      <comment-user
+      <comment-extra
         :user-id.sync="userId"
+        :movie-id.sync="movieId"
+        :movie-title="movie.title"
       />
     </v-list>
   </v-card>
 </template>
 
 <script>
-import MovieDetailCommentUser from './MovieDetailCommentUser'
+import MovieDetailCommentExtra from './MovieDetailCommentExtra'
 import { createComment, getCommentByMovieId } from '../api/comment'
 import Message from '../utils/message'
 import { isSafari, setLoading, undefinedMovie } from '../utils'
@@ -127,7 +129,7 @@ import appMixin from '../mixins/appMixin'
 export default {
   name: 'MovieDetailComment',
   components: {
-    'comment-user': MovieDetailCommentUser
+    'comment-extra': MovieDetailCommentExtra
   },
   mixins: [storeMap, appMixin],
   props: {
@@ -147,7 +149,8 @@ export default {
       }],
       rating: undefined,
       summary: undefined,
-      userId: undefined
+      userId: undefined,
+      movieId: undefined
     }
   },
   watch: {

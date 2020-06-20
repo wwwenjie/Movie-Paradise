@@ -1,16 +1,17 @@
 <template>
   <v-dialog
     max-width="500px"
-    :value="userId"
+    :value="userId || movieId"
     :fullscreen="$vuetify.breakpoint.xsOnly"
     @click:outside="outSide"
   >
     <v-page
-      :title="$vuetify.breakpoint.xsOnly ? $t('allComments') : undefined"
+      v-if="userId || movieId"
+      :title="$vuetify.breakpoint.xsOnly ? title : undefined"
       :back-function="outSide"
     >
       <v-list>
-        <v-list-item>
+        <v-list-item v-if="userId">
           <v-list-item-avatar color="grey">
             <img
               v-if="user.avatar"
@@ -26,13 +27,12 @@
           </v-list-item-content>
         </v-list-item>
         <v-list-item class="hidden-xs-only">
-          {{ $t('allComments') }}
+          {{ title }}
         </v-list-item>
-        <v-list-item>
-          <comment-list
-            :comments="comments"
-          />
-        </v-list-item>
+        <comment-list
+          :comments="comments"
+          :show-user="movieId !== undefined"
+        />
       </v-list>
     </v-page>
   </v-dialog>
@@ -42,16 +42,24 @@
 import VPage from './global/VPage'
 import CommentList from './global/CommentList'
 import { getUserByUid } from '../api/user'
-import { getCommentByUserId } from '../api/comment'
+import { getCommentByMovieId, getCommentByUserId } from '../api/comment'
 
 export default {
-  name: 'MovieDetailCommentUser',
+  name: 'MovieDetailCommentExtra',
   components: {
     'v-page': VPage,
     'comment-list': CommentList
   },
   props: {
     userId: {
+      type: String,
+      default: undefined
+    },
+    movieId: {
+      type: Number,
+      default: undefined
+    },
+    movieTitle: {
       type: String,
       default: undefined
     }
@@ -62,19 +70,33 @@ export default {
       comments: []
     }
   },
+  computed: {
+    title: function () {
+      return this.userId
+        ? this.$t('userComments', { userName: this.user.name })
+        : this.$t('movieComments', { movieTitle: this.movieTitle })
+    }
+  },
   watch: {
+    // todo: lazy load comments
     userId: async function (userId) {
       if (userId) {
         const handleUserPromise = getUserByUid(userId)
-        const handleCommentPromise = getCommentByUserId(userId)
+        const handleCommentPromise = getCommentByUserId(userId, 100)
         this.user = await handleUserPromise
         this.comments = await handleCommentPromise
+      }
+    },
+    movieId: async function (movieId) {
+      if (movieId) {
+        this.comments = await getCommentByMovieId(movieId, 100)
       }
     }
   },
   methods: {
     outSide () {
       this.$emit('update:user-id', undefined)
+      this.$emit('update:movie-id', undefined)
     }
   }
 }
