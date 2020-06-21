@@ -53,14 +53,15 @@ export function undefinedMovie () {
     info: {
       director: undefined,
       writer: undefined,
-      actors: undefined,
+      // hide undefined error in movie detail
+      actors: '',
       genre: undefined,
       region: undefined,
       language: undefined,
       release: undefined,
       duration: undefined,
       alias: undefined,
-      // fix split undefined in movie detail
+      // hide undefined error in movie detail
       summary: ''
     },
     imdb_id: undefined,

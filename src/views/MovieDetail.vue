@@ -22,173 +22,169 @@
       <v-spacer />
       <v-btn
         icon
-        @click="goBack"
+        @click="$router.back()"
       >
         <v-icon>mdi-close-circle</v-icon>
       </v-btn>
     </v-toolbar>
-    <v-row
-      justify="center"
-    >
-      <v-col cols="12">
-        <v-img
-          width="100%"
-          max-height="50vh"
-          :src="movie.poster"
-          alt="Movie Poster Cover"
-          gradient="to bottom,rgba(64, 64, 64, 0) 60%,rgba(30, 30, 30, 100) 100%"
-          class="movie-detail-cover"
-        />
-      </v-col>
-      <v-col
-        cols="8"
-        sm="5"
-        md="3"
+    <v-img
+      width="100%"
+      max-height="70vh"
+      :src="movie.poster"
+      :alt="movie.title + 'Cover'"
+      gradient="to bottom,rgba(64, 64, 64, 0) 60%,rgba(30, 30, 30, 100) 100%"
+      class="movie-detail-cover mt-n12"
+    />
+    <v-container class="py-0">
+      <v-row
+        justify="center"
       >
-        <v-skeleton-loader
-          :loading="loading"
-          :types="{ skeleton: 'image@2' }"
-          type="skeleton"
-          transition="fade-transition"
+        <v-col
+          cols="8"
+          sm="6"
+          md="5"
+          lg="3"
         >
-          <v-img
-            :src="movie.poster"
-            alt="Movie Poster"
-            class="mx-auto"
-            min-height="400px"
-            @error="posterLoadFail"
+          <!--get movie skeleton-->
+          <v-skeleton-loader
+            :loading="loading"
+            :types="{ skeleton: 'image@2' }"
+            type="skeleton"
+            transition="fade-transition"
           >
-            <template v-slot:placeholder>
-              <v-skeleton-loader
-                :loading="loading"
-                :types="{ skeleton: 'image@2' }"
-                type="skeleton"
-              />
-            </template>
-            <template v-slot:default>
-              <v-row
-                v-if="error"
-              >
-                <v-col
-                  cols="12"
-                  class="text-center"
+            <v-img
+              :src="movie.poster"
+              alt="Movie Poster"
+              min-height="300px"
+              @error="posterLoadFail"
+            >
+              <!--load image skeleton-->
+              <template v-slot:placeholder>
+                <v-skeleton-loader
+                  :loading="loading"
+                  :types="{ skeleton: 'image@2' }"
+                  type="skeleton"
+                />
+              </template>
+              <template v-slot:default>
+                <v-row
+                  v-if="error"
                 >
-                  <p class="title font-weight-bold mb-0">
-                    {{ $t('posterLoadFail') }}
-                  </p>
-                </v-col>
-              </v-row>
-            </template>
-          </v-img>
-        </v-skeleton-loader>
-      </v-col>
-    </v-row>
-    <v-row
-      no-gutters
-      justify="space-around"
-      class="movie-detail-index mx-0 mx-sm-8"
-    >
-      <v-col
-        cols="12"
-        class="d-flex justify-center mt-2"
+                  <v-col
+                    cols="12"
+                    class="text-center"
+                  >
+                    <p class="title font-weight-bold mb-0">
+                      {{ $t('posterLoadFail') }}
+                    </p>
+                  </v-col>
+                </v-row>
+              </template>
+            </v-img>
+          </v-skeleton-loader>
+        </v-col>
+      </v-row>
+      <v-row
+        no-gutters
+        justify="space-around"
+        class="movie-detail-index mx-2 mx-sm-8 mx-lg-12"
       >
-        <v-skeleton-loader
-          :loading="loading"
-          transition="fade-transition"
-          type="list-item"
-          width="50vw"
+        <v-col
+          cols="12"
+          class="d-flex justify-center mt-2"
         >
-          <div>
-            <span class="body-1 mx-2 font-weight-bold">{{ movie.year }}</span>
-            <span class="body-1 mx-2 font-weight-bold">{{ movie.info.genre }}</span>
-            <span class="body-1 mx-2 font-weight-bold">{{ movie.info.duration }}</span>
+          <v-skeleton-loader
+            :loading="loading"
+            transition="fade-transition"
+            type="list-item"
+            width="50vw"
+          >
+            <div>
+              <span class="body-1 mx-2 font-weight-bold">{{ movie.year }}</span>
+              <span class="body-1 mx-2 font-weight-bold">{{ movie.info.genre }}</span>
+              <span class="body-1 mx-2 font-weight-bold">{{ movie.info.duration }}</span>
+            </div>
+          </v-skeleton-loader>
+        </v-col>
+        <v-col
+          cols="12"
+          class="text-center"
+        >
+          <movie-detail-video
+            :trailers="movie.trailers"
+            :btn-loading="btnLoading"
+          />
+        </v-col>
+        <v-col cols="12">
+          <v-skeleton-loader
+            :loading="loading"
+            type="paragraph"
+            :class="{'my-6 mx-4' : loading}"
+          >
+            <v-expansion-panels flat>
+              <v-expansion-panel style="background-color: transparent !important;">
+                <v-expansion-panel-header class="mt-4 py-0 text-justify body-2 px-0">
+                  {{ movie.info.summary.slice(0,textLength).trim() }}
+                  {{ movie.info.summary.length > textLength ? '......' : '' }}
+                </v-expansion-panel-header>
+                <v-expansion-panel-content class="text-justify body-2">
+                  <div class="mx-n6">
+                    {{ movie.info.summary.substring(textLength).trim() }}
+                  </div>
+                </v-expansion-panel-content>
+              </v-expansion-panel>
+            </v-expansion-panels>
+          </v-skeleton-loader>
+        </v-col>
+        <v-col
+          cols="12"
+        >
+          <span class="caption grey--text">{{ $t('actors') }}: {{ movie.info.actors.split('/').slice(0,7).join('/') }}</span>
+        </v-col>
+        <v-col
+          cols="12"
+        >
+          <div class="d-flex justify-space-around">
+            <v-btn
+              text
+              x-large
+              class="px-0"
+              @click="addMovieToUser(movie._id,'list')"
+            >
+              <div>
+                <v-icon class="d-block">
+                  mdi-plus
+                </v-icon>
+                <span class="caption grey--text">
+                  {{ $t('addList') }}
+                </span>
+              </div>
+            </v-btn>
+
+            <movie-detail-play
+              :movie-id="movie._id"
+              :movie-title="movie.title"
+            />
+
+            <v-btn
+              text
+              x-large
+              class="px-0"
+              @click="addMovieToUser(movie._id,'like')"
+            >
+              <div>
+                <v-icon class="d-block">
+                  mdi-heart
+                </v-icon>
+                <span class="caption grey--text">
+                  {{ $t('addLike') }}
+                </span>
+              </div>
+            </v-btn>
           </div>
-        </v-skeleton-loader>
-      </v-col>
-      <v-col
-        cols="12"
-        class="text-center px-6"
-      >
-        <movie-detail-video
-          :trailers="movie.trailers"
-          :btn-loading="btnLoading"
-        />
-      </v-col>
-      <v-col cols="12">
-        <v-skeleton-loader
-          :loading="loading"
-          type="paragraph"
-          :class="{'my-6 mx-4' : loading}"
-        >
-          <!--todo: load more text in md and up-->
-          <v-expansion-panels flat>
-            <v-expansion-panel style="background-color: transparent !important;">
-              <v-expansion-panel-header class="mt-4 py-0 text-justify body-2">
-                {{ movie.info.summary.slice(0,100).trim() }}
-              </v-expansion-panel-header>
-              <v-expansion-panel-content class="text-justify body-2">
-                {{ movie.info.summary.substring(100).trim() }}
-              </v-expansion-panel-content>
-            </v-expansion-panel>
-          </v-expansion-panels>
-        </v-skeleton-loader>
-      </v-col>
-      <v-col
-        cols="12"
-        class="px-6"
-      >
-        <span class="caption grey--text">{{ $t('actors') }}: {{ movie.info.actors }}</span>
-      </v-col>
-      <v-col
-        cols="4"
-        class="px-6 text-center"
-      >
-        <v-btn
-          text
-          x-large
-          class="px-0"
-          @click="addMovieToUser(movie._id,'list')"
-        >
-          <div>
-            <v-icon class="d-block">
-              mdi-plus
-            </v-icon>
-            <span class="caption grey--text">
-              {{ $t('addList') }}
-            </span>
-          </div>
-        </v-btn>
-      </v-col>
-      <v-col
-        cols="4"
-        class="px-6 text-center"
-      >
-        <movie-detail-play
-          :movie-id="movie._id"
-          :movie-title="movie.title"
-        />
-      </v-col>
-      <v-col
-        cols="4"
-        class="px-6 text-center"
-      >
-        <v-btn
-          text
-          x-large
-          class="px-0"
-          @click="addMovieToUser(movie._id,'like')"
-        >
-          <div>
-            <v-icon class="d-block">
-              mdi-heart
-            </v-icon>
-            <span class="caption grey--text">
-              {{ $t('addLike') }}
-            </span>
-          </div>
-        </v-btn>
-      </v-col>
-    </v-row>
+        </v-col>
+      </v-row>
+    </v-container>
     <movie-detail-comment
       :movie="movie"
     />
@@ -235,13 +231,25 @@ export default {
       error: false
     }
   },
+  computed: {
+    textLength: function () {
+      const lengthSwitcher = {
+        xs: 80,
+        sm: 150,
+        md: 200,
+        lg: 250,
+        xl: 300
+      }
+      return lengthSwitcher[this.$vuetify.breakpoint.name]
+    }
+  },
   // exit component and enter again
   async beforeRouteEnter (to, from, next) {
     next(async vm => {
       await vm.init(vm, to.params.path)
     })
   },
-  // same components update data
+  // same component update data
   async beforeRouteUpdate (to, from, next) {
     next()
     await this.init(this, to.params.path)
@@ -275,10 +283,6 @@ export default {
     },
     posterLoadFail () {
       this.error = fallbackPoster(this.movie)
-    },
-    // todo: back but remove movie detail routes
-    goBack () {
-      this.$router.push({ path: '/' })
     }
   }
 }

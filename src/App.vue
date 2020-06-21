@@ -101,3 +101,10 @@ export default {
   }
 }
 </script>
+
+<style>
+  /*css debug*/
+  /** {*/
+  /*  outline: solid #f00 1px !important;*/
+  /*}*/
+</style>
