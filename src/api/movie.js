@@ -1,37 +1,54 @@
 import request from '../plugins/axios'
 import store from '../store'
 import { deepCopy } from '../utils'
+import countryPackage from '../locales/country-code.json'
 
-// avoid for loop when find name_en
+// load genre translate, avoid forEach every time
 const genreObject = {}
 store.state.genreStore.forEach(genre => {
   genreObject[genre.name] = genre.name_en
 })
 
+// load origin translate
+const regionObject = {}
+countryPackage.forEach(item => {
+  regionObject[item.cn] = item.en
+})
+
 function movieInterceptor (movies) {
-  const result = translate(movies)
-  return result
+  return translate(movies)
 }
 
+// extra translate for en-US
 function translate (movies) {
   const tempMovies = deepCopy(movies)
   if (store.state.locale === 'en-US') {
     if (Array.isArray(tempMovies)) {
       tempMovies.map(movie => {
-        handleTitleGenre(movie)
+        handleMovieTranslate(movie)
       })
     } else {
-      handleTitleGenre(tempMovies)
+      handleMovieTranslate(tempMovies)
     }
   }
   return tempMovies
 }
 
-function handleTitleGenre (movie) {
+// note: it will overwrite chinese to english
+function handleMovieTranslate (movie) {
+  // title
   movie.title = movie.title_en ? movie.title_en : movie.title
+  // genre
   if (movie.info.genre) {
     movie.info.genre = movie.info.genre.split('/', 2).map(genreName => {
       return genreObject[genreName]
+    }).join('/')
+  }
+  // origin
+  if (movie.info.region) {
+    movie.info.region = movie.info.region.split('/', 2).map(regionName => {
+      // not sure if the package include all the country
+      return regionObject[regionName] || regionName
     }).join('/')
   }
 }
