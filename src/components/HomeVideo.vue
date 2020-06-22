@@ -1,6 +1,12 @@
 <template>
   <v-sheet width="100%">
     <div class="home-video-grid">
+      <!--todo: elegant transition-->
+      <v-img
+        v-show="paused"
+        :src="backdrop"
+        class="home-video-grid-img"
+      />
       <div class="home-video-grid-video">
         <video
           ref="video"
@@ -13,13 +19,14 @@
           @durationchange="duration = timeTranslate(videoDom.duration)"
           @timeupdate="onTimeUpdate(videoDom.currentTime)"
           @playing="paused = false"
+          @pause="paused = true"
           @ended="paused = true"
         >
           <source
             :src="videoUrl"
             type="video/mp4"
           >
-          抱歉，您的浏览器不支持内嵌视频，不过不用担心，你可以 <a href="https://movie-paradise.oss-ap-southeast-1.aliyuncs.com/video/trailer.mp4">下载</a>并用你喜欢的播放器观看!
+          {{ $t('noVideoSupport') }}
         </video>
       </div>
       <div class="home-video-grid-layer">
@@ -100,10 +107,19 @@ export default {
       currentTime: '00:00'
     }
   },
+  computed: {
+    backdrop: function () {
+      if (this.movie && this.movie.backdrops !== null && this.movie.backdrops.length !== 0) {
+        return 'https://image.tmdb.org/t/p/w1280/' + this.movie.backdrops[0].file_path
+      } else {
+        return ''
+      }
+    }
+  },
   watch: {
     paused: function (val) {
       if (val) {
-        this.icon = 'mdi-restart'
+        this.icon = this.videoDom.currentTime === this.videoDom.duration ? 'mdi-restart' : 'mdi-play'
       } else {
         this.icon = this.videoDom.muted ? 'mdi-volume-off' : 'mdi-volume-high'
       }
@@ -117,6 +133,7 @@ export default {
       this.movie = await getMovieByType('today')
       this.videoUrl = this.movie.trailers[0].play_url
       this.videoDom = this.$refs.video
+      this.paused = true
       this.videoDom.load()
     },
     async shuffle () {
@@ -127,7 +144,7 @@ export default {
     },
     statusChange () {
       if (this.paused) {
-        this.videoDom.currentTime = 0
+        this.videoDom.currentTime = this.videoDom.currentTime === this.videoDom.duration ? 0 : this.videoDom.currentTime
         this.videoDom.play()
       } else {
         this.videoDom.muted = !this.videoDom.muted
@@ -172,6 +189,11 @@ export default {
         grid-area: overflow
         overflow: hidden
         display: block
+
+      &-img
+        display: grid
+        grid-area: overflow
+        z-index: 1
 
       &-layer
         display: grid
