@@ -3,6 +3,8 @@
 ![](https://github.com/wwwenjie/Movie-Paradise/workflows/deploy/badge.svg)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/3261a25a-796e-4e36-bbba-0a3db3bf37b4/deploy-status)](https://app.netlify.com/sites/movieparadise/deploys)
 
+[简体中文](./README.zh-CN.md)
+
 > This project is for learning and communication purposes only, not for commercial use. The data comes from third-party websites.
 
 ### Introduction
