@@ -27,3 +27,18 @@ export function createComment (comment) {
     method: 'post'
   })
 }
+
+export function updateComment (comment) {
+  return request({
+    url: `/comments/${comment._id}`,
+    data: comment,
+    method: 'patch'
+  })
+}
+
+export function deleteComment (commentId) {
+  return request({
+    url: `/comments/${commentId}`,
+    method: 'delete'
+  })
+}

@@ -112,6 +112,7 @@ const enUS = {
   moreComments: 'More Comments',
   noMovieComments: 'There are no comments yet, you can click the button at the bottom right to create a new one',
   createComment: 'Create Comments',
+  editComment: 'Edit Comments',
   howDoYouThink: 'How do you think of this movie?',
   loginFirst: 'Please login first',
   noComments: 'No comments yet',

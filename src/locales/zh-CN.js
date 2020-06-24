@@ -112,6 +112,7 @@ const zhCN = {
   moreComments: '更多评论',
   noMovieComments: '暂无评论，点击右下方按钮新建一条吧',
   createComment: '新建评论',
+  editComment: '修改评论',
   howDoYouThink: '你觉得这部电影怎么样？',
   loginFirst: '请先登陆',
   noComments: '暂无评论',

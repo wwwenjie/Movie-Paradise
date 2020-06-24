@@ -4,6 +4,7 @@
   >
     <comment-list
       :comments="comments"
+      show-action
     />
   </v-page>
 </template>

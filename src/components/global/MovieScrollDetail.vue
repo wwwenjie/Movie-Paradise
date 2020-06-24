@@ -14,7 +14,9 @@
       </p>
       <p>{{ $t('genre') }}: {{ detail.info.genre }}</p>
       <p>{{ $t('region') }}: {{ detail.info.region }}</p>
-      <p class="mb-0">{{ $t('year') }}: {{ detail.year }}</p>
+      <p class="mb-0">
+        {{ $t('year') }}: {{ detail.year }}
+      </p>
     </div>
     <v-container>
       <v-row
