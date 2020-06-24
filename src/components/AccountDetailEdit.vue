@@ -2,65 +2,67 @@
   <v-page
     :title="$t('editAccount')"
   >
-    <v-row align="center">
-      <v-col
-        cols="12"
-        lg="3"
-        class="text-center"
-      >
-        <v-tooltip bottom>
-          <template v-slot:activator="{ on }">
-            <v-avatar
-              color="grey"
-              size="120"
-              style="cursor: pointer"
-              v-on="on"
-              @click="$refs.image.click()"
+    <v-container>
+      <v-row align="center">
+        <v-col
+          cols="12"
+          lg="3"
+          class="text-center"
+        >
+          <v-tooltip bottom>
+            <template v-slot:activator="{ on }">
+              <v-avatar
+                color="grey"
+                size="120"
+                style="cursor: pointer"
+                v-on="on"
+                @click="$refs.image.click()"
+              >
+                <img
+                  v-if="userStore.avatar"
+                  :src="userStore.avatar"
+                  :alt="userStore.name + ' avatar'"
+                >
+                <span v-else>
+                  {{ userStore.name }}
+                </span>
+                <input
+                  ref="image"
+                  type="file"
+                  accept="image/*"
+                  name="image"
+                  class="d-none"
+                  @change="handleAvatar($event)"
+                >
+              </v-avatar>
+            </template>
+            <span>Change Avatar</span>
+          </v-tooltip>
+        </v-col>
+        <v-col>
+          <v-list>
+            <v-list-item
+              v-for="(list,index) in lists"
+              :key="index"
+              @click.stop="onEdit(list)"
             >
-              <img
-                v-if="userStore.avatar"
-                :src="userStore.avatar"
-                :alt="userStore.name + ' avatar'"
-              >
-              <span v-else>
-                {{ userStore.name }}
-              </span>
-              <input
-                ref="image"
-                type="file"
-                accept="image/*"
-                name="image"
-                class="d-none"
-                @change="handleAvatar($event)"
-              >
-            </v-avatar>
-          </template>
-          <span>Change Avatar</span>
-        </v-tooltip>
-      </v-col>
-      <v-col>
-        <v-list>
-          <v-list-item
-            v-for="(list,index) in lists"
-            :key="index"
-            @click.stop="onEdit(list)"
-          >
-            <v-list-item-content>
-              <v-list-item-title>{{ list.title }}</v-list-item-title>
-            </v-list-item-content>
-            <v-list-item-action class="flex-row">
-              <span
-                class="text-truncate"
-                style="max-width: 200px"
-              >
-                {{ userStore[list.value] }}
-              </span>
-              <v-icon>mdi-chevron-right</v-icon>
-            </v-list-item-action>
-          </v-list-item>
-        </v-list>
-      </v-col>
-    </v-row>
+              <v-list-item-content>
+                <v-list-item-title>{{ list.title }}</v-list-item-title>
+              </v-list-item-content>
+              <v-list-item-action class="flex-row">
+                <span
+                  class="text-truncate"
+                  style="max-width: 200px"
+                >
+                  {{ userStore[list.value] }}
+                </span>
+                <v-icon>mdi-chevron-right</v-icon>
+              </v-list-item-action>
+            </v-list-item>
+          </v-list>
+        </v-col>
+      </v-row>
+    </v-container>
     <v-dialog
       v-model="dialog"
       max-width="390"
