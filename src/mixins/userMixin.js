@@ -3,18 +3,23 @@ import Message from '../utils/message'
 import { deepCopy, setLoading } from '../utils'
 
 export default {
+  computed: {
+    userStore: function () {
+      return this.$store.state.userStore
+    }
+  },
   methods: {
     async addMovieToUser (movieId, type) {
       if (!this.$store.state.token) {
         this.$store.commit('SET_POP_ACCOUNT', true)
         return
       }
-      const list = deepCopy(this.$store.state.userStore[type])
+      let list = deepCopy(this.$store.state.userStore[type])
       if (list.includes(movieId)) {
-        Message.info(this.$t('exist'))
-        return
+        list = list.filter(id => id !== movieId)
+      } else {
+        list.unshift(movieId)
       }
-      list.unshift(movieId)
       await setLoading(
         updateUser({
           [type]: list

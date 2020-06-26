@@ -2,7 +2,11 @@
   <v-page
     :title="$route.query.title"
   >
-    <movie-list :ids="ids" />
+    <!--v-if will cause ids not work when there's id-->
+    <movie-list
+      v-show="ids.length !== 0"
+      :ids="ids"
+    />
     <p
       v-if="ids.length === 0"
       class="mx-4 title"

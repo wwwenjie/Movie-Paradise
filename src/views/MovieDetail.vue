@@ -152,11 +152,14 @@
               @click="addMovieToUser(movie._id,'list')"
             >
               <div>
-                <v-icon class="d-block">
+                <v-icon
+                  class="d-block"
+                  :color="userStore.list.includes(movie._id) ? 'red': undefined"
+                >
                   mdi-plus
                 </v-icon>
                 <span class="caption grey--text">
-                  {{ $t('addList') }}
+                  {{ userStore.list.includes(movie._id) ? $t('removeList') : $t('addList') }}
                 </span>
               </div>
             </v-btn>
@@ -173,11 +176,14 @@
               @click="addMovieToUser(movie._id,'like')"
             >
               <div>
-                <v-icon class="d-block">
+                <v-icon
+                  class="d-block"
+                  :color="userStore.like.includes(movie._id) ? 'red': undefined"
+                >
                   mdi-heart
                 </v-icon>
                 <span class="caption grey--text">
-                  {{ $t('addLike') }}
+                  {{ userStore.like.includes(movie._id) ? $t('removeLike') : $t('addLike') }}
                 </span>
               </div>
             </v-btn>
