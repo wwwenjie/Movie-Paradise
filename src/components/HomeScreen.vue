@@ -94,7 +94,7 @@
 
 <script>
 import { undefinedMovie } from '../utils'
-import { getMovieByType } from '../api/movie'
+import { getTodayMovie } from '../api/movie'
 import MovieDetailVideo from './MovieDetailVideo'
 import fallbackPoster from '../utils/fallbackPoster'
 
@@ -111,14 +111,14 @@ export default {
     }
   },
   async mounted () {
-    this.movie = await getMovieByType('today')
+    this.movie = await getTodayMovie()
     this.loading = false
   },
   methods: {
     async shuffle () {
       // avoid loading cache
       this.$store.commit('SET_MOVIE_CACHE', { today: null })
-      this.movie = await getMovieByType('today')
+      this.movie = await getTodayMovie()
       this.$store.commit('SET_MOVIE_CACHE', { today: this.movie })
     },
     goDetail () {

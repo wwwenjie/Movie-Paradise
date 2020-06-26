@@ -53,7 +53,26 @@ function handleMovieTranslate (movie) {
   }
 }
 
+function setCache (key, movies) {
+  if (!store.state.movieCache[key]) {
+    store.commit('SET_MOVIE_CACHE', { [key]: store.state.movieCache[key] = movies })
+  } else {
+    store.commit('SET_MOVIE_CACHE', { [key]: store.state.movieCache[key].concat(movies) })
+  }
+  store.commit('SET_CACHE_DATE', new Date().getTime())
+}
+
 export async function getMovieByPath (path) {
+  for (const movies of Object.values(store.state.movieCache)) {
+    // filter today
+    if (!Array.isArray(movies)) continue
+    // use for loop to make sure return will exit function
+    for (const movie of movies) {
+      if (movie.path === path) {
+        return movieInterceptor(movie)
+      }
+    }
+  }
   const movie = await request({
     url: `/movies/${path}`
   })
@@ -71,8 +90,8 @@ export async function getMovieByIds (ids) {
 }
 
 export async function getMovieByGenre (genre, limit = 8, offset = 0) {
-  if (store.state.movieCache[genre] && offset === 0) {
-    return movieInterceptor(store.state.movieCache[genre])
+  if (store.state.movieCache[genre] && store.state.movieCache[genre].length > limit + offset) {
+    return movieInterceptor(store.state.movieCache[genre].slice(offset, offset + limit))
   } else {
     const movies = await request({
       url: '/movies',
@@ -82,16 +101,25 @@ export async function getMovieByGenre (genre, limit = 8, offset = 0) {
         offset: offset
       }
     })
-    if (offset === 0) {
-      store.commit('SET_MOVIE_CACHE', { [genre]: movies })
-    }
+    setCache(genre, movies)
     return movieInterceptor(movies)
   }
 }
 
+export async function getTodayMovie () {
+  if (store.state.movieCache.today) {
+    return movieInterceptor(store.state.movieCache.today)
+  }
+  const movie = await request({
+    url: '/movies/today'
+  })
+  setCache('today', movie)
+  return movieInterceptor(movie)
+}
+
 export async function getMovieByType (type, limit = 8, offset = 0) {
-  if (store.state.movieCache[type] && offset === 0) {
-    return movieInterceptor(store.state.movieCache[type])
+  if (store.state.movieCache[type] && store.state.movieCache[type].length > limit + offset) {
+    return movieInterceptor(store.state.movieCache[type].slice(offset, offset + limit))
   } else {
     const movies = await request({
       url: `/movies/${type}`,
@@ -100,10 +128,7 @@ export async function getMovieByType (type, limit = 8, offset = 0) {
         offset: offset
       }
     })
-    if (offset === 0) {
-      store.commit('SET_MOVIE_CACHE', { [type]: movies })
-      store.commit('SET_CACHE_DATE', new Date().getTime())
-    }
+    setCache(type, movies)
     return movieInterceptor(movies)
   }
 }

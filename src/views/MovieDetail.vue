@@ -153,7 +153,7 @@
             >
               <div>
                 <v-icon
-                  class="d-block"
+                  class="d-flex"
                   :color="userStore.list.includes(movie._id) ? 'red': undefined"
                 >
                   mdi-plus
@@ -177,7 +177,7 @@
             >
               <div>
                 <v-icon
-                  class="d-block"
+                  class="d-flex"
                   :color="userStore.like.includes(movie._id) ? 'red': undefined"
                 >
                   mdi-heart

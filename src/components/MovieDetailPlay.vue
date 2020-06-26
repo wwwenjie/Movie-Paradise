@@ -13,7 +13,7 @@
         v-on="on"
       >
         <div>
-          <v-icon class="d-block">
+          <v-icon class="d-flex">
             mdi-play-circle-outline
           </v-icon>
           <span class="caption grey--text">

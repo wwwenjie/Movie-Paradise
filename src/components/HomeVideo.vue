@@ -92,7 +92,7 @@
 
 <script>
 import { undefinedMovie } from '../utils'
-import { getMovieByType } from '../api/movie'
+import { getTodayMovie } from '../api/movie'
 
 export default {
   name: 'HomeVideo',
@@ -130,7 +130,7 @@ export default {
   },
   methods: {
     async init () {
-      this.movie = await getMovieByType('today')
+      this.movie = await getTodayMovie()
       this.videoUrl = this.movie.trailers[0].play_url
       this.videoDom = this.$refs.video
       this.paused = true
