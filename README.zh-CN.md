@@ -5,7 +5,7 @@
 
 > 该项目仅用于学习和交流，不用于商业用途。数据来自第三方网站。
 
-### 介绍
+## 介绍
 
 电影天堂是由 Vue 和 Vuetify 构建的 web app
 它可以预览电影并提供下载哈希，在线观看链接，~~实时观看功能~~
@@ -13,30 +13,30 @@
 [演示网站](https://movieparadise.netlify.app)  
 [中国优化](https://movie-paradise-1256033731.cos-website.ap-chengdu.myqcloud.com)
 
-### 特性
+## 特性
 
 - :iphone: 响应式
 - :globe_with_meridians: 国际化
 - :first_quarter_moon: 暗黑模式
 - :zap: Serverless 部署
 
-### 状态: Beta
+## 状态: Beta
 
 大多数功能已经完成，更多细节有待优化
 
-### 预览
+## 预览
 
 <p align="center">
 <img height="350" src="https://movie-paradise.oss-ap-southeast-1.aliyuncs.com/preview/mobile_home.png" alt="mobile home view"/></p>
 <p align="center"><img width="70%" src="https://movie-paradise.oss-ap-southeast-1.aliyuncs.com/preview/pad_home.png" alt="pad home view"/></p>
 <p align="center"><img width="100%" src="https://movie-paradise.oss-ap-southeast-1.aliyuncs.com/preview/desktop_home.png" alt="desktop home view"/></p>
 
-### 部署
+## 部署
 
 当 commit 提交至 master 分支时，将通过 [Netlify](https://www.netlify.com/) 自动部署此项目  
 通过 Serverless 轻松部署该项目，只需运行`yarn deploy`
 
-### 开发（后端）
+## 开发（后端）
 
 您可以不部署后端运行该项目，只需将 `.env.development` 中的 `VUE_APP_BASE_API` 更改为公共 API `https://api.movie.jinwenjie.me`，即可从 `localhost:8080` 访问
 
@@ -44,7 +44,7 @@
 - [Swagger API](https://api.movie.jinwenjie.me/swagger-html)
 - (不推荐) [Mock API](http://rap2.jinwenjie.me:3000/repository/editor?id=1) 基于 [Rap2](https://github.com/thx/rap2-delos)
 
-### 开发（前端）
+## 开发（前端）
 
 ```bash
 # 克隆此项目
@@ -57,7 +57,7 @@
 > yarn serve
 ```
 
-#### 项目结构
+### 项目结构
 
 ```
 main.js / 初始化脚本
@@ -91,6 +91,6 @@ assets / 资源
 api / api
 ```
 
-### 贡献
+## 贡献
 
 欢迎报告错误或添加新功能。您可以在 [Projects](https://github.com/wwwenjie/Movie-Paradise/projects) 中查看我们将要做什么
