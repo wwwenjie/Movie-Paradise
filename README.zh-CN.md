@@ -38,6 +38,8 @@
 
 ### 开发（后端）
 
+您可以不部署后端运行该项目，只需将 `.env.development` 中的 `VUE_APP_BASE_API` 更改为公共 API `https://api.movie.jinwenjie.me`，即可从 `localhost:8080` 访问
+
 - [后端仓库](https://github.com/wwwenjie/movie-paradise-koa)
 - [Swagger API](https://api.movie.jinwenjie.me/swagger-html)
 - (不推荐) [Mock API](http://rap2.jinwenjie.me:3000/repository/editor?id=1) 基于 [Rap2](https://github.com/thx/rap2-delos)

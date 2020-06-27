@@ -40,6 +40,8 @@ Deploy this project easily through serverless, just run `yarn deploy`.
 
 ### Development (back-end)
 
+You can run this project without back end, just change `VUE_APP_BASE_API` in `.env.development` to public API `https://api.movie.jinwenjie.me`, which allow access from `localhost:8080`.
+
 - [back end repository](https://github.com/wwwenjie/movie-paradise-koa)
 - [Swagger API](https://api.movie.jinwenjie.me/swagger-html)
 - (deprecated) [Mock API](http://rap2.jinwenjie.me:3000/repository/editor?id=1) Based on [Rap2](https://github.com/thx/rap2-delos)
