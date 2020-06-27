@@ -43,7 +43,11 @@ export default new Vuex.Store({
     lastCacheDate: 0,
     popAccount: false,
     token: undefined,
-    userStore: {}
+    userStore: {
+      list: [],
+      like: [],
+      watched: []
+    }
   },
   mutations: {
     CALL_MESSAGE (state, config) {
@@ -94,7 +98,11 @@ export default new Vuex.Store({
     },
     CLEAR_LOGIN_DATA (state) {
       state.token = undefined
-      state.userStore = { }
+      state.userStore = {
+        list: [],
+        like: [],
+        watched: []
+      }
     }
   },
   actions: {},
