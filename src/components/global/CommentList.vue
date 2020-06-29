@@ -76,15 +76,15 @@
       max-width="450px"
     >
       <v-card>
-        <v-card-title>{{ $t('editComment') }} - {{ comment.movie_title }}</v-card-title>
+        <v-card-title>{{ $t('editComment') }} - {{ commentDialog.movie_title }}</v-card-title>
         <v-card-text class="pb-0">
           <v-rating
-            v-model="comment.rating"
+            v-model="commentDialog.rating"
             color="yellow darken-3"
             background-color="grey darken-1"
           />
           <v-textarea
-            v-model="comment.summary"
+            v-model="commentDialog.summary"
             rows="3"
             counter="150"
             solo
@@ -128,7 +128,7 @@ export default {
   data () {
     return {
       dialog: false,
-      comment: {
+      commentDialog: {
         _id: undefined,
         rating: undefined,
         summary: undefined
@@ -138,13 +138,13 @@ export default {
   methods: {
     onEditClick (comment) {
       this.dialog = true
-      this.comment = comment
+      this.commentDialog = comment
     },
     async saveComment () {
       await setLoading(updateComment({
-        _id: this.comment._id,
-        rating: this.comment.rating,
-        summary: this.comment.summary
+        _id: this.commentDialog._id,
+        rating: this.commentDialog.rating,
+        summary: this.commentDialog.summary
       }))
       Message.success()
       this.dialog = false
