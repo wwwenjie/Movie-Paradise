@@ -192,6 +192,8 @@ export default {
       Message.success()
       this.comments.unshift(comment)
       this.$refs.button.$el.click()
+      this.rating = undefined
+      this.summary = undefined
     },
     userDetail (index) {
       this.userId = this.comments[index].user_id
