@@ -137,6 +137,7 @@
           </v-skeleton-loader>
         </v-col>
         <v-col
+          v-if="movie.info.actors"
           cols="12"
         >
           <span class="caption grey--text">{{ $t('actors') }}: {{ movie.info.actors.split('/').slice(0,7).join('/') }}</span>
