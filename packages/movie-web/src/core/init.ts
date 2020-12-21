@@ -63,7 +63,9 @@ export default class InitManager {
     InitManager.app.use(cors({
       origin: ctx => {
         const allowOrigin: string[] = config.cors.allowOrigin
-        if (allowOrigin.includes(ctx.request.header.origin)) {
+        if (allowOrigin.some(allowOrigin => {
+          return allowOrigin.includes(ctx.request.header.origin)
+        })) {
           return ctx.request.header.origin
         }
       },

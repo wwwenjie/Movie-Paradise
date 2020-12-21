@@ -19,9 +19,9 @@
   },
   "cors": {
     "allowOrigin": [
-      "https://movieparadise.netlify.app",
-      "https://movie-paradise-1256033731.cos-website.ap-chengdu.myqcloud.com",
-      "http://localhost:8080"
+      "netlify.app",
+      "myqcloud.com",
+      "localhost"
     ]
   },
   "ossConfig": {
