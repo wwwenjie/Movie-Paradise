@@ -121,7 +121,7 @@ const enUS = {
   userComments: 'All of {userName}\'s comments',
   movieComments: 'Comments of {movieTitle}',
 
-  // 用户电影列表
+  // user movie list
   noMovies: 'No Movies',
 
   // feedback
@@ -142,7 +142,10 @@ const enUS = {
   // about
   version: 'Version',
   intro: 'Introduction',
-  introText: 'Movie Paradise is an open source, free, and ad-free movie preview website. Movie Paradise has currently collected more than 60,000 movies, and we will continue to update the latest movies in the later period. We will later develop a module for users to upload movies independently, which means that we will include more and more movies. We hope to bring a good movie preview experience to users worldwide if conditions permit. The entire code of Movie Paradise has been open sourced on the Github. Interested programmers are welcome to join the development of Movie Paradise.'
+  introText: 'Movie Paradise is an open source, free, and ad-free movie preview website. Movie Paradise has currently collected more than 60,000 movies, and we will continue to update the latest movies in the later period. We will later develop a module for users to upload movies independently, which means that we will include more and more movies. We hope to bring a good movie preview experience to users worldwide if conditions permit. The entire code of Movie Paradise has been open sourced on the Github. Interested programmers are welcome to join the development of Movie Paradise.',
+
+  // upload movie
+  uploadMovie: 'Upload Movie'
 }
 
 export default enUS

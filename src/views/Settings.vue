@@ -27,7 +27,7 @@
           <v-list-item-title>{{ $t('darkTheme') }}</v-list-item-title>
         </v-list-item-content>
         <v-list-item-action>
-          <v-switch :input-value="this.$vuetify.theme.dark" />
+          <v-switch :input-value="this.$vuetify.theme.dark"/>
         </v-list-item-action>
       </v-list-item>
 
@@ -46,7 +46,7 @@
           >
             <v-card>
               <v-card-title>{{ $t('selectLanguage') }}</v-card-title>
-              <v-divider />
+              <v-divider/>
               <v-card-text class="pa-0">
                 <v-list>
                   <v-list-item
@@ -84,7 +84,7 @@
 
       <v-list-item @click="$router.push({path:'/feedback'})">
         <v-list-item-icon>
-          <v-icon>mdi-comment-check-outline </v-icon>
+          <v-icon>mdi-comment-check-outline</v-icon>
         </v-list-item-icon>
         <v-list-item-content>
           <v-list-item-title>{{ $t('feedback') }}</v-list-item-title>
@@ -115,6 +115,23 @@
           </v-btn>
         </v-list-item-action>
       </v-list-item>
+
+      <v-list-item @click="todo">
+        <v-list-item-icon>
+          <v-icon>mdi-upload-outline</v-icon>
+        </v-list-item-icon>
+        <v-list-item-content>
+          <v-list-item-title>{{ $t('uploadMovie') }}</v-list-item-title>
+        </v-list-item-content>
+        <v-list-item-action>
+          <v-btn
+            icon
+            small
+          >
+            <v-icon>mdi-chevron-right</v-icon>
+          </v-btn>
+        </v-list-item-action>
+      </v-list-item>
     </v-list>
   </v-sheet>
 </template>
@@ -122,10 +139,11 @@
 <script>
 import storeMap from '../mixins/storeMap'
 import Message from '../utils/message'
+import appMixin from '../mixins/appMixin'
 
 export default {
   name: 'Setting',
-  mixins: [storeMap],
+  mixins: [appMixin, storeMap],
   data: () => ({
     dialogLanguage: false
   }),

@@ -1,16 +1,17 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home'
-import Search from '../views/Search'
-import Setting from '../views/Settings'
-import MovieDetail from '../views/MovieDetail'
-import MovieMore from '../views/MovieMore'
-import AccountDetail from '../views/AccountDetail'
-import AccountDetailEdit from '../components/AccountDetailEdit'
-import AccountDetailComment from '../components/AccountDetailComment'
-import AccountDetailMovie from '../components/AccountDetailMovie'
-import About from '../views/About'
-import Feedback from '../views/Feedback'
+import Home from '@/views/Home'
+import Search from '@/views/Search'
+import Setting from '@/views/Settings'
+import MovieDetail from '@/views/MovieDetail'
+import MovieMore from '@/views/MovieMore'
+import AccountDetail from '@/views/AccountDetail'
+import AccountDetailEdit from '@/components/AccountDetailEdit'
+import AccountDetailComment from '@/components/AccountDetailComment'
+import AccountDetailMovie from '@/components/AccountDetailMovie'
+import About from '@/views/About'
+import Feedback from '@/views/Feedback'
+import UploadMovie from '@/views/UploadMovie'
 
 Vue.use(VueRouter)
 
@@ -60,6 +61,10 @@ const routes = [
   {
     path: '/about',
     component: About
+  },
+  {
+    path: '/upload',
+    component: UploadMovie
   },
   {
     // it supposed to be 404 page
