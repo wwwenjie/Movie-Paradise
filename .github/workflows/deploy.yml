@@ -21,13 +21,15 @@ jobs:
         with:
           node-version: '14.x'
       - name: Install
-        run: yarn --frozen-lockfile
+        run: yarn lerna:bootstrap
       - name: Lint
-        run: yarn lint
+        run: yarn lerna:lint-all
+      - name: Test
+        run: yarn lerna:test-all
       - name: Build
-        run: yarn build
+        run: yarn lerna:build-all
       - name: Deploy
         env:
           TENCENT_SECRET_ID: ${{ secrets.TENCENT_SECRET_ID }}
           TENCENT_SECRET_KEY: ${{ secrets.TENCENT_SECRET_KEY }}
-        run: yarn deploy
+        run: yarn lerna:deploy-all

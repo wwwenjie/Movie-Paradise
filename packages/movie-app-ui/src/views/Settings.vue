@@ -27,7 +27,7 @@
           <v-list-item-title>{{ $t('darkTheme') }}</v-list-item-title>
         </v-list-item-content>
         <v-list-item-action>
-          <v-switch :input-value="this.$vuetify.theme.dark"/>
+          <v-switch :input-value="this.$vuetify.theme.dark" />
         </v-list-item-action>
       </v-list-item>
 
@@ -46,7 +46,7 @@
           >
             <v-card>
               <v-card-title>{{ $t('selectLanguage') }}</v-card-title>
-              <v-divider/>
+              <v-divider />
               <v-card-text class="pa-0">
                 <v-list>
                   <v-list-item
