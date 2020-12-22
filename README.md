@@ -2,6 +2,7 @@
 
 ![](https://github.com/wwwenjie/Movie-Paradise/workflows/deploy/badge.svg)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/3261a25a-796e-4e36-bbba-0a3db3bf37b4/deploy-status)](https://app.netlify.com/sites/movieparadise/deploys)
+[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 [简体中文](./README.zh-CN.md)
 
