@@ -1,0 +1,45 @@
+{
+  "port": 3000,
+  "mysql": {
+    "type": "mysql",
+    "host": "localhost",
+    "port": 3306,
+    "username": "root",
+    "password": "root",
+    "database": "database name",
+    "logging": false,
+    "sync": false
+  },
+  "mongodb": {
+    "type": "mongodb",
+    "host": "localhost",
+    "port": 27017,
+    "database": "database name",
+    "sync": false
+  },
+  "cors": {
+    "allowOrigin": [
+      "netlify.app",
+      "myqcloud.com",
+      "localhost"
+    ]
+  },
+  "ossConfig": {
+    "accessKeyId": "",
+    "accessKeySecret": "",
+    "bucket": "",
+    "region": "",
+    "secure": true
+  },
+  "jwtSecret": "secret",
+  "smtp": {
+    "from": "",
+    "host": "",
+    "port": 465,
+    "secure": true,
+    "auth": {
+      "user": "",
+      "pass": ""
+    }
+  }
+}

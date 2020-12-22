@@ -7,7 +7,7 @@
 
 ## 介绍
 
-电影天堂是由 Vue 和 Vuetify 构建的 web app
+电影天堂是由 Vue，React(WIP) 和 Koa 构建的 web app  
 它可以预览电影并提供下载哈希，在线观看链接，~~实时观看功能~~
 
 [演示网站](https://movieparadise.netlify.app)  
@@ -17,8 +17,8 @@
 
 - :iphone: 响应式
 - :globe_with_meridians: 国际化
-- :first_quarter_moon: 暗黑模式
-- :zap: Serverless 部署
+- :first_quarter_moon: 夜间模式
+- :zap: CI/CD
 
 ## 状态: Beta
 
@@ -31,65 +31,38 @@
 <p align="center"><img width="70%" src="https://movie-paradise.oss-ap-southeast-1.aliyuncs.com/preview/pad_home.png" alt="pad home view"/></p>
 <p align="center"><img width="100%" src="https://movie-paradise.oss-ap-southeast-1.aliyuncs.com/preview/desktop_home.png" alt="desktop home view"/></p>
 
-## 部署
+## 开发
 
-当 commit 提交至 master 分支时，将通过 [Netlify](https://www.netlify.com/) 自动部署此项目  
-通过 Serverless 轻松部署该项目，只需运行`yarn deploy`
-
-## 开发（后端）
-
-您可以不部署后端运行该项目，只需将 `.env.development` 中的 `VUE_APP_BASE_API` 更改为公共 API `https://api.movie.jinwenjie.me`，即可从 `localhost:8080` 访问
-
-- [后端仓库](https://github.com/wwwenjie/movie-paradise-koa)
-- [Swagger API](https://api.movie.jinwenjie.me/swagger-html)
-- (不推荐) [Mock API](http://rap2.jinwenjie.me:3000/repository/editor?id=1) 基于 [Rap2](https://github.com/thx/rap2-delos)
-
-## 开发（前端）
+电影天堂通过 [lerna](https://github.com/lerna/lerna) 管理，您可以通过 lerna 脚本初始化包含前后端的所有包
 
 ```bash
 # 克隆此项目
 > git clone https://github.com/wwwenjie/Movie-Paradise.git
 
-# 安装依赖
+# 按照 lerna 和基础依赖
 > yarn
 
-# 运行
-> yarn serve
+# 按照所有包的依赖
+> yarn lerna:bootstrap
+
+# 运行 movie app ui
+> cd packages/movie-app-ui && yarn serve
+
+# 运行 movie web
+> cd packages/movie-web && yarn serve
+
+# 您也可以通过 learn 运行所有包（不推荐）
+> yarn lerna:serve-all
 ```
+
+## 部署
+
+当有 commits 至主分支时，电影天堂会自动部署
+您也可以运行 `yarn lerna:deploy-all` 来手动部署
 
 ### 项目结构
 
-```
-main.js / 初始化脚本
-
-config.js / 配置
-
-App.vue / 根组件
-
-views / 独立页面
-
-utils / 工具
-
-store / 状态管理
-
-sass / 自定义 vuetify sass
-
-router / 路由管理
-
-plugins / 第三方插件
-
-mixins / 混入，常用的数据和方法等
-
-locales / 国际化资源
-
-directives / 指令
-
-components / 页面使用的组件
-
-assets / 资源
-
-api / api
-```
+您可以至每个包的 README 查看详细的项目结构
 
 ## 贡献
 

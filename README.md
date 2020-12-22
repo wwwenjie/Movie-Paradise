@@ -2,6 +2,7 @@
 
 ![](https://github.com/wwwenjie/Movie-Paradise/workflows/deploy/badge.svg)
 [![Netlify Status](https://api.netlify.com/api/v1/badges/3261a25a-796e-4e36-bbba-0a3db3bf37b4/deploy-status)](https://app.netlify.com/sites/movieparadise/deploys)
+[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 [简体中文](./README.zh-CN.md)
 
@@ -9,7 +10,7 @@
 
 ## Introduction
 
-Movie Paradise is a web app built by Vue and Vuetify.  
+Movie Paradise is a web app built by Vue, React(WIP) and Koa.  
 It can preview movies and provide download hash, online watch links, ~~live watch functions~~.
 
 [Demo Website](https://movieparadise.netlify.app)  
@@ -20,7 +21,7 @@ It can preview movies and provide download hash, online watch links, ~~live watc
 - :iphone: Responsive
 - :globe_with_meridians: Internationalization
 - :first_quarter_moon: Dark Mode
-- :zap: Serverless Deploy
+- :zap: CI/CD
 
 ## Status: Beta
 
@@ -33,65 +34,38 @@ Most of the features has been completed, more details to be optimized
 <p align="center"><img width="70%" src="https://movie-paradise.oss-ap-southeast-1.aliyuncs.com/preview/pad_home.png" alt="pad home view"/></p>
 <p align="center"><img width="100%" src="https://movie-paradise.oss-ap-southeast-1.aliyuncs.com/preview/desktop_home.png" alt="desktop home view"/></p>
 
-## Deploying
+## Development
 
-This site is automatically deployed when commits land in master, via [Netlify](https://www.netlify.com/).  
-Deploy this project easily through serverless, just run `yarn deploy`.
-
-## Development (back-end)
-
-You can run this project without back end, just change `VUE_APP_BASE_API` in `.env.development` to public API `https://api.movie.jinwenjie.me`, which allow access from `localhost:8080`.
-
-- [back end repository](https://github.com/wwwenjie/movie-paradise-koa)
-- [Swagger API](https://api.movie.jinwenjie.me/swagger-html)
-- (deprecated) [Mock API](http://rap2.jinwenjie.me:3000/repository/editor?id=1) Based on [Rap2](https://github.com/thx/rap2-delos)
-
-## Development (front-end)
+Movie Paradise is managed by [lerna](https://github.com/lerna/lerna). You can bootstrap all the packages including front end and back end via lerna scripts.
 
 ```bash
 # clone this repo
 > git clone https://github.com/wwwenjie/Movie-Paradise.git
 
-# install the dependencies
+# install lerna and basic dependencies
 > yarn
 
-# run
-> yarn serve
+# bootstrap all packages
+> yarn lerna:bootstrap
+
+# run movie app ui
+> cd packages/movie-app-ui && yarn serve
+
+# run movie web
+> cd packages/movie-web && yarn serve
+
+# you can also run all the packages using lerna (not recommended)
+> yarn lerna:serve-all
 ```
+
+## Deploying
+
+Movie Paradise will automatically deploy when commits land in master.  
+You can also deploy manually by running `yarn lerna:deploy-all`.
 
 ### Structure
 
-```
-main.js / initialization script
-
-config.js / config
-
-App.vue / root component
-
-views / independent pages
-
-utils / utils
-
-store / state management
-
-sass / customize vuetify sass
-
-router / route management
-
-plugins / third-party plugins
-
-mixins / mixins, frequently used data or methods etc...
-
-locales / i18n resources
-
-directives / directives
-
-components / components used by pages
-
-assets / resources
-
-api / api
-```
+You can view the detail of structure on each packages' README
 
 ## Contributing
 
