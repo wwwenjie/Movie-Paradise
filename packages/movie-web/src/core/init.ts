@@ -62,9 +62,9 @@ export default class InitManager {
   private static async initLoadCORS (): Promise<void> {
     InitManager.app.use(cors({
       origin: ctx => {
-        const allowOrigin: string[] = config.cors.allowOrigin
-        if (allowOrigin.some(allowOrigin => {
-          return allowOrigin.includes(ctx.request.header.origin)
+        const allowedOrigins: string[] = config.cors.allowedOrigins
+        if (allowedOrigins.some(origin => {
+          return ctx.request.header.origin.includes(origin)
         })) {
           return ctx.request.header.origin
         }
@@ -90,7 +90,7 @@ export default class InitManager {
     router.swagger({
       title: 'Movie Paradise API V1 Server',
       description: 'Movie Paradise API DOC',
-      version: '1.0.0'
+      version: process.env.npm_package_version
     })
     router.mapDir(path.resolve(__dirname, '../controller/'))
     // @ts-expect-error
