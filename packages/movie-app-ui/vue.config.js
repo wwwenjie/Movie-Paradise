@@ -1,3 +1,5 @@
+process.env.VUE_APP_VERSION = require('./package.json').version
+
 module.exports = {
   transpileDependencies: [
     'vuetify'
@@ -21,5 +23,4 @@ module.exports = {
       config.devtool = 'source-map'
     }
   }
-
 }

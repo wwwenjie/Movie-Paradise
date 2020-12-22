@@ -6,7 +6,7 @@
     "port": 3306,
     "username": "root",
     "password": "root",
-    "database": "database name",
+    "database": "movie_paradise",
     "logging": false,
     "sync": false
   },
@@ -14,21 +14,21 @@
     "type": "mongodb",
     "host": "localhost",
     "port": 27017,
-    "database": "database name",
+    "database": "movie_paradise",
     "sync": false
   },
   "cors": {
-    "allowOrigin": [
+    "allowedOrigins": [
       "netlify.app",
       "myqcloud.com",
       "localhost"
     ]
   },
   "ossConfig": {
-    "accessKeyId": "",
-    "accessKeySecret": "",
-    "bucket": "",
-    "region": "",
+    "accessKeyId": "xxx",
+    "accessKeySecret": "xxx",
+    "bucket": "xxx",
+    "region": "xxx",
     "secure": true
   },
   "jwtSecret": "secret",
