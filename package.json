@@ -6,7 +6,8 @@
     "lerna:lint-all": "lerna run lint",
     "lerna:test-all": "lerna run test --ignore @movie-paradise/web",
     "lerna:build-all": "lerna run build --ignore @movie-paradise/web",
-    "lerna:deploy-all": "lerna run deploy"
+    "lerna:deploy-all": "lerna run deploy",
+    "lerna:serve-all": "lerna run serve"
   },
   "devDependencies": {
     "lerna": "^3.22.1"

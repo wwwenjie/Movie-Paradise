@@ -1,10 +1,10 @@
-# Movie Paradise Koa
+# Movie Paradise Web
 
 > Back end of [Movie Paradise](https://github.com/wwwenjie/movie-paradise)
 
 ## Introduction
 
-Movie Paradise Koa is a RESTful style back end built by Koa and TypeORM.  
+Movie Paradise Web is a RESTful style back end built by Koa and TypeORM.  
 You can visit online [Swagger API Doc](https://api.movie.jinwenjie.me/swagger-html)
 
 ## Features
@@ -16,15 +16,13 @@ You can visit online [Swagger API Doc](https://api.movie.jinwenjie.me/swagger-ht
 
 ## Development
 
-You may need to set up your database first, set in `src/config/config.json`, you can also create `config.local.json`. By default, program will load `config.local.json` if it exsits. Trun `sync` on and program will create data structure. Note: sync will drop all the data exist in the database, make sure trun it off after structure is created.
+You may need to set up your database first, set in `src/config/config.json`, you can also create `config.local.json`. 
+By default, program will load `config.local.json` if it exists.  
+Turn `sync` on and program will create data structure.  
+Note: sync will drop all the data exist in the database, make sure trun it off after structure is created.  
+Since the dependencies are installed with lerna, you only need to run serve script to serve as develop.  
 
 ```bash
-# clone this repo
-> git clone https://github.com/wwwenjie/Movie-Paradise-Koa.git
-
-# install the dependencies
-> yarn
-
 # run with ts-node
 > yarn serve
 ```
