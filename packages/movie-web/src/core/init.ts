@@ -6,7 +6,7 @@ import { SwaggerRouter } from 'koa-swagger-decorator'
 import config from '../config'
 import CError from '../error/CError'
 import logger from './log4js'
-import * as koaBody from 'koa-body'
+import koaBody from 'koa-body'
 
 export default class InitManager {
   private static app: any
@@ -93,7 +93,6 @@ export default class InitManager {
       version: process.env.npm_package_version
     })
     router.mapDir(path.resolve(__dirname, '../controller/'))
-    // @ts-expect-error
     InitManager.app.use(router.routes())
     console.log('Routes loaded.')
   }

@@ -1,0 +1,47 @@
+# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: deploy-web
+
+on: push
+
+jobs:
+  deploy:
+    if: "!contains(github.event.head_commit.message, '[ci skip]')"
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js 14.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: '14.x'
+
+      - name: Move to web
+        run: cd packages/movie-web
+
+      - name: Install
+        run: yarn
+
+      - name: Build
+        run: yarn build
+
+      - name: Deploy to server
+        uses: Pendect/action-rsyncer@v1.1.0
+        env:
+          DEPLOY_KEY: ${{ secrets.SERVER_SSH_KEY }}
+        with:
+          flags: "-avzr -O --no-perms --delete --exclude='node_modules' --exclude='.git' --exclude='.github' --exclude='log'"
+          options: ''
+          ssh_options: ''
+          src: '/'
+          dest: '${{ secrets.SERVER_USER }}@${{ secrets.WEB_SERVER_HOST }}:${{ secrets.WEB_SERVER_DESK }}'
+
+      - name: Restart PM2
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.WEB_SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          port: ${{ secrets.SERVER_SSH_PORT }}
+          script: "cd ${{ secrets.WEB_SERVER_DESK }} && yarn && pm2 restart movie-web"
