@@ -33,7 +33,7 @@ jobs:
         with:
           flags: "-avzr -O --no-perms --delete --exclude='node_modules' --exclude='.git' --exclude='.github' --exclude='log' --exclude='config.local.json'"
           ssh_options: '-p ${{ secrets.SERVER_SSH_PORT }}'
-          src: 'packages/movie-web'
+          src: 'packages/movie-web/'
           dest: '${{ secrets.SERVER_USER }}@${{ secrets.WEB_SERVER_HOST }}:${{ secrets.WEB_SERVER_DESK }}'
 
       - name: Restart PM2
