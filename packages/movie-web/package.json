@@ -9,7 +9,7 @@
     "testEnvironment": "node"
   },
   "scripts": {
-    "serve": "ts-node-dev src/app.ts",
+    "serve": "cross-env NODE_ENV=development ts-node-dev src/app.ts",
     "lint": "eslint src/*",
     "test": "jest",
     "build": "tsc",
@@ -19,6 +19,7 @@
     "@koa/cors": "^3.1.0",
     "ali-oss": "^6.9.1",
     "bcrypt": "^5.0.0",
+    "cross-env": "^7.0.3",
     "jsonwebtoken": "^8.5.0",
     "koa": "^2.12.1",
     "koa-body": "^4.2.0",

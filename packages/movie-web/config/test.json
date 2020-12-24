@@ -6,7 +6,7 @@
     "port": 3306,
     "username": "root",
     "password": "root",
-    "database": "movie_paradise",
+    "database": "movie_paradise_test",
     "logging": false,
     "sync": false
   },
@@ -14,13 +14,11 @@
     "type": "mongodb",
     "host": "localhost",
     "port": 27017,
-    "database": "movie_paradise",
+    "database": "movie_paradise_test",
     "sync": false
   },
   "cors": {
     "allowedOrigins": [
-      "netlify.app",
-      "myqcloud.com",
       "localhost"
     ]
   },

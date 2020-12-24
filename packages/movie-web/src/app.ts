@@ -10,6 +10,4 @@ console.log('  __  __            _        _____                    _ _          
   ' | |\\/| |/ _ \\ \\ / / |/ _ \\ |  ___/ _` | \'__/ _` |/ _` | / __|/ _ \\\n' +
   ' | |  | | (_) \\ V /| |  __/ | |  | (_| | | | (_| | (_| | \\__ \\  __/\n' +
   ' |_|  |_|\\___/ \\_/ |_|\\___| |_|   \\__,_|_|  \\__,_|\\__,_|_|___/\\___|\n')
-console.log('version', process.env.npm_package_version)
 console.log('https://github.com/wwwenjie/Movie-Paradise')
-console.log('Start Date:', new Date())
