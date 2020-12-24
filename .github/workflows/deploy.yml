@@ -6,6 +6,8 @@ name: deploy
 on:
   push:
     branches: [ master ]
+    paths:
+      - 'packages'
 
 jobs:
   deploy-web:
@@ -47,12 +49,6 @@ jobs:
           port: ${{ secrets.SERVER_SSH_PORT }}
           script: "cd ${{ secrets.WEB_SERVER_DESK }} && yarn && pm2 restart movie-web"
 
-      - name: Check Endpoint
-        uses: lakuapik/gh-actions-http-status@v1
-        with:
-          sites: '["https://api.movie.jinwenjie.me/genres"]'
-          expected: '[200]'
-
   deploy-app-ui:
     if: "!contains(github.event.head_commit.message, '[ci skip]')"
     runs-on: ubuntu-latest
@@ -77,3 +73,20 @@ jobs:
           TENCENT_SECRET_ID: ${{ secrets.TENCENT_SECRET_ID }}
           TENCENT_SECRET_KEY: ${{ secrets.TENCENT_SECRET_KEY }}
         run: yarn deploy
+
+  validate-deploy:
+    if: always()
+    needs: [deploy-web, deploy-app-ui]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check Back End Endpoint
+        uses: lakuapik/gh-actions-http-status@v1
+        with:
+          sites: '["https://api.movie.jinwenjie.me/genres"]'
+          expected: '[200]'
+
+      - name: Check Front End Endpoint
+        uses: lakuapik/gh-actions-http-status@v1
+        with:
+          sites: '["https://movieparadise.netlify.app", "https://movie-paradise-1256033731.cos-website.ap-chengdu.myqcloud.com"]'
+          expected: '[200, 200]'
