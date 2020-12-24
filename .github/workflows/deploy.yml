@@ -47,7 +47,13 @@ jobs:
           port: ${{ secrets.SERVER_SSH_PORT }}
           script: "cd ${{ secrets.WEB_SERVER_DESK }} && yarn && pm2 restart movie-web"
 
-  WIP-deploy-app-ui:
+      - name: Check Endpoint
+        uses: lakuapik/gh-actions-http-status@v1
+        with:
+          sites: '["https://api.movie.jinwenjie.me/genres"]'
+          expected: '[200]'
+
+  deploy-app-ui:
     if: "!contains(github.event.head_commit.message, '[ci skip]')"
     runs-on: ubuntu-latest
     defaults:
@@ -60,6 +66,14 @@ jobs:
         with:
           node-version: '14.x'
 
-      - name: LS
-        run: ls -la
+      - name: Install
+        run: yarn
 
+      - name: Build
+        run: yarn build
+
+      - name: Deploy to serverless
+        env:
+          TENCENT_SECRET_ID: ${{ secrets.TENCENT_SECRET_ID }}
+          TENCENT_SECRET_KEY: ${{ secrets.TENCENT_SECRET_KEY }}
+        run: yarn deploy
