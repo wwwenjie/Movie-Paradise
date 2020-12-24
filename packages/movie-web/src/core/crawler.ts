@@ -1,12 +1,12 @@
-import * as request from 'superagent'
+import request from 'superagent'
 import MovieService from '../service/movie-service'
 import { movieLogger as logger, httpLogger } from './log4js'
 import InitManager from './init'
 import Movie from '../entity/movie'
 import OSS from '../util/oss'
-import * as fs from 'fs'
-import * as path from 'path'
-import * as readline from 'readline'
+import fs from 'fs'
+import path from 'path'
+import readline from 'readline'
 
 // todo: back up database function
 class GetMovieFromAPI {
