@@ -1,6 +1,6 @@
 import PlayLink from '../entity/mongodb/play-link'
 import { getConnection } from 'typeorm'
-import * as request from 'superagent'
+import request from 'superagent'
 import { time } from '../util'
 
 interface PlayLinkService {

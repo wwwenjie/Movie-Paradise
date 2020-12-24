@@ -1,5 +1,5 @@
 import Oss from 'ali-oss'
-import * as request from 'superagent'
+import request from 'superagent'
 import { ossLogger, httpLogger } from '../core/log4js'
 import config from '../config'
 import E from '../error/ErrorEnum'

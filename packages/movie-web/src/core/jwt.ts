@@ -1,5 +1,5 @@
 import E from '../error/ErrorEnum'
-import * as jwt from 'jsonwebtoken'
+import jwt from 'jsonwebtoken'
 import config from '../config'
 import CError from '../error/CError'
 

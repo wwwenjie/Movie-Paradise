@@ -1,7 +1,7 @@
 import Movie from '../entity/movie'
 import OSS from '../util/oss'
 import { improvementLogger as logger } from '../core/log4js'
-import * as request from 'superagent'
+import request from 'superagent'
 
 interface ImprovementService {
   patchPoster: (id: number) => Promise<void>

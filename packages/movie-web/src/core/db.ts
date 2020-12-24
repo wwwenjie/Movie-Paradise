@@ -1,6 +1,6 @@
 import config from '../config'
 import { createConnections } from 'typeorm'
-import * as path from 'path'
+import path from 'path'
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const { type, username, password, host, port, database, sync, logging } = config.mysql

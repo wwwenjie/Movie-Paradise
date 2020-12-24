@@ -1,7 +1,7 @@
 // inspired by https://github.com/LFB/nodejs-koa-blog
 import connect from './db'
-import * as path from 'path'
-import * as cors from '@koa/cors'
+import path from 'path'
+import cors from '@koa/cors'
 import { SwaggerRouter } from 'koa-swagger-decorator'
 import config from '../config'
 import CError from '../error/CError'
