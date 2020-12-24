@@ -32,8 +32,7 @@ jobs:
           DEPLOY_KEY: ${{ secrets.SERVER_SSH_KEY }}
         with:
           flags: "-avzr -O --no-perms --delete --exclude='node_modules' --exclude='.git' --exclude='.github' --exclude='log' --exclude='config.local.json'"
-          options: ''
-          ssh_options: ''
+          ssh_options: '-p ${{ secrets.SERVER_SSH_PORT }}'
           src: '/'
           dest: '${{ secrets.SERVER_USER }}@${{ secrets.WEB_SERVER_HOST }}:${{ secrets.WEB_SERVER_DESK }}'
 
