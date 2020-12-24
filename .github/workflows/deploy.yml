@@ -1,14 +1,17 @@
 # This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: deploy-web
+name: deploy
 
 on: push
 
 jobs:
-  deploy:
+  deploy-web:
     if: "!contains(github.event.head_commit.message, '[ci skip]')"
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: packages/movie-web
 
     steps:
       - uses: actions/checkout@v2
@@ -16,9 +19,6 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: '14.x'
-
-      - name: Move to web
-        run: cd packages/movie-web
 
       - name: Install
         run: yarn
@@ -31,7 +31,7 @@ jobs:
         env:
           DEPLOY_KEY: ${{ secrets.SERVER_SSH_KEY }}
         with:
-          flags: "-avzr -O --no-perms --delete --exclude='node_modules' --exclude='.git' --exclude='.github' --exclude='log'"
+          flags: "-avzr -O --no-perms --delete --exclude='node_modules' --exclude='.git' --exclude='.github' --exclude='log' --exclude='config.local.json'"
           options: ''
           ssh_options: ''
           src: '/'
@@ -45,3 +45,20 @@ jobs:
           key: ${{ secrets.SERVER_SSH_KEY }}
           port: ${{ secrets.SERVER_SSH_PORT }}
           script: "cd ${{ secrets.WEB_SERVER_DESK }} && yarn && pm2 restart movie-web"
+
+  WIP-deploy-app-ui:
+    if: "!contains(github.event.head_commit.message, '[ci skip]')"
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: packages/movie-app-ui
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js 14.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: '14.x'
+
+      - name: LS
+        run: ls -la
+
