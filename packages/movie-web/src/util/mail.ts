@@ -1,4 +1,4 @@
-import * as mail from 'nodemailer'
+import mail from 'nodemailer'
 import logger from '../core/log4js'
 import Config from '../config'
 

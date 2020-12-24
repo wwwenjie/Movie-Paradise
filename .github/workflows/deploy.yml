@@ -8,9 +8,12 @@ on:
     branches: [ master ]
 
 jobs:
-  deploy:
+  deploy-web:
     if: "!contains(github.event.head_commit.message, '[ci skip]')"
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: packages/movie-web
 
     steps:
       - uses: actions/checkout@v2
@@ -18,18 +21,59 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: '14.x'
+
       - name: Install
         run: yarn
-      - name: Bootstrap
-        run: yarn lerna:bootstrap
-      - name: Lint
-        run: yarn lerna:lint-all
-      - name: Test
-        run: yarn lerna:test-all
+
       - name: Build
-        run: yarn lerna:build-all
-      - name: Deploy
+        run: yarn build
+
+      - name: Deploy to server
+        uses: Pendect/action-rsyncer@v1.1.0
+        env:
+          DEPLOY_KEY: ${{ secrets.SERVER_SSH_KEY }}
+        with:
+          flags: "-avzr -O --no-perms --delete --exclude='node_modules' --exclude='.git' --exclude='.github' --exclude='log' --exclude='production.json'"
+          ssh_options: '-p ${{ secrets.SERVER_SSH_PORT }}'
+          src: 'packages/movie-web/'
+          dest: '${{ secrets.SERVER_USER }}@${{ secrets.WEB_SERVER_HOST }}:${{ secrets.WEB_SERVER_DESK }}'
+
+      - name: Restart PM2
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.WEB_SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SERVER_SSH_KEY }}
+          port: ${{ secrets.SERVER_SSH_PORT }}
+          script: "cd ${{ secrets.WEB_SERVER_DESK }} && yarn && pm2 restart movie-web"
+
+      - name: Check Endpoint
+        uses: lakuapik/gh-actions-http-status@v1
+        with:
+          sites: '["https://api.movie.jinwenjie.me/genres"]'
+          expected: '[200]'
+
+  deploy-app-ui:
+    if: "!contains(github.event.head_commit.message, '[ci skip]')"
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: packages/movie-app-ui
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js 14.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: '14.x'
+
+      - name: Install
+        run: yarn
+
+      - name: Build
+        run: yarn build
+
+      - name: Deploy to serverless
         env:
           TENCENT_SECRET_ID: ${{ secrets.TENCENT_SECRET_ID }}
           TENCENT_SECRET_KEY: ${{ secrets.TENCENT_SECRET_KEY }}
-        run: yarn lerna:deploy-all
+        run: yarn deploy
