@@ -11,4 +11,3 @@ console.log('  __  __            _        _____                    _ _          
   ' | |  | | (_) \\ V /| |  __/ | |  | (_| | | | (_| | (_| | \\__ \\  __/\n' +
   ' |_|  |_|\\___/ \\_/ |_|\\___| |_|   \\__,_|_|  \\__,_|\\__,_|_|___/\\___|\n')
 console.log('https://github.com/wwwenjie/Movie-Paradise')
-console.log('packages change invoke deploy flow test2')
