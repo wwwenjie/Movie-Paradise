@@ -98,6 +98,7 @@ export default {
       ' |_|  |_|\\___/ \\_/ |_|\\___| |_|   \\__,_|_|  \\__,_|\\__,_|_|___/\\___|\n')
     // eslint-disable-next-line no-console
     console.log('version', process.env.VUE_APP_VERSION)
+    console.log('毕业答辩版本')
     // eslint-disable-next-line no-console
     console.log('https://github.com/wwwenjie/Movie-Paradise')
   }
