@@ -10,8 +10,8 @@
 </template>
 
 <script>
-import VPage from '../components/global/VPage'
-import CommentList from '../components/global/CommentList'
+import VPage from './global/VPage'
+import CommentList from './global/CommentList'
 import { getCommentByUserId } from '../api/comment'
 
 export default {

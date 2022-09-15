@@ -93,7 +93,7 @@
 </template>
 
 <script>
-import VPage from '../components/global/VPage'
+import VPage from './global/VPage'
 import storeMap from '../mixins/storeMap'
 import Message from '../utils/message'
 import { updateUser, uploadAvatar } from '../api/user'
