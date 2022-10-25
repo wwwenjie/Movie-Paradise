@@ -1,72 +1,52 @@
-# Movie Paradise
+# vue-project
 
-![](https://github.com/wwwenjie/Movie-Paradise/workflows/deploy/badge.svg)
-[![Netlify Status](https://api.netlify.com/api/v1/badges/3261a25a-796e-4e36-bbba-0a3db3bf37b4/deploy-status)](https://app.netlify.com/sites/movieparadise/deploys)
-[![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+This template should help get you started developing with Vue 3 in Vite.
 
-[简体中文](./README.zh-CN.md)
+## Recommended IDE Setup
 
-> This project is for learning and communication purposes only, not for commercial use. The data comes from third-party websites.
+[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
 
-## Introduction
+## Type Support for `.vue` Imports in TS
 
-Movie Paradise is a web app built by Vue, React(WIP) and Koa.  
-It can preview movies and provide download hash, online watch links, ~~live watch functions~~.
+TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
 
-[Demo Website](https://movieparadise.netlify.app)  
-[Optimized for China](https://movie-paradise-1256033731.cos-website.ap-chengdu.myqcloud.com)
+If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
 
-## Features
+1. Disable the built-in TypeScript Extension
+    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
+    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
+2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
 
-- :iphone: Responsive
-- :globe_with_meridians: Internationalization
-- :first_quarter_moon: Dark Mode
-- :zap: CI/CD
+## Customize configuration
 
-## Status: Beta
+See [Vite Configuration Reference](https://vitejs.dev/config/).
 
-Most of the features has been completed, more details to be optimized
+## Project Setup
 
-## Preview
-
-<p align="center">
-<img height="350" src="https://movie-paradise.oss-ap-southeast-1.aliyuncs.com/preview/mobile_home.png" alt="mobile home view"/></p>
-<p align="center"><img width="70%" src="https://movie-paradise.oss-ap-southeast-1.aliyuncs.com/preview/pad_home.png" alt="pad home view"/></p>
-<p align="center"><img width="100%" src="https://movie-paradise.oss-ap-southeast-1.aliyuncs.com/preview/desktop_home.png" alt="desktop home view"/></p>
-
-## Development
-
-Movie Paradise is managed by [lerna](https://github.com/lerna/lerna). You can bootstrap all the packages including front end and back end via lerna scripts.
-
-```bash
-# clone this repo
-> git clone https://github.com/wwwenjie/Movie-Paradise.git
-
-# install lerna and basic dependencies
-> yarn
-
-# bootstrap all packages
-> yarn lerna:bootstrap
-
-# run movie app ui
-> cd packages/movie-app-ui && yarn serve
-
-# run movie web
-> cd packages/movie-web && yarn serve
-
-# you can also run all the packages using lerna (not recommended)
-> yarn lerna:serve-all
+```sh
+pnpm install
 ```
 
-## Deploying
+### Compile and Hot-Reload for Development
 
-Movie Paradise will automatically deploy when commits land in master.  
-You can also deploy manually by running `yarn lerna:deploy-all`.
+```sh
+pnpm dev
+```
 
-### Structure
+### Type-Check, Compile and Minify for Production
 
-You can view the detail of structure on each packages' README
+```sh
+pnpm build
+```
 
-## Contributing
+### Run Unit Tests with [Vitest](https://vitest.dev/)
 
-Welcome to report bug or add new features. You can know what we are going to do in [Projects](https://github.com/wwwenjie/Movie-Paradise/projects)
+```sh
+pnpm test:unit
+```
+
+### Lint with [ESLint](https://eslint.org/)
+
+```sh
+pnpm lint
+```
