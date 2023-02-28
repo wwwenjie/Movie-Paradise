@@ -24,7 +24,6 @@ const dialogVisible = ref(false)
 
 const emptyTrailers = computed(() => isEmpty(video.value?.results))
 const youtubeUrl = computed(() => {
-  if (emptyTrailers.value) return null
   return `https://www.youtube.com/embed/${video.value?.results?.[0].key}`
 })
 </script>
