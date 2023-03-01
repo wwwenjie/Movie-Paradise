@@ -18,7 +18,11 @@ import { computed, ref } from 'vue'
 import { useMovieVideo } from '@/api/movie'
 import { isEmpty } from 'lodash'
 
-const { data: video } = useMovieVideo(842675)
+const props = defineProps<{
+  movieId?: number
+}>()
+
+const { data: video } = useMovieVideo(computed(() => props.movieId))
 
 const dialogVisible = ref(false)
 

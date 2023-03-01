@@ -23,7 +23,7 @@
             <span class="caption">Shuffle</span>
           </v-col>
           <v-col cols="5" class="text-center">
-            <TrailerDialog />
+            <TrailerDialog :movie-id="movie?.id" />
           </v-col>
           <v-col cols="3" class="flex flex-col align-center cursor-pointer" @click="goDetail">
             <v-icon icon="mdi-information-outline" />
@@ -36,18 +36,33 @@
 </template>
 
 <script setup lang="ts">
-import { useMovieDetail } from '@/api/movie'
-import { computed } from 'vue'
+import { useMoviePopular } from '@/api/movie'
+import { computed, ref } from 'vue'
 import { getImageUrl } from '@/utils/movie'
 import TrailerDialog from '@/views/home/components/TrailerDialog.vue'
+import { useMovieGenres } from '@/api/geners'
+import { keyBy } from 'lodash'
 
-const { data: movie } = useMovieDetail(842675)
+const page = ref(1)
+const shuffleIndex = ref(0)
 
+const { data: popularMovies } = useMoviePopular(page)
+const { data: genresMap } = useMovieGenres()
+
+const keymap = computed(() => keyBy(genresMap.value?.genres, 'id'))
+const movie = computed(() => popularMovies.value?.results[shuffleIndex.value])
 const posterPath = computed(() => getImageUrl(movie.value?.poster_path))
-const genres = computed(() => movie.value?.genres?.map((genre) => genre.name).join(' / '))
+const genres = computed(() =>
+  movie.value?.genre_ids?.map((genreId) => keymap.value[genreId]?.name).join(' / '),
+)
 
 const shuffle = () => {
-  console.log('shuffle')
+  if (shuffleIndex.value + 1 === popularMovies.value?.results.length) {
+    page.value = page.value + 1
+    shuffleIndex.value = 0
+    return
+  }
+  shuffleIndex.value = shuffleIndex.value + 1
 }
 
 const goDetail = () => {
